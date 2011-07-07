@@ -1,0 +1,82 @@
+# type cast
+snippet @type
+	/** @type {${1:typename}} */ (
+# declare string type
+snippet @st
+	/** @type {string} */
+	this.${1:membername}_j = ext.consts.UNUSED;
+snippet @ut
+	/** @type {string} */
+	this.${1:membername}_j = ext.consts.NULL_UUID;
+snippet @nt
+	/** @type {number} */
+	this.${1:membername}_j = 0;
+snippet @dt
+	/** @type {goog.date.Date} */
+	this.${1:membername}_j = ext.consts.DATENEGATIVEINF.clone();
+
+# Create skeleton of new class.
+snippet ext.type
+	/**
+	 * @constructor
+	 */ 
+	ext.type.${1:class name} = function() {
+	  /** @type {string} */
+	  this.id_j = ext.consts.NULL_UUID;
+	  /** @type {string} */
+	  this.name_j = ext.consts.UNUSED;
+	  /** @type {goog.date.Date} */
+	  this.contract_date_j = ext.consts.DATENEGATIVEINF.clone();
+		// examples above.
+		${2:Members go bellow. Above are the Special examples of types declaration.}
+	};
+
+	/**
+	 * @param {ext.type.$1=} opt_json_obj
+	 * @return {!ext.type.$1}
+	 */ 
+	ext.type.$1.prototype.clone = function(opt_json_obj) {
+	  var source = opt_json_obj || this;
+	  var newObj = new ext.type.$1();
+	  newObj.id_j = source.id_j;
+		// clone members here and don't forget to use @cd snippet for date types.
+	};
+
+	/** 
+	 * @param {ext.type.$1} other
+	 * @return {boolean}
+	 */
+	ext.type.$1.prototype.equals = function(other) {  
+	  return (
+	      this.id_j == other.id_j &&
+	      this.contract_date_j.equals(other.contract_date_j)
+				// Examples above
+				));
+	};
+	
+	/** 
+	 * Convert dates in the object from string to real javascript Date object.
+	 */
+	ext.type.$1.prototype.datesToJson = function() {
+	  if (!this) { return; };
+		// Use @dd snippet to convert a member to date.
+	};
+
+
+# clone date
+snippet @cd
+	if (source.${1:membername}.clone) {
+		newObj.$1 = source.$1.clone();
+	} else {
+		newObj.$1 = goog.date.fromIsoString(
+			/** @type {string} */ (source.$1));
+	};
+
+# datesToJson date
+snippet @dd
+	if (this.${1:membername} && 
+		typeof this.$1 !== "string") {
+		this.$1 = (this.$1.toIsoString());
+	};
+
+
