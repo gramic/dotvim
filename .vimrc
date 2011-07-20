@@ -177,7 +177,7 @@ let g:DoxygenToolkit_endCommentBlock = " */"
 
 " Developing Javascript mappings
 set makeprg=make\ -C\ ./test/build_debug
-map <F5> :make -j 8 docs_app js_target cpp2js cpp2js_tu<CR>
+map <F5> :make -j 8 docs_app js_target<CR>
 map <C-F5> :set makeprg=make\ -C\ ./build_release<CR><Bar>:!cd ./build_release && cmake .. -DJDEBUG=OFF<CR>
 map <S-F5> :set makeprg=make\ -C\ ./build_debug<CR><Bar>:!cd ./build_debug && cmake .. -DJDEBUG=ON<CR>
 
@@ -204,10 +204,16 @@ let NERDTreeQuitOnOpen=1
 
 let NERDSpaceDelims=2
 
-" Fuzzy Finder
-let g:fuf_coveragefile_prompt = '>cpp[]>'
-let g:fuf_coveragefile_exclude = '\v\~$|\.(o|exe|dll|bak|orig|swp)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])|build.*/'
-noremap <Leader>f :call fuf#setOneTimeVariables(['g:fuf_coveragefile_globPatterns',['**/*.h','**/*.hpp', '**/*.c', '**/*.cpp', '**/CMakeLists.txt']])<CR><BAR>:FufCoverageFile<CR>
+" Fuzzy Finder js
+let g:fuf_coveragefile_prompt = '>js[]>'
+let g:fuf_coveragefile_exclude = '\v\~$|\.(o|exe|dll|bak|orig|swp)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])|hotel.*/|build.*/'
+noremap <Leader>f :call fuf#setOneTimeVariables(['g:fuf_coveragefile_globPatterns',['**/*.js','**/*.soy', '**/*.css']])<CR><BAR>:FufCoverageFile<CR>
+" Fuzzy Finder cpp
+" let g:fuf_coveragefile_prompt = '>cpp[]>'
+" let g:fuf_coveragefile_exclude = '\v\~$|\.(o|exe|dll|bak|orig|swp)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])|build.*/'
+" noremap <Leader>f :call fuf#setOneTimeVariables(['g:fuf_coveragefile_globPatterns',['**/*.h','**/*.hpp', '**/*.c', '**/*.cpp', '**/CMakeLists.txt']])<CR><BAR>:FufCoverageFile<CR>
+
+" FuzzyFinder mappings
 noremap <Leader>b :FufBuffer<CR>
 let g:fuf_modesDisable=['mrucmd']
 let g:fuf_buffer_mruOrder=1
