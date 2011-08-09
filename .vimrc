@@ -177,9 +177,12 @@ let g:DoxygenToolkit_endCommentBlock = " */"
 
 " Developing Javascript mappings
 set makeprg=make\ -C\ ./test/build_debug
-map <F5> :make -j 8 docs_app js_target<CR>
-map <C-F5> :set makeprg=make\ -C\ ./build_release<CR><Bar>:!cd ./build_release && cmake .. -DJDEBUG=OFF<CR>
-map <S-F5> :set makeprg=make\ -C\ ./build_debug<CR><Bar>:!cd ./build_debug && cmake .. -DJDEBUG=ON<CR>
+nmap <leader>bb :make -j 6 docs_app js_target<CR>
+nmap <F5> :make -j 6 docs_app js_target<CR>
+nmap <leader>br :set makeprg=make\ -C\ ./build_release<CR><Bar>:!cd ./build_release && cmake .. -DJDEBUG=OFF<CR>
+nmap <C-F5> :set makeprg=make\ -C\ ./build_release<CR><Bar>:!cd ./build_release && cmake .. -DJDEBUG=OFF<CR>
+nmap <leader>bd :set makeprg=make\ -C\ ./build_debug<CR><Bar>:!cd ./build_debug && cmake .. -DJDEBUG=ON<CR>
+nmap <S-F5> :set makeprg=make\ -C\ ./build_debug<CR><Bar>:!cd ./build_debug && cmake .. -DJDEBUG=ON<CR>
 
 " convert json property to exported closure compiler name
 map <leader>j bi["<Esc>ea"]<Esc>

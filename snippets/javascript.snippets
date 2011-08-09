@@ -19,16 +19,22 @@ snippet @type
 # declare string type
 snippet @st
 	/** @type {string} */
-	this.${1:membername}_j = ext.consts.UNUSED;
+	this.${1:membername} = ext.consts.UNUSED;
 snippet @ut
 	/** @type {string} */
-	this.${1:membername}_j = ext.consts.NULL_UUID;
+	this.${1:membername} = ext.consts.NULL_UUID;
 snippet @nt
 	/** @type {number} */
-	this.${1:membername}_j = 0;
+	this.${1:membername} = 0;
+snippet @bt
+	/** @type {boolean} */
+	this.${1:membername} = true;
+snippet @arr
+	/** @type {Array.<${1:typename}>} */
+	this.${2:membername} = [];
 snippet @dt
 	/** @type {goog.date.Date} */
-	this.${1:membername}_j = ext.consts.DATENEGATIVEINF.clone();
+	this.${1:membername} = ext.consts.DATENEGATIVEINF.clone();
 
 # Create skeleton of new class.
 snippet ext.type
@@ -78,8 +84,12 @@ snippet ext.type
 		// Use @dd snippet to convert a member to date.
 	};
 
+# clone member
+snippet cm
+	newObj.${1:memberName} = source.$1;
+
 # clone object
-snippet @co
+snippet co
 	if (goog.isFunction(source.${1:membername}.clone)) {
 		newObj.$1 = source.$1.clone();
 	} else {
@@ -88,7 +98,7 @@ snippet @co
 	}
 
 # clone date
-snippet @cd
+snippet cd
 	if (source.${1:membername}.clone) {
 		newObj.$1 = source.$1.clone();
 	} else {
@@ -96,8 +106,24 @@ snippet @cd
 			/** @type {string} */ (source.$1));
 	};
 
+# clone array
+snippet ca
+	goog.array.forEach(source.${1:membername}, function(src, index) {
+		if (goog.isFunction(src.clone)) {
+	    newObj.$1[index] = src.clone();
+	  } else {
+	    newObj.$1[index] =
+	        ext.type.${2:memberType}.prototype.clone(src);
+	  };
+	});
+
+# equal memebers
+snippet em
+	this.${1:memberName} == other.$1 &&
+	em${2}
+
 # datesToJson date
-snippet @dd
+snippet dd
 	if (this.${1:membername} && 
 		typeof this.$1 !== "string") {
 		this.$1 = (this.$1.toIsoString());
