@@ -1,4 +1,7 @@
 # type cast
+snippet css
+	goog.getCssName('${1:}')
+# type cast
 snippet /**
 	/**
 	 * ${1:}
@@ -49,7 +52,13 @@ snippet ext.type
 	  /** @type {goog.date.Date} */
 	  this.contract_date_j = ext.consts.DATENEGATIVEINF.clone();
 		// examples above.
-		${2:Members go bellow. Above are the Special examples of types declaration.}
+		// snippets:
+		//		@dt - date type
+		//		@st - declare string
+		//		@ut - uid string
+		//		@nt - number
+		//		@bt - boolean type
+		//		@arr - array type
 	};
 
 	/**
@@ -60,7 +69,11 @@ snippet ext.type
 	  var source = opt_json_obj || this;
 	  var newObj = new ext.type.$1();
 	  newObj.id_j = source.id_j;
-		// clone members here and don't forget to use @cd snippet for date types.
+		// clone members here by snippets:
+		//		cd - date types.
+		//		cm - clone member.
+		//		co - clone object.
+		//		ca - clone array.
 		return newObj;
 	};
 
@@ -87,6 +100,7 @@ snippet ext.type
 # clone member
 snippet cm
 	newObj.${1:memberName} = source.$1;
+	cm${2}
 
 # clone object
 snippet co

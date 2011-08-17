@@ -4,3 +4,7 @@ snippet css
 	{css ${1:}}
 snippet msg
 	{msg desc="${2:$1}"}${1:}{/msg}
+snippet call
+	{call .${1:functionName}}
+		{param ${2:}: ${3:$2 value} /}
+	{/call}
