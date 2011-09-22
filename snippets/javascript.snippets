@@ -43,7 +43,7 @@ snippet @dt
 snippet ext.type
 	/**
 	 * @constructor
-	 */ 
+	 */
 	ext.type.${1:class name} = function() {
 	  /** @type {string} */
 	  this.id_j = ext.consts.NULL_UUID;
@@ -64,7 +64,7 @@ snippet ext.type
 	/**
 	 * @param {ext.type.$1=} opt_json_obj Source json object.
 	 * @return {!ext.type.$1} Cloned object.
-	 */ 
+	 */
 	ext.type.$1.prototype.clone = function(opt_json_obj) {
 	  var source = opt_json_obj || this;
 	  var newObj = new ext.type.$1();
@@ -77,11 +77,11 @@ snippet ext.type
 		return newObj;
 	};
 
-	/** 
+	/**
 	 * @param {ext.type.$1} other The other object to compare.
 	 * @return {boolean} True if both are equal.
 	 */
-	ext.type.$1.prototype.equals = function(other) {  
+	ext.type.$1.prototype.equals = function(other) {
 	  return (
 	      this.id_j == other.id_j &&
 	      this.contract_date_j.equals(other.contract_date_j)
@@ -89,11 +89,11 @@ snippet ext.type
 				));
 	};
 	
-	/** 
+	/**
 	 * Convert dates in the object from string to real javascript Date object.
 	 */
 	ext.type.$1.prototype.datesToJson = function() {
-	  if (!this) { return; };
+	  if (!this) { return; }
 		// Use @dd snippet to convert a member to date.
 	};
 
@@ -128,7 +128,7 @@ snippet ca
 	  } else {
 	    newObj.$1[index] =
 	        ext.type.${2:memberType}.prototype.clone(src);
-	  };
+	  }
 	});
 
 # equal memebers
@@ -138,8 +138,8 @@ snippet em
 
 # datesToJson date
 snippet dd
-	if (this.${1:membername} && 
+	if (this.${1:membername} &&
 		typeof this.$1 !== "string") {
 		this.$1 = (this.$1.toIsoString());
-	};
+	}
 
