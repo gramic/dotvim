@@ -57,6 +57,8 @@ call vundle#rc()
 
 Bundle "git@github.com:gramic/dotvim.git"
 
+Bundle "git://github.com/michaeljsmith/vim-indent-object.git"
+Bundle "git://github.com/vim-scripts/argtextobj.vim.git"
 "Bundle "vundle.vim"
 Bundle "Tabular"
 Bundle "CSApprox"
