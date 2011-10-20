@@ -19,8 +19,13 @@ set undolevels=1000 "maximum number of changes that can be undone
 set undoreload=10000 "maximum number lines to save for undo on a buffer reload
 syntax on
 
-" Since I use linux, I want this
-set clipboard+=unnamed
+if has('gui_win32')
+  set clipboard=
+  set guifont=Consolas:h11
+elseif
+  " Since I use linux, I want this
+  set clipboard+=unnamed
+endif
 
 "set my prefered color scheme
 "set term=gnome-256color
@@ -52,6 +57,8 @@ call vundle#rc()
 
 Bundle "git@github.com:gramic/dotvim.git"
 
+Bundle "git://github.com/michaeljsmith/vim-indent-object.git"
+Bundle "git://github.com/vim-scripts/argtextobj.vim.git"
 "Bundle "vundle.vim"
 Bundle "Tabular"
 Bundle "CSApprox"
@@ -78,7 +85,10 @@ Bundle "matchit.zip"
 "Bundle "reload.vim"
 Bundle "repeat.vim"
 Bundle "matchit.zip"
-Bundle "git://github.com/msanders/snipmate.vim.git"
+Bundle "git://github.com/MarcWeber/vim-addon-mw-utils.git"
+Bundle "git://github.com/tomtom/tlib_vim.git"
+Bundle "git://github.com/honza/snipmate-snippets.git"
+Bundle "git://github.com/garbas/vim-snipmate.git"
 Bundle "surround.vim"
 Bundle "bufkill.vim"
 Bundle "git://github.com/skammer/vim-css-color.git"
