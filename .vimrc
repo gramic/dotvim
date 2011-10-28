@@ -152,6 +152,10 @@ map ' `
 :nmap <Space> <PageDown>
 :nmap <S-Space> <PageUp>
 
+" <C-l> redraws the screen, disable search term highlighting (don't switch it
+" off) and switches of the list view option
+nnoremap <silent> <C-l> :nohlsearch <bar> set nolist<CR><C-l>
+
 "map omni completion keys to Ctrl + Space
 :imap <C-Space> <C-X><C-O>
 
