@@ -95,7 +95,7 @@ Bundle "bufkill.vim"
 Bundle "git://github.com/skammer/vim-css-color.git"
 Bundle "git://github.com/duganchen/vim-soy"
 "Syntaxes
-Bundle 'javascript.vim--Frstenberg'
+" Bundle 'javascript.vim--Frstenberg'
 Bundle 'JSON.vim'
 Bundle 'nginx.vim'
 
