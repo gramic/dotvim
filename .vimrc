@@ -12,28 +12,39 @@ set noswapfile
 
 set backspace=start,indent,eol  " make backspace work like 'normal' text editors
 
+" Terminal shell settings {{{
 set t_Co=256
+" }}}
+
+" undo settings {{{
 set undofile
 set undodir=~/.vim_runtime/undodir
 set undolevels=1000 "maximum number of changes that can be undone
 set undoreload=10000 "maximum number lines to save for undo on a buffer reload
+" }}}
+
 syntax on
 
+augroup filetype_vim
+    au!
+    au FileType vim setlocal foldmethod=marker
+augroup END
+
+" GUI settings {{{
 if has('gui_win32')
   set clipboard=
-  set guifont=Consolas:h11
-elseif
+  set guifont=Consolas:h11:cDEFAULT
+else
   " Since I use linux, I want this
   set clipboard+=unnamed
 endif
-
-"set my prefered color scheme
-"set term=gnome-256color
+" }}}
 
 " color column
-set colorcolumn=81
+set colorcolumn=80
+set numberwidth=2
 
-" Match trailing whitespace, except when typing at the end of a line.
+" Match trailing whitespace, except when typing at the end of a line. {{{
 highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+$/
 autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
@@ -41,21 +52,20 @@ autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 autocmd BufWinLeave * call clearmatches()
 autocmd BufReadPost fugitive://* set bufhidden=delete
+" }}}
 
+" color column settings {{{
 "hi ColorColumn guibg=#2d2d2d
 "hi ColorColumn guibg=#fafafa
 "hi ColorColumn guifg=#ff0000
+" }}}
 
-set numberwidth=2
-
-" clear highlighting on <esc> press
-nnoremap <esc> :noh<return><esc>
-
-" Bundles:
-set rtp+=~/.vim/bundle/vundle/
+" Bundles: {{{
+set rtp+=$HOME/.vim/bundle/vundle/
 call vundle#rc()
 
-Bundle "git@github.com:gramic/dotvim.git"
+" My own vim settings.
+Bundle "git://github.com/gramic/dotvim.git"
 
 Bundle "git://github.com/michaeljsmith/vim-indent-object.git"
 Bundle "git://github.com/vim-scripts/argtextobj.vim.git"
@@ -76,7 +86,7 @@ Bundle "YankRing.vim"
 Bundle "ZenCoding.vim"
 Bundle "ZoomWin"
 Bundle "cecutil"
-Bundle "git://github.com/Rip-Rip/clang_complete.git"
+"Bundle "git://github.com/Rip-Rip/clang_complete.git"
 Bundle "cmake.vim"
 Bundle "cmake.vim-syntax"
 Bundle "fugitive.vim"
@@ -94,11 +104,13 @@ Bundle "surround.vim"
 Bundle "bufkill.vim"
 Bundle "git://github.com/skammer/vim-css-color.git"
 Bundle "git://github.com/duganchen/vim-soy"
-"Syntaxes
-" Bundle 'javascript.vim--Frstenberg'
+" Syntaxes
+" Bundle "git://github.com/jnwhiteh/vim-golang.git"
 Bundle 'JSON.vim'
 Bundle 'nginx.vim'
+" }}}
 
+" Color scheme settings {{{
 filetype off
 Bundle "altercation/vim-colors-solarized"
 
@@ -108,7 +120,9 @@ set background=light
 let g:solarized_termcolors=256
 colorscheme solarized
 set background=light
+" }}}
 
+" Status line {{{
 set laststatus=2
 set statusline=
 set statusline+=%<\                       " cut at start
@@ -119,32 +133,63 @@ set statusline+=%{fugitive#statusline()}\ " git branch name
 set statusline+=%1*%y%*%*\                " file type
 set statusline+=%10((%l/%L\ %c)%)\        " line and column
 set statusline+=%P                        " percentage of file
+" }}}
 
-"""""""""""""""""""""""""""""""""""""""
-"           Menu completions          "
-"""""""""""""""""""""""""""""""""""""""
+" Menu completions {{{
 set wildmode=full wildmenu                 " Command-line tab completion
 set infercase                              " AutoComplete in Vim
 set completeopt=longest,menu,menuone
 set wildignore+=*.o,*.obj,*.pyc,*.DS_STORE,*.db,*.swc
+" }}}
 
-"Gui options
+" Gui options {{{
 :set guioptions=ai  "remove all gui options except select copy buffer and icon
+" }}}
 
+" Movements {{{
 " have the h and l cursor keys wrap between lines
 " (like </space><space> and <bkspc> do by default),
-" and ~ covert case over line breaks; also have the cursor keys
+" and ~ convert case over line breaks; also have the cursor keys
 " wrap in insert mode:
 set whichwrap=h,l,~,[,]
+" }}}
 
+" General mappings {{{
 "map copy to end of line
-map Y y$
+nnoremap Y y$
 "Make the single quote work like a backtick
+nnoremap ' `
+"save with Ctrl + S
+:nnoremap <C-S> :w<CR>
+:inoremap <C-S> <Esc>:w<CR>
+"nmap Space to PageDown and Shift Space to PageUp
+:nnoremap <Space> <PageDown>
+:nnoremap <S-Space> <PageUp>
+" <C-l> redraws the screen, disable search term highlighting (don't switch it
+" off) and switches of the list view option
+nnoremap <silent> <C-l> :nohlsearch <bar> set nolist<CR><C-l>
+" Search for selected text, forwards or backwards.
+" (retrieved 24/2/2011 - http://vim.wikia.com/wiki/Search_for_visually_selected_text)
+vnoremap <silent> * :<C-U>
+  \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
+  \gvy/<C-R><C-R>=substitute(
+  \escape(@", '/\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
+  \gV:call setreg('"', old_reg, old_regtype)<CR>
+vnoremap <silent> # :<C-U>
+  \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
+  \gvy?<C-R><C-R>=substitute(
+  \escape(@", '?\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
+  \gV:call setreg('"', old_reg, old_regtype)<CR>
+
+if has("gui_running") && has("gui_win32")
+    " use alt-space for window options
+    nnoremap <m-space> :simalt~<CR>
+endif
 map ' `
 
-"save with Ctrl + S
-:map <C-S> :w<CR>
-:imap <C-S> <Esc>:w<CR>
+"map omni completion keys to Ctrl + Space
+:inoremap <C-Space> <C-X><C-O>
+" }}}
 
 " Save files with sudo rights if you forgot
 :command! W w !sudo tee % > /dev/null
@@ -181,17 +226,19 @@ endif
 "wildmenu that can be used like :e <C-D>
 set wildmenu
 
-
+" Javascript autocommands {{{
 " our style is curly brace at the end of the function signature
 autocmd BufNewFile,BufRead *.js map [[ ?function(.*)\ {$<CR>
 autocmd BufNewFile,BufRead *.js map ]] /^};$<CR>
-autocmd BufNewFile,BufRead *.js map <C-j> :!gjslint --strict %<CR>
+" Google js lint this file
+autocmd BufNewFile,BufRead *.js map-local <C-j> :!gjslint --strict %<CR>
+" }}}
 
 "turn omni completion on
 "autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
 "set tags+=~/.vim/closuretags
 
-"Doxygen Toolkit settings for javascript comments
+"Doxygen Toolkit settings for javascript comments {{{
 let g:DoxygenToolkit_compactDoc = "yes"
 let g:DoxygenToolkit_startCommentTag = "/** "
 let g:DoxygenToolkit_startCommentBlock = "/* "
@@ -200,35 +247,30 @@ let g:DoxygenToolkit_paramTag_pre = "@param {} "
 let g:DoxygenToolkit_interCommentTag=" * "
 let g:DoxygenToolkit_endCommentTag = " */"
 let g:DoxygenToolkit_endCommentBlock = " */"
+" }}}
 
 "Error format
 "autocmd FileType json set errorformat=%E%f:\ %m\ at\ line\ %l,%-G%.%#
 "set errorformat=%E%f:%l:\ WARNING\ -\ %m,%C,%C%p^
+"set errorformat=%E%f:%l:\ ERROR\ -\ %m,%C,%C%p^
 
 " Soy files to be syntax html like
 ":au! BufNewFile,BufRead *.soy set filetype=html
 
 " Developing Javascript mappings
-set makeprg=make\ -C\ ./test/build_debug
+set makeprg=make\ -C\ ./build_debug
 nmap <leader>bb :make -j 2 docs_app js_target<CR>
-nmap <F5> :make -j 2 docs_app js_target<CR>
 nmap <leader>br :set makeprg=make\ -C\ ./build_release<CR><Bar>:!cd ./build_release && cmake .. -DJDEBUG=OFF<CR>
-nmap <C-F5> :set makeprg=make\ -C\ ./build_release<CR><Bar>:!cd ./build_release && cmake .. -DJDEBUG=OFF<CR>
 nmap <leader>bd :set makeprg=make\ -C\ ./build_debug<CR><Bar>:!cd ./build_debug && cmake .. -DJDEBUG=ON<CR>
-nmap <S-F5> :set makeprg=make\ -C\ ./build_debug<CR><Bar>:!cd ./build_debug && cmake .. -DJDEBUG=ON<CR>
 
 " convert json property to exported closure compiler name
-map <leader>j bi["<Esc>ea"]<Esc>
+noremap <leader>j bi["<Esc>ea"]<Esc>
 
 
 " Command Make will call make and then cwindow which
 " opens a 3 line error window if any errors are found.
 " If no errors, it closes any open cwindow.
 :command! -nargs=* Make make <args>
-
-" DBExt profiles
-let g:dbext_default_profile_mysql_local = 'type=MYSQL:user=root:passwd=root:dbname=test3:host=localhost'
-let g:dbext_default_profile_SQLSRV      = 'type=SQLSRV:user=sa:passwd=sdfggsfd:host=192.168.0.2:replace_title=1:dbname=sofica'
 
 " NERDTree
 :noremap <Leader>F :NERDTreeToggle<CR>
