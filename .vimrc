@@ -64,8 +64,9 @@ Bundle "Tabular"
 Bundle "CSApprox"
 Bundle "Color-Sampler-Pack"
 Bundle "FuzzyFinder"
-Bundle "JavaScript-syntax"
-Bundle "Javascript-Indentation"
+Bundle "batsuev/vim-javascript.git"
+" Bundle "JavaScript-syntax"
+" Bundle "Javascript-Indentation"
 Bundle "L9"
 Bundle "ScrollColors"
 "Bundle "SuperTab-continued."
@@ -94,7 +95,7 @@ Bundle "bufkill.vim"
 Bundle "git://github.com/skammer/vim-css-color.git"
 Bundle "git://github.com/duganchen/vim-soy"
 "Syntaxes
-Bundle 'javascript.vim--Frstenberg'
+" Bundle 'javascript.vim--Frstenberg'
 Bundle 'JSON.vim'
 Bundle 'nginx.vim'
 
@@ -151,6 +152,28 @@ map ' `
 "nmap Space to PageDown and Shift Space to PageUp
 :nmap <Space> <PageDown>
 :nmap <S-Space> <PageUp>
+
+" <C-l> redraws the screen, disable search term highlighting (don't switch it
+" off) and switches of the list view option
+nnoremap <silent> <C-l> :nohlsearch <bar> set nolist<CR><C-l>
+
+" Search for selected text, forwards or backwards.
+" (retrieved 24/2/2011 - http://vim.wikia.com/wiki/Search_for_visually_selected_text)
+vnoremap <silent> * :<C-U>
+  \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
+  \gvy/<C-R><C-R>=substitute(
+  \escape(@", '/\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
+  \gV:call setreg('"', old_reg, old_regtype)<CR>
+vnoremap <silent> # :<C-U>
+  \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
+  \gvy?<C-R><C-R>=substitute(
+  \escape(@", '?\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
+  \gV:call setreg('"', old_reg, old_regtype)<CR>
+
+if has("gui_running") && has("gui_win32")
+    " use alt-space for window options
+    nnoremap <m-space> :simalt~<CR>
+endif
 
 "map omni completion keys to Ctrl + Space
 :imap <C-Space> <C-X><C-O>
