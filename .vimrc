@@ -36,7 +36,7 @@ if has('gui_win32')
   set guifont=Consolas:h11:cDEFAULT
 else
   " Since I use linux, I want this
-  set clipboard+=unnamed
+  set clipboard=
 endif
 " }}}
 
@@ -73,7 +73,8 @@ Bundle "git://github.com/vim-scripts/argtextobj.vim.git"
 Bundle "Tabular"
 Bundle "CSApprox"
 Bundle "Color-Sampler-Pack"
-Bundle "FuzzyFinder"
+" Bundle "FuzzyFinder"
+Bundle "git://github.com/kien/ctrlp.vim.git"
 Bundle "batsuev/vim-javascript.git"
 " Bundle "JavaScript-syntax"
 " Bundle "Javascript-Indentation"
@@ -105,7 +106,7 @@ Bundle "bufkill.vim"
 Bundle "git://github.com/skammer/vim-css-color.git"
 Bundle "git://github.com/duganchen/vim-soy"
 " Syntaxes
-" Bundle "git://github.com/jnwhiteh/vim-golang.git"
+Bundle "git://github.com/jnwhiteh/vim-golang.git"
 Bundle 'JSON.vim'
 Bundle 'nginx.vim'
 " }}}
@@ -283,19 +284,26 @@ let NERDTreeQuitOnOpen=1
 let NERDSpaceDelims=2
 
 " Fuzzy Finder js
-let g:fuf_coveragefile_prompt = '>js[]>'
-let g:fuf_coveragefile_exclude = '\v\~$|\.(o|exe|dll|bak|orig|swp)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])|hotel.*/|build.*/'
-noremap <Leader>f :call fuf#setOneTimeVariables(['g:fuf_coveragefile_globPatterns',['**/*.js','**/*.soy', '**/*.css']])<CR><BAR>:FufCoverageFile<CR>
+" let g:fuf_coveragefile_prompt = '>js[]>'
+" let g:fuf_coveragefile_exclude = '\v\~$|\.(o|exe|dll|bak|orig|swp)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])|hotel.*/|build.*/'
+" noremap <Leader>f :call fuf#setOneTimeVariables(['g:fuf_coveragefile_globPatterns',['**/*.js','**/*.soy', '**/*.css']])<CR><BAR>:FufCoverageFile<CR>
 " Fuzzy Finder cpp
 " let g:fuf_coveragefile_prompt = '>cpp[]>'
 " let g:fuf_coveragefile_exclude = '\v\~$|\.(o|exe|dll|bak|orig|swp)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])|build.*/'
 " noremap <Leader>f :call fuf#setOneTimeVariables(['g:fuf_coveragefile_globPatterns',['**/*.h','**/*.hpp', '**/*.c', '**/*.cpp', '**/CMakeLists.txt']])<CR><BAR>:FufCoverageFile<CR>
 
 " FuzzyFinder mappings
-noremap <Leader>b :FufBuffer<CR>
-let g:fuf_modesDisable=['mrucmd']
-let g:fuf_buffer_mruOrder=1
-noremap <Leader>m :FufMruFile<CR>
+" noremap <Leader>b :FufBuffer<CR>
+" let g:fuf_modesDisable=['mrucmd']
+" let g:fuf_buffer_mruOrder=1
+" noremap <Leader>m :FufMruFile<CR>
+
+" CtrlP mappings
+let g:ctrlp_map = '<localleader>f'
+nnoremap <localleader>m :CtrlPMRU<CR>
+let g:ctrlp_by_filename = 1 " search by filename (not full path) as default.
+set wildignore+=*/.hg/*,*/.svn/*   " for Linux/MacOSX
+set wildignore+=*/build*/*
 
 
 " Limit popup menu height
