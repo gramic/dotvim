@@ -76,7 +76,7 @@ Bundle "Color-Sampler-Pack"
 " Bundle "FuzzyFinder"
 Bundle "git://github.com/kien/ctrlp.vim.git"
 Bundle "batsuev/vim-javascript.git"
-" Bundle "JavaScript-syntax"
+Bundle "jelera/vim-javascript-syntax.git"
 " Bundle "Javascript-Indentation"
 Bundle "L9"
 Bundle "ScrollColors"
@@ -87,7 +87,7 @@ Bundle "YankRing.vim"
 Bundle "ZenCoding.vim"
 Bundle "ZoomWin"
 Bundle "cecutil"
-"Bundle "git://github.com/Rip-Rip/clang_complete.git"
+" Bundle "git://github.com/Rip-Rip/clang_complete.git"
 Bundle "cmake.vim"
 Bundle "cmake.vim-syntax"
 Bundle "fugitive.vim"
@@ -227,6 +227,23 @@ endif
 "wildmenu that can be used like :e <C-D>
 set wildmenu
 
+
+" Html, css, refresh browser autocommands {{{
+augroup refresh_browser
+  au!
+  autocmd BufWriteCmd *.html,*.css :call Refresh_browser()
+augroup END
+
+function! Refresh_browser()
+  if &modified
+    write
+    " Call the line bellow to see the window number
+    " !xdotool search --name "ВАТ Консулт"
+    silent !xdotool key --window 60817476 ctrl+r
+  endif
+endfunction
+" }}}
+
 " Javascript autocommands {{{
 " our style is curly brace at the end of the function signature
 autocmd BufNewFile,BufRead *.js map [[ ?function(.*)\ {$<CR>
@@ -260,7 +277,7 @@ let g:DoxygenToolkit_endCommentBlock = " */"
 
 " Developing Javascript mappings
 set makeprg=make\ -C\ ./build_debug
-nmap <leader>bb :make -j 2 docs_app js_target<CR>
+nmap <leader>bb :make -j 4 docs_app js_target<CR>
 nmap <leader>br :set makeprg=make\ -C\ ./build_release<CR><Bar>:!cd ./build_release && cmake .. -DJDEBUG=OFF<CR>
 nmap <leader>bd :set makeprg=make\ -C\ ./build_debug<CR><Bar>:!cd ./build_debug && cmake .. -DJDEBUG=ON<CR>
 
@@ -302,6 +319,7 @@ let NERDSpaceDelims=2
 let g:ctrlp_map = '<localleader>f'
 nnoremap <localleader>m :CtrlPMRU<CR>
 let g:ctrlp_by_filename = 1 " search by filename (not full path) as default.
+let g:ctrlp_dotfiles = 0 " do not search inside dot files and dirs.
 set wildignore+=*/.hg/*,*/.svn/*   " for Linux/MacOSX
 set wildignore+=*/build*/*
 
