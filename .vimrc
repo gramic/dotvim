@@ -30,6 +30,14 @@ augroup filetype_vim
     au FileType vim setlocal foldmethod=marker
 augroup END
 
+" Cyrillic support {{{
+set encoding=utf8
+set keymap=bulgarian-phonetic
+set iminsert=0
+set imsearch=0
+highlight lCursor guifg=NONE guibg=Cyan
+" }}}
+
 " GUI settings {{{
 if has('gui_win32')
   set clipboard=
