@@ -41,7 +41,7 @@ highlight lCursor guifg=NONE guibg=Cyan
 " GUI settings {{{
 if has('gui_win32')
   set clipboard=
-  set guifont=Consolas:h11:cDEFAULT
+  set guifont=DejaVu\ Sans\ Mono:h12:b:cDEFAULT
 else
   " Since I use linux, I want this
   set clipboard=
