@@ -28,6 +28,7 @@ syntax on
 augroup filetype_vim
     au!
     au FileType vim setlocal foldmethod=marker
+    au! BufNewFile,BufRead *.ledger set filetype=ledger
 augroup END
 
 " Cyrillic support {{{
@@ -68,13 +69,16 @@ autocmd BufReadPost fugitive://* set bufhidden=delete
 "hi ColorColumn guifg=#ff0000
 " }}}
 
+" git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+
 " Bundles: {{{
 set rtp+=$HOME/.vim/bundle/vundle/
 call vundle#rc()
 
 " My own vim settings.
+Bundle "gmarik/vundle"
 Bundle "git://github.com/gramic/dotvim.git"
-
+Bundle "kljohann/ledger",{"rtp":"contrib/vim"}
 Bundle "git://github.com/michaeljsmith/vim-indent-object.git"
 Bundle "git://github.com/vim-scripts/argtextobj.vim.git"
 "Bundle "vundle.vim"
