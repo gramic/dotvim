@@ -16,6 +16,9 @@ snippet private
 	this.${2:membername}_ = new $1();
 snippet @param
 	@param {${1:type}} ${2:varable} ${3:description.}
+# const type
+snippet @const
+	/** @const */ ${1:variable}
 # type cast
 snippet @type
 	/** @type {${1:typename}} */ (
@@ -143,3 +146,13 @@ snippet dd
 		this.$1 = (this.$1.toIsoString());
 	}
 
+
+
+# functor with this
+snippet fr
+	/**
+	 * @type {function(this:${1:this type}, ${2:param name}:${3:param type})}
+	 */
+	function($2) {
+		${5:}
+	}${4:, this});
