@@ -404,3 +404,9 @@ function! Jslint()
   set errorformat=l:old_errorformat
 endfunction
 
+" Easily resize windows {{{
+nmap <left>  :3wincmd <<cr>
+nmap <right> :3wincmd ><cr>
+nmap <up>    :3wincmd +<cr>
+nmap <down>  :3wincmd -<cr>
+" }}}
