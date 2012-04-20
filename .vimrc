@@ -41,11 +41,11 @@ highlight lCursor guifg=NONE guibg=Cyan
 
 " GUI settings {{{
 if has('gui_win32')
-  set clipboard=
+  set clipboard=unnamedplus
   set guifont=DejaVu\ Sans\ Mono:h12:b:cDEFAULT
 else
   " Since I use linux, I want this
-  set clipboard=
+  set clipboard=unnamedplus
 endif
 " }}}
 
@@ -63,12 +63,6 @@ autocmd BufWinLeave * call clearmatches()
 autocmd BufReadPost fugitive://* set bufhidden=delete
 " }}}
 
-" color column settings {{{
-"hi ColorColumn guibg=#2d2d2d
-"hi ColorColumn guibg=#fafafa
-"hi ColorColumn guifg=#ff0000
-" }}}
-
 " git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
 
 " Bundles: {{{
@@ -81,25 +75,27 @@ Bundle "git://github.com/gramic/dotvim.git"
 Bundle "kljohann/ledger",{"rtp":"contrib/vim"}
 Bundle "git://github.com/michaeljsmith/vim-indent-object.git"
 Bundle "git://github.com/vim-scripts/argtextobj.vim.git"
+Bundle "kana/vim-fakeclip.git"
 "Bundle "vundle.vim"
 Bundle "Tabular"
 Bundle "CSApprox"
-Bundle "Color-Sampler-Pack"
+" Bundle "Color-Sampler-Pack"
 " Bundle "FuzzyFinder"
 Bundle "git://github.com/kien/ctrlp.vim.git"
 Bundle "batsuev/vim-javascript.git"
 Bundle "jelera/vim-javascript-syntax.git"
 " Bundle "Javascript-Indentation"
 Bundle "L9"
-Bundle "ScrollColors"
-"Bundle "SuperTab-continued."
+" Bundle "ScrollColors"
+" Bundle "SuperTab-continued."
 Bundle "The-NERD-Commenter"
 Bundle "The-NERD-tree"
 Bundle "YankRing.vim"
 Bundle "ZenCoding.vim"
 Bundle "ZoomWin"
 Bundle "cecutil"
-" Bundle "git://github.com/Rip-Rip/clang_complete.git"
+" Bundle "Rip-Rip/clang_complete.git"
+" Bundle "Schmallon/clang_complete.git"
 Bundle "cmake.vim"
 Bundle "cmake.vim-syntax"
 Bundle "fugitive.vim"
@@ -112,13 +108,16 @@ Bundle "matchit.zip"
 Bundle "git://github.com/MarcWeber/vim-addon-mw-utils.git"
 Bundle "git://github.com/tomtom/tlib_vim.git"
 Bundle "git://github.com/honza/snipmate-snippets.git"
+" Bundle 'UltiSnips'
 Bundle "git://github.com/garbas/vim-snipmate.git"
 Bundle "surround.vim"
 Bundle "bufkill.vim"
 Bundle "git://github.com/skammer/vim-css-color.git"
 Bundle "git://github.com/duganchen/vim-soy"
 " Syntaxes
+Bundle "Lokaltog/vim-powerline.git"
 Bundle "git://github.com/jnwhiteh/vim-golang.git"
+Bundle "https://github.com/nsf/gocode",{"rtp":"vim"}
 Bundle 'JSON.vim'
 Bundle 'nginx.vim'
 " }}}
@@ -133,6 +132,7 @@ set background=light
 let g:solarized_termcolors=256
 colorscheme solarized
 set background=light
+let g:Powerline_symbols='fancy'
 " }}}
 
 " Status line {{{
@@ -281,8 +281,8 @@ let g:DoxygenToolkit_endCommentBlock = " */"
 
 "Error format
 "autocmd FileType json set errorformat=%E%f:\ %m\ at\ line\ %l,%-G%.%#
-"set errorformat=%E%f:%l:\ WARNING\ -\ %m,%C,%C%p^
-"set errorformat=%E%f:%l:\ ERROR\ -\ %m,%C,%C%p^
+set errorformat+=%W%f:%l:\ WARNING\ -\ %m,%C,%C%p^
+set errorformat+=%E%f:%l:\ ERROR\ -\ %m,%C,%C%p^
 
 " Soy files to be syntax html like
 ":au! BufNewFile,BufRead *.soy set filetype=html
@@ -350,11 +350,25 @@ let g:clang_debug=1
 let g:clang_use_library=1
 let g:home_dir = expand("$HOME/")
 let g:clang_library_path=g:home_dir."/opt/lib/"
-let g:clang_user_options="-I/".g:home_dir."/opt/clang/3.0/include"
-let g:clang_auto_user_options="-I/".g:home_dir."/opt/clang/3.0/include, .clang_complete"
+" let g:clang_user_options="-I/".g:home_dir."/opt/clang/3.1/include"
+" let g:clang_auto_user_options="-I/".g:home_dir."/opt/clang/3.1/include, .clang_complete"
+let g:clang_snippets_engine="ultisnips"
 let g:clang_snippets=1
 let g:clang_conceal_snippets=1
 let g:clang_complete_copen=1
+let g:clang_hl_errors=1
+let g:clang_periodic_quickfix=1
+
+" move to the middle of the physical line without trailing white space. {{{
+function! s:Gm()
+  execute 'normal! ^'
+  let first_col = virtcol('.')
+  execute 'normal! g_'
+  let last_col  = virtcol('.')
+  execute 'normal! ' . (first_col + last_col) / 2 . '|'
+endfunction
+nnoremap <silent> gm :call <SID>Gm()<CR>
+" }}}
 
 " cpplint.py
 if !exists("lint_autocommand_loaded")
@@ -401,12 +415,5 @@ function! Jslint()
   set errorformat=%-P-----\ FILE\ \ :\ \ %f\ -----,Line\ %l\\,\ E:%n:\ %m,%-Q,%-GFound\ %s,%-GSome\ %s,%-Gfixjsstyle%s,%-Gscript\ can\ %s,%-G
   make
   let &makeprg=l:old_makeprg
-  set errorformat=l:old_errorformat
+  set errorformat=&l:old_errorformat
 endfunction
-
-" Easily resize windows {{{
-nmap <left>  :3wincmd <<cr>
-nmap <right> :3wincmd ><cr>
-nmap <up>    :3wincmd +<cr>
-nmap <down>  :3wincmd -<cr>
-" }}}
