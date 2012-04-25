@@ -3,8 +3,14 @@ However, you could take advantage of them if you will.
 
 Here are some special notes and structure for this configuration.
 
+0. Install git first. On ubuntu machine use:
+  sudo apt-get install git-core
 1. Install vundle first. I am using vundle vim plugin to manage all of my plugins, including this configuration.
   git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
   git clone https://github.com/gramic/dotvim.git ~/.vim/bundle/dotvim
 2. Make link in your .vim directory to this .vimrc file. That way you can modify and push the changes back to this GitHub repository.
   ln -s ~/.vim/bundle/dotvim/.vimrc ~/.vimrc
+
+There is some more dot files like the tmux.
+  sudo apt-get install tmux
+  ln -s ~/.vim/bundle/dotvim/.tmux.conf ~/.tmux.conf
