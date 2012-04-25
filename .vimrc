@@ -72,13 +72,13 @@ call vundle#rc()
 " My own vim settings.
 Bundle "gmarik/vundle"
 Bundle "git://github.com/gramic/dotvim.git"
-Bundle "kljohann/ledger",{"rtp":"contrib/vim"}
+" Bundle "kljohann/ledger",{"rtp":"contrib/vim"}
 Bundle "git://github.com/michaeljsmith/vim-indent-object.git"
 Bundle "git://github.com/vim-scripts/argtextobj.vim.git"
 Bundle "kana/vim-fakeclip.git"
 "Bundle "vundle.vim"
 Bundle "Tabular"
-Bundle "CSApprox"
+" Bundle "CSApprox"
 " Bundle "Color-Sampler-Pack"
 " Bundle "FuzzyFinder"
 Bundle "git://github.com/kien/ctrlp.vim.git"
@@ -290,8 +290,8 @@ set errorformat+=%E%f:%l:\ ERROR\ -\ %m,%C,%C%p^
 " Developing Javascript mappings
 set makeprg=make\ -C\ ./build_debug
 nmap <leader>bb :make -j 4 docs_app js_target<CR>
-nmap <leader>br :set makeprg=make\ -C\ ./build_release<CR><Bar>:!cd ./build_release && cmake .. -DJDEBUG=OFF<CR>
-nmap <leader>bd :set makeprg=make\ -C\ ./build_debug<CR><Bar>:!cd ./build_debug && cmake .. -DJDEBUG=ON<CR>
+nmap <leader>br :set makeprg=make\ -C\ ./build_release<CR><Bar>:!cd ./build_release && cmake -DCMAKE_BUILD_TYPE=Release -DJDEBUG=OFF ..<CR>
+nmap <leader>bd :set makeprg=make\ -C\ ./build_debug<CR><Bar>:!cd ./build_debug && cmake -DCMAKE_BUILD_TYPE=Release -DJDEBUG=ON ..<CR>
 
 " convert json property to exported closure compiler name
 noremap <leader>j bi["<Esc>ea"]<Esc>
