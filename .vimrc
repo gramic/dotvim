@@ -95,7 +95,6 @@ Bundle "ZenCoding.vim"
 Bundle "ZoomWin"
 Bundle "cecutil"
 " Bundle "Rip-Rip/clang_complete.git"
-" Bundle "Schmallon/clang_complete.git"
 Bundle "cmake.vim"
 Bundle "cmake.vim-syntax"
 Bundle "fugitive.vim"
@@ -283,15 +282,17 @@ let g:DoxygenToolkit_endCommentBlock = " */"
 "autocmd FileType json set errorformat=%E%f:\ %m\ at\ line\ %l,%-G%.%#
 set errorformat+=%W%f:%l:\ WARNING\ -\ %m,%C,%C%p^
 set errorformat+=%E%f:%l:\ ERROR\ -\ %m,%C,%C%p^
+" this is to not open empty file. tip from here http://goo.gl/5pgIK
+set errorformat^=%-GIn\ file\ included\ %.%#
 
 " Soy files to be syntax html like
 ":au! BufNewFile,BufRead *.soy set filetype=html
 
 " Developing Javascript mappings
-set makeprg=make\ -C\ ./build_debug
-nmap <leader>bb :make -j 4 docs_app js_target<CR>
+set makeprg=make\ -C\ ./build
+nmap <leader>bb :make -j 6<CR>
 nmap <leader>br :set makeprg=make\ -C\ ./build_release<CR><Bar>:!cd ./build_release && cmake -DCMAKE_BUILD_TYPE=Release -DJDEBUG=OFF ..<CR>
-nmap <leader>bd :set makeprg=make\ -C\ ./build_debug<CR><Bar>:!cd ./build_debug && cmake -DCMAKE_BUILD_TYPE=Debug -DJDEBUG=ON ..<CR>
+nmap <leader>bd :set makeprg=make\ -C\ ./build<CR><Bar>:!cd ./build && cmake -DCMAKE_BUILD_TYPE=Debug -DJDEBUG=ON ..<CR>
 
 " convert json property to exported closure compiler name
 noremap <leader>j bi["<Esc>ea"]<Esc>
@@ -328,13 +329,14 @@ let NERDSpaceDelims=2
 " noremap <Leader>m :FufMruFile<CR>
 
 " CtrlP mappings
+let g:ctrlp_working_path_mode = 0 " don't manage current directory
+let g:ctrlp_custom_ignore = { 
+  \ 'dir':  '\.git$\|\.hg$\|\.svn$\|build$\|build_release$\|build_debug$\|third_parties$',
+  \ }
 let g:ctrlp_map = '<localleader>f'
 nnoremap <localleader>m :CtrlPMRU<CR>
 let g:ctrlp_by_filename = 1 " search by filename (not full path) as default.
 let g:ctrlp_dotfiles = 0 " do not search inside dot files and dirs.
-set wildignore+=*/.hg/*,*/.svn/*   " for Linux/MacOSX
-set wildignore+=*/build*/*
-
 
 " Limit popup menu height
 set pumheight=15
@@ -345,19 +347,20 @@ let g:SuperTabDefaultCompletionType = "context"
 " C++
 " Clang settings
 let g:clang_complete_auto=0
-let g:clang_hl_errors=1
+let g:clang_hl_errors=0
 let g:clang_debug=1
 let g:clang_use_library=1
 let g:home_dir = expand("$HOME/")
-let g:clang_library_path=g:home_dir."/opt/lib/"
+let g:clang_library_path="/usr/local/lib"
+" let g:clang_library_path=g:home_dir."/opt/lib/"
+let g:clang_user_options='|| exit 0'
 " let g:clang_user_options="-I/".g:home_dir."/opt/clang/3.1/include"
 " let g:clang_auto_user_options="-I/".g:home_dir."/opt/clang/3.1/include, .clang_complete"
-let g:clang_snippets_engine="ultisnips"
+" let g:clang_snippets_engine="ultisnips"
 let g:clang_snippets=1
 let g:clang_conceal_snippets=1
-let g:clang_complete_copen=1
-let g:clang_hl_errors=1
-let g:clang_periodic_quickfix=1
+let g:clang_complete_copen=0
+let g:clang_periodic_quickfix=0
 
 " move to the middle of the physical line without trailing white space. {{{
 function! s:Gm()
