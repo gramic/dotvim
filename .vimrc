@@ -290,9 +290,10 @@ set errorformat^=%-GIn\ file\ included\ %.%#
 
 " Developing Javascript mappings
 set makeprg=make\ -C\ ./build
-nmap <leader>bb :make -j 6<CR>
-nmap <leader>br :set makeprg=make\ -C\ ./build_release<CR><Bar>:!cd ./build_release && cmake -DCMAKE_BUILD_TYPE=Release -DJDEBUG=OFF ..<CR>
-nmap <leader>bd :set makeprg=make\ -C\ ./build<CR><Bar>:!cd ./build && cmake -DCMAKE_BUILD_TYPE=Debug -DJDEBUG=ON ..<CR>
+nmap <localleader>bb :make -j 6<CR>
+nmap <localleader>br :set makeprg=make\ -C\ ./build_release<CR><Bar>:!cd ./build_release && cmake -DCMAKE_BUILD_TYPE=Release -DJDEBUG=OFF ..<CR>
+nmap <localleader>bd :set makeprg=make\ -C\ ./build<CR><Bar>:!cd ./build && cmake -DCMAKE_BUILD_TYPE=Debug -DJDEBUG=ON ..<CR>
+nmap <localleader>bt :!build/csv_test<CR>
 
 " convert json property to exported closure compiler name
 noremap <leader>j bi["<Esc>ea"]<Esc>
@@ -301,7 +302,7 @@ noremap <leader>j bi["<Esc>ea"]<Esc>
 " Command Make will call make and then cwindow which
 " opens a 3 line error window if any errors are found.
 " If no errors, it closes any open cwindow.
-:command! -nargs=* Make make <args>
+:command! -nargs=* Make make! <args>
 
 " NERDTree
 :noremap <Leader>F :NERDTreeToggle<CR>
