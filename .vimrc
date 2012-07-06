@@ -50,7 +50,7 @@ endif
 " }}}
 
 " color column
-set colorcolumn=80
+set colorcolumn=81
 set numberwidth=2
 
 " Match trailing whitespace, except when typing at the end of a line. {{{
@@ -72,6 +72,7 @@ call vundle#rc()
 " My own vim settings.
 Bundle "gmarik/vundle"
 Bundle "git://github.com/gramic/dotvim.git"
+Bundle 'embear/vim-localvimrc.git'
 " Bundle "kljohann/ledger",{"rtp":"contrib/vim"}
 Bundle "git://github.com/michaeljsmith/vim-indent-object.git"
 Bundle "git://github.com/vim-scripts/argtextobj.vim.git"
@@ -120,6 +121,8 @@ Bundle "https://github.com/nsf/gocode",{"rtp":"vim"}
 Bundle 'JSON.vim'
 Bundle 'nginx.vim'
 " }}}
+
+let g:localvimrc_name=".stanimir.vimrc"
 
 " Color scheme settings {{{
 filetype off
@@ -290,10 +293,10 @@ set errorformat^=%-GIn\ file\ included\ %.%#
 
 " Developing Javascript mappings
 set makeprg=make\ -C\ ./build
-nmap <localleader>bb :make -j 6<CR>
-nmap <localleader>br :set makeprg=make\ -C\ ./build_release<CR><Bar>:!cd ./build_release && cmake -DCMAKE_BUILD_TYPE=Release -DJDEBUG=OFF ..<CR>
-nmap <localleader>bd :set makeprg=make\ -C\ ./build<CR><Bar>:!cd ./build && cmake -DCMAKE_BUILD_TYPE=Debug -DJDEBUG=ON ..<CR>
-nmap <localleader>bt :!build/csv_test<CR>
+nnoremap <localleader>bb :make -j 6<CR>
+nnoremap <localleader>br :set makeprg=make\ -C\ ./build_release<CR><Bar>:!cd ./build_release && cmake -DCMAKE_BUILD_TYPE=Release -DJDEBUG=OFF ..<CR>
+nnoremap <localleader>bd :set makeprg=make\ -C\ ./build<CR><Bar>:!cd ./build && cmake -DCMAKE_BUILD_TYPE=Debug -DJDEBUG=ON ..<CR>
+nnoremap <localleader>bt :!build/csv_test<CR>
 
 " convert json property to exported closure compiler name
 noremap <leader>j bi["<Esc>ea"]<Esc>
@@ -330,7 +333,8 @@ let NERDSpaceDelims=2
 " noremap <Leader>m :FufMruFile<CR>
 
 " CtrlP mappings
-let g:ctrlp_working_path_mode = 0 " don't manage current directory
+let g:ctrlp_working_path_mode = 2 " don't manage current directory
+let g:ctrlp_root_markers = ['CMakeLists\.txt']
 let g:ctrlp_custom_ignore = { 
   \ 'dir':  '\.git$\|\.hg$\|\.svn$\|build$\|build_release$\|build_debug$\|third_parties$',
   \ }
