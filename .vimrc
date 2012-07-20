@@ -76,6 +76,7 @@ Bundle 'embear/vim-localvimrc.git'
 " Bundle "kljohann/ledger",{"rtp":"contrib/vim"}
 Bundle "git://github.com/michaeljsmith/vim-indent-object.git"
 Bundle "git://github.com/vim-scripts/argtextobj.vim.git"
+Bundle "coderifous/textobj-word-column.vim.git"
 Bundle "kana/vim-fakeclip.git"
 "Bundle "vundle.vim"
 Bundle "Tabular"
