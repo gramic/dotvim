@@ -91,6 +91,7 @@ Bundle "L9"
 " Bundle "SuperTab-continued."
 Bundle "The-NERD-Commenter"
 Bundle "The-NERD-tree"
+" Bundle "maxbrunsfeld/vim-yankstack"
 Bundle "YankRing.vim"
 Bundle "ZenCoding.vim"
 Bundle "ZoomWin"
@@ -131,6 +132,7 @@ Bundle "altercation/vim-colors-solarized"
 
 filetype plugin indent on
 set background=light
+" let g:solarized_termtrans=1
 let g:solarized_termcolors=256
 colorscheme solarized
 set background=light
@@ -169,9 +171,16 @@ set wildignore+=*.o,*.obj,*.pyc,*.DS_STORE,*.db,*.swc
 set whichwrap=h,l,~,[,]
 " }}}
 
+" Yankstack {{{
+" The yankstack mappings need to happen before I define my own.
+" call yankstack#setup()
+" nmap <a-p> <Plug>yankstack_substitute_older_paste
+" nmap <a-P> <Plug>yankstack_substitute_newer_paste
+" }}}
+
 " General mappings {{{
 "map copy to end of line
-nnoremap Y y$
+map Y y$
 "Make the single quote work like a backtick
 nnoremap ' `
 "save with Ctrl + S
@@ -296,7 +305,6 @@ set makeprg=make\ -C\ ./build
 nnoremap <localleader>bb :make -j 6<CR>
 nnoremap <localleader>br :set makeprg=make\ -C\ ./build_release<CR><Bar>:!cd ./build_release && cmake -DCMAKE_BUILD_TYPE=Release -DJDEBUG=OFF ..<CR>
 nnoremap <localleader>bd :set makeprg=make\ -C\ ./build<CR><Bar>:!cd ./build && cmake -DCMAKE_BUILD_TYPE=Debug -DJDEBUG=ON ..<CR>
-nnoremap <localleader>bt :!build/csv_test<CR>
 
 " convert json property to exported closure compiler name
 noremap <leader>j bi["<Esc>ea"]<Esc>
