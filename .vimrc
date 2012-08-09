@@ -71,18 +71,18 @@ call vundle#rc()
 
 " My own vim settings.
 Bundle "gmarik/vundle"
-Bundle "git://github.com/gramic/dotvim.git"
-Bundle 'embear/vim-localvimrc.git'
+Bundle "gramic/dotvim.git"
+" Bundle 'embear/vim-localvimrc.git'
 " Bundle "kljohann/ledger",{"rtp":"contrib/vim"}
-Bundle "git://github.com/michaeljsmith/vim-indent-object.git"
-Bundle "git://github.com/vim-scripts/argtextobj.vim.git"
-Bundle "kana/vim-fakeclip.git"
+Bundle "vim-indent-object"
+Bundle "argtextobj.vim"
+" Bundle "kana/vim-fakeclip.git"
 "Bundle "vundle.vim"
 Bundle "Tabular"
 " Bundle "CSApprox"
 " Bundle "Color-Sampler-Pack"
 " Bundle "FuzzyFinder"
-Bundle "git://github.com/kien/ctrlp.vim.git"
+Bundle "ctrlp.vim"
 Bundle "batsuev/vim-javascript.git"
 Bundle "jelera/vim-javascript-syntax.git"
 " Bundle "Javascript-Indentation"
@@ -91,7 +91,7 @@ Bundle "L9"
 " Bundle "SuperTab-continued."
 Bundle "The-NERD-Commenter"
 Bundle "The-NERD-tree"
-" Bundle "maxbrunsfeld/vim-yankstack"
+" Bundle "yankstack"
 Bundle "YankRing.vim"
 Bundle "ZenCoding.vim"
 Bundle "ZoomWin"
@@ -100,30 +100,30 @@ Bundle "cecutil"
 Bundle "cmake.vim"
 Bundle "cmake.vim-syntax"
 Bundle "fugitive.vim"
-Bundle "git://github.com/gregsexton/gitv.git"
+Bundle "gitv"
 Bundle "google.vim"
 Bundle "matchit.zip"
 "Bundle "reload.vim"
 Bundle "repeat.vim"
 Bundle "matchit.zip"
-Bundle "git://github.com/MarcWeber/vim-addon-mw-utils.git"
-Bundle "git://github.com/tomtom/tlib_vim.git"
-Bundle "git://github.com/honza/snipmate-snippets.git"
+Bundle "vim-addon-mw-utils"
+Bundle "tlib"
+Bundle "snipmate-snippets"
 " Bundle 'UltiSnips'
-Bundle "git://github.com/garbas/vim-snipmate.git"
+Bundle "garbas/vim-snipmate.git"
 Bundle "surround.vim"
 Bundle "bufkill.vim"
-Bundle "git://github.com/skammer/vim-css-color.git"
-Bundle "git://github.com/duganchen/vim-soy"
+Bundle "skammer/vim-css-color.git"
+Bundle "vim-soy"
 " Syntaxes
 Bundle "Lokaltog/vim-powerline.git"
-Bundle "git://github.com/jnwhiteh/vim-golang.git"
-Bundle "https://github.com/nsf/gocode",{"rtp":"vim"}
+Bundle "jnwhiteh/vim-golang.git"
+Bundle "nsf/gocode",{"rtp":"vim"}
 Bundle 'JSON.vim'
 Bundle 'nginx.vim'
 " }}}
 
-let g:localvimrc_name=".stanimir.vimrc"
+" let g:localvimrc_name=".stanimir.vimrc"
 
 " Color scheme settings {{{
 filetype off
@@ -174,13 +174,13 @@ set whichwrap=h,l,~,[,]
 " Yankstack {{{
 " The yankstack mappings need to happen before I define my own.
 " call yankstack#setup()
-" nmap <a-p> <Plug>yankstack_substitute_older_paste
-" nmap <a-P> <Plug>yankstack_substitute_newer_paste
+" nmap <c-p> <Plug>yankstack_substitute_older_paste
+" nmap <c-n> <Plug>yankstack_substitute_newer_paste
 " }}}
 
 " General mappings {{{
 "map copy to end of line
-map Y y$
+nmap Y y$
 "Make the single quote work like a backtick
 nnoremap ' `
 "save with Ctrl + S
@@ -356,6 +356,11 @@ set pumheight=15
 
 " SuperTab option for context aware completion
 let g:SuperTabDefaultCompletionType = "context"
+
+
+" YankRing {{{
+let g:yankring_zap_keys = 'f t'
+" }}}
 
 " C++
 " Clang settings
