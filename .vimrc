@@ -96,7 +96,7 @@ Bundle "YankRing.vim"
 Bundle "ZenCoding.vim"
 Bundle "ZoomWin"
 Bundle "cecutil"
-" Bundle "Rip-Rip/clang_complete.git"
+Bundle "Rip-Rip/clang_complete.git"
 Bundle "cmake.vim"
 Bundle "cmake.vim-syntax"
 Bundle "fugitive.vim"
@@ -341,6 +341,7 @@ let NERDSpaceDelims=2
 " noremap <Leader>m :FufMruFile<CR>
 
 " CtrlP mappings
+let g:ctrlp_follow_symlinks = 1
 let g:ctrlp_working_path_mode = 2 " don't manage current directory
 let g:ctrlp_root_markers = ['CMakeLists\.txt']
 let g:ctrlp_custom_ignore = { 
@@ -424,7 +425,7 @@ endfunction
 
 function! Cpplint()
   let l:old_makeprg = &makeprg
-  set makeprg=python\ ~/cpplint.py\ --filter=-legal/copyright,-readability/streams,-runtime/int\ %
+  set makeprg=python\ ~/cpplint.py\ --filter=-legal/copyright,-readability/streams,-runtime/int,-runtime/references\ %
   make
   let &makeprg=l:old_makeprg
 endfunction
