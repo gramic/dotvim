@@ -212,7 +212,7 @@ endif
 map ' `
 
 "map omni completion keys to Ctrl + Space
-:inoremap <C-Space> <C-X><C-O>
+inoremap <C-Space> <C-X><C-O>
 " }}}
 
 " Save files with sudo rights if you forgot
@@ -250,22 +250,6 @@ endif
 "wildmenu that can be used like :e <C-D>
 set wildmenu
 
-
-" Html, css, refresh browser autocommands {{{
-augroup refresh_browser
-  au!
-  autocmd BufWriteCmd *.html,*.css :call Refresh_browser()
-augroup END
-
-function! Refresh_browser()
-  if &modified
-    write
-    " Call the line bellow to see the window number
-    " !xdotool search --name "ВАТ Консулт"
-    silent !xdotool key --window 60817476 ctrl+r
-  endif
-endfunction
-" }}}
 
 " Javascript autocommands {{{
 " our style is curly brace at the end of the function signature
