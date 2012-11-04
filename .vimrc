@@ -70,20 +70,22 @@ set rtp+=$HOME/.vim/bundle/vundle/
 call vundle#rc()
 
 " My own vim settings.
+Bundle "indenthtml.vim"
 Bundle "gmarik/vundle"
-Bundle "git://github.com/gramic/dotvim.git"
-Bundle 'embear/vim-localvimrc.git'
+Bundle "gramic/dotvim.git"
+" cmdcomplition by pressing <c-l> in the command line
+Bundle 'paradigm/SkyBison.git'
+" Bundle 'embear/vim-localvimrc.git'
 " Bundle "kljohann/ledger",{"rtp":"contrib/vim"}
-Bundle "git://github.com/michaeljsmith/vim-indent-object.git"
-Bundle "git://github.com/vim-scripts/argtextobj.vim.git"
-Bundle "coderifous/textobj-word-column.vim.git"
+Bundle "vim-indent-object"
+Bundle "argtextobj.vim"
 " Bundle "kana/vim-fakeclip.git"
 "Bundle "vundle.vim"
 Bundle "Tabular"
 " Bundle "CSApprox"
 " Bundle "Color-Sampler-Pack"
 " Bundle "FuzzyFinder"
-Bundle "git://github.com/kien/ctrlp.vim.git"
+Bundle "ctrlp.vim"
 Bundle "batsuev/vim-javascript.git"
 Bundle "jelera/vim-javascript-syntax.git"
 " Bundle "Javascript-Indentation"
@@ -92,38 +94,39 @@ Bundle "L9"
 " Bundle "SuperTab-continued."
 Bundle "The-NERD-Commenter"
 Bundle "The-NERD-tree"
+" Bundle "yankstack"
 Bundle "YankRing.vim"
 Bundle "ZenCoding.vim"
 Bundle "ZoomWin"
 Bundle "cecutil"
-" Bundle "Rip-Rip/clang_complete.git"
+Bundle "Rip-Rip/clang_complete.git"
 Bundle "cmake.vim"
 Bundle "cmake.vim-syntax"
-Bundle "fugitive.vim"
-Bundle "git://github.com/gregsexton/gitv.git"
+Bundle "tpope/vim-fugitive.git"
+Bundle "gitv"
 Bundle "google.vim"
 Bundle "matchit.zip"
 "Bundle "reload.vim"
 Bundle "repeat.vim"
 Bundle "matchit.zip"
-Bundle "git://github.com/MarcWeber/vim-addon-mw-utils.git"
-Bundle "git://github.com/tomtom/tlib_vim.git"
-Bundle "git://github.com/honza/snipmate-snippets.git"
+Bundle "vim-addon-mw-utils"
+Bundle "tlib"
+Bundle "snipmate-snippets"
 " Bundle 'UltiSnips'
-Bundle "git://github.com/garbas/vim-snipmate.git"
+Bundle "garbas/vim-snipmate.git"
 Bundle "surround.vim"
 Bundle "bufkill.vim"
-Bundle "git://github.com/skammer/vim-css-color.git"
-Bundle "git://github.com/duganchen/vim-soy"
+Bundle "ap/vim-css-color.git"
+Bundle "vim-soy"
 " Syntaxes
 Bundle "Lokaltog/vim-powerline.git"
-Bundle "git://github.com/jnwhiteh/vim-golang.git"
-Bundle "https://github.com/nsf/gocode",{"rtp":"vim"}
+Bundle "jnwhiteh/vim-golang.git"
+Bundle "nsf/gocode",{"rtp":"vim"}
 Bundle 'JSON.vim'
 Bundle 'nginx.vim'
 " }}}
 
-let g:localvimrc_name=".stanimir.vimrc"
+" let g:localvimrc_name=".stanimir.vimrc"
 
 " Color scheme settings {{{
 filetype off
@@ -132,6 +135,7 @@ Bundle "altercation/vim-colors-solarized"
 
 filetype plugin indent on
 set background=light
+" let g:solarized_termtrans=1
 let g:solarized_termcolors=256
 colorscheme solarized
 set background=light
@@ -170,9 +174,20 @@ set wildignore+=*.o,*.obj,*.pyc,*.DS_STORE,*.db,*.swc
 set whichwrap=h,l,~,[,]
 " }}}
 
+" SkyBison bundle mappings {{{
+:cnoremap <c-l> <c-r>=SkyBison("")<cr><cr>
+" }}}
+
+" Yankstack {{{
+" The yankstack mappings need to happen before I define my own.
+" call yankstack#setup()
+" nmap <c-p> <Plug>yankstack_substitute_older_paste
+" nmap <c-n> <Plug>yankstack_substitute_newer_paste
+" }}}
+
 " General mappings {{{
 "map copy to end of line
-nnoremap Y y$
+nmap Y y$
 "Make the single quote work like a backtick
 nnoremap ' `
 "save with Ctrl + S
@@ -204,7 +219,7 @@ endif
 map ' `
 
 "map omni completion keys to Ctrl + Space
-:inoremap <C-Space> <C-X><C-O>
+inoremap <C-Space> <C-X><C-O>
 " }}}
 
 " Save files with sudo rights if you forgot
@@ -242,22 +257,6 @@ endif
 "wildmenu that can be used like :e <C-D>
 set wildmenu
 
-
-" Html, css, refresh browser autocommands {{{
-augroup refresh_browser
-  au!
-  autocmd BufWriteCmd *.html,*.css :call Refresh_browser()
-augroup END
-
-function! Refresh_browser()
-  if &modified
-    write
-    " Call the line bellow to see the window number
-    " !xdotool search --name "ВАТ Консулт"
-    silent !xdotool key --window 60817476 ctrl+r
-  endif
-endfunction
-" }}}
 
 " Javascript autocommands {{{
 " our style is curly brace at the end of the function signature
@@ -297,7 +296,6 @@ set makeprg=make\ -C\ ./build
 nnoremap <localleader>bb :make -j 6<CR>
 nnoremap <localleader>br :set makeprg=make\ -C\ ./build_release<CR><Bar>:!cd ./build_release && cmake -DCMAKE_BUILD_TYPE=Release -DJDEBUG=OFF ..<CR>
 nnoremap <localleader>bd :set makeprg=make\ -C\ ./build<CR><Bar>:!cd ./build && cmake -DCMAKE_BUILD_TYPE=Debug -DJDEBUG=ON ..<CR>
-nnoremap <localleader>bt :!build/csv_test<CR>
 
 " convert json property to exported closure compiler name
 noremap <leader>j bi["<Esc>ea"]<Esc>
@@ -334,6 +332,7 @@ let NERDSpaceDelims=2
 " noremap <Leader>m :FufMruFile<CR>
 
 " CtrlP mappings
+let g:ctrlp_follow_symlinks = 1
 let g:ctrlp_working_path_mode = 2 " don't manage current directory
 let g:ctrlp_root_markers = ['CMakeLists\.txt']
 let g:ctrlp_custom_ignore = { 
@@ -349,6 +348,11 @@ set pumheight=15
 
 " SuperTab option for context aware completion
 let g:SuperTabDefaultCompletionType = "context"
+
+
+" YankRing {{{
+let g:yankring_zap_keys = 'f t'
+" }}}
 
 " C++
 " Clang settings
@@ -412,7 +416,7 @@ endfunction
 
 function! Cpplint()
   let l:old_makeprg = &makeprg
-  set makeprg=python\ ~/cpplint.py\ --filter=-legal/copyright,-readability/streams,-runtime/int\ %
+  set makeprg=python\ ~/cpplint.py\ --filter=-legal/copyright,-readability/streams,-runtime/int,-runtime/references\ %
   make
   let &makeprg=l:old_makeprg
 endfunction
