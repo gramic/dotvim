@@ -70,8 +70,11 @@ set rtp+=$HOME/.vim/bundle/vundle/
 call vundle#rc()
 
 " My own vim settings.
+Bundle "indenthtml.vim"
 Bundle "gmarik/vundle"
 Bundle "gramic/dotvim.git"
+" cmdcomplition by pressing <c-l> in the command line
+Bundle 'paradigm/SkyBison.git'
 " Bundle 'embear/vim-localvimrc.git'
 " Bundle "kljohann/ledger",{"rtp":"contrib/vim"}
 Bundle "vim-indent-object"
@@ -113,7 +116,7 @@ Bundle "snipmate-snippets"
 Bundle "garbas/vim-snipmate.git"
 Bundle "surround.vim"
 Bundle "bufkill.vim"
-Bundle "skammer/vim-css-color.git"
+Bundle "ap/vim-css-color.git"
 Bundle "vim-soy"
 " Syntaxes
 Bundle "Lokaltog/vim-powerline.git"
@@ -169,6 +172,10 @@ set wildignore+=*.o,*.obj,*.pyc,*.DS_STORE,*.db,*.swc
 " and ~ convert case over line breaks; also have the cursor keys
 " wrap in insert mode:
 set whichwrap=h,l,~,[,]
+" }}}
+
+" SkyBison bundle mappings {{{
+:cnoremap <c-l> <c-r>=SkyBison("")<cr><cr>
 " }}}
 
 " Yankstack {{{
