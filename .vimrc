@@ -140,6 +140,8 @@ let g:solarized_termcolors=256
 colorscheme solarized
 set background=light
 let g:Powerline_symbols='fancy'
+let g:Powerline_theme='solarized256'
+let g:Powerline_colorscheme = 'solarized256'
 " }}}
 
 " Status line {{{
