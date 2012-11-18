@@ -75,7 +75,7 @@ Bundle "gmarik/vundle"
 Bundle "gramic/dotvim.git"
 " cmdcomplition by pressing <c-l> in the command line
 Bundle 'paradigm/SkyBison.git'
-" Bundle 'embear/vim-localvimrc.git'
+Bundle 'embear/vim-localvimrc.git'
 " Bundle "kljohann/ledger",{"rtp":"contrib/vim"}
 Bundle "vim-indent-object"
 Bundle "argtextobj.vim"
@@ -99,6 +99,9 @@ Bundle "YankRing.vim"
 Bundle "ZenCoding.vim"
 Bundle "ZoomWin"
 Bundle "cecutil"
+Bundle 'Cpp11-Syntax-Support'
+Bundle 'auto-pairs'
+Bundle 'cSyntaxAfter'
 Bundle "Rip-Rip/clang_complete.git"
 Bundle "cmake.vim"
 Bundle "cmake.vim-syntax"
@@ -126,7 +129,8 @@ Bundle 'JSON.vim'
 Bundle 'nginx.vim'
 " }}}
 
-" let g:localvimrc_name=".stanimir.vimrc"
+let g:localvimrc_name=".stanimir.vimrc"
+let g:localvimrc_sandbox=0
 
 " Color scheme settings {{{
 filetype off
@@ -365,7 +369,8 @@ let g:clang_use_library=1
 let g:home_dir = expand("$HOME/")
 let g:clang_library_path="/usr/local/lib"
 " let g:clang_library_path=g:home_dir."/opt/lib/"
-let g:clang_user_options='|| exit 0'
+" let g:clang_auto_user_options='.clang_complate, clang'
+" let g:clang_user_options='|| exit 0'
 " let g:clang_user_options="-I/".g:home_dir."/opt/clang/3.1/include"
 " let g:clang_auto_user_options="-I/".g:home_dir."/opt/clang/3.1/include, .clang_complete"
 " let g:clang_snippets_engine="ultisnips"
