@@ -100,7 +100,6 @@ Bundle "ZenCoding.vim"
 Bundle "ZoomWin"
 Bundle "cecutil"
 Bundle 'Cpp11-Syntax-Support'
-Bundle 'auto-pairs'
 Bundle 'cSyntaxAfter'
 Bundle "Rip-Rip/clang_complete.git"
 Bundle "cmake.vim"
@@ -144,7 +143,7 @@ let g:solarized_termcolors=256
 colorscheme solarized
 set background=light
 let g:Powerline_symbols='fancy'
-let g:Powerline_theme='solarized256'
+" let g:Powerline_theme='solarized256'
 let g:Powerline_colorscheme = 'solarized256'
 " }}}
 
@@ -299,7 +298,7 @@ set errorformat^=%-GIn\ file\ included\ %.%#
 
 " Developing Javascript mappings
 set makeprg=make\ -C\ ./build
-nnoremap <localleader>bb :make -j 6<CR>
+nnoremap <localleader>bb :make -j 12<CR>
 nnoremap <localleader>br :set makeprg=make\ -C\ ./build_release<CR><Bar>:!cd ./build_release && cmake -DCMAKE_BUILD_TYPE=Release -DJDEBUG=OFF ..<CR>
 nnoremap <localleader>bd :set makeprg=make\ -C\ ./build<CR><Bar>:!cd ./build && cmake -DCMAKE_BUILD_TYPE=Debug -DJDEBUG=ON ..<CR>
 
@@ -362,9 +361,11 @@ let g:yankring_zap_keys = 'f t'
 
 " C++
 " Clang settings
+set conceallevel=2
+set concealcursor=vin
 let g:clang_complete_auto=0
 let g:clang_hl_errors=0
-let g:clang_debug=1
+let g:clang_debug=0
 let g:clang_use_library=1
 let g:home_dir = expand("$HOME/")
 let g:clang_library_path="/usr/local/lib"
