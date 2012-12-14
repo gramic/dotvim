@@ -192,12 +192,9 @@ set whichwrap=h,l,~,[,]
 
 " General mappings {{{
 "map copy to end of line
-nmap Y y$
+nnoremap Y y$
 "Make the single quote work like a backtick
 nnoremap ' `
-"save with Ctrl + S
-:nnoremap <C-S> :w<CR>
-:inoremap <C-S> <Esc>:w<CR>
 "nmap Space to PageDown and Shift Space to PageUp
 :nnoremap <Space> <PageDown>
 :nnoremap <S-Space> <PageUp>
@@ -361,11 +358,9 @@ let g:yankring_zap_keys = 'f t'
 
 " C++
 " Clang settings
-set conceallevel=2
-set concealcursor=vin
 let g:clang_complete_auto=0
 let g:clang_hl_errors=0
-let g:clang_debug=0
+let g:clang_debug=1
 let g:clang_use_library=1
 let g:home_dir = expand("$HOME/")
 let g:clang_library_path="/usr/local/lib"
