@@ -125,6 +125,7 @@ Bundle "Lokaltog/vim-powerline.git"
 Bundle "jnwhiteh/vim-golang.git"
 Bundle "nsf/gocode",{"rtp":"vim"}
 Bundle 'JSON.vim'
+Bundle 'lighttpd-syntax'
 Bundle 'nginx.vim'
 " }}}
 
@@ -392,6 +393,7 @@ if !exists("lint_autocommand_loaded")
   au FileType json <buffer> set equalprg=json_reformat
   au BufRead *.json set filetype=json
   au BufRead nginx.conf set filetype=nginx
+  au BufRead lighttpd.conf set filetype=lighttpd
 
   au BufRead *.cpp,*.c,*.cc,*.hpp,*.h noremap <buffer> <Leader>l :call Cpplint()<CR>
   au BufRead *.cpp,*.c,*.cc,*.hpp,*.h noremap <buffer> <Leader>t :call CppRunTests("")<CR>
