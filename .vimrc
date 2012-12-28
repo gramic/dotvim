@@ -297,6 +297,7 @@ set errorformat^=%-GIn\ file\ included\ %.%#
 " Developing Javascript mappings
 set makeprg=make\ -C\ ./build
 nnoremap <localleader>bb :make! -j 12<CR>
+nmap <LocalLeader>bB <Leader>bb:!tmux send-keys -t :.1 C-c ENTER Up ENTER\<CR><CR>
 nnoremap <localleader>br :set makeprg=make\ -C\ ./build_release<CR><Bar>:!cd ./build_release && cmake -DCMAKE_BUILD_TYPE=Release -DJDEBUG=OFF ..<CR>
 nnoremap <localleader>bd :set makeprg=make\ -C\ ./build<CR><Bar>:!cd ./build && cmake -DCMAKE_BUILD_TYPE=Debug -DJDEBUG=ON ..<CR>
 
