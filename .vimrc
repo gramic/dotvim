@@ -93,7 +93,6 @@ Bundle "L9"
 " Bundle "ScrollColors"
 " Bundle "SuperTab-continued."
 Bundle "The-NERD-Commenter"
-Bundle "The-NERD-tree"
 " Bundle "yankstack"
 Bundle "YankRing.vim"
 Bundle "ZenCoding.vim"
@@ -310,30 +309,12 @@ noremap <leader>j bi["<Esc>ea"]<Esc>
 " If no errors, it closes any open cwindow.
 :command! -nargs=* Make make! <args>
 
-" NERDTree
-:noremap <Leader>F :NERDTreeToggle<CR>
-
 let NERDTreeHijackNetrw=1
 let NERDTreeMouseMode=1
 let NERDTreeWinSize=50
 let NERDTreeQuitOnOpen=1
 
 let NERDSpaceDelims=2
-
-" Fuzzy Finder js
-" let g:fuf_coveragefile_prompt = '>js[]>'
-" let g:fuf_coveragefile_exclude = '\v\~$|\.(o|exe|dll|bak|orig|swp)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])|hotel.*/|build.*/'
-" noremap <Leader>f :call fuf#setOneTimeVariables(['g:fuf_coveragefile_globPatterns',['**/*.js','**/*.soy', '**/*.css']])<CR><BAR>:FufCoverageFile<CR>
-" Fuzzy Finder cpp
-" let g:fuf_coveragefile_prompt = '>cpp[]>'
-" let g:fuf_coveragefile_exclude = '\v\~$|\.(o|exe|dll|bak|orig|swp)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])|build.*/'
-" noremap <Leader>f :call fuf#setOneTimeVariables(['g:fuf_coveragefile_globPatterns',['**/*.h','**/*.hpp', '**/*.c', '**/*.cpp', '**/CMakeLists.txt']])<CR><BAR>:FufCoverageFile<CR>
-
-" FuzzyFinder mappings
-" noremap <Leader>b :FufBuffer<CR>
-" let g:fuf_modesDisable=['mrucmd']
-" let g:fuf_buffer_mruOrder=1
-" noremap <Leader>m :FufMruFile<CR>
 
 " CtrlP mappings
 let g:ctrlp_follow_symlinks = 1
