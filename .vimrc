@@ -1,9 +1,9 @@
-set nocompatible " Use Vim defaults instead of 100% vi compatibility
-set tabstop=2
-set shiftwidth=2
-set smarttab
-set smartindent
-set ignorecase
+set nocompatible set tabstop = 2 set shiftwidth = 2 set smarttab set smartindent set ignorecase set smartcase set incsearch set expandtab set noswapfile set backspace = start, indent, eol set t_Co = 256 set undofile set undodir = ~ / .vim_runtime / undodir set undolevels = 1000 set undoreload = 10000 syntax on augroup filetype_vim au !au FileType vim setlocal foldmethod = marker au !BufNewFile, BufRead * .ledger set filetype = ledger augroup END set encoding = utf8 set keymap = bulgarian - phonetic set iminsert = 0 set imsearch = 0 highlight lCursor guifg = NONE guibg = Cyan if has('gui_win32') set clipboard = unnamedplus set guifont = DejaVu Sans Mono : h12 : b : cDEFAULT else set clipboard = unnamedplus endif set colorcolumn = 81 set numberwidth = 2 highlight ExtraWhitespace ctermbg = red guibg = red match ExtraWhitespace / s + $ / autocmd BufWinEnter * match ExtraWhitespace / s + $ / autocmd InsertEnter * match ExtraWhitespace / s + % #@ < !$ / autocmd InsertLeave * match ExtraWhitespace / s + $ / autocmd BufWinLeave * call clearmatches() autocmd BufReadPost fugitive : / /* set bufhidden=delete
+" }}}
+
+" git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+
+" Bundles: {{{
 set smartcase
 set incsearch
 set expandtab
@@ -95,6 +95,7 @@ Bundle "L9"
 Bundle "The-NERD-Commenter"
 " Bundle "yankstack"
 Bundle "YankRing.vim"
+" Bundle "yankring"
 Bundle "ZenCoding.vim"
 Bundle "ZoomWin"
 Bundle "cecutil"
@@ -309,11 +310,6 @@ noremap <leader>j bi["<Esc>ea"]<Esc>
 " If no errors, it closes any open cwindow.
 :command! -nargs=* Make make! <args>
 
-let NERDTreeHijackNetrw=1
-let NERDTreeMouseMode=1
-let NERDTreeWinSize=50
-let NERDTreeQuitOnOpen=1
-
 let NERDSpaceDelims=2
 
 " CtrlP mappings
@@ -336,7 +332,7 @@ let g:SuperTabDefaultCompletionType = "context"
 
 
 " YankRing {{{
-let g:yankring_zap_keys = 'f t'
+"let g:yankring_zap_keys = 'f t'
 " }}}
 
 " C++
@@ -377,6 +373,7 @@ if !exists("lint_autocommand_loaded")
   au BufRead nginx.conf set filetype=nginx
   au BufRead lighttpd.conf set filetype=lighttpd
 
+  au BufRead *.cpp,*.c,*.cc,*.hpp,*.h noremap <buffer> <Leader>i :call ClangFormat()<CR>
   au BufRead *.cpp,*.c,*.cc,*.hpp,*.h noremap <buffer> <Leader>l :call Cpplint()<CR>
   au BufRead *.cpp,*.c,*.cc,*.hpp,*.h noremap <buffer> <Leader>t :call CppRunTests("")<CR>
   au BufRead *.js noremap <buffer> <Leader>l :call Jslint()<CR>
@@ -406,6 +403,10 @@ function! Cpplint()
   set makeprg=python\ ~/cpplint.py\ --filter=-legal/copyright,-readability/streams,-runtime/int,-runtime/references\ %
   make
   let &makeprg=l:old_makeprg
+endfunction
+
+function! ClangFormat()
+  :!clang-format -i -style=Google %
 endfunction
 
 function! Jslint()
