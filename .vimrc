@@ -74,6 +74,9 @@ Bundle "indenthtml.vim"
 Bundle "gmarik/vundle"
 Bundle "gramic/dotvim.git"
 " cmdcomplition by pressing <c-l> in the command line
+Bundle 'EasyMotion'
+Bundle 'Valloric/MatchTagAlways'
+Bundle 'Valloric/YouCompleteMe.git'
 Bundle 'paradigm/SkyBison.git'
 Bundle 'paradigm/vim-multicursor.git'
 Bundle 'embear/vim-localvimrc.git'
