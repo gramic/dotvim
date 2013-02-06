@@ -75,6 +75,7 @@ Bundle "gmarik/vundle"
 Bundle "gramic/dotvim.git"
 " cmdcomplition by pressing <c-l> in the command line
 Bundle 'paradigm/SkyBison.git'
+Bundle 'paradigm/vim-multicursor.git'
 Bundle 'embear/vim-localvimrc.git'
 " Bundle "kljohann/ledger",{"rtp":"contrib/vim"}
 Bundle "vim-indent-object"
@@ -182,6 +183,16 @@ set whichwrap=h,l,~,[,]
 
 " SkyBison bundle mappings {{{
 :cnoremap <c-l> <c-r>=SkyBison("")<cr><cr>
+" }}}
+
+" MultiCursor bundle mappings {{{
+let g:multicursor_quit = "<localleader>qq"
+nnoremap <localleader>qp :<c-u>call MultiCursorPlaceCursor()<cr>
+nnoremap <localleader>qm :<c-u>call MultiCursorManual()<cr>
+nnoremap <localleader>qr :<c-u>call MultiCursorRemoveCursors()<cr>
+nnoremap <localleader>qr :<c-u>call MultiCursorRemoveCursors()<cr>
+xnoremap <localleader>qv :<c-u>call MultiCursorVisual()<cr>
+nnoremap <localleader>qs :<c-u>call MultiCursorSearch('')<cr>
 " }}}
 
 " Yankstack {{{
