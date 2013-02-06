@@ -42,7 +42,7 @@ highlight lCursor guifg=NONE guibg=Cyan
 " GUI settings {{{
 if has('gui_win32')
   set clipboard=unnamedplus
-  set guifont=DejaVu\ Sans\ Mono:h12:b:cDEFAULT
+  set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h10:cDEFAULT,Fixed\ 10
 else
   " Since I use linux, I want this
   set clipboard=unnamedplus
@@ -74,6 +74,9 @@ Bundle "indenthtml.vim"
 Bundle "gmarik/vundle"
 Bundle "gramic/dotvim.git"
 " cmdcomplition by pressing <c-l> in the command line
+Bundle 'EasyMotion'
+Bundle 'Valloric/MatchTagAlways.git'
+Bundle 'Valloric/YouCompleteMe.git'
 Bundle 'paradigm/SkyBison.git'
 Bundle 'paradigm/vim-multicursor.git'
 Bundle 'embear/vim-localvimrc.git'
@@ -88,6 +91,7 @@ Bundle "Tabular"
 " Bundle "FuzzyFinder"
 Bundle "ctrlp.vim"
 Bundle "batsuev/vim-javascript.git"
+Bundle 'cs.vim'
 Bundle "jelera/vim-javascript-syntax.git"
 " Bundle "Javascript-Indentation"
 Bundle "L9"
@@ -179,6 +183,9 @@ set wildignore+=*.o,*.obj,*.pyc,*.DS_STORE,*.db,*.swc
 " and ~ convert case over line breaks; also have the cursor keys
 " wrap in insert mode:
 set whichwrap=h,l,~,[,]
+" }}}
+
+" Multicursor bundle mappings {{{
 " }}}
 
 " SkyBison bundle mappings {{{
