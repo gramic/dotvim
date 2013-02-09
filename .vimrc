@@ -77,6 +77,7 @@ Bundle "gramic/dotvim.git"
 Bundle 'EasyMotion'
 Bundle 'Valloric/MatchTagAlways'
 Bundle 'Valloric/YouCompleteMe.git'
+Bundle 'scrooloose/syntastic.git'
 Bundle 'paradigm/SkyBison.git'
 Bundle 'paradigm/vim-multicursor.git'
 Bundle 'embear/vim-localvimrc.git'
@@ -105,7 +106,7 @@ Bundle "ZoomWin"
 Bundle "cecutil"
 Bundle 'Cpp11-Syntax-Support'
 Bundle 'cSyntaxAfter'
-Bundle "Rip-Rip/clang_complete.git"
+" Bundle "Rip-Rip/clang_complete.git"
 Bundle "cmake.vim"
 Bundle "cmake.vim-syntax"
 Bundle "tpope/vim-fugitive.git"
@@ -191,6 +192,10 @@ set whichwrap=h,l,~,[,]
 :cnoremap <c-l> <c-r>=SkyBison("")<cr><cr>
 " }}}
 
+" YouCompleteMe {{{
+" let g:ycm_key_invoke_completion = '<C-Space>'
+" }}}
+
 " Yankstack {{{
 " The yankstack mappings need to happen before I define my own.
 " call yankstack#setup()
@@ -203,9 +208,6 @@ set whichwrap=h,l,~,[,]
 nnoremap Y y$
 "Make the single quote work like a backtick
 nnoremap ' `
-"nmap Space to PageDown and Shift Space to PageUp
-:nnoremap <Space> <PageDown>
-:nnoremap <S-Space> <PageUp>
 " <C-l> redraws the screen, disable search term highlighting (don't switch it
 " off) and switches of the list view option
 nnoremap <silent> <C-l> :nohlsearch <bar> set nolist<CR><C-l>
@@ -229,40 +231,11 @@ endif
 map ' `
 
 "map omni completion keys to Ctrl + Space
-inoremap <C-Space> <C-X><C-O>
+" inoremap <C-Space> <C-X><C-O>
 " }}}
 
 " Save files with sudo rights if you forgot
 :command! W w !sudo tee % > /dev/null
-
-"nmap Space to PageDown and Shift Space to PageUp
-:nmap <Space> <PageDown>
-:nmap <S-Space> <PageUp>
-
-" <C-l> redraws the screen, disable search term highlighting (don't switch it
-" off) and switches of the list view option
-nnoremap <silent> <C-l> :nohlsearch <bar> set nolist<CR><C-l>
-
-" Search for selected text, forwards or backwards.
-" (retrieved 24/2/2011 - http://vim.wikia.com/wiki/Search_for_visually_selected_text)
-vnoremap <silent> * :<C-U>
-  \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
-  \gvy/<C-R><C-R>=substitute(
-  \escape(@", '/\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
-  \gV:call setreg('"', old_reg, old_regtype)<CR>
-vnoremap <silent> # :<C-U>
-  \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
-  \gvy?<C-R><C-R>=substitute(
-  \escape(@", '?\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
-  \gV:call setreg('"', old_reg, old_regtype)<CR>
-
-if has("gui_running") && has("gui_win32")
-    " use alt-space for window options
-    nnoremap <m-space> :simalt~<CR>
-endif
-
-"map omni completion keys to Ctrl + Space
-:imap <C-Space> <C-X><C-O>
 
 "wildmenu that can be used like :e <C-D>
 set wildmenu
