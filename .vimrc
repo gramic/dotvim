@@ -42,7 +42,7 @@ highlight lCursor guifg=NONE guibg=Cyan
 " GUI settings {{{
 if has('gui_win32')
   set clipboard=unnamedplus
-  set guifont=DejaVu\ Sans\ Mono:h12:b:cDEFAULT
+  set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h10:cDEFAULT,Fixed\ 10
 else
   " Since I use linux, I want this
   set clipboard=unnamedplus
@@ -75,7 +75,7 @@ Bundle "gmarik/vundle"
 Bundle "gramic/dotvim.git"
 " cmdcomplition by pressing <c-l> in the command line
 Bundle 'EasyMotion'
-Bundle 'Valloric/MatchTagAlways'
+Bundle 'Valloric/MatchTagAlways.git'
 Bundle 'Valloric/YouCompleteMe.git'
 Bundle 'scrooloose/syntastic.git'
 Bundle 'paradigm/SkyBison.git'
@@ -92,6 +92,7 @@ Bundle "Tabular"
 " Bundle "FuzzyFinder"
 Bundle "ctrlp.vim"
 Bundle "batsuev/vim-javascript.git"
+Bundle 'cs.vim'
 Bundle "jelera/vim-javascript-syntax.git"
 " Bundle "Javascript-Indentation"
 Bundle "L9"
