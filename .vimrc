@@ -73,48 +73,35 @@ call vundle#rc()
 Bundle "indenthtml.vim"
 Bundle "gmarik/vundle"
 Bundle "gramic/dotvim.git"
-" cmdcomplition by pressing <c-l> in the command line
 Bundle 'EasyMotion'
 Bundle 'Valloric/MatchTagAlways.git'
 Bundle 'Valloric/YouCompleteMe.git'
 Bundle 'scrooloose/syntastic.git'
+" cmdcomplition by pressing <c-l> in the command line
 Bundle 'paradigm/SkyBison.git'
 Bundle 'paradigm/vim-multicursor.git'
 Bundle 'embear/vim-localvimrc.git'
 " Bundle "kljohann/ledger",{"rtp":"contrib/vim"}
 Bundle "vim-indent-object"
 Bundle "argtextobj.vim"
-" Bundle "kana/vim-fakeclip.git"
-"Bundle "vundle.vim"
 Bundle "Tabular"
-" Bundle "CSApprox"
-" Bundle "Color-Sampler-Pack"
-" Bundle "FuzzyFinder"
 Bundle "ctrlp.vim"
 Bundle "batsuev/vim-javascript.git"
 Bundle 'cs.vim'
 Bundle "jelera/vim-javascript-syntax.git"
-" Bundle "Javascript-Indentation"
 Bundle "L9"
-" Bundle "ScrollColors"
-" Bundle "SuperTab-continued."
 Bundle "The-NERD-Commenter"
-" Bundle "yankstack"
-" Bundle "YankRing.vim"
-" Bundle "yankring"
 Bundle "ZenCoding.vim"
 Bundle "ZoomWin"
 Bundle "cecutil"
 Bundle 'Cpp11-Syntax-Support'
 Bundle 'cSyntaxAfter'
-" Bundle "Rip-Rip/clang_complete.git"
 Bundle "cmake.vim"
 Bundle "cmake.vim-syntax"
 Bundle "tpope/vim-fugitive.git"
 Bundle "gitv"
 Bundle "google.vim"
 Bundle "matchit.zip"
-"Bundle "reload.vim"
 Bundle "repeat.vim"
 Bundle "matchit.zip"
 Bundle "vim-addon-mw-utils"
@@ -127,7 +114,6 @@ Bundle "bufkill.vim"
 Bundle "ap/vim-css-color.git"
 Bundle "vim-soy"
 " Syntaxes
-"Bundle "Lokaltog/vim-powerline.git"
 Bundle "jnwhiteh/vim-golang.git"
 Bundle "nsf/gocode",{"rtp":"vim"}
 Bundle 'JSON.vim'
@@ -186,11 +172,9 @@ set wildignore+=*.o,*.obj,*.pyc,*.DS_STORE,*.db,*.swc
 set whichwrap=h,l,~,[,]
 " }}}
 
-" Multicursor bundle mappings {{{
-" }}}
-
 " SkyBison bundle mappings {{{
 :cnoremap <c-l> <c-r>=SkyBison("")<cr><cr>
+:let g:skybison_fuzz=1
 " }}}
 
 " YouCompleteMe {{{
@@ -311,42 +295,6 @@ set pumheight=15
 " SuperTab option for context aware completion
 let g:SuperTabDefaultCompletionType = "context"
 
-
-" YankRing {{{
-"let g:yankring_zap_keys = 'f t'
-" }}}
-
-" C++
-" Clang settings
-let g:clang_complete_auto=0
-let g:clang_hl_errors=0
-let g:clang_debug=1
-let g:clang_use_library=1
-let g:home_dir = expand("$HOME/")
-let g:clang_library_path="/usr/local/lib"
-" let g:clang_library_path=g:home_dir."/opt/lib/"
-" let g:clang_auto_user_options='.clang_complate, clang'
-" let g:clang_user_options='|| exit 0'
-" let g:clang_user_options="-I/".g:home_dir."/opt/clang/3.1/include"
-" let g:clang_auto_user_options="-I/".g:home_dir."/opt/clang/3.1/include, .clang_complete"
-" let g:clang_snippets_engine="ultisnips"
-let g:clang_snippets=1
-let g:clang_conceal_snippets=1
-let g:clang_complete_copen=0
-let g:clang_periodic_quickfix=0
-
-" move to the middle of the physical line without trailing white space. {{{
-function! s:Gm()
-  execute 'normal! ^'
-  let first_col = virtcol('.')
-  execute 'normal! g_'
-  let last_col  = virtcol('.')
-  execute 'normal! ' . (first_col + last_col) / 2 . '|'
-endfunction
-nnoremap <silent> gm :call <SID>Gm()<CR>
-" }}}
-
-" cpplint.py
 if !exists("lint_autocommand_loaded")
   let lint_autocommand_loaded = 1
   au FileType json <buffer> set equalprg=json_reformat
@@ -355,7 +303,6 @@ if !exists("lint_autocommand_loaded")
   au BufRead lighttpd.conf set filetype=lighttpd
 
   au BufRead *.cpp,*.c,*.cc,*.hpp,*.h noremap <buffer> <Leader>i :call ClangFormat()<CR>
-  au BufRead *.cpp,*.c,*.cc,*.hpp,*.h noremap <buffer> <Leader>l :call Cpplint()<CR>
   au BufRead *.cpp,*.c,*.cc,*.hpp,*.h noremap <buffer> <Leader>t :call CppRunTests("")<CR>
   au BufRead *.js noremap <buffer> <Leader>l :call Jslint()<CR>
 endif
@@ -376,13 +323,6 @@ function! CppRunTests(args)
   endif
   let s:latest_args = a:args
   exec 'lcd '.l:old_cwd
-  let &makeprg=l:old_makeprg
-endfunction
-
-function! Cpplint()
-  let l:old_makeprg = &makeprg
-  set makeprg=python\ ~/cpplint.py\ --filter=-legal/copyright,-readability/streams,-runtime/int,-runtime/references\ %
-  make
   let &makeprg=l:old_makeprg
 endfunction
 
