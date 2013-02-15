@@ -100,7 +100,7 @@ Bundle "L9"
 " Bundle "SuperTab-continued."
 Bundle "The-NERD-Commenter"
 " Bundle "yankstack"
-Bundle "YankRing.vim"
+" Bundle "YankRing.vim"
 " Bundle "yankring"
 Bundle "ZenCoding.vim"
 Bundle "ZoomWin"
@@ -127,7 +127,7 @@ Bundle "bufkill.vim"
 Bundle "ap/vim-css-color.git"
 Bundle "vim-soy"
 " Syntaxes
-Bundle "Lokaltog/vim-powerline.git"
+"Bundle "Lokaltog/vim-powerline.git"
 Bundle "jnwhiteh/vim-golang.git"
 Bundle "nsf/gocode",{"rtp":"vim"}
 Bundle 'JSON.vim'
