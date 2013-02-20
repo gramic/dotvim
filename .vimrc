@@ -99,6 +99,7 @@ Bundle 'cSyntaxAfter'
 Bundle "cmake.vim"
 Bundle "cmake.vim-syntax"
 Bundle "tpope/vim-fugitive.git"
+Bundle "tpope/vim-unimpaired"
 Bundle "gitv"
 Bundle "google.vim"
 Bundle "matchit.zip"
