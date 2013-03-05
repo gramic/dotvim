@@ -96,7 +96,6 @@ Bundle "ZenCoding.vim"
 Bundle "ZoomWin"
 Bundle "cecutil"
 Bundle 'Cpp11-Syntax-Support'
-Bundle 'cSyntaxAfter'
 Bundle "cmake.vim"
 Bundle "cmake.vim-syntax"
 Bundle "tpope/vim-fugitive.git"
