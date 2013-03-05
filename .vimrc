@@ -102,6 +102,7 @@ Bundle "cmake.vim-syntax"
 Bundle "tpope/vim-fugitive.git"
 Bundle "tpope/vim-unimpaired"
 Bundle "gitv"
+Bundle "airblade/vim-gitgutter"
 Bundle "google.vim"
 Bundle "matchit.zip"
 Bundle "repeat.vim"
@@ -202,6 +203,11 @@ let g:dbext_default_profile_sqlite_for_wfm = 'type=SQLITE:dbname=/home/zoneproje
 " call yankstack#setup()
 " nmap <c-p> <Plug>yankstack_substitute_older_paste
 " nmap <c-n> <Plug>yankstack_substitute_newer_paste
+" }}}
+
+" gitgutter {{{
+highlight clear SignColumn
+let g:gitgutter_enabled = 0
 " }}}
 
 " General mappings {{{
