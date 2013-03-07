@@ -113,6 +113,7 @@ Bundle "snipmate-snippets"
 Bundle "garbas/vim-snipmate.git"
 Bundle "surround.vim"
 Bundle "bufkill.vim"
+Bundle "nelstrom/vim-visual-star-search"
 Bundle "ap/vim-css-color.git"
 Bundle "vim-soy"
 " Syntaxes
@@ -217,18 +218,6 @@ nnoremap ' `
 " <C-l> redraws the screen, disable search term highlighting (don't switch it
 " off) and switches of the list view option
 nnoremap <silent> <C-l> :nohlsearch <bar> set nolist<CR><C-l>
-" Search for selected text, forwards or backwards.
-" (retrieved 24/2/2011 - http://vim.wikia.com/wiki/Search_for_visually_selected_text)
-vnoremap <silent> * :<C-U>
-  \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
-  \gvy/<C-R><C-R>=substitute(
-  \escape(@", '/\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
-  \gV:call setreg('"', old_reg, old_regtype)<CR>
-vnoremap <silent> # :<C-U>
-  \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
-  \gvy?<C-R><C-R>=substitute(
-  \escape(@", '?\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
-  \gV:call setreg('"', old_reg, old_regtype)<CR>
 
 if has("gui_running") && has("gui_win32")
     " use alt-space for window options
