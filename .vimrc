@@ -175,6 +175,10 @@ set wildignore+=*.o,*.obj,*.pyc,*.DS_STORE,*.db,*.swc
 set whichwrap=h,l,~,[,]
 " }}}
 
+" snipmate mappings {{{
+:let g:snips_trigger_key = '<localleader>s'
+" }}}
+
 " SkyBison bundle mappings {{{
 :cnoremap <c-l> <c-r>=SkyBison("")<cr><cr>
 :let g:skybison_fuzz=1
