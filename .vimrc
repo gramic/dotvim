@@ -311,8 +311,9 @@ let g:SuperTabDefaultCompletionType = "context"
 
 if !exists("lint_autocommand_loaded")
   let lint_autocommand_loaded = 1
-  au FileType json <buffer> set equalprg=json_reformat
+  au FileType json setlocal equalprg=json_reformat
   au BufRead *.json set filetype=json
+  au FileType python setlocal tabstop=4 shiftwidth=4
   au BufRead nginx.conf set filetype=nginx
   au BufRead lighttpd.conf set filetype=lighttpd
 
