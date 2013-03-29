@@ -90,6 +90,7 @@ Bundle "ctrlp.vim"
 Bundle "batsuev/vim-javascript.git"
 Bundle 'cs.vim'
 Bundle "jelera/vim-javascript-syntax.git"
+Bundle "fs111/pydoc.vim"
 Bundle "L9"
 Bundle "The-NERD-Commenter"
 Bundle "ZenCoding.vim"
@@ -313,7 +314,7 @@ if !exists("lint_autocommand_loaded")
   let lint_autocommand_loaded = 1
   au FileType json setlocal equalprg=json_reformat
   au BufRead *.json set filetype=json
-  au FileType python setlocal tabstop=4 shiftwidth=4
+  au FileType python setlocal tabstop=4 shiftwidth=4 foldmethod=indent
   au BufRead nginx.conf set filetype=nginx
   au BufRead lighttpd.conf set filetype=lighttpd
 
