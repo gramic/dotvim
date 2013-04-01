@@ -49,9 +49,15 @@ else
 endif
 " }}}
 
-" color column
-set colorcolumn=81
 set numberwidth=2
+
+" Color colomun settings {{{
+augroup ColorcolumnOnlyInInsertMode
+  autocmd!
+  autocmd InsertEnter * setlocal colorcolumn=81
+  autocmd InsertLeave * setlocal colorcolumn=0
+augroup END
+" }}}
 
 " Match trailing whitespace, except when typing at the end of a line. {{{
 highlight ExtraWhitespace ctermbg=red guibg=red
