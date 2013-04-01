@@ -160,7 +160,7 @@ set statusline+=%P                        " percentage of file
 " Menu completions {{{
 set wildmode=full wildmenu                 " Command-line tab completion
 set infercase                              " AutoComplete in Vim
-set completeopt=longest,menu,menuone
+set completeopt=longest,menu,menuone,preview
 set wildignore+=*.o,*.obj,*.pyc,*.DS_STORE,*.db,*.swc
 " }}}
 
