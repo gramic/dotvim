@@ -107,6 +107,7 @@ Bundle "cmake.vim"
 Bundle "cmake.vim-syntax"
 Bundle "tpope/vim-fugitive.git"
 Bundle "tpope/vim-unimpaired"
+Bundle "tpope/vim-obsession"
 Bundle "gitv"
 Bundle "airblade/vim-gitgutter"
 Bundle "google.vim"
@@ -258,6 +259,15 @@ autocmd BufNewFile,BufRead *.js map-local <C-j> :!gjslint --strict %<CR>
 "turn omni completion on
 "autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
 "set tags+=~/.vim/closuretags
+let g:EclimCompletionMethod = 'omnifunc'
+" Java autocommands {{{
+augroup filetype_java
+    au!
+    " use this to drive eclim auto complition to YCM. Remove after the above
+    " is available in the next version of eclim.
+    autocmd Filetype java setlocal omnifunc=eclim#java#complete#CodeComplete
+augroup END
+" }}}
 
 "Doxygen Toolkit settings for javascript comments {{{
 let g:DoxygenToolkit_compactDoc = "yes"
