@@ -108,6 +108,7 @@ Bundle "cmake.vim-syntax"
 Bundle "tpope/vim-fugitive.git"
 Bundle "tpope/vim-unimpaired"
 Bundle "tpope/vim-obsession"
+Bundle "tpope/vim-abolish"
 Bundle "gitv"
 Bundle "airblade/vim-gitgutter"
 Bundle "google.vim"
@@ -260,6 +261,7 @@ autocmd BufNewFile,BufRead *.js map-local <C-j> :!gjslint --strict %<CR>
 "autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
 "set tags+=~/.vim/closuretags
 let g:EclimCompletionMethod = 'omnifunc'
+
 " Java autocommands {{{
 augroup filetype_java
     au!
