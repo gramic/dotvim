@@ -117,8 +117,8 @@ Bundle "repeat.vim"
 Bundle "matchit.zip"
 Bundle "vim-addon-mw-utils"
 Bundle "tlib"
-Bundle "snipmate-snippets"
-" Bundle 'UltiSnips'
+" Bundle "snipmate-snippets"
+Bundle 'UltiSnips'
 Bundle "garbas/vim-snipmate.git"
 Bundle "surround.vim"
 Bundle "bufkill.vim"
@@ -184,10 +184,6 @@ set wildignore+=*.o,*.obj,*.pyc,*.DS_STORE,*.db,*.swc
 set whichwrap=h,l,~,[,]
 " }}}
 
-" snipmate mappings {{{
-:let g:snips_trigger_key = '<localleader>s'
-" }}}
-
 " SkyBison bundle mappings {{{
 :cnoremap <c-l> <c-r>=SkyBison("")<cr><cr>
 :let g:skybison_fuzz=1
@@ -209,6 +205,7 @@ let g:dbext_default_profile_sqlite_for_wfm = 'type=SQLITE:dbname=/home/zoneproje
 
 " YouCompleteMe {{{
 " let g:ycm_key_invoke_completion = '<C-Space>'
+nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
 " }}}
 
 " Yankstack {{{
@@ -237,10 +234,6 @@ if has("gui_running") && has("gui_win32")
     nnoremap <m-space> :simalt~<CR>
 endif
 map ' `
-
-"map omni completion keys to Ctrl + Space
-" inoremap <C-Space> <C-X><C-O>
-" }}}
 
 " Save files with sudo rights if you forgot
 :command! W w !sudo tee % > /dev/null
@@ -307,8 +300,6 @@ noremap <leader>j bi["<Esc>ea"]<Esc>
 " opens a 3 line error window if any errors are found.
 " If no errors, it closes any open cwindow.
 :command! -nargs=* Make make! <args>
-
-let NERDSpaceDelims=2
 
 " CtrlP mappings
 let g:ctrlp_follow_symlinks = 1
