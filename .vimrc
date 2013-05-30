@@ -49,9 +49,15 @@ else
 endif
 " }}}
 
-" color column
-set colorcolumn=81
 set numberwidth=2
+
+" Color colomun settings {{{
+augroup ColorcolumnOnlyInInsertMode
+  autocmd!
+  autocmd InsertEnter * setlocal colorcolumn=81
+  autocmd InsertLeave * setlocal colorcolumn=0
+augroup END
+" }}}
 
 " Match trailing whitespace, except when typing at the end of a line. {{{
 highlight ExtraWhitespace ctermbg=red guibg=red
@@ -90,6 +96,7 @@ Bundle "ctrlp.vim"
 Bundle "batsuev/vim-javascript.git"
 Bundle 'cs.vim'
 Bundle "jelera/vim-javascript-syntax.git"
+Bundle "fs111/pydoc.vim"
 Bundle "L9"
 Bundle "The-NERD-Commenter"
 Bundle "ZenCoding.vim"
@@ -100,6 +107,8 @@ Bundle "cmake.vim"
 Bundle "cmake.vim-syntax"
 Bundle "tpope/vim-fugitive.git"
 Bundle "tpope/vim-unimpaired"
+Bundle "tpope/vim-obsession"
+Bundle "tpope/vim-abolish"
 Bundle "gitv"
 Bundle "airblade/vim-gitgutter"
 Bundle "google.vim"
@@ -108,8 +117,8 @@ Bundle "repeat.vim"
 Bundle "matchit.zip"
 Bundle "vim-addon-mw-utils"
 Bundle "tlib"
-Bundle "snipmate-snippets"
-" Bundle 'UltiSnips'
+" Bundle "snipmate-snippets"
+Bundle 'UltiSnips'
 Bundle "garbas/vim-snipmate.git"
 Bundle "surround.vim"
 Bundle "bufkill.vim"
@@ -159,7 +168,7 @@ set statusline+=%P                        " percentage of file
 " Menu completions {{{
 set wildmode=full wildmenu                 " Command-line tab completion
 set infercase                              " AutoComplete in Vim
-set completeopt=longest,menu,menuone
+set completeopt=longest,menu,menuone,preview
 set wildignore+=*.o,*.obj,*.pyc,*.DS_STORE,*.db,*.swc
 " }}}
 
@@ -196,6 +205,7 @@ let g:dbext_default_profile_sqlite_for_wfm = 'type=SQLITE:dbname=/home/zoneproje
 
 " YouCompleteMe {{{
 " let g:ycm_key_invoke_completion = '<C-Space>'
+nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
 " }}}
 
 " MultiCursor bundle mappings {{{
@@ -235,10 +245,6 @@ if has("gui_running") && has("gui_win32")
 endif
 map ' `
 
-"map omni completion keys to Ctrl + Space
-" inoremap <C-Space> <C-X><C-O>
-" }}}
-
 " Save files with sudo rights if you forgot
 :command! W w !sudo tee % > /dev/null
 
@@ -257,6 +263,16 @@ autocmd BufNewFile,BufRead *.js map-local <C-j> :!gjslint --strict %<CR>
 "turn omni completion on
 "autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
 "set tags+=~/.vim/closuretags
+let g:EclimCompletionMethod = 'omnifunc'
+
+" Java autocommands {{{
+augroup filetype_java
+    au!
+    " use this to drive eclim auto complition to YCM. Remove after the above
+    " is available in the next version of eclim.
+    autocmd Filetype java setlocal omnifunc=eclim#java#complete#CodeComplete
+augroup END
+" }}}
 
 "Doxygen Toolkit settings for javascript comments {{{
 let g:DoxygenToolkit_compactDoc = "yes"
@@ -295,8 +311,6 @@ noremap <leader>j bi["<Esc>ea"]<Esc>
 " If no errors, it closes any open cwindow.
 :command! -nargs=* Make make! <args>
 
-let NERDSpaceDelims=2
-
 " CtrlP mappings
 let g:ctrlp_follow_symlinks = 1
 let g:ctrlp_working_path_mode = 2 " don't manage current directory
@@ -317,8 +331,9 @@ let g:SuperTabDefaultCompletionType = "context"
 
 if !exists("lint_autocommand_loaded")
   let lint_autocommand_loaded = 1
-  au FileType json <buffer> set equalprg=json_reformat
+  au FileType json setlocal equalprg=json_reformat
   au BufRead *.json set filetype=json
+  au FileType python setlocal tabstop=4 shiftwidth=4 foldmethod=indent
   au BufRead nginx.conf set filetype=nginx
   au BufRead lighttpd.conf set filetype=lighttpd
 
