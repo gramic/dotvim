@@ -186,6 +186,12 @@ set wildignore+=*.o,*.obj,*.pyc,*.DS_STORE,*.db,*.swc
 set whichwrap=h,l,~,[,]
 " }}}
 
+" UltiSnips bundle mappings {{{
+let g:UltiSnipsExpandTrigger = "<leader>ss"
+let g:UltiSnipsJumpForwardTrigger = "<leader>sn"
+let g:UltiSnipsJumpBackwardTrigger = "<leader>sp"
+" }}}
+
 " Unite bundle mappings {{{
 let g:unite_source_history_yank_enable = 1
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
