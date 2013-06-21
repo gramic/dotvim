@@ -92,6 +92,7 @@ Bundle 'embear/vim-localvimrc.git'
 Bundle "vim-indent-object"
 Bundle "argtextobj.vim"
 Bundle "Tabular"
+Bundle "Shougo/unite.vim"
 Bundle "ctrlp.vim"
 Bundle "batsuev/vim-javascript.git"
 Bundle 'cs.vim'
@@ -185,9 +186,15 @@ set wildignore+=*.o,*.obj,*.pyc,*.DS_STORE,*.db,*.swc
 set whichwrap=h,l,~,[,]
 " }}}
 
+" Unite bundle mappings {{{
+let g:unite_source_history_yank_enable = 1
+call unite#filters#matcher_default#use(['matcher_fuzzy'])
+nnoremap <leader>y :Unite history/yank<cr>
+" }}}
+
 " SkyBison bundle mappings {{{
-:cnoremap <c-l> <c-r>=SkyBison("")<cr><cr>
-:let g:skybison_fuzz=1
+cnoremap <c-l> <c-r>=SkyBison("")<cr><cr>
+let g:skybison_fuzz=1
 " }}}
 
 " MultiCursor bundle mappings {{{
