@@ -92,7 +92,7 @@ Bundle 'embear/vim-localvimrc.git'
 Bundle "vim-indent-object"
 Bundle "argtextobj.vim"
 Bundle "Tabular"
-Bundle "Shougo/unite.vim"
+"Bundle "Shougo/unite.vim"
 Bundle "ctrlp.vim"
 Bundle "batsuev/vim-javascript.git"
 Bundle 'cs.vim'
@@ -192,10 +192,14 @@ let g:UltiSnipsJumpForwardTrigger = "<leader>sn"
 let g:UltiSnipsJumpBackwardTrigger = "<leader>sp"
 " }}}
 
+" Gitv configuration {{{
+g:Gitv_TruncateCommitSubjects = 1
+" }}}
+
 " Unite bundle mappings {{{
-let g:unite_source_history_yank_enable = 1
-call unite#filters#matcher_default#use(['matcher_fuzzy'])
-nnoremap <leader>y :Unite history/yank<cr>
+"let g:unite_source_history_yank_enable = 1
+"call unite#filters#matcher_default#use(['matcher_fuzzy'])
+"nnoremap <leader>y :Unite history/yank<cr>
 " }}}
 
 " SkyBison bundle mappings {{{
