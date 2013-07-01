@@ -111,6 +111,7 @@ Bundle "tpope/vim-unimpaired"
 Bundle "tpope/vim-obsession"
 Bundle "tpope/vim-abolish"
 Bundle "tpope/vim-characterize.git"
+Bundle "mbbill/undotree"
 Bundle "gitv"
 Bundle "airblade/vim-gitgutter"
 Bundle "google.vim"
@@ -193,7 +194,7 @@ let g:UltiSnipsJumpBackwardTrigger = "<leader>sp"
 " }}}
 
 " Gitv configuration {{{
-g:Gitv_TruncateCommitSubjects = 1
+let g:Gitv_TruncateCommitSubjects = 1
 " }}}
 
 " Unite bundle mappings {{{
