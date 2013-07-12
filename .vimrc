@@ -283,6 +283,7 @@ autocmd BufNewFile,BufRead *.js map-local <C-j> :!gjslint --strict %<CR>
 "autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
 "set tags+=~/.vim/closuretags
 let g:EclimCompletionMethod = 'omnifunc'
+let g:EclimMavenPomClasspathUpdate = 0
 
 " Java autocommands {{{
 augroup filetype_java
