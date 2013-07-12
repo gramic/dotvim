@@ -148,7 +148,7 @@ filetype plugin indent on
 set background=light
 " let g:solarized_termtrans=1
 let g:solarized_termcolors=256
-colorscheme solarized
+silent! colorscheme solarized
 set background=light
 let g:Powerline_symbols='fancy'
 " let g:Powerline_theme='solarized256'
