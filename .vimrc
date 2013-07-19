@@ -100,6 +100,7 @@ Bundle "jelera/vim-javascript-syntax.git"
 Bundle "fs111/pydoc.vim"
 Bundle "L9"
 Bundle "The-NERD-Commenter"
+Bundle "Raimondi/delimitMate.git"
 Bundle "ZenCoding.vim"
 Bundle "ZoomWin"
 Bundle "cecutil"
@@ -314,10 +315,10 @@ let g:DoxygenToolkit_endCommentBlock = " */"
 "
 " Author: Tom Ryder <tom@sanctum.geek.nz>
 "
- 
+
 " Don't backup files in temp directories or shm
 set backupskip+=/tmp/*,$TMPDIR/*,$TMP/*,$TEMP/*,*/shm/*
- 
+
 " Don't keep swap files in temp directories or shm
 if has('autocmd')
     augroup swapskip
@@ -327,7 +328,7 @@ if has('autocmd')
             \ setlocal noswapfile
     augroup END
 endif
- 
+
 " Don't keep undo files in temp directories or shm
 if has('persistent_undo') && has('autocmd')
     augroup undoskip
@@ -369,8 +370,8 @@ noremap <leader>j bi["<Esc>ea"]<Esc>
 let g:ctrlp_follow_symlinks = 1
 let g:ctrlp_working_path_mode = 2 " don't manage current directory
 let g:ctrlp_root_markers = ['CMakeLists\.txt']
-let g:ctrlp_custom_ignore = { 
-  \ 'dir':  '\.git$\|\.hg$\|\.svn$\|build$\|build_release$\|build_debug$\|third_parties$',
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\.git$\|\.hg$\|\.svn$\|build$\|build_release$\|build_debug$\|third_parties\|target$',
   \ }
 let g:ctrlp_map = '<localleader>f'
 nnoremap <localleader>m :CtrlPMRU<CR>
@@ -395,6 +396,23 @@ if !exists("lint_autocommand_loaded")
   au BufRead *.cpp,*.c,*.cc,*.hpp,*.h noremap <buffer> <Leader>t :call CppRunTests("")<CR>
   au BufRead *.js noremap <buffer> <Leader>l :call Jslint()<CR>
 endif
+
+function! Preserve(command)
+  " Preparation: save last search, and cursor position.
+  let _s=@/
+  let l = line(".")
+  let c = col(".")
+  " Do the business:
+  execute a:command
+  " Clean up: restore previous search history, and cursor position
+  let @/=_s
+  call cursor(l, c)
+endfunction
+
+" Clean up trailing white spaces.
+nmap _$ :call Preserve("%s/\\s\\+$//e")<CR>
+" Format whole file.
+nmap _= :call Preserve("normal gg=G")<CR>
 
 function! CppRunTests(args)
   let l:old_makeprg = &makeprg
