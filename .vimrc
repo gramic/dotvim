@@ -391,7 +391,7 @@ if !exists("lint_autocommand_loaded")
   au BufRead nginx.conf set filetype=nginx
   au BufRead lighttpd.conf set filetype=lighttpd
 
-  au BufRead *.cpp,*.c,*.cc,*.hpp,*.h noremap <buffer> <Leader>i :call ClangFormat()<CR>
+  au BufRead *.cpp,*.c,*.cc,*.hpp,*.h noremap <buffer> <Leader>i :!clang-format -i -style=Google %<CR>
   au BufRead *.cpp,*.c,*.cc,*.hpp,*.h noremap <buffer> <Leader>t :call CppRunTests("")<CR>
   au BufRead *.js noremap <buffer> <Leader>l :call Jslint()<CR>
 endif
@@ -430,10 +430,6 @@ function! CppRunTests(args)
   let s:latest_args = a:args
   exec 'lcd '.l:old_cwd
   let &makeprg=l:old_makeprg
-endfunction
-
-function! ClangFormat()
-  :!clang-format -i -style=Google %
 endfunction
 
 function! Jslint()
