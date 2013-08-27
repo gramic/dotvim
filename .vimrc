@@ -26,9 +26,8 @@ set undoreload=10000 "maximum number lines to save for undo on a buffer reload
 syntax on
 
 augroup filetype_vim
-    au!
-    au FileType vim setlocal foldmethod=marker
-    au! BufNewFile,BufRead *.ledger set filetype=ledger
+    autocmd!
+    autocmd FileType vim setlocal foldmethod=marker
 augroup END
 
 " Cyrillic support {{{
@@ -57,16 +56,6 @@ augroup ColorcolumnOnlyInInsertMode
   autocmd InsertEnter * setlocal colorcolumn=81
   autocmd InsertLeave * setlocal colorcolumn=0
 augroup END
-" }}}
-
-" Match trailing whitespace, except when typing at the end of a line. {{{
-highlight ExtraWhitespace ctermbg=red guibg=red
-match ExtraWhitespace /\s\+$/
-autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
-autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
-autocmd InsertLeave * match ExtraWhitespace /\s\+$/
-autocmd BufWinLeave * call clearmatches()
-autocmd BufReadPost fugitive://* set bufhidden=delete
 " }}}
 
 " git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
@@ -111,6 +100,7 @@ Bundle "tpope/vim-unimpaired"
 Bundle "tpope/vim-obsession"
 Bundle "tpope/vim-abolish"
 Bundle "tpope/vim-characterize.git"
+Bundle "tpope/vim-dispatch.git"
 Bundle "mbbill/undotree"
 Bundle "gitv"
 Bundle "airblade/vim-gitgutter"
@@ -153,6 +143,12 @@ set background=light
 let g:Powerline_symbols='fancy'
 " let g:Powerline_theme='solarized256'
 let g:Powerline_colorscheme = 'solarized256'
+" }}}
+
+" Fugitive group. {{{
+augroup fugitivegroup
+  autocmd BufReadPost fugitive://* set bufhidden=delete
+augroup END
 " }}}
 
 " Status line {{{
@@ -273,10 +269,14 @@ set wildmenu
 
 " Javascript autocommands {{{
 " our style is curly brace at the end of the function signature
-autocmd BufNewFile,BufRead *.js map [[ ?function(.*)\ {$<CR>
-autocmd BufNewFile,BufRead *.js map ]] /^};$<CR>
-" Google js lint this file
-autocmd BufNewFile,BufRead *.js map-local <C-j> :!gjslint --strict %<CR>
+" Java autocommands {{{
+augroup javascriptgroup
+  au!
+  autocmd BufNewFile,BufRead *.js map [[ ?function(.*)\ {$<CR>
+  autocmd BufNewFile,BufRead *.js map ]] /^};$<CR>
+  " Google js lint this file
+  autocmd BufNewFile,BufRead *.js map-local <C-j> :!gjslint --strict %<CR>
+augroup END
 " }}}
 
 "turn omni completion on
@@ -284,13 +284,14 @@ autocmd BufNewFile,BufRead *.js map-local <C-j> :!gjslint --strict %<CR>
 "set tags+=~/.vim/closuretags
 let g:EclimCompletionMethod = 'omnifunc'
 let g:EclimMavenPomClasspathUpdate = 0
+let g:EclimJavascriptValidate = 0
 
 " Java autocommands {{{
 augroup filetype_java
-    au!
-    " use this to drive eclim auto complition to YCM. Remove after the above
-    " is available in the next version of eclim.
-    autocmd Filetype java setlocal omnifunc=eclim#java#complete#CodeComplete
+  au!
+  " use this to drive eclim auto complition to YCM. Remove after the above
+  " is available in the next version of eclim.
+  autocmd Filetype java setlocal omnifunc=eclim#java#complete#CodeComplete
 augroup END
 " }}}
 
@@ -319,14 +320,12 @@ let g:DoxygenToolkit_endCommentBlock = " */"
 set backupskip+=/tmp/*,$TMPDIR/*,$TMP/*,$TEMP/*,*/shm/*
 
 " Don't keep swap files in temp directories or shm
-if has('autocmd')
-    augroup swapskip
-        autocmd!
-        silent! autocmd BufNewFile,BufReadPre
-            \ /tmp/*,$TMPDIR/*,$TMP/*,$TEMP/*,*/shm/*
-            \ setlocal noswapfile
-    augroup END
-endif
+augroup swapskip
+  autocmd!
+  silent! autocmd BufNewFile,BufReadPre
+      \ /tmp/*,$TMPDIR/*,$TMP/*,$TEMP/*,*/shm/*
+      \ setlocal noswapfile
+augroup END
 
 " Don't keep undo files in temp directories or shm
 if has('persistent_undo') && has('autocmd')
