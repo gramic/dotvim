@@ -65,6 +65,8 @@ set rtp+=$HOME/.vim/bundle/vundle/
 call vundle#rc()
 
 " My own vim settings.
+"Bundle 'itchyny/lightline.vim'
+Bundle 'bling/vim-airline'
 Bundle "indenthtml.vim"
 Bundle "gmarik/vundle"
 Bundle "gramic/dotvim.git"
@@ -140,9 +142,7 @@ set background=light
 let g:solarized_termcolors=256
 silent! colorscheme solarized
 set background=light
-let g:Powerline_symbols='fancy'
-" let g:Powerline_theme='solarized256'
-let g:Powerline_colorscheme = 'solarized256'
+let g:airline_section_a='[%{bufnr("%")}]'
 " }}}
 
 " Fugitive group. {{{
