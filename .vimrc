@@ -89,7 +89,7 @@ Bundle "jelera/vim-javascript-syntax.git"
 Bundle "fs111/pydoc.vim"
 Bundle "L9"
 Bundle "The-NERD-Commenter"
-Bundle "ZenCoding.vim"
+Bundle "mattn/emmet-vim.git"
 Bundle "ZoomWin"
 Bundle "cecutil"
 Bundle 'Cpp11-Syntax-Support'
@@ -182,6 +182,10 @@ set wildignore+=*.o,*.obj,*.pyc,*.DS_STORE,*.db,*.swc
 " and ~ convert case over line breaks; also have the cursor keys
 " wrap in insert mode:
 set whichwrap=h,l,~,[,]
+" }}}
+
+" Emmet ZenCoding bundle mappings {{{
+let g:user_emmet_leader_key = "<leader>y"
 " }}}
 
 " UltiSnips bundle mappings {{{
