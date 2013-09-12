@@ -397,6 +397,7 @@ if !exists("lint_autocommand_loaded")
   au BufRead lighttpd.conf set filetype=lighttpd
 
   au BufRead *.cpp,*.c,*.cc,*.hpp,*.h noremap <buffer> <Leader>i :call ClangFormat()<CR>
+  au BufRead *.cpp,*.c,*.cc,*.hpp,*.h noremap <buffer> <Leader>bt :call CppRunTests("")<CR>
   au BufRead *.js noremap <buffer> <Leader>l :call Jslint()<CR>
 endif
 
@@ -416,6 +417,13 @@ endfunction
 nmap _$ :call Preserve("%s/\\s\\+$//e")<CR>
 " Format whole file.
 nmap _= :call Preserve("normal gg=G")<CR>
+
+function! CppRunTests(args)
+  let l:old_makeprg = &makeprg
+  set makeprg=make\ -C\ build\ testall
+  exec 'make'
+  let &makeprg=l:old_makeprg
+endfunction
 
 function! ClangFormat()
   :!clang-format -i -style=Google %
