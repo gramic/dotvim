@@ -144,6 +144,8 @@ let g:solarized_termcolors=256
 silent! colorscheme solarized
 set background=light
 let g:airline_section_a='[%{bufnr("%")}]'
+let g:airline_left_sep=''
+let g:airline_right_sep=''
 " }}}
 
 " Fugitive group. {{{
@@ -356,6 +358,7 @@ set errorformat^=%-GIn\ file\ included\ %.%#
 " Developing Javascript mappings
 set makeprg=make\ -C\ ./build
 nnoremap <localleader>bb :make! -j 12<CR>
+nnoremap <localleader>bt :make! testall<CR>
 nmap <LocalLeader>bB <Leader>bb:!tmux send-keys -t :.1 C-c ENTER Up ENTER\<CR><CR>
 nnoremap <localleader>br :set makeprg=make\ -C\ ./build_release<CR><Bar>:!cd ./build_release && cmake -DCMAKE_BUILD_TYPE=Release -DJDEBUG=OFF ..<CR>
 nnoremap <localleader>bd :set makeprg=make\ -C\ ./build<CR><Bar>:!cd ./build && cmake -DCMAKE_BUILD_TYPE=Debug -DJDEBUG=ON ..<CR>
@@ -395,8 +398,8 @@ if !exists("lint_autocommand_loaded")
   au BufRead nginx.conf set filetype=nginx
   au BufRead lighttpd.conf set filetype=lighttpd
 
-  au BufRead *.cpp,*.c,*.cc,*.hpp,*.h noremap <buffer> <Leader>i :!clang-format -i -style=Google %<CR>
-  au BufRead *.cpp,*.c,*.cc,*.hpp,*.h noremap <buffer> <Leader>t :call CppRunTests("")<CR>
+  au BufRead *.cpp,*.c,*.cc,*.hpp,*.h noremap <buffer> <Leader>i :call ClangFormat()<CR>
+  au BufRead *.cpp,*.c,*.cc,*.hpp,*.h noremap <buffer> <Leader>bt :call CppRunTests("")<CR>
   au BufRead *.js noremap <buffer> <Leader>l :call Jslint()<CR>
 endif
 
@@ -419,21 +422,17 @@ nmap _= :call Preserve("normal gg=G")<CR>
 
 function! CppRunTests(args)
   let l:old_makeprg = &makeprg
-  let l:old_cwd = getcwd()
-  exec 'lcd '.l:old_cwd.'/test/build_debug/'
-  set makeprg=./tests
-  if a:args == ""
-    if exists("s:latest_args")
-      exec 'make '.s:latest_args
-    else
-      exec 'make --gtest_filter=*'
-    endif
-  else
-    exec 'make '.a:args
-  endif
-  let s:latest_args = a:args
-  exec 'lcd '.l:old_cwd
+  set makeprg=make\ -C\ build\ testall
+  exec 'make'
   let &makeprg=l:old_makeprg
+endfunction
+
+function! ClangFormat()
+  :!clang-format -i -style=Google %
+endfunction
+
+function! ClangModernize()
+  :!clang-modernize -format-style=Google -p=build/ %
 endfunction
 
 function! Jslint()
