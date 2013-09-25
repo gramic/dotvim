@@ -73,7 +73,6 @@ Bundle "gramic/dotvim.git"
 Bundle 'EasyMotion'
 Bundle 'Valloric/MatchTagAlways.git'
 Bundle 'Valloric/YouCompleteMe.git'
-"Bundle 'chapuni/llvm-project.git', {'rtp': 'lldb/utils/vim-lldb/'}
 Bundle 'scrooloose/syntastic.git'
 Bundle 'dbext.vim'
 " cmdcomplition by pressing <c-l> in the command line
