@@ -73,19 +73,18 @@ Bundle "gramic/dotvim.git"
 Bundle 'EasyMotion'
 Bundle 'Valloric/MatchTagAlways.git'
 Bundle 'Valloric/YouCompleteMe.git'
+"Bundle 'chapuni/llvm-project.git', {'rtp': 'lldb/utils/vim-lldb/'}
 Bundle 'scrooloose/syntastic.git'
 Bundle 'dbext.vim'
 " cmdcomplition by pressing <c-l> in the command line
 Bundle 'paradigm/SkyBison.git'
 Bundle 'paradigm/vim-multicursor.git'
 Bundle 'embear/vim-localvimrc.git'
-" Bundle "kljohann/ledger",{"rtp":"contrib/vim"}
 Bundle "vim-indent-object"
 Bundle "argtextobj.vim"
 Bundle "Tabular"
-"Bundle "Shougo/unite.vim"
 Bundle "ctrlp.vim"
-Bundle "batsuev/vim-javascript.git"
+Bundle "pangloss/vim-javascript.git"
 Bundle 'cs.vim'
 Bundle "jelera/vim-javascript-syntax.git"
 Bundle "fs111/pydoc.vim"
@@ -109,7 +108,6 @@ Bundle "airblade/vim-gitgutter"
 Bundle "google.vim"
 Bundle "matchit.zip"
 Bundle "repeat.vim"
-Bundle "matchit.zip"
 Bundle "vim-addon-mw-utils"
 Bundle "tlib"
 " Bundle "snipmate-snippets"
@@ -122,7 +120,6 @@ Bundle "ap/vim-css-color.git"
 Bundle "vim-soy"
 " Syntaxes
 Bundle "jnwhiteh/vim-golang.git"
-Bundle "nsf/gocode",{"rtp":"vim"}
 "Bundle "marijnh/tern_for_vim.git"
 Bundle 'JSON.vim'
 Bundle 'lighttpd-syntax'
