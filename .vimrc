@@ -355,12 +355,12 @@ set errorformat^=%-GIn\ file\ included\ %.%#
 ":au! BufNewFile,BufRead *.soy set filetype=html
 
 " Developing Javascript mappings
-set makeprg=make\ -C\ ./build
-nnoremap <localleader>bb :make! -j 12<CR>
-nnoremap <localleader>bt :make! testall<CR>
-nmap <LocalLeader>bB <Leader>bb:!tmux send-keys -t :.1 C-c ENTER Up ENTER\<CR><CR>
-nnoremap <localleader>br :set makeprg=make\ -C\ ./build_release<CR><Bar>:!cd ./build_release && cmake -DCMAKE_BUILD_TYPE=Release -DJDEBUG=OFF ..<CR>
-nnoremap <localleader>bd :set makeprg=make\ -C\ ./build<CR><Bar>:!cd ./build && cmake -DCMAKE_BUILD_TYPE=Debug -DJDEBUG=ON ..<CR>
+"set makeprg=make\ -C\ ./build
+"nnoremap <localleader>bb :make! -j 12<CR>
+"nnoremap <localleader>bt :make! testall<CR>
+"nmap <LocalLeader>bB <Leader>bb:!tmux send-keys -t :.1 C-c ENTER Up ENTER\<CR><CR>
+"nnoremap <localleader>br :set makeprg=make\ -C\ ./build_release<CR><Bar>:!cd ./build_release && cmake -DCMAKE_BUILD_TYPE=Release -DJDEBUG=OFF ..<CR>
+"nnoremap <localleader>bd :set makeprg=make\ -C\ ./build<CR><Bar>:!cd ./build && cmake -DCMAKE_BUILD_TYPE=Debug -DJDEBUG=ON ..<CR>
 
 " convert json property to exported closure compiler name
 noremap <leader>j bi["<Esc>ea"]<Esc>
@@ -380,6 +380,7 @@ let g:ctrlp_custom_ignore = {
   \ }
 let g:ctrlp_map = '<localleader>f'
 nnoremap <localleader>m :CtrlPMRU<CR>
+nnoremap <localleader>c :CtrlPCurWD<CR>
 let g:ctrlp_by_filename = 1 " search by filename (not full path) as default.
 let g:ctrlp_dotfiles = 0 " do not search inside dot files and dirs.
 
