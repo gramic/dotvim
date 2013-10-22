@@ -66,6 +66,8 @@ call vundle#rc()
 
 " My own vim settings.
 "Bundle 'itchyny/lightline.vim'
+"reStructuredText plugin
+Bundle 'Rykka/riv.vim.git'
 Bundle 'bling/vim-airline'
 Bundle "indenthtml.vim"
 Bundle "gmarik/vundle"
@@ -125,6 +127,7 @@ Bundle 'lighttpd-syntax'
 Bundle 'nginx.vim'
 " }}}
 
+set exrc
 let g:localvimrc_name=".stanimir.vimrc"
 let g:localvimrc_sandbox=0
 
