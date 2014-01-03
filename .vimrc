@@ -117,7 +117,7 @@ Bundle "tlib"
 Bundle 'UltiSnips'
 Bundle "garbas/vim-snipmate.git"
 Bundle "surround.vim"
-Bundle "bufkill.vim"
+Bundle "mattdbridges/bufkill.vim"
 Bundle "nelstrom/vim-visual-star-search"
 Bundle "ap/vim-css-color.git"
 Bundle "vim-soy"
@@ -188,6 +188,11 @@ set wildignore+=*.o,*.obj,*.pyc,*.DS_STORE,*.db,*.swc
 " and ~ convert case over line breaks; also have the cursor keys
 " wrap in insert mode:
 set whichwrap=h,l,~,[,]
+" }}}
+
+" BufKill {{{
+" Disable key mappings.
+let g:BufKillCreateMappings = 0
 " }}}
 
 " Emmet ZenCoding bundle mappings {{{
@@ -364,8 +369,8 @@ set errorformat^=%-GIn\ file\ included\ %.%#
 "nnoremap <localleader>bb :make! -j 12<CR>
 "nnoremap <localleader>bt :make! testall<CR>
 "nmap <LocalLeader>bB <Leader>bb:!tmux send-keys -t :.1 C-c ENTER Up ENTER\<CR><CR>
-"nnoremap <localleader>br :set makeprg=make\ -C\ ./build_release<CR><Bar>:!cd ./build_release && cmake -DCMAKE_BUILD_TYPE=Release -DJDEBUG=OFF ..<CR>
-"nnoremap <localleader>bd :set makeprg=make\ -C\ ./build<CR><Bar>:!cd ./build && cmake -DCMAKE_BUILD_TYPE=Debug -DJDEBUG=ON ..<CR>
+"nnoremap <localleader>br :set makeprg=make\ -C\ ./build_release<CR><Bar>:!cd ./build_release && CC=/usr/local/bin/clang CXX=/usr/local/bin/clang++ cmake -DCMAKE_BUILD_TYPE=Release -DJDEBUG=OFF ..<CR>
+"nnoremap <localleader>bd :set makeprg=make\ -C\ ./build<CR><Bar>:!cd ./build && CC=/usr/local/bin/clang CXX=/usr/local/bin/clang++ cmake -DCMAKE_BUILD_TYPE=Debug -DJDEBUG=ON ..<CR>
 
 " convert json property to exported closure compiler name
 noremap <leader>j bi["<Esc>ea"]<Esc>
@@ -437,7 +442,7 @@ function! ClangFormat()
 endfunction
 
 function! ClangModernize()
-  :!clang-modernize -format-style=Google -p=build/ %
+  :!clang-modernize -style=Google -format -use-nullptr -add-override -override-macros -p=build/ %
 endfunction
 
 function! Jslint()
