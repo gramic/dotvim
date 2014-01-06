@@ -383,9 +383,9 @@ let g:ctrlp_root_markers = ['CMakeLists\.txt']
 let g:ctrlp_custom_ignore = {
   \ 'dir':  '\.git$\|\.hg$\|\.svn$\|build$\|build_release$\|build_debug$\|third_parties\|target$',
   \ }
-let g:ctrlp_map = '<localleader>f'
-nnoremap <localleader>m :CtrlPMRU<CR>
-nnoremap <localleader>c :CtrlPCurWD<CR>
+let g:ctrlp_map = '<localleader>ff'
+nnoremap <localleader>fm :CtrlPMRU<CR>
+nnoremap <localleader>fc :CtrlPCurWD<CR>
 let g:ctrlp_by_filename = 1 " search by filename (not full path) as default.
 let g:ctrlp_dotfiles = 0 " do not search inside dot files and dirs.
 
