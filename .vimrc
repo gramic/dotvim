@@ -69,6 +69,7 @@ call vundle#rc()
 " My own vim settings.
 "Bundle 'itchyny/lightline.vim'
 "reStructuredText plugin
+Bundle 'itchyny/calendar.vim'
 Bundle 'Rykka/riv.vim.git'
 Bundle 'bling/vim-airline'
 Bundle "indenthtml.vim"
@@ -150,6 +151,14 @@ silent! colorscheme solarized
 let g:airline_section_a='[%{bufnr("%")}]'
 let g:airline_left_sep=''
 let g:airline_right_sep=''
+" }}}
+
+" Calender group. {{{
+augroup fugitivegroup
+  let g:calendar_google_calendar = 1
+  let g:calendar_google_task = 1
+  let g:calendar_first_day = 'monday'
+augroup END
 " }}}
 
 " Fugitive group. {{{
