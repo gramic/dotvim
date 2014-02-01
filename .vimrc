@@ -209,6 +209,8 @@ let g:user_emmet_leader_key = "<leader>y"
 " }}}
 
 " UltiSnips bundle mappings {{{
+let g:UltiSnipsSnippetsDir = "~/.vim/bundle/dotvim/snippets"
+let g:UltiSnipsSnippetDirectories = ['UltiSnips', 'snippets']
 let g:UltiSnipsExpandTrigger = "<leader>ss"
 let g:UltiSnipsJumpForwardTrigger = "<leader>sn"
 let g:UltiSnipsJumpBackwardTrigger = "<leader>sp"
@@ -451,7 +453,7 @@ function! ClangFormat()
 endfunction
 
 function! ClangModernize()
-  :!clang-modernize -style=Google -format -use-nullptr -add-override -override-macros -p=build/ %
+  :!clang-modernize -style=Google -format -loop-convert -pass-by-value -replace-auto_ptr -use-nullptr -use-auto -add-override -override-macros -p=/home/zoneprojects/work/zone_projects/projects/build_docsapp/nac/ %
 endfunction
 
 function! Jslint()

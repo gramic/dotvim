@@ -1,52 +1,66 @@
 # type cast
 snippet css
 	goog.getCssName('${1:}')
+endsnippet
 # type cast
 snippet /**
 	/**
 	 * ${1:}
 	 */
+endsnippet
 snippet base
 	goog.base(this, '${1:method}');
+endsnippet
 snippet private
 	/**
 	 * @type {${1:}}
 	 * @private
 	 */
 	this.${2:membername}_ = new $1();
+endsnippet
 snippet @m
 	/** @type {${1:}} */
 	this.${2:membername} = new $1();
+endsnippet
 snippet @param
 	@param {${1:type}} ${2:varable} ${3:description.}
 # const type
+endsnippet
 snippet @const
 	/** @const */
 	${1:variable}
 # type cast
+endsnippet
 snippet @type
 	/** @type {${1:typename}} */ (${2}
 # declare string type
+endsnippet
 snippet @st
 	/** @type {string} */
 	this.${1:membername} = ext.consts.UNUSED;
+endsnippet
 snippet @ut
 	/** @type {string} */
 	this.${1:membername} = ext.consts.NULL_UUID;
+endsnippet
 snippet @nt
 	/** @type {number} */
 	this.${1:membername} = 0;
+endsnippet
 snippet @bt
 	/** @type {boolean} */
 	this.${1:membername} = true;
+endsnippet
 snippet @arr
 	/** @type {Array.<${1:typename}>} */
 	this.${2:membername} = [];
+endsnippet
 snippet @dt
 	/** @type {goog.date.Date} */
 	this.${1:membername} = ext.consts.DATENEGATIVEINF.clone();
 
 # Create skeleton of new class.
+endsnippet
 snippet ext.type
 	/**
 	 * @constructor
@@ -103,11 +117,13 @@ snippet ext.type
 	  if (!this) { return; }
 		// Use @dd snippet to convert a member to date.
 	}
+endsnippet
 
 # clone member
 snippet cm
 	newObj.${1:memberName} = source.$1;
 	cm${2}
+endsnippet
 
 # clone object
 snippet co
@@ -117,6 +133,7 @@ snippet co
 		newObj.$1 = ${2:membername}.prototype.clone(
 		    /** @type {$2} */ (source.$1));
 	}
+endsnippet
 
 # clone date
 snippet cd
@@ -126,6 +143,7 @@ snippet cd
 		newObj.$1 = goog.date.fromIsoString(
 			/** @type {string} */ (source.$1));
 	}
+endsnippet
 
 # clone array
 snippet ca
@@ -137,11 +155,13 @@ snippet ca
 	        ext.type.${2:memberType}.prototype.clone(src);
 	  }
 	});
+endsnippet
 
 # equal memebers
 snippet em
 	this.${1:memberName} == other.$1 &&
 	em${2}
+endsnippet
 
 # datesToJson date
 snippet dd
@@ -149,6 +169,7 @@ snippet dd
 		typeof this.$1 !== "string") {
 		this.$1 = (this.$1.toIsoString());
 	}
+endsnippet
 
 
 
@@ -160,3 +181,4 @@ snippet fr
 	function($2) {
 		${5:}
 	}${4:, this});
+endsnippet
