@@ -68,25 +68,21 @@ call vundle#rc()
 
 " My own vim settings.
 "Bundle 'itchyny/lightline.vim'
-"reStructuredText plugin
 Bundle 'itchyny/calendar.vim'
+"reStructuredText plugin
 Bundle 'Rykka/riv.vim.git'
 Bundle 'bling/vim-airline'
 Bundle "indenthtml.vim"
 Bundle "gmarik/vundle"
 Bundle "gramic/dotvim.git"
-Bundle 'EasyMotion'
 Bundle 'Valloric/MatchTagAlways.git'
 Bundle 'Valloric/YouCompleteMe.git'
 Bundle 'scrooloose/syntastic.git'
 Bundle 'dbext.vim'
 " cmdcomplition by pressing <c-l> in the command line
 Bundle 'paradigm/SkyBison.git'
-Bundle 'paradigm/vim-multicursor.git'
-Bundle 'embear/vim-localvimrc.git'
 Bundle "vim-indent-object"
 Bundle "argtextobj.vim"
-Bundle "Tabular"
 Bundle "ctrlp.vim"
 Bundle "pangloss/vim-javascript.git"
 Bundle 'cs.vim'
@@ -114,9 +110,7 @@ Bundle "matchit.zip"
 Bundle "repeat.vim"
 Bundle "vim-addon-mw-utils"
 Bundle "tlib"
-" Bundle "snipmate-snippets"
 Bundle 'UltiSnips'
-Bundle "garbas/vim-snipmate.git"
 Bundle "surround.vim"
 Bundle "mattdbridges/bufkill.vim"
 Bundle "nelstrom/vim-visual-star-search"
@@ -128,6 +122,7 @@ Bundle "jnwhiteh/vim-golang.git"
 Bundle 'JSON.vim'
 Bundle 'lighttpd-syntax'
 Bundle 'nginx.vim'
+Bundle 'sjl/vitality.vim.git'
 " }}}
 
 set exrc
