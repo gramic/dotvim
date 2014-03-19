@@ -68,6 +68,7 @@ call vundle#rc()
 
 " My own vim settings.
 "Bundle 'itchyny/lightline.vim'
+Bundle 'guns/xterm-color-table.vim.git'
 Bundle 'itchyny/calendar.vim'
 "reStructuredText plugin
 Bundle 'Rykka/riv.vim.git'
@@ -117,7 +118,6 @@ Bundle "nelstrom/vim-visual-star-search"
 Bundle "ap/vim-css-color.git"
 Bundle "vim-soy"
 " Syntaxes
-Bundle "jnwhiteh/vim-golang.git"
 "Bundle "marijnh/tern_for_vim.git"
 Bundle 'JSON.vim'
 Bundle 'lighttpd-syntax'
