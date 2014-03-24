@@ -51,6 +51,7 @@ endif
 " }}}
 
 set numberwidth=2
+let mapleader=" "
 
 " Color colomun settings {{{
 augroup ColorcolumnOnlyInInsertMode
@@ -90,14 +91,16 @@ Bundle 'cs.vim'
 Bundle "jelera/vim-javascript-syntax.git"
 Bundle "fs111/pydoc.vim"
 Bundle "L9"
-Bundle "The-NERD-Commenter"
 Bundle "mattn/emmet-vim.git"
 Bundle "ZoomWin"
 Bundle "cecutil"
+Bundle "The-NERD-Commenter"
 Bundle 'Cpp11-Syntax-Support'
 Bundle "cmake.vim"
 Bundle "cmake.vim-syntax"
 Bundle "tpope/vim-fugitive.git"
+Bundle "tpope/vim-repeat.git"
+Bundle "tpope/vim-commentary.git"
 Bundle "tpope/vim-unimpaired"
 Bundle "tpope/vim-obsession"
 Bundle "tpope/vim-abolish"
@@ -153,6 +156,12 @@ augroup fugitivegroup
   let g:calendar_google_calendar = 1
   let g:calendar_google_task = 1
   let g:calendar_first_day = 'monday'
+augroup END
+" }}}
+
+" Vim commentary group. {{{
+augroup vim_commentary
+  autocmd FileType cpp set commentstring=//\ %s
 augroup END
 " }}}
 
