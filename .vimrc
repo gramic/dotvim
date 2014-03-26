@@ -51,7 +51,7 @@ endif
 " }}}
 
 set numberwidth=2
-let mapleader=" "
+" let mapleader=" "
 
 " Color colomun settings {{{
 augroup ColorcolumnOnlyInInsertMode
@@ -98,6 +98,7 @@ Bundle "The-NERD-Commenter"
 Bundle 'Cpp11-Syntax-Support'
 Bundle "cmake.vim"
 Bundle "cmake.vim-syntax"
+Bundle "jaxbot/github-issues.vim"
 Bundle "tpope/vim-fugitive.git"
 Bundle "tpope/vim-repeat.git"
 Bundle "tpope/vim-commentary.git"
@@ -163,6 +164,10 @@ augroup END
 augroup vim_commentary
   autocmd FileType cpp set commentstring=//\ %s
 augroup END
+" }}}
+
+" Github-issues group. {{{
+let g:github_access_token = "32a5c2ba3eb003cbe99385ec400495210f38fc59"
 " }}}
 
 " Fugitive group. {{{
