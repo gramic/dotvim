@@ -96,6 +96,7 @@ Bundle "ZoomWin"
 Bundle "cecutil"
 Bundle "The-NERD-Commenter"
 Bundle 'Cpp11-Syntax-Support'
+Bundle 'rhysd/vim-clang-format.git'
 Bundle "cmake.vim"
 Bundle "cmake.vim-syntax"
 Bundle "jaxbot/github-issues.vim"
@@ -380,17 +381,6 @@ set errorformat+=%W%f:%l:\ WARNING\ -\ %m,%C,%C%p^
 set errorformat+=%E%f:%l:\ ERROR\ -\ %m,%C,%C%p^
 " this is to not open empty file. tip from here http://goo.gl/5pgIK
 set errorformat^=%-GIn\ file\ included\ %.%#
-
-" Soy files to be syntax html like
-":au! BufNewFile,BufRead *.soy set filetype=html
-
-" Developing Javascript mappings
-"set makeprg=make\ -C\ ./build
-"nnoremap <localleader>bb :make! -j 12<CR>
-"nnoremap <localleader>bt :make! testall<CR>
-"nmap <LocalLeader>bB <Leader>bb:!tmux send-keys -t :.1 C-c ENTER Up ENTER\<CR><CR>
-"nnoremap <localleader>br :set makeprg=make\ -C\ ./build_release<CR><Bar>:!cd ./build_release && CC=/usr/local/bin/clang CXX=/usr/local/bin/clang++ cmake -DCMAKE_BUILD_TYPE=Release -DJDEBUG=OFF ..<CR>
-"nnoremap <localleader>bd :set makeprg=make\ -C\ ./build<CR><Bar>:!cd ./build && CC=/usr/local/bin/clang CXX=/usr/local/bin/clang++ cmake -DCMAKE_BUILD_TYPE=Debug -DJDEBUG=ON ..<CR>
 
 " convert json property to exported closure compiler name
 noremap <leader>j bi["<Esc>ea"]<Esc>
