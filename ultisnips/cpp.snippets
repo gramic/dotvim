@@ -1,0 +1,8 @@
+snippet once "Include guard"
+#ifndef ${1:`!v toupper(expand('%:t:r').'_HPP')`}
+#define $1
+
+${2}
+
+#endif  //  $1
+endsnippet

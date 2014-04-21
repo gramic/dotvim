@@ -95,7 +95,8 @@ Bundle "mattn/emmet-vim.git"
 Bundle "ZoomWin"
 Bundle "cecutil"
 Bundle "The-NERD-Commenter"
-Bundle 'Cpp11-Syntax-Support'
+"Bundle 'Cpp11-Syntax-Support'
+Bundle 'vim-jp/cpp-vim.git'
 Bundle 'rhysd/vim-clang-format.git'
 Bundle "cmake.vim"
 Bundle "cmake.vim-syntax"
@@ -219,8 +220,8 @@ let g:user_emmet_leader_key = "<leader>y"
 " }}}
 
 " UltiSnips bundle mappings {{{
-let g:UltiSnipsSnippetsDir = "~/.vim/bundle/dotvim/snippets"
-let g:UltiSnipsSnippetDirectories = ['UltiSnips', 'snippets']
+let g:UltiSnipsSnippetsDir = "~/.vim/bundle/dotvim/ultisnips"
+let g:UltiSnipsSnippetDirectories = ['UltiSnips', 'ultisnips']
 let g:UltiSnipsExpandTrigger = "<leader>ss"
 let g:UltiSnipsJumpForwardTrigger = "<leader>sn"
 let g:UltiSnipsJumpBackwardTrigger = "<leader>sp"
@@ -418,7 +419,6 @@ if !exists("lint_autocommand_loaded")
   au BufRead nginx.conf set filetype=nginx
   au BufRead lighttpd.conf set filetype=lighttpd
 
-  au BufRead *.cpp,*.c,*.cc,*.hpp,*.h noremap <buffer> <Leader>i :call ClangFormat()<CR>
   au BufRead *.cpp,*.c,*.cc,*.hpp,*.h noremap <buffer> <Leader>bt :call CppRunTests("")<CR>
   au BufRead *.js noremap <buffer> <Leader>l :call Jslint()<CR>
 endif
@@ -445,10 +445,6 @@ function! CppRunTests(args)
   set makeprg=make\ -C\ build\ testall
   exec 'make'
   let &makeprg=l:old_makeprg
-endfunction
-
-function! ClangFormat()
-  :!clang-format -i -style=Google %
 endfunction
 
 function! ClangModernize()
