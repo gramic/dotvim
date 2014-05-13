@@ -96,6 +96,7 @@ Bundle "ZoomWin"
 Bundle "cecutil"
 Bundle "The-NERD-Commenter"
 "Bundle 'Cpp11-Syntax-Support'
+Bundle 'a.vim'
 Bundle 'vim-jp/cpp-vim.git'
 Bundle 'rhysd/vim-clang-format.git'
 Bundle "cmake.vim"
