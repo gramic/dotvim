@@ -80,14 +80,14 @@ Bundle "gramic/dotvim.git"
 Bundle 'Valloric/MatchTagAlways.git'
 Bundle 'Valloric/YouCompleteMe.git'
 Bundle 'scrooloose/syntastic.git'
-Bundle 'dbext.vim'
+Bundle 'darvelo/dbext.vim'
 " cmdcomplition by pressing <c-l> in the command line
 Bundle 'paradigm/SkyBison.git'
 Bundle "vim-indent-object"
 Bundle "argtextobj.vim"
 Bundle "ctrlp.vim"
 Bundle "pangloss/vim-javascript.git"
-Bundle 'cs.vim'
+"Bundle 'cs.vim'
 Bundle "jelera/vim-javascript-syntax.git"
 Bundle "fs111/pydoc.vim"
 Bundle "L9"
@@ -97,6 +97,7 @@ Bundle "cecutil"
 Bundle "The-NERD-Commenter"
 "Bundle 'Cpp11-Syntax-Support'
 Bundle 'a.vim'
+Bundle "ekalinin/Dockerfile.vim"
 Bundle 'vim-jp/cpp-vim.git'
 Bundle 'rhysd/vim-clang-format.git'
 Bundle "cmake.vim"
