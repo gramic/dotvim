@@ -80,7 +80,7 @@ Bundle "gramic/dotvim.git"
 Bundle 'Valloric/MatchTagAlways.git'
 Bundle 'Valloric/YouCompleteMe.git'
 Bundle 'scrooloose/syntastic.git'
-"Bundle 'darvelo/dbext.vim.git'
+Bundle 'darvelo/dbext.vim.git'
 " cmdcomplition by pressing <c-l> in the command line
 Bundle 'paradigm/SkyBison.git'
 Bundle "vim-indent-object"
