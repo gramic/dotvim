@@ -1,16 +1,45 @@
+snippet if
+if (${1:}) {
+  ${2:}
+}
+endsnippet
+
+snippet ife
+if (${1:}) {
+  ${2:}
+} else {
+}
+endsnippet
+
+snippet else
+else {
+	${1:}
+}
+endsnippet
+
+snippet fun
+function(${1:}) {
+	${2:}
+}
+endsnippet
+
+
 # type cast
 snippet css
 	goog.getCssName('${1:}')
 endsnippet
+
 # type cast
 snippet /**
-	/**
-	 * ${1:}
-	 */
+/**
+ * ${1:}
+ */
 endsnippet
+
 snippet base
 	goog.base(this, '${1:method}');
 endsnippet
+
 snippet private
 	/**
 	 * @type {${1:}}
@@ -18,49 +47,62 @@ snippet private
 	 */
 	this.${2:membername}_ = new $1();
 endsnippet
+
 snippet @m
 	/** @type {${1:}} */
 	this.${2:membername} = new $1();
 endsnippet
+
 snippet @param
-	@param {${1:type}} ${2:varable} ${3:description.}
-# const type
+@param {${1:type}} ${2:name} ${3:description}
 endsnippet
+
 snippet @const
-	/** @const */
-	${1:variable}
-# type cast
+/** @const */
+${1:variable}
 endsnippet
+
 snippet @type
 	/** @type {${1:typename}} */ (${2}
-# declare string type
 endsnippet
+
 snippet @st
-	/** @type {string} */
-	this.${1:membername} = ext.consts.UNUSED;
+/**
+ * @type {string}
+ * @private
+ */
+this.${1:membername} = ${2:''};
 endsnippet
-snippet @ut
-	/** @type {string} */
-	this.${1:membername} = ext.consts.NULL_UUID;
-endsnippet
+
 snippet @nt
-	/** @type {number} */
-	this.${1:membername} = 0;
+/**
+ * @type {number}
+ * @private
+ */
+this.${1:membername} = ${2:0};
 endsnippet
+
 snippet @bt
-	/** @type {boolean} */
-	this.${1:membername} = true;
+/**
+ * @type {boolean}
+ * @private
+ */
+this.${1:membername} = true;
 endsnippet
+
 snippet @arr
-	/** @type {Array.<${1:typename}>} */
-	this.${2:membername} = [];
+/**
+ * @type {Array.<${1:typename}>}
+ */
+this.${2:membername} = ${3:[]};
 endsnippet
+
 snippet @dt
-	/** @type {goog.date.Date} */
-	this.${1:membername} = ext.consts.DATENEGATIVEINF.clone();
+/** @type {goog.date.Date} */
+this.${1:membername} = ext.consts.DATENEGATIVEINF.clone();
+endsnippet
 
 # Create skeleton of new class.
-endsnippet
 snippet ext.type
 	/**
 	 * @constructor
@@ -181,4 +223,9 @@ snippet fr
 	function($2) {
 		${5:}
 	}${4:, this});
+endsnippet
+
+# Node promisify
+snippet np
+zp.node.promise(goog.partial(${1:},${2:}))${3:}
 endsnippet
