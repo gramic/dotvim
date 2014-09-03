@@ -14,3 +14,6 @@ Here are some special notes and structure for this configuration.
 There is some more dot files like the tmux.
   sudo apt-get install tmux
   ln -s ~/.vim/bundle/dotvim/.tmux.conf ~/.tmux.conf
+  git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
+To clone and link everything, just execute init.sh.
