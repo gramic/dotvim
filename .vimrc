@@ -48,6 +48,7 @@ else
   " Since I use linux, I want this
   set clipboard=unnamedplus
 endif
+set paste
 " }}}
 
 set numberwidth=2
