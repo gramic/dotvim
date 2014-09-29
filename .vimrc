@@ -40,19 +40,12 @@ set imsearch=0
 highlight lCursor guifg=NONE guibg=Cyan
 " }}}
 
-" GUI settings {{{
-if has('gui_win32')
-  set clipboard=unnamedplus
-  set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h10:cDEFAULT,Fixed\ 10
-else
-  " Since I use linux, I want this
-  set clipboard=unnamedplus
-endif
-set paste
-" }}}
-
+" settings {{{
+" Since I use linux, I want this
+set clipboard=unnamedplus
 set numberwidth=2
 " let mapleader=" "
+" }}}
 
 " Color colomun settings {{{
 augroup ColorcolumnOnlyInInsertMode
@@ -64,74 +57,74 @@ augroup END
 
 " git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
 
-" Bundles: {{{
+" Plugins: {{{
 set rtp+=$HOME/.vim/bundle/vundle/
 call vundle#rc()
 
 " My own vim settings.
-"Bundle 'itchyny/lightline.vim'
-Bundle 'guns/xterm-color-table.vim.git'
-Bundle 'itchyny/calendar.vim'
+"Plugin 'itchyny/lightline.vim'
+Plugin 'guns/xterm-color-table.vim.git'
+Plugin 'itchyny/calendar.vim'
 "reStructuredText plugin
-Bundle 'Rykka/riv.vim.git'
-Bundle 'bling/vim-airline'
-Bundle "indenthtml.vim"
-Bundle "gmarik/vundle"
-Bundle "gramic/dotvim.git"
-Bundle 'Valloric/MatchTagAlways.git'
-Bundle 'Valloric/YouCompleteMe.git'
-Bundle 'scrooloose/syntastic.git'
-Bundle 'darvelo/dbext.vim.git'
+Plugin 'Rykka/riv.vim.git'
+Plugin 'bling/vim-airline'
+Plugin 'indenthtml.vim'
+Plugin 'gmarik/vundle'
+Plugin 'gramic/dotvim.git'
+Plugin 'Valloric/MatchTagAlways.git'
+Plugin 'Valloric/YouCompleteMe.git'
+"Plugin 'scrooloose/syntastic.git'
+Plugin 'darvelo/dbext.vim.git'
 " cmdcomplition by pressing <c-l> in the command line
-Bundle 'paradigm/SkyBison.git'
-Bundle "vim-indent-object"
-Bundle "argtextobj.vim"
-Bundle "ctrlp.vim"
-Bundle "pangloss/vim-javascript.git"
-"Bundle 'cs.vim'
-Bundle "jelera/vim-javascript-syntax.git"
-Bundle "fs111/pydoc.vim"
-Bundle "L9"
-Bundle "mattn/emmet-vim.git"
-Bundle "ZoomWin"
-Bundle "cecutil"
-Bundle "The-NERD-Commenter"
-"Bundle 'Cpp11-Syntax-Support'
-Bundle 'a.vim'
-Bundle "ekalinin/Dockerfile.vim"
-Bundle 'vim-jp/cpp-vim.git'
-Bundle 'rhysd/vim-clang-format.git'
-Bundle "cmake.vim"
-Bundle "cmake.vim-syntax"
-Bundle "jaxbot/github-issues.vim"
-Bundle "tpope/vim-fugitive.git"
-Bundle "tpope/vim-repeat.git"
-Bundle "tpope/vim-commentary.git"
-Bundle "tpope/vim-unimpaired"
-Bundle "tpope/vim-obsession"
-Bundle "tpope/vim-abolish"
-Bundle "tpope/vim-characterize.git"
-Bundle "tpope/vim-dispatch.git"
-Bundle "mbbill/undotree"
-Bundle "gitv"
-Bundle "airblade/vim-gitgutter"
-Bundle "google.vim"
-Bundle "matchit.zip"
-Bundle "repeat.vim"
-Bundle "vim-addon-mw-utils"
-Bundle "tlib"
-Bundle 'UltiSnips'
-Bundle "surround.vim"
-Bundle "mattdbridges/bufkill.vim"
-Bundle "nelstrom/vim-visual-star-search"
-Bundle "ap/vim-css-color.git"
-Bundle "vim-soy"
+"Plugin 'paradigm/SkyBison.git'
+Plugin 'vim-indent-object'
+Plugin 'argtextobj.vim'
+Plugin 'ctrlp.vim'
+Plugin 'pangloss/vim-javascript.git'
+"Plugin 'cs.vim'
+Plugin 'jelera/vim-javascript-syntax.git'
+Plugin 'fs111/pydoc.vim'
+Plugin 'L9'
+Plugin 'mattn/emmet-vim.git'
+Plugin 'ZoomWin'
+Plugin 'cecutil'
+Plugin 'The-NERD-Commenter'
+"Plugin 'Cpp11-Syntax-Support'
+Plugin 'a.vim'
+Plugin 'ekalinin/Dockerfile.vim'
+Plugin 'vim-jp/cpp-vim.git'
+Plugin 'rhysd/vim-clang-format.git'
+Plugin 'cmake.vim'
+Plugin 'cmake.vim-syntax'
+"Plugin 'jaxbot/github-issues.vim'
+Plugin 'tpope/vim-fugitive.git'
+Plugin 'tpope/vim-repeat.git'
+Plugin 'tpope/vim-commentary.git'
+Plugin 'tpope/vim-unimpaired'
+Plugin 'tpope/vim-obsession'
+Plugin 'tpope/vim-abolish'
+Plugin 'tpope/vim-characterize.git'
+Plugin 'tpope/vim-dispatch.git'
+Plugin 'mbbill/undotree'
+Plugin 'gitv'
+"Plugin 'airblade/vim-gitgutter'
+Plugin 'google.vim'
+Plugin 'matchit.zip'
+Plugin 'repeat.vim'
+Plugin 'vim-addon-mw-utils'
+Plugin 'tlib'
+Plugin 'SirVer/ultisnips'
+Plugin 'surround.vim'
+Plugin 'mattdbridges/bufkill.vim'
+Plugin 'nelstrom/vim-visual-star-search'
+Plugin 'ap/vim-css-color.git'
+Plugin 'vim-soy'
 " Syntaxes
-"Bundle "marijnh/tern_for_vim.git"
-Bundle 'JSON.vim'
-Bundle 'lighttpd-syntax'
-Bundle 'nginx.vim'
-Bundle 'sjl/vitality.vim.git'
+"Plugin 'marijnh/tern_for_vim.git'
+Plugin 'JSON.vim'
+Plugin 'lighttpd-syntax'
+Plugin 'nginx.vim'
+Plugin 'sjl/vitality.vim.git'
 " }}}
 
 set exrc
@@ -140,8 +133,8 @@ let g:localvimrc_sandbox=0
 
 " Color scheme settings {{{
 filetype off
-Bundle "altercation/vim-colors-solarized"
-Bundle 'chriskempson/base16-vim'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'chriskempson/base16-vim'
 
 
 filetype plugin indent on
@@ -218,34 +211,38 @@ set whichwrap=h,l,~,[,]
 let g:BufKillCreateMappings = 0
 " }}}
 
-" Emmet ZenCoding bundle mappings {{{
+" Emmet ZenCoding Plugin mappings {{{
 let g:user_emmet_leader_key = "<leader>y"
 " }}}
 
-" UltiSnips bundle mappings {{{
+" UltiSnips Plugin mappings {{{
 let g:UltiSnipsSnippetsDir = "~/.vim/bundle/dotvim/ultisnips"
 let g:UltiSnipsSnippetDirectories = ['UltiSnips', 'ultisnips']
+"let g:UltiSnipsExpandTrigger = "<leader>ss"
+"let g:UltiSnipsJumpForwardTrigger = "<leader>sn"
+"let g:UltiSnipsJumpBackwardTrigger = "<leader>sp"
 let g:UltiSnipsExpandTrigger = "<leader>ss"
-let g:UltiSnipsJumpForwardTrigger = "<leader>sn"
-let g:UltiSnipsJumpBackwardTrigger = "<leader>sp"
+let g:UltiSnipsListSnippets = "<c-tab>"
+let g:UltiSnipsJumpForwardTrigger = "<c-j>"
+let g:UltiSnipsJumpBackwardTrigger = "<c-k>"
 " }}}
 
 " Gitv configuration {{{
 let g:Gitv_TruncateCommitSubjects = 1
 " }}}
 
-" Unite bundle mappings {{{
+" Unite Plugin mappings {{{
 "let g:unite_source_history_yank_enable = 1
 "call unite#filters#matcher_default#use(['matcher_fuzzy'])
 "nnoremap <leader>y :Unite history/yank<cr>
 " }}}
 
-" SkyBison bundle mappings {{{
+" SkyBison plugin mappings {{{
 cnoremap <c-l> <c-r>=SkyBison("")<cr><cr>
 let g:skybison_fuzz=1
 " }}}
 
-" MultiCursor bundle mappings {{{
+" MultiCursor plugin mappings {{{
 let g:multicursor_quit = "<localleader>qq"
 nnoremap <localleader>qp :<c-u>call MultiCursorPlaceCursor()<cr>
 nnoremap <localleader>qm :<c-u>call MultiCursorManual()<cr>
@@ -264,7 +261,7 @@ let g:dbext_default_profile_sqlite_for_wfm = 'type=SQLITE:dbname=/home/zoneproje
 nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
 " }}}
 
-" MultiCursor bundle mappings {{{
+" MultiCursor plugin mappings {{{
 let g:multicursor_quit = "<localleader>qq"
 nnoremap <localleader>qp :<c-u>call MultiCursorPlaceCursor()<cr>
 nnoremap <localleader>qm :<c-u>call MultiCursorManual()<cr>
