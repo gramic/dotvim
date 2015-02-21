@@ -124,6 +124,15 @@ Plugin 'vim-soy'
 "Plugin 'JSON.vim'
 "Plugin 'lighttpd-syntax'
 Plugin 'nginx.vim'
+
+" Add maktaba and codefmt to the runtimepath.
+" (The latter must be installed before it can be used.)
+Plugin 'google/vim-maktaba'
+Plugin 'google/vim-codefmtlib'
+Plugin 'google/vim-codefmt'
+" Also add Glaive, which is used to configure codefmt's maktaba flags. See
+" `:help :Glaive` for usage.
+Plugin 'google/vim-glaive'
 "Plugin 'sjl/vitality.vim.git'
 " }}}
 
@@ -281,6 +290,13 @@ nnoremap <localleader>qs :<c-u>call MultiCursorSearch('')<cr>
 " gitgutter {{{
 highlight clear SignColumn
 let g:gitgutter_enabled = 0
+" }}}
+
+
+" codefmt {{{
+call glaive#Install()
+" Optional: Enable codefmt's default mappings on the <Leader>= prefix.
+Glaive codefmt plugin[mappings]
 " }}}
 
 " General mappings {{{
