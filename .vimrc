@@ -294,9 +294,9 @@ let g:gitgutter_enabled = 0
 
 
 " codefmt {{{
-call glaive#Install()
+"call glaive#Install()
 " Optional: Enable codefmt's default mappings on the <Leader>= prefix.
-Glaive codefmt plugin[mappings]
+"Glaive codefmt plugin[mappings]
 " }}}
 
 " General mappings {{{
