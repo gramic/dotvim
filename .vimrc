@@ -251,14 +251,12 @@ cnoremap <c-l> <c-r>=SkyBison("")<cr><cr>
 let g:skybison_fuzz=1
 " }}}
 
-" MultiCursor plugin mappings {{{
-let g:multicursor_quit = "<localleader>qq"
-nnoremap <localleader>qp :<c-u>call MultiCursorPlaceCursor()<cr>
-nnoremap <localleader>qm :<c-u>call MultiCursorManual()<cr>
-nnoremap <localleader>qr :<c-u>call MultiCursorRemoveCursors()<cr>
-nnoremap <localleader>qr :<c-u>call MultiCursorRemoveCursors()<cr>
-xnoremap <localleader>qv :<c-u>call MultiCursorVisual()<cr>
-nnoremap <localleader>qs :<c-u>call MultiCursorSearch('')<cr>
+" Generic mappings {{{
+nnoremap <M-1> 1gt
+nnoremap <M-2> 2gt
+nnoremap <M-3> 3gt
+nnoremap <M-4> 4gt
+nnoremap <M-5> 5gt
 " }}}
 
 " dbext {{{
