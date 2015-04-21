@@ -57,83 +57,96 @@ augroup END
 
 " git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
 
-" Plugins: {{{
-set rtp+=$HOME/.vim/bundle/vundle/
-call vundle#rc()
+" Plugins: {{{                                                                                                                                                                                                                                                               [347/407]
+"set rtp+=$HOME/.vim/bundle/vundle/
+"call vundle#rc()
 
+call plug#begin('~/.vim/plugged')
 " My own vim settings.
 "Plugin 'itchyny/lightline.vim'
-Plugin 'guns/xterm-color-table.vim.git'
+Plug 'guns/xterm-color-table.vim'
 "Plugin 'itchyny/calendar.vim'
 "reStructuredText plugin
-"Plugin 'Rykka/riv.vim.git'
-Plugin 'bling/vim-airline'
-Plugin 'indenthtml.vim'
-Plugin 'gmarik/vundle'
-Plugin 'gramic/dotvim.git'
-Plugin 'Valloric/MatchTagAlways.git'
-Plugin 'Valloric/YouCompleteMe.git'
-"Plugin 'scrooloose/syntastic.git'
-"Plugin 'darvelo/dbext.vim.git'
+"Plugin 'Rykka/riv.vim'
+Plug 'bling/vim-airline'
+Plug 'indenthtml.vim'
+"Plug 'gmarik/vundle'
+Plug 'gramic/dotvim'
+Plug 'Valloric/MatchTagAlways'
+"Plug 'Valloric/YouCompleteMe'
+Plug 'Valloric/YouCompleteMe', { 'do': './install.sh' }
+"Plugin 'scrooloose/syntastic'
+"Plugin 'darvelo/dbext.vim'
 " cmdcomplition by pressing <c-l> in the command line
-"Plugin 'paradigm/SkyBison.git'
+"Plugin 'paradigm/SkyBison'
 "Plugin 'vim-indent-object'
-Plugin 'argtextobj.vim'
-Plugin 'ctrlp.vim'
-Plugin 'pangloss/vim-javascript.git'
+Plug 'argtextobj.vim'
+Plug 'ctrlp.vim'
+Plug 'pangloss/vim-javascript'
 "Plugin 'cs.vim'
-"Plugin 'jelera/vim-javascript-syntax.git'
+"Plugin 'jelera/vim-javascript-syntax'
 "Plugin 'fs111/pydoc.vim'
 "Plugin 'L9'
-"Plugin 'mattn/emmet-vim.git'
+"Plugin 'mattn/emmet-vim'
 "Plugin 'cecutil'
-Plugin 'The-NERD-Commenter'
+Plug 'The-NERD-Commenter'
 "Plugin 'Cpp11-Syntax-Support'
 "Plugin 'a.vim'
-Plugin 'jpetrie/vim-counterpoint'
-Plugin 'ekalinin/Dockerfile.vim'
-"Plugin 'vim-jp/cpp-vim.git'
-"Plugin 'rhysd/vim-clang-format.git'
-Plugin 'cmake.vim'
-Plugin 'cmake.vim-syntax'
+Plug 'jpetrie/vim-counterpoint'
+Plug 'ekalinin/Dockerfile.vim'
+"Plugin 'vim-jp/cpp-vim'
+"Plugin 'rhysd/vim-clang-format'
+Plug 'cmake.vim'
+Plug 'cmake.vim-syntax'
 "Plugin 'jaxbot/github-issues.vim'
-Plugin 'tpope/vim-fugitive.git'
-Plugin 'tpope/vim-repeat.git'
-Plugin 'tpope/vim-commentary.git'
-Plugin 'tpope/vim-unimpaired'
-Plugin 'tpope/vim-obsession'
-Plugin 'tpope/vim-abolish'
-Plugin 'tpope/vim-characterize.git'
-Plugin 'tpope/vim-dispatch.git'
-Plugin 'mbbill/undotree'
-Plugin 'gitv'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-obsession'
+Plug 'tpope/vim-abolish'
+Plug 'tpope/vim-characterize'
+Plug 'tpope/vim-dispatch'
+Plug 'mbbill/undotree'
+Plug 'gitv'
 "Plugin 'airblade/vim-gitgutter'
 "Plugin 'google.vim'
-Plugin 'matchit.zip'
-Plugin 'repeat.vim'
+Plug 'matchit.zip'
+Plug 'repeat.vim'
 "Plugin 'vim-addon-mw-utils'
 "Plugin 'tlib'
-Plugin 'SirVer/ultisnips'
-Plugin 'surround.vim'
-Plugin 'mattdbridges/bufkill.vim'
-Plugin 'nelstrom/vim-visual-star-search'
-Plugin 'ap/vim-css-color.git'
-Plugin 'vim-soy'
+Plug 'SirVer/ultisnips'
+Plug 'surround.vim'
+Plug 'mattdbridges/bufkill.vim'
+Plug 'nelstrom/vim-visual-star-search'
+Plug 'ap/vim-css-color'
+Plug 'vim-soy'
 " Syntaxes
-"Plugin 'marijnh/tern_for_vim.git'
+"Plugin 'marijnh/tern_for_vim'
 "Plugin 'JSON.vim'
 "Plugin 'lighttpd-syntax'
-Plugin 'nginx.vim'
+Plug 'nginx.vim'
 
 " Add maktaba and codefmt to the runtimepath.
 " (The latter must be installed before it can be used.)
-Plugin 'google/vim-maktaba'
-Plugin 'google/vim-codefmtlib'
-Plugin 'google/vim-codefmt'
+Plug 'google/vim-maktaba'
+Plug 'google/vim-codefmtlib'
+Plug 'google/vim-codefmt'
 " Also add Glaive, which is used to configure codefmt's maktaba flags. See
 " `:help :Glaive` for usage.
-Plugin 'google/vim-glaive'
-"Plugin 'sjl/vitality.vim.git'
+Plug 'google/vim-glaive'
+"Plugin 'sjl/vitality.vim'
+
+
+set exrc
+let g:localvimrc_name=".stanimir.vimrc"
+let g:localvimrc_sandbox=0
+
+" Color scheme settings {{{
+filetype off
+Plug 'altercation/vim-colors-solarized'
+Plug 'chriskempson/base16-vim'
+call plug#end()
 " }}}
 
 set exrc
