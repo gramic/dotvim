@@ -149,15 +149,6 @@ Plug 'chriskempson/base16-vim'
 call plug#end()
 " }}}
 
-set exrc
-let g:localvimrc_name=".stanimir.vimrc"
-let g:localvimrc_sandbox=0
-
-" Color scheme settings {{{
-filetype off
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'chriskempson/base16-vim'
-
 
 filetype plugin indent on
 set background=light
