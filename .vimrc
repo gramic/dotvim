@@ -17,10 +17,16 @@ set t_Co=256
 " }}}
 
 " undo settings {{{
-set undofile
-set undodir=~/.vim_runtime/undodir
-set undolevels=1000 "maximum number of changes that can be undone
-set undoreload=10000 "maximum number lines to save for undo on a buffer reload
+if has('persistent_undo')
+  let undodir = expand("~/.vim/undos/$USER")
+  if !isdirectory(undodir)
+    call mkdir(undodir, "p", 0770)
+  endif
+  set undodir=~/.vim/undos/$USER//,~/tmp,/var/tmp/vim//,/tmp/vim//
+  set undofile
+  set undolevels=1000 "maximum number of changes that can be undone
+  set undoreload=10000 "maximum number lines to save for undo on a buffer reload
+endif
 " }}}
 
 syntax on
@@ -79,7 +85,7 @@ Plug 'guns/xterm-color-table.vim'
 Plug 'bling/vim-airline'
 Plug 'indenthtml.vim'
 "Plug 'gmarik/vundle'
-Plug 'gramic/dotvim'
+Plug 'git@github.com:gramic/dotvim.git'
 Plug 'Valloric/MatchTagAlways'
 "Plug 'Valloric/YouCompleteMe'
 Plug 'Valloric/YouCompleteMe', { 'do': './install.sh' }
