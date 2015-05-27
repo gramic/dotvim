@@ -76,6 +76,7 @@ endif
 
 call plug#begin('~/.vim/plugged')
 " My own vim settings.
+Plug 'critiqjo/lldb.nvim'
 Plug 'mkitt/tabline.vim'
 "Plugin 'itchyny/lightline.vim'
 Plug 'guns/xterm-color-table.vim'
