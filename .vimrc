@@ -78,7 +78,7 @@ endif
 
 call plug#begin('~/.vim/plugged')
 " My own vim settings.
-Plug 'benekastah/neomake.git'
+Plug 'https://github.com/benekastah/neomake.git'
 Plug 'critiqjo/lldb.nvim'
 Plug 'mkitt/tabline.vim'
 "Plugin 'itchyny/lightline.vim'
