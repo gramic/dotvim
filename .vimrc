@@ -1,3 +1,5 @@
+#to start neovim in true color support
+#TERM=xterm-256colors NVIM_TUI_ENABLE_TRUE_COLOR=1 SHELL=/bin/bash
 set nocompatible " Use Vim defaults instead of 100% vi compatibility
 set tabstop=2
 set shiftwidth=2
