@@ -412,12 +412,49 @@ if has('persistent_undo') && has('autocmd')
 endif
 " }}}
 
-"Error format
+" Error formats {{{
+
 "autocmd FileType json set errorformat=%E%f:\ %m\ at\ line\ %l,%-G%.%#
-set errorformat+=%W%f:%l:\ WARNING\ -\ %m,%C,%C%p^
-set errorformat+=%E%f:%l:\ ERROR\ -\ %m,%C,%C%p^
+"set errorformat=%Z%E%f:%l:\ ERROR\ -\ %m,%C,%C%p^
+"set errorformat+=%W%f:%l:\ WARNING\ -\ %m,%C,%C%p^
+
+" closure-compiler errorformats {{{
+" SEVERE: /app/app/client/actions/useraction.js:138: ERROR - 'goog.date.DateTime' used but not goog.require'd
+" user.approvalDate = new goog.date.DateTime();
+"                     ^
+set errorformat=%E%.%#:\ %f:%l:\ ERROR\ -\ %m
+set errorformat+=%C
+set errorformat+=%Z%p^
+"set errorformat=%E%.%#:\ %f:%l:\ ERROR\ -\ %m,%C,%Z%p^
+
+" WARNING: /app/app/client/activity/abstractactivity.js:23: WARNING - property mayStop not defined on any superclass
+" user.approvalDate = new goog.date.DateTime();
+"                     ^
+set errorformat=%W%.%#:\ %f:%l:\ WARNING\ -\ %m
+set errorformat+=%C
+set errorformat+=%Z%p^
+"set errorformat=%W%.%#:\ %f:%l:\ WARNING\ -\ %m,%C,%Z%p^
+" }}}
+
+" refasterjs errorformats {{{
+" New Content: "value.getContent().getContent()", Replacements for file: /app/app/client/shared/soyutils_usegoog.js
+" Start position: 38790
+" Length: 21
+set errorformat=%ANew\ Content:\ %m\ Replacements\ for\ file:\ %f
+set errorformat+=%CStart\ position:
+set errorformat+=%Z%.%#Length:\ $C
+"set errorformat=%ANew\ Content:\ %m\ Replacements\ for\ file:\ %f
+" }}}
+
 " this is to not open empty file. tip from here http://goo.gl/5pgIK
 set errorformat^=%-GIn\ file\ included\ %.%#
+
+" all errorformats
+set errorformat=%E%.%#:\ %f:%l:\ ERROR\ -\ %m,%C,%Z%p^,%W%.%#:\ %f:%l:\ WARNING\ -\ %m,%C,%Z%p^
+set errorformat+=%E%f:%l:\ ERROR\ -\ %m,%C,%Z%p^,%W%f:%l:\ WARNING\ -\ %m,%C,%Z%p^
+" *** No rule to make target `/app/app/client/page/schedulerenderer.soy', needed by `/app/app/client/soy_js_en/scheduleplace_soy_en.js'.  Stop.
+set errorformat+=%A%.%#***\ %m\ `%f'%.%#
+" }}}
 
 " convert json property to exported closure compiler name
 noremap <leader>j bi["<Esc>ea"]<Esc>
