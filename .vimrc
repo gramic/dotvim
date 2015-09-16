@@ -8,7 +8,9 @@ set smartindent
 set ignorecase
 set smartcase
 set incsearch
+set nohlsearch
 set expandtab
+if has('mouse') | set mouse= | endif
 
 set noswapfile
 
@@ -148,7 +150,6 @@ Plug 'nginx.vim'
 " Add maktaba and codefmt to the runtimepath.
 " (The latter must be installed before it can be used.)
 Plug 'google/vim-maktaba'
-Plug 'google/vim-codefmtlib'
 Plug 'google/vim-codefmt'
 " Also add Glaive, which is used to configure codefmt's maktaba flags. See
 " `:help :Glaive` for usage.
