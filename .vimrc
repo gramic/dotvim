@@ -275,6 +275,9 @@ let g:skybison_fuzz=1
 " }}}
 
 " Generic mappings {{{
+if exists(':tnoremap')
+tnoremap <esc> <c-\><c-n>
+endif
 nnoremap <M-1> 1gt
 nnoremap <M-2> 2gt
 nnoremap <M-3> 3gt
