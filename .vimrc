@@ -80,6 +80,7 @@ endif
 
 call plug#begin('~/.vim/plugged')
 " My own vim settings.
+Plug 'google/vim-ft-bzl'
 Plug 'https://github.com/benekastah/neomake.git'
 Plug 'critiqjo/lldb.nvim'
 Plug 'mkitt/tabline.vim'
@@ -119,6 +120,7 @@ Plug 'ekalinin/Dockerfile.vim'
 Plug 'cmake.vim'
 Plug 'cmake.vim-syntax'
 "Plugin 'jaxbot/github-issues.vim'
+Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-commentary'
