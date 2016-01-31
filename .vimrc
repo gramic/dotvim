@@ -167,6 +167,7 @@ let g:localvimrc_sandbox=0
 filetype off
 Plug 'altercation/vim-colors-solarized'
 Plug 'chriskempson/base16-vim'
+Plug 'morhetz/gruvbox'
 call plug#end()
 " }}}
 
