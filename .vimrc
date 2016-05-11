@@ -92,7 +92,7 @@ Plug 'guns/xterm-color-table.vim'
 Plug 'bling/vim-airline'
 Plug 'indenthtml.vim'
 "Plug 'gmarik/vundle'
-Plug 'git@github.com:gramic/dotvim.git'
+Plug 'gramic/dotvim.git'
 Plug 'Valloric/MatchTagAlways'
 "Plug 'Valloric/YouCompleteMe'
 Plug 'Valloric/YouCompleteMe', { 'do': './install.sh' }
@@ -130,7 +130,7 @@ Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-characterize'
 Plug 'tpope/vim-dispatch'
 Plug 'mbbill/undotree'
-Plug 'gitv'
+Plug 'gregsexton/gitv'
 "Plugin 'airblade/vim-gitgutter'
 "Plugin 'google.vim'
 Plug 'matchit.zip'
@@ -479,7 +479,7 @@ let g:ctrlp_follow_symlinks = 1
 let g:ctrlp_working_path_mode = 2 " don't manage current directory
 let g:ctrlp_root_markers = ['CMakeLists\.txt']
 let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\.git$\|\.hg$\|\.svn$\|build$\|build_release$\|build_debug$\|third_parties\|target$',
+  \ 'dir':  '\.git$\|\.hg$\|\.svn$\|bazel-app$\|bazel-bin$\|bazel-genfiles$\|bazel-out$\|build$\|build_release$\|build_debug$\|third_parties\|target$',
   \ }
 let g:ctrlp_map = '<localleader>ff'
 nnoremap <localleader>fm :CtrlPMRU<CR>
