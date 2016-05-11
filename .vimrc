@@ -92,7 +92,7 @@ Plug 'guns/xterm-color-table.vim'
 Plug 'bling/vim-airline'
 Plug 'indenthtml.vim'
 "Plug 'gmarik/vundle'
-Plug 'gramic/dotvim.git'
+Plug 'gramic/dotvim'
 Plug 'Valloric/MatchTagAlways'
 "Plug 'Valloric/YouCompleteMe'
 Plug 'Valloric/YouCompleteMe', { 'do': './install.sh' }
