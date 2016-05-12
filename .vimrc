@@ -476,7 +476,7 @@ noremap <leader>j bi["<Esc>ea"]<Esc>
 :command! -nargs=* Make make! <args>
 
 " CtrlP mappings
-let g:ctrlp_follow_symlinks = 1
+let g:ctrlp_follow_symlinks = 0
 let g:ctrlp_working_path_mode = 2 " don't manage current directory
 let g:ctrlp_root_markers = ['CMakeLists\.txt']
 let g:ctrlp_custom_ignore = {
