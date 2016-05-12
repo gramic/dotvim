@@ -178,7 +178,8 @@ set background=light
 let g:solarized_termcolors=256
 let base16colorspace=256  " Access colors present in 256 colorspace
 "silent! colorscheme base16-tomorrow
-silent! colorscheme solarized
+"silent! colorscheme solarized
+silent! colorscheme gruvbox
 "set background=dark
 let g:airline_section_a='[%{bufnr("%")}]'
 let g:airline_left_sep=''
