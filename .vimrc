@@ -146,6 +146,7 @@ Plug 'vim-soy'
 " Syntaxes
 "Plugin 'marijnh/tern_for_vim'
 "Plugin 'JSON.vim'
+Plug 'google/vim-jsonnet'
 "Plugin 'lighttpd-syntax'
 Plug 'nginx.vim'
 
