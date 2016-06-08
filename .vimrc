@@ -11,6 +11,7 @@ set incsearch
 set nohlsearch
 set expandtab
 if has('mouse') | set mouse= | endif
+if has('termguicolors') | set termguicolors | endif
 
 set noswapfile
 
