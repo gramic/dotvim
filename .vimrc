@@ -13,6 +13,9 @@ set expandtab
 if has('mouse') | set mouse= | endif
 if has('termguicolors') | set termguicolors | endif
 
+set t_8f=[38;2;%lu;%lu;%lum
+set t_8b=[48;2;%lu;%lu;%lum
+
 set noswapfile
 
 set backspace=start,indent,eol  " make backspace work like 'normal' text editors
