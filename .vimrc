@@ -84,6 +84,7 @@ endif
 
 call plug#begin('~/.vim/plugged')
 " My own vim settings.
+Plug 'justinmk/vim-dirvish'
 Plug 'google/vim-ft-bzl'
 Plug 'https://github.com/benekastah/neomake.git'
 Plug 'critiqjo/lldb.nvim'
