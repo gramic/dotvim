@@ -334,6 +334,9 @@ call glaive#Install()
 let g:ft_bzl_fold = 1
 " Optional: Enable codefmt's default mappings on the <Leader>= prefix.
 "Glaive codefmt plugin[mappings]
+" Clang-format
+Glaive codefmt clang_format_executable='clang-format-3.8'
+Glaive codefmt clang_format_style='Google'
 " }}}
 
 " General mappings {{{
