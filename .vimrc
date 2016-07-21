@@ -438,27 +438,6 @@ endif
 " }}}
 
 " Error formats {{{
-
-"autocmd FileType json set errorformat=%E%f:\ %m\ at\ line\ %l,%-G%.%#
-"set errorformat=%Z%E%f:%l:\ ERROR\ -\ %m,%C,%C%p^
-"set errorformat+=%W%f:%l:\ WARNING\ -\ %m,%C,%C%p^
-
-" closure-compiler errorformats {{{
-" SEVERE: /app/app/client/actions/useraction.js:138: ERROR - 'goog.date.DateTime' used but not goog.require'd
-" user.approvalDate = new goog.date.DateTime();
-"                     ^
-set errorformat=%E%.%#:\ %f:%l:\ ERROR\ -\ %m
-set errorformat+=%C
-set errorformat+=%Z%p^
-"set errorformat=%E%.%#:\ %f:%l:\ ERROR\ -\ %m,%C,%Z%p^
-
-" WARNING: /app/app/client/activity/abstractactivity.js:23: WARNING - property mayStop not defined on any superclass
-" user.approvalDate = new goog.date.DateTime();
-"                     ^
-set errorformat=%W%.%#:\ %f:%l:\ WARNING\ -\ %m
-set errorformat+=%C
-set errorformat+=%Z%p^
-"set errorformat=%W%.%#:\ %f:%l:\ WARNING\ -\ %m,%C,%Z%p^
 " }}}
 
 " refasterjs errorformats {{{
