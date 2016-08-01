@@ -10,6 +10,7 @@ set smartcase
 set incsearch
 set nohlsearch
 set expandtab
+set autoread
 if has('mouse') | set mouse= | endif
 if has('termguicolors') | set termguicolors | endif
 
