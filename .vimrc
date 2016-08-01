@@ -517,23 +517,8 @@ nmap _$ :call Preserve("%s/\\s\\+$//e")<CR>
 " Format whole file.
 nmap _= :call Preserve("normal gg=G")<CR>
 
-function! CppRunTests(args)
-  let l:old_makeprg = &makeprg
-  set makeprg=make\ -C\ build\ testall
-  exec 'make'
-  let &makeprg=l:old_makeprg
-endfunction
+set makeprg=bazel
 
 function! ClangModernize()
   :!clang-modernize -style=Google -format -loop-convert -pass-by-value -replace-auto_ptr -use-nullptr -use-auto -add-override -override-macros -p=/home/zoneprojects/work/zone_projects/projects/build_docsapp/nac/ %
-endfunction
-
-function! Jslint()
-  let l:old_makeprg = &makeprg
-  set makeprg=gjslint\ %
-  let l:old_errorformat = &errorformat
-  set errorformat=%-P-----\ FILE\ \ :\ \ %f\ -----,Line\ %l\\,\ E:%n:\ %m,%-Q,%-GFound\ %s,%-GSome\ %s,%-Gfixjsstyle%s,%-Gscript\ can\ %s,%-G
-  make
-  let &makeprg=l:old_makeprg
-  set errorformat=&l:old_errorformat
 endfunction
