@@ -86,6 +86,7 @@ endif
 call plug#begin('~/.vim/plugged')
 " My own vim settings.
 Plug 'gramic/vim-buildifier'
+Plug 'google/vroom'
 Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'roxma/vim-tmux-clipboard'
 Plug 'ConradIrwin/vim-bracketed-paste'
