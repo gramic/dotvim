@@ -337,7 +337,7 @@ call glaive#Install()
 " Enable bazel folding
 let g:ft_bzl_fold = 1
 " Optional: Enable codefmt's default mappings on the <Leader>= prefix.
-"Glaive codefmt plugin[mappings]
+Glaive codefmt plugin[mappings]
 " }}}
 
 " Glaive formats {{{
