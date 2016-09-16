@@ -179,6 +179,7 @@ filetype off
 Plug 'altercation/vim-colors-solarized'
 Plug 'chriskempson/base16-vim'
 Plug 'morhetz/gruvbox'
+Plug 'jacoborus/tender'
 call plug#end()
 " }}}
 
@@ -190,7 +191,8 @@ let g:solarized_termcolors=256
 let base16colorspace=256  " Access colors present in 256 colorspace
 "silent! colorscheme base16-tomorrow
 "silent! colorscheme solarized
-silent! colorscheme gruvbox
+"silent! colorscheme gruvbox
+silent! colorscheme tender
 "set background=dark
 let g:airline_section_a='[%{bufnr("%")}]'
 let g:airline_left_sep=''
