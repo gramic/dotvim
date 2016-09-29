@@ -194,6 +194,7 @@ let base16colorspace=256  " Access colors present in 256 colorspace
 silent! colorscheme gruvbox
 "silent! colorscheme tender
 set background=dark
+let g:airline_inactive_collapse=0
 let g:airline_section_a='[%{bufnr("%")}]'
 let g:airline_left_sep=''
 let g:airline_right_sep=''
