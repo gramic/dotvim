@@ -85,6 +85,7 @@ endif
 
 call plug#begin('~/.vim/plugged')
 " My own vim settings.
+Plug 'machakann/vim-highlightedyank'
 Plug 'gramic/vim-buildifier'
 Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'roxma/vim-tmux-clipboard'
@@ -185,6 +186,7 @@ call plug#end()
 
 
 filetype plugin indent on
+let g:highlightedyank_highlight_duration = 100
 set background=light
 " let g:solarized_termtrans=1
 let g:solarized_termcolors=256
