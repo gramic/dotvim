@@ -86,6 +86,7 @@ endif
 
 call plug#begin('~/.vim/plugged')
 " My own vim settings.
+Plug 'jreybert/vimagit'
 Plug 'machakann/vim-highlightedyank'
 Plug 'gramic/vim-buildifier'
 Plug 'tmux-plugins/vim-tmux-focus-events'
