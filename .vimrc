@@ -107,7 +107,7 @@ Plug 'indenthtml.vim'
 Plug 'gramic/dotvim'
 Plug 'Valloric/MatchTagAlways'
 "Plug 'Valloric/YouCompleteMe'
-Plug 'Valloric/YouCompleteMe', { 'do': './install.sh' }
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 "Plugin 'scrooloose/syntastic'
 "Plugin 'darvelo/dbext.vim'
 " cmdcomplition by pressing <c-l> in the command line
