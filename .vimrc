@@ -339,19 +339,14 @@ let g:gitgutter_enabled = 0
 
 
 " codefmt {{{
-call glaive#Install()
-" Enable bazel folding
-let g:ft_bzl_fold = 1
-" Optional: Enable codefmt's default mappings on the <Leader>= prefix.
-Glaive codefmt plugin[mappings]
-" }}}
-
-" Glaive formats {{{
-
-" Clang-format
-Glaive codefmt clang_format_executable='clang-format-3.8'
-Glaive codefmt clang_format_style='Google'
-
+if exists("*glaive#Install")
+  call glaive#Install()
+  " Enable bazel folding
+  let g:ft_bzl_fold = 1
+  " Optional: Enable codefmt's default mappings on the <Leader>= prefix.
+  Glaive codefmt plugin[mappings]
+  Glaive codefmt clang_format_style='Google'
+endif
 " }}}
 
 " General mappings {{{
