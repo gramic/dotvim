@@ -28,11 +28,6 @@ set t_Co=256
 
 " undo settings {{{
 if has('persistent_undo')
-  let undodir = expand("~/.vim/undos/$USER")
-  if !isdirectory(undodir)
-    call mkdir(undodir, "p", 0770)
-  endif
-  set undodir=~/.vim/undos/$USER//,~/tmp,/var/tmp/vim//,/tmp/vim//
   set undofile
   set undolevels=1000 "maximum number of changes that can be undone
   set undoreload=10000 "maximum number lines to save for undo on a buffer reload
