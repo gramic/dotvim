@@ -83,12 +83,12 @@ call plug#begin('~/.vim/plugged')
 " My own vim settings.
 Plug 'jreybert/vimagit'
 Plug 'bazelbuild/vim-bazel'
+Plug 'bazelbuild/vim-ft-bzl'
 "Plug 'machakann/vim-highlightedyank'
 Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'roxma/vim-tmux-clipboard'
 Plug 'ConradIrwin/vim-bracketed-paste'
 Plug 'justinmk/vim-dirvish'
-Plug 'google/vim-ft-bzl'
 Plug 'https://github.com/benekastah/neomake.git'
 Plug 'critiqjo/lldb.nvim'
 Plug 'mkitt/tabline.vim'
