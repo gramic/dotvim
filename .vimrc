@@ -27,11 +27,9 @@ set t_Co=256
 " }}}
 
 " undo settings {{{
-if has('persistent_undo')
-  set undofile
-  set undolevels=1000 "maximum number of changes that can be undone
-  set undoreload=10000 "maximum number lines to save for undo on a buffer reload
-endif
+set undofile
+set undolevels=1000 "maximum number of changes that can be undone
+set undoreload=10000 "maximum number lines to save for undo on a buffer reload
 " }}}
 
 syntax on
