@@ -105,7 +105,6 @@ Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 "Plugin 'scrooloose/syntastic'
 "Plugin 'darvelo/dbext.vim'
 " cmdcomplition by pressing <c-l> in the command line
-"Plugin 'paradigm/SkyBison'
 "Plugin 'vim-indent-object'
 Plug 'argtextobj.vim'
 Plug 'ctrlp.vim'
@@ -282,11 +281,6 @@ let g:Gitv_TruncateCommitSubjects = 1
 "let g:unite_source_history_yank_enable = 1
 "call unite#filters#matcher_default#use(['matcher_fuzzy'])
 "nnoremap <leader>y :Unite history/yank<cr>
-" }}}
-
-" SkyBison plugin mappings {{{
-cnoremap <c-l> <c-r>=SkyBison("")<cr><cr>
-let g:skybison_fuzz=1
 " }}}
 
 " Generic mappings {{{
