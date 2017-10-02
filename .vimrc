@@ -127,7 +127,7 @@ Plug 'qpkorr/vim-bufkill'
 Plug 'nelstrom/vim-visual-star-search'
 Plug 'ap/vim-css-color'
 Plug 'duganchen/vim-soy'
-Plug 'qwertologe/nextval'
+Plug 'qwertologe/nextval.vim'
 " Syntaxes
 Plug 'google/vim-jsonnet'
 
