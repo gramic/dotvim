@@ -16,7 +16,7 @@ set cpo-=C
 CompilerSet makeprg=bazel
 
 CompilerSet errorformat=
-      \%tRROR:\ %f:%l:%c:\ %m ,
+      \%tRROR:\ %f:%l:%c:\ %m,
       \%tARNING:\ %f:%l:%c:\ %m
 
 let &cpo = s:cpo_save
