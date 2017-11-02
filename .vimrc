@@ -445,7 +445,7 @@ let g:ctrlp_follow_symlinks = 0
 let g:ctrlp_working_path_mode = 2 " don't manage current directory
 let g:ctrlp_root_markers = ['CMakeLists\.txt']
 let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\.git$\|\.hg$\|\.svn$\|bazel-app$\|bazel-bin$\|bazel-genfiles$\|bazel-out$\|build$\|build_release$\|build_debug$\|third_parties\|target$',
+  \ 'dir':  '\.git$\|\.hg$\|\.svn$\|node_modules$\|bazel-app$\|bazel-bin$\|bazel-genfiles$\|bazel-out$\|build$\|build_release$\|build_debug$\|third_parties\|target$',
   \ }
 let g:ctrlp_map = '<localleader>ff'
 nnoremap <localleader>fm :CtrlPMRU<CR>
