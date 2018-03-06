@@ -107,7 +107,7 @@ Plug 'jpetrie/vim-counterpoint'
 Plug 'ekalinin/Dockerfile.vim'
 "Plug 'cmake.vim'
 "Plug 'cmake.vim-syntax'
-Plug 'tpope/vim-flagship'
+Plug 'gcmt/taboo.vim'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-vinegar'
@@ -198,10 +198,9 @@ augroup END
 " }}}
 
 
-" Fugitive group. {{{
-augroup tpopegroup
-let g:tablabel =
-      \ "%N%{flagship#tabmodified()} %{flagship#tabcwds('shorten',',')}"
+" Taboo group. {{{
+augroup taboogroup
+let g:taboo_tab_format = " %N %p "
 augroup END
 " }}}
 
