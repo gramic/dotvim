@@ -200,7 +200,7 @@ augroup END
 
 " Taboo group. {{{
 augroup taboogroup
-let g:taboo_tab_format = " %N %p "
+let g:taboo_tab_format = " %N %P "
 augroup END
 " }}}
 
