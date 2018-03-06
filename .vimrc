@@ -89,7 +89,6 @@ Plug 'ConradIrwin/vim-bracketed-paste'
 Plug 'justinmk/vim-dirvish'
 Plug 'https://github.com/benekastah/neomake.git'
 Plug 'critiqjo/lldb.nvim'
-Plug 'mkitt/tabline.vim'
 "Plugin 'itchyny/lightline.vim'
 Plug 'guns/xterm-color-table.vim'
 "Plugin 'itchyny/calendar.vim'
@@ -108,6 +107,7 @@ Plug 'jpetrie/vim-counterpoint'
 Plug 'ekalinin/Dockerfile.vim'
 "Plug 'cmake.vim'
 "Plug 'cmake.vim-syntax'
+Plug 'tpope/vim-flagship'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-vinegar'
@@ -197,6 +197,15 @@ augroup fugitivegroup
 augroup END
 " }}}
 
+
+" Fugitive group. {{{
+augroup tpopegroup
+let g:tablabel =
+      \ "%N%{flagship#tabmodified()} %{flagship#tabcwds('shorten',',')}"
+augroup END
+" }}}
+
+
 " Status line {{{
 set laststatus=2
 set statusline=
@@ -234,22 +243,6 @@ set whichwrap=h,l,~,[,]
 let g:BufKillCreateMappings = 0
 " }}}
 
-" Emmet ZenCoding Plugin mappings {{{
-let g:user_emmet_leader_key = "<leader>y"
-" }}}
-
-" UltiSnips Plugin mappings {{{
-let g:UltiSnipsSnippetsDir = "~/.vim/bundle/dotvim/ultisnips"
-let g:UltiSnipsSnippetDirectories = ['UltiSnips', 'ultisnips']
-"let g:UltiSnipsExpandTrigger = "<leader>ss"
-"let g:UltiSnipsJumpForwardTrigger = "<leader>sn"
-"let g:UltiSnipsJumpBackwardTrigger = "<leader>sp"
-let g:UltiSnipsExpandTrigger = "<leader>ss"
-let g:UltiSnipsListSnippets = "<c-tab>"
-let g:UltiSnipsJumpForwardTrigger = "<c-j>"
-let g:UltiSnipsJumpBackwardTrigger = "<c-k>"
-" }}}
-
 " Gitv configuration {{{
 let g:Gitv_TruncateCommitSubjects = 1
 " }}}
@@ -278,23 +271,6 @@ let g:dbext_default_profile_sqlite_for_wfm = 'type=SQLITE:dbname=/home/zoneproje
 " YouCompleteMe {{{
 " let g:ycm_key_invoke_completion = '<C-Space>'
 nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
-" }}}
-
-" MultiCursor plugin mappings {{{
-let g:multicursor_quit = "<localleader>qq"
-nnoremap <localleader>qp :<c-u>call MultiCursorPlaceCursor()<cr>
-nnoremap <localleader>qm :<c-u>call MultiCursorManual()<cr>
-nnoremap <localleader>qr :<c-u>call MultiCursorRemoveCursors()<cr>
-nnoremap <localleader>qr :<c-u>call MultiCursorRemoveCursors()<cr>
-xnoremap <localleader>qv :<c-u>call MultiCursorVisual()<cr>
-nnoremap <localleader>qs :<c-u>call MultiCursorSearch('')<cr>
-" }}}
-
-" Yankstack {{{
-" The yankstack mappings need to happen before I define my own.
-" call yankstack#setup()
-" nmap <c-p> <Plug>yankstack_substitute_older_paste
-" nmap <c-n> <Plug>yankstack_substitute_newer_paste
 " }}}
 
 " gitgutter {{{
