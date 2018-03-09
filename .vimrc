@@ -94,7 +94,6 @@ Plug 'guns/xterm-color-table.vim'
 "Plugin 'itchyny/calendar.vim'
 "reStructuredText plugin
 "Plugin 'Rykka/riv.vim'
-Plug 'bling/vim-airline'
 "Plug 'indenthtml.vim'
 Plug 'gramic/dotvim'
 Plug 'Valloric/MatchTagAlways'
@@ -167,10 +166,6 @@ let base16colorspace=256  " Access colors present in 256 colorspace
 silent! colorscheme gruvbox
 "silent! colorscheme tender
 set background=dark
-let g:airline_inactive_collapse=0
-let g:airline_section_a='[%{bufnr("%")}]'
-let g:airline_left_sep=''
-let g:airline_right_sep=''
 " }}}
 
 " Calender group. {{{
@@ -204,19 +199,6 @@ let g:taboo_tab_format = " %N %P "
 augroup END
 " }}}
 
-
-" Status line {{{
-set laststatus=2
-set statusline=
-set statusline+=%<\                       " cut at start
-set statusline+=%2*[%n%H%M%R%W]%*\        " buffer number, and flags
-set statusline+=%-40f\                    " relative path
-set statusline+=%=                        " seperate between right-left-aligned
-set statusline+=%{fugitive#statusline()}\ " git branch name
-set statusline+=%1*%y%*%*\                " file type
-set statusline+=%10((%l/%L\ %c)%)\        " line and column
-set statusline+=%P                        " percentage of file
-" }}}
 
 " Menu completions {{{
 set wildmode=full wildmenu                 " Command-line tab completion
@@ -407,9 +389,6 @@ set errorformat+=%E%f:%l:\ ERROR\ -\ %m,%C,%Z%p^,%W%f:%l:\ WARNING\ -\ %m,%C,%Z%
 set errorformat+=%A%.%#***\ %m\ `%f'%.%#
 " }}}
 
-" convert json property to exported closure compiler name
-noremap <leader>j bi["<Esc>ea"]<Esc>
-
 
 " Command Make will call make and then cwindow which
 " opens a 3 line error window if any errors are found.
@@ -447,6 +426,26 @@ if !exists("lint_autocommand_loaded")
   au BufRead *.js noremap <buffer> <Leader>l :call Jslint()<CR>
 endif
 
+function! SimpleStatusLine()
+    set laststatus=0
+    set statusline=
+    set statusline+=%f                        " relative path
+    set statusline+=%2*[%n%H%M%R%W]%*\        " buffer number, and flags
+endfunction
+
+function! ComplicatedStatusLine()
+set laststatus=2
+set statusline=
+set statusline+=%<\                       " cut at start
+set statusline+=%2*[%n%H%M%R%W]%*\        " buffer number, and flags
+set statusline+=%-40f\                    " relative path
+set statusline+=%=                        " seperate between right-left-aligned
+set statusline+=%{fugitive#statusline()}\ " git branch name
+set statusline+=%1*%y%*%*\                " file type
+set statusline+=%10((%l/%L\ %c)%)\        " line and column
+set statusline+=%P                        " percentage of file
+endfunction
+
 function! Preserve(command)
   " Preparation: save last search, and cursor position.
   let _s=@/
@@ -465,7 +464,3 @@ nmap _$ :call Preserve("%s/\\s\\+$//e")<CR>
 nmap _= :call Preserve("normal gg=G")<CR>
 
 set makeprg=bazel
-
-function! ClangModernize()
-  :!clang-modernize -style=Google -format -loop-convert -pass-by-value -replace-auto_ptr -use-nullptr -use-auto -add-override -override-macros -p=/home/zoneprojects/work/zone_projects/projects/build_docsapp/nac/ %
-endfunction
