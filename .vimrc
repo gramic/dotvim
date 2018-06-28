@@ -152,6 +152,7 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'chriskempson/base16-vim'
 Plug 'morhetz/gruvbox'
 Plug 'jacoborus/tender'
+Plug 'lifepillar/vim-solarized8'
 call plug#end()
 " }}}
 
