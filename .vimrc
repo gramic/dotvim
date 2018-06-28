@@ -13,7 +13,7 @@ set expandtab
 set autoread
 if has('mouse') | set mouse= | endif
 if has('termguicolors') | set termguicolors | endif
-if exists('&inccommand') | set inccommand=split | endif
+if exists('&inccommand') | set inccommand=nosplit | endif
 
 set t_8f=[38;2;%lu;%lu;%lum
 set t_8b=[48;2;%lu;%lu;%lum
