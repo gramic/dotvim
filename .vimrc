@@ -80,7 +80,7 @@ endif
 
 call plug#begin('~/.vim/plugged')
 " My own vim settings.
-Plug 'chrisbra/vpager'
+Plug 'chrisbra/vpager', { 'do': 'chmod +x ./plugin/vpager' }
 Plug 'jreybert/vimagit'
 Plug 'bazelbuild/vim-bazel'
 Plug 'bazelbuild/vim-ft-bzl'
