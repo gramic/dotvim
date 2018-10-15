@@ -105,6 +105,7 @@ Plug 'pangloss/vim-javascript'
 Plug 'scrooloose/nerdcommenter'
 Plug 'jpetrie/vim-counterpoint'
 Plug 'ekalinin/Dockerfile.vim'
+Plug 'vim-scripts/dbext'
 "Plug 'cmake.vim'
 "Plug 'cmake.vim-syntax'
 Plug 'gcmt/taboo.vim'
@@ -245,10 +246,6 @@ nnoremap <M-2> 2gt
 nnoremap <M-3> 3gt
 nnoremap <M-4> 4gt
 nnoremap <M-5> 5gt
-" }}}
-
-" dbext {{{
-let g:dbext_default_profile_sqlite_for_wfm = 'type=SQLITE:dbname=/home/zoneprojects/work/zone_projects/projects/zplanning/ProjectManagerWebSite/wfm.db'
 " }}}
 
 " YouCompleteMe {{{
