@@ -143,6 +143,7 @@ Plug 'google/vim-codefmt'
 Plug 'google/vim-glaive'
 "Plugin 'sjl/vitality.vim'
 
+let g:dadbod_manage_dbext = 1
 
 set exrc
 let g:localvimrc_name=".stanimir.vimrc"
