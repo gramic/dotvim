@@ -247,6 +247,8 @@ nnoremap <M-2> 2gt
 nnoremap <M-3> 3gt
 nnoremap <M-4> 4gt
 nnoremap <M-5> 5gt
+" Add Bulgarian date format
+SpeedDatingFormat %d%[/.]%m%1%Y
 " }}}
 
 " YouCompleteMe {{{
