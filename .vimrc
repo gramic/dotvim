@@ -399,7 +399,7 @@ set errorformat+=%A%.%#***\ %m\ `%f'%.%#
 :command! -nargs=* Make make! <args>
 
 " CtrlP mappings
-let g:fzf_command_prefix = "Fzf"
+let g:fzf_command_prefix = 'Fzf'
 let g:ctrlp_follow_symlinks = 0
 let g:ctrlp_working_path_mode = 2 " don't manage current directory
 let g:ctrlp_root_markers = ['CMakeLists\.txt']
