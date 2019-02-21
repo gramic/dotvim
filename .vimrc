@@ -80,6 +80,7 @@ endif
 
 call plug#begin('~/.vim/plugged')
 " My own vim settings.
+Plug 'junegunn/fzf'
 Plug 'jreybert/vimagit'
 Plug 'bazelbuild/vim-bazel'
 Plug 'bazelbuild/vim-ft-bzl'
@@ -97,6 +98,7 @@ Plug 'guns/xterm-color-table.vim'
 "Plugin 'Rykka/riv.vim'
 "Plug 'indenthtml.vim'
 Plug 'gramic/dotvim'
+"Plug 'zoneprojects/dotvimprivate'
 Plug 'Valloric/MatchTagAlways'
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 "Plug 'argtextobj.vim'
