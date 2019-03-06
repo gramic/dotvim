@@ -242,8 +242,9 @@ let g:Gitv_TruncateCommitSubjects = 1
 " }}}
 
 " Generic mappings {{{
-if exists(':tnoremap')
-tnoremap <esc> <c-\><c-n>
+if has("nvim")
+  au TermOpen * tnoremap <Esc> <c-\><c-n>
+  au FileType fzf tunmap <Esc>
 endif
 nnoremap <M-1> 1gt
 nnoremap <M-2> 2gt
