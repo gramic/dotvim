@@ -80,6 +80,7 @@ endif
 
 call plug#begin('~/.vim/plugged')
 " My own vim settings.
+Plug 'will133/vim-dirdiff'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'jreybert/vimagit'
