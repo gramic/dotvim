@@ -415,7 +415,7 @@ let g:ctrlp_root_markers = ['CMakeLists\.txt']
 let g:ctrlp_custom_ignore = {
   \ 'dir':  '\.git$\|\.hg$\|\.svn$\|node_modules$\|bazel-app$\|bazel-bin$\|bazel-genfiles$\|bazel-out$\|build$\|build_release$\|build_debug$\|third_parties\|target$',
   \ }
-nnoremap <localleader>ff :FzfFiles<CR>
+nnoremap <localleader>ff :FzfGFiles<CR>
 nnoremap <localleader>fm :FzfHistory<CR>
 let g:ctrlp_by_filename = 1 " search by filename (not full path) as default.
 let g:ctrlp_dotfiles = 0 " do not search inside dot files and dirs.
