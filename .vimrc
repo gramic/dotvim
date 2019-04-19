@@ -81,7 +81,7 @@ endif
 call plug#begin('~/.vim/plugged')
 " My own vim settings.
 Plug 'will133/vim-dirdiff'
-Plug 'junegunn/fzf'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf' }
 Plug 'junegunn/fzf.vim'
 Plug 'jreybert/vimagit'
 Plug 'bazelbuild/vim-bazel'
@@ -402,6 +402,13 @@ set errorformat+=%A%.%#***\ %m\ `%f'%.%#
 
 " CtrlP mappings
 let g:fzf_command_prefix = 'Fzf'
+" Similarly, we can apply it to fzf#vim#grep. To use ripgrep instead of ag:
+command! -bang -nargs=* Rg
+  \ call fzf#vim#grep(
+  \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
+  \   <bang>0 ? fzf#vim#with_preview('up:60%')
+  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+  \   <bang>0)
 let g:ctrlp_follow_symlinks = 0
 let g:ctrlp_working_path_mode = 2 " don't manage current directory
 let g:ctrlp_root_markers = ['CMakeLists\.txt']
