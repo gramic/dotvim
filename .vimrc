@@ -80,6 +80,7 @@ endif
 
 call plug#begin('~/.vim/plugged')
 " My own vim settings.
+Plug 'leafgarland/typescript-vim'
 Plug 'will133/vim-dirdiff'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf' }
 Plug 'junegunn/fzf.vim'
@@ -152,6 +153,7 @@ Plug 'google/vim-glaive'
 set exrc
 let g:localvimrc_name=".stanimir.vimrc"
 let g:localvimrc_sandbox=0
+let g:typescript_indent_disable=1
 
 " Color scheme settings {{{
 filetype off
