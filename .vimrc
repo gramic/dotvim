@@ -82,7 +82,7 @@ call plug#begin('~/.vim/plugged')
 " My own vim settings.
 Plug 'leafgarland/typescript-vim'
 Plug 'will133/vim-dirdiff'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf' }
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
 Plug 'jreybert/vimagit'
 Plug 'bazelbuild/vim-bazel'
