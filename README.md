@@ -6,8 +6,9 @@ Here are some special notes and structure for this configuration.
 0. Install git first. On ubuntu machine use:
   sudo apt-get install git-core
 1. Make link in your .vim directory to this .vimrc file. That way you can modify and push the changes back to this GitHub repository.
-  '''sh
-  git clone https://github.com/gramic/dotvim.git ~/.config/nvim/plugged/dotvim
-  ln -s ~/.config/nvim/plugged/dotvim/.vimrc ~/.config/nvim/init.vim
+
+'''sh
+  git clone https://github.com/gramic/dotvim.git ~/.config/nvim/plugged/dotvim && \
+  ln -s ~/.config/nvim/plugged/dotvim/.vimrc ~/.config/nvim/init.vim && 
   ln -s ~/.config/nvim/plugged/dotvim/.tmux.conf ~/.tmux.conf
-  '''
+'''
