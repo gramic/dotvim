@@ -9,6 +9,6 @@ Here are some special notes and structure for this configuration.
 
 ```sh
   git clone https://github.com/gramic/dotvim.git ~/.config/nvim/plugged/dotvim && \
-  ln -s ~/.config/nvim/plugged/dotvim/.vimrc ~/.config/nvim/init.vim && 
+  ln -s ~/.config/nvim/plugged/dotvim/.vimrc ~/.config/nvim/init.vim && \
   ln -s ~/.config/nvim/plugged/dotvim/.tmux.conf ~/.tmux.conf
 ```
