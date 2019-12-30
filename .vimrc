@@ -80,6 +80,7 @@ endif
 
 call plug#begin('~/.config/nvim/plugged')
 " My own vim settings.
+Plug 'ryvnf/readline.vim'
 Plug 'leafgarland/typescript-vim'
 Plug 'will133/vim-dirdiff'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
