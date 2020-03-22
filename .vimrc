@@ -482,3 +482,18 @@ nmap _$ :call Preserve("%s/\\s\\+$//e")<CR>
 nmap _= :call Preserve("normal gg=G")<CR>
 
 set makeprg=bazel
+
+" build
+nnoremap <leader>bb 'Ci<up><enter>^\^NmamCG
+" go to BUILD or BUILD.bazel file
+nnoremap gb :call GoToCurrentFileBuildMapping()<cr>
+
+function! GoToCurrentFileBuildMapping()
+  if filereadable(expand('%:p:h').'/BUILD')
+    execute 'split '.expand('%:p:h').'/BUILD'
+  endif
+  if filereadable(expand('%:p:h').'/BUILD.bazel')
+    execute 'split '.expand('%:p:h').'/BUILD.bazel'
+  endif
+endfunction
+
