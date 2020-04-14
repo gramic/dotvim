@@ -91,6 +91,7 @@ Plug 'bazelbuild/vim-bazel'
 Plug 'bazelbuild/vim-ft-bzl'
 Plug 'ap/vim-css-color'
 Plug 'mogelbrod/vim-jsonpath'
+Plug 'neovim/nvim-lsp'
 "Plug 'machakann/vim-highlightedyank'
 Plug 'tmux-plugins/vim-tmux-focus-events'
 " Plug 'roxma/vim-tmux-clipboard'
@@ -497,4 +498,23 @@ function! GoToCurrentFileBuildMapping()
     execute 'split '.expand('%:p:h').'/BUILD.bazel'
   endif
 endfunction
+
+
+function! CurrentLineInfo()
+lua << EOF
+local linenr = vim.api.nvim_win_get_cursor(0)[1]
+local curline = vim.api.nvim_buf_get_lines(
+        0, linenr, linenr + 1, false)[1]
+print(string.format("Current line [%d] has %d bytes",
+        linenr, #curline))
+EOF
+endfunction
+
+
+function! TypescriptLanguageServer()
+lua << EOF
+require'nvim_lsp'.tsserver.setup{}
+EOF
+endfunction
+
 
