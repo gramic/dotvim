@@ -485,7 +485,7 @@ nmap _= :call Preserve("normal gg=G")<CR>
 set makeprg=bazel
 
 " build
-nnoremap <leader>bb 'Ci<up><enter>^\^NmamCG
+nnoremap <leader>bb 'Ci<up><enter>mamCG
 " go to BUILD or BUILD.bazel file
 nnoremap gb :call GoToCurrentFileBuildMapping()<cr>
 
