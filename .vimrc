@@ -27,6 +27,10 @@ set backspace=start,indent,eol  " make backspace work like 'normal' text editors
 
 " Terminal shell settings {{{
 set t_Co=256
+augroup custom_term
+    autocmd!
+    autocmd TermOpen * setlocal bufhidden=hide
+augroup END
 " }}}
 
 " undo settings {{{
