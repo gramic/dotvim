@@ -58,7 +58,7 @@ highlight lCursor guifg=NONE guibg=Cyan
 
 " settings {{{
 " Since I use linux, I want this
-set clipboard=unnamedplus
+" set clipboard=unnamedplus
 set numberwidth=2
 " let mapleader=" "
 " }}}
