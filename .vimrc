@@ -11,6 +11,7 @@ set incsearch
 set nohlsearch
 set expandtab
 set autoread
+set nofixendofline
 set sessionoptions+=tabpages,globals
 
 if has('mouse') | set mouse= | endif
