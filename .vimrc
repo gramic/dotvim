@@ -43,6 +43,7 @@ set undoreload=10000 "maximum number lines to save for undo on a buffer reload
 syntax on
 set synmaxcol=1000
 let g:matchparen_insert_timeout=10
+let g:scrollview_on_startup=0
 
 augroup filetype_vim
     autocmd!
