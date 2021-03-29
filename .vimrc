@@ -161,7 +161,7 @@ Plug 'tommcdo/vim-fubitive'
 Plug 'google/vim-jsonnet'
 
 " To use private gitlab repositories add the following to your .vimrc
-let g:fugitive_gitlab_domains = ['https://git.domain.internal']
+let g:fugitive_gitlab_domains = ['https://localhost']
 
 " Add maktaba and codefmt to the runtimepath.
 " (The latter must be installed before it can be used.)
