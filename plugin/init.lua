@@ -1,1 +1,1 @@
-require('lspinstall-config')
+-- require('lspinstall-config')
