@@ -84,7 +84,7 @@ local function setup_servers()
   local servers = require'lspinstall'.installed_servers()
   -- ... and add manually installed servers
   table.insert(servers, "clangd")
-  table.insert(servers, "sourcekit")
+  table.insert(servers, "python")
 
   for _, server in pairs(servers) do
     local config = make_config()
@@ -93,11 +93,11 @@ local function setup_servers()
     if server == "lua" then
       config.settings = lua_settings
     end
-    if server == "sourcekit" then
-      config.filetypes = {"swift", "objective-c", "objective-cpp"}; -- we don't want c and cpp!
-    end
     if server == "clangd" then
       config.filetypes = {"c", "cc", "cpp"}; -- we don't want objective-c and objective-cpp!
+    end
+    if server == "python" then
+      config.filetypes = {"py"};
     end
 
     require'lspconfig'[server].setup(config)
