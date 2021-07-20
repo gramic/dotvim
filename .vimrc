@@ -505,17 +505,7 @@ set makeprg=bazel
 " build
 nnoremap <leader>bb 'Ci<up><enter>mamCG
 " go to BUILD or BUILD.bazel file
-nnoremap gb :call GoToCurrentFileBuildMapping()<cr>
-
-function! GoToCurrentFileBuildMapping()
-  if filereadable(expand('%:p:h').'/BUILD')
-    execute 'split '.expand('%:p:h').'/BUILD'
-  endif
-  if filereadable(expand('%:p:h').'/BUILD.bazel')
-    execute 'split '.expand('%:p:h').'/BUILD.bazel'
-  endif
-endfunction
-
+nnoremap gb :lua require"gramic-bazel".find_in_bazel_build()<cr>
 
 function! CurrentLineInfo()
 lua << EOF
