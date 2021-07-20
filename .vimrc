@@ -34,6 +34,13 @@ augroup custom_term
 augroup END
 " }}}
 
+" Neovim highlight on yank {{{
+augroup highlight_on_yank
+    autocmd!
+    autocmd TextYankPost * silent! lua vim.highlight.on_yank {on_visual=false}
+augroup END
+" }}}
+
 " undo settings {{{
 set undofile
 set undolevels=1000 "maximum number of changes that can be undone
