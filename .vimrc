@@ -57,7 +57,7 @@ augroup filetype_vim
     autocmd FileType vim setlocal foldmethod=marker
 augroup END
 
-let $JAVA_TOOL_OPTIONS="-javaagent:/home/stanimir/bin/lombok.jar"
+let $JAVA_TOOL_OPTIONS="-javaagent:/home/stanimir/bin/lombok.jar -javaagent:/home/stanimir/bin/ebean-agent.jar"
 
 " Cyrillic support {{{
 set encoding=utf8
