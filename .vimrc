@@ -57,6 +57,8 @@ augroup filetype_vim
     autocmd FileType vim setlocal foldmethod=marker
 augroup END
 
+let $JAVA_TOOL_OPTIONS="-javaagent:/home/stanimir/bin/lombok.jar"
+
 " Cyrillic support {{{
 set encoding=utf8
 set keymap=bulgarian-phonetic
