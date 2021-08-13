@@ -292,6 +292,7 @@ nnoremap <M-5> 5gt
 " YouCompleteMe {{{
 " let g:ycm_key_invoke_completion = '<C-Space>'
 nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
+nnoremap <leader>jy :YcmCompleter GoTo<CR>
 " }}}
 
 " gitgutter {{{
