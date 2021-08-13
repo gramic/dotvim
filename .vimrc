@@ -131,7 +131,7 @@ Plug 'guns/xterm-color-table.vim'
 Plug 'gramic/dotvim'
 "Plug 'zoneprojects/dotvimprivate'
 Plug 'Valloric/MatchTagAlways'
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clangd-completer' }
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clangd-completer --java-completer' }
 "Plug 'argtextobj.vim'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'pangloss/vim-javascript'
