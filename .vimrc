@@ -171,6 +171,7 @@ Plug 'ap/vim-css-color'
 Plug 'duganchen/vim-soy'
 Plug 'tommcdo/vim-fubitive'
 " Syntaxes
+Plug 'sainnhe/sonokai'
 Plug 'google/vim-jsonnet'
 
 " Add maktaba and codefmt to the runtimepath.
