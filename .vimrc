@@ -97,7 +97,8 @@ endif
 
 call plug#begin('~/.config/nvim/plugged')
 " My own vim settings.
-Plug 'ludovicchabant/vim-gutentags'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
 Plug 'mfussenegger/nvim-dap'
 Plug 'AndrewRadev/linediff.vim'
 Plug 'mfussenegger/nvim-jdtls'
