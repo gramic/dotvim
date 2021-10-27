@@ -431,17 +431,21 @@ require'nvim-treesitter.configs'.setup {
   },
 }
 
+local function window()
+  return vim.api.nvim_win_get_number(0)
+end
+
 require'lualine'.setup {
   options = {
     icons_enabled = true,
     theme = 'auto',
-    component_separators = { left = '', right = ''},
-    section_separators = { left = '', right = ''},
+    component_separators = { left = ' ', right = ' '},
+    section_separators = { left = ' ', right = ' '},
     disabled_filetypes = {},
     always_divide_middle = true,
   },
   sections = {
-    lualine_a = {'mode'},
+    lualine_a = { window },
     lualine_b = {'branch', 'diff',
                   {'diagnostics', sources={'nvim_lsp', 'coc'}}},
     lualine_c = {'filename'},
