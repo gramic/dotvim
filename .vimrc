@@ -97,6 +97,9 @@ endif
 
 call plug#begin('~/.config/nvim/plugged')
 " My own vim settings.
+Plug 'nvim-lualine/lualine.nvim'
+" If you want to have icons in your statusline choose one of these
+Plug 'kyazdani42/nvim-web-devicons'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'mfussenegger/nvim-dap'
