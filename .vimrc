@@ -123,6 +123,7 @@ Plug 'bazelbuild/vim-ft-bzl'
 Plug 'ap/vim-css-color'
 Plug 'mogelbrod/vim-jsonpath'
 Plug 'neovim/nvim-lsp'
+Plug 'luukvbaal/stabilize.nvim'
 "Plug 'machakann/vim-highlightedyank'
 Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'dstein64/nvim-scrollview'
@@ -431,6 +432,8 @@ require'nvim-treesitter.configs'.setup {
     additional_vim_regex_highlighting = false,
   },
 }
+
+require("stabilize").setup()
 
 local function window()
   return vim.api.nvim_win_get_number(0)
