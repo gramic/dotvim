@@ -151,6 +151,7 @@ Plug 'ekalinin/Dockerfile.vim'
 Plug 'tpope/vim-dadbod'
 Plug 'tpope/vim-capslock'
 Plug 'bgodin/dbext.vim'
+Plug 'folke/which-key.nvim'
 Plug 'omnisharp/omnisharp-vim'
 "Plug 'cmake.vim'
 "Plug 'cmake.vim-syntax'
@@ -431,6 +432,11 @@ require'nvim-treesitter.configs'.setup {
     -- Instead of true it can also be a list of languages
     additional_vim_regex_highlighting = false,
   },
+}
+
+local whichKey = require("which-key")
+if (whichKey) {
+    whichKey.setup{}
 }
 
 require("stabilize").setup()
