@@ -454,7 +454,7 @@ require'lualine'.setup {
   sections = {
     lualine_a = { window },
     lualine_b = {'diff',
-                  {'diagnostics', sources={'nvim_lsp'}}},
+                  {'diagnostics', sources={'nvim_diagnostic'}}},
     lualine_c = {'filename'},
     lualine_x = {'fileformat', 'filetype'},
     lualine_y = {'progress'},
