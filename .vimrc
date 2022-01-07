@@ -150,7 +150,7 @@ Plug 'ekalinin/Dockerfile.vim'
 Plug 'tpope/vim-dadbod'
 Plug 'tpope/vim-capslock'
 Plug 'bgodin/dbext.vim'
-Plug 'folke/which-key.nvim'
+" Plug 'folke/which-key.nvim'
 "Plug 'omnisharp/omnisharp-vim'
 "Plug 'cmake.vim'
 "Plug 'cmake.vim-syntax'
@@ -433,10 +433,10 @@ require'nvim-treesitter.configs'.setup {
   },
 }
 
-local whichKey = require("which-key")
-if (whichKey) then 
-    whichKey.setup{}
-end
+" local whichKey = require("which-key")
+" if (whichKey) then 
+"     whichKey.setup{}
+" end
 
 local function window()
   return vim.api.nvim_win_get_number(0)
