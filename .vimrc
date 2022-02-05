@@ -1,6 +1,6 @@
 "to start neovim in true color support
 "TERM=xterm-256colors NVIM_TUI_ENABLE_TRUE_COLOR=1 SHELL=/bin/bash
-set nocompatible " Use Vim defaults instead of 100% vi compatibility
+set nocompatible
 set tabstop=2
 set shiftwidth=2
 set smarttab
@@ -71,39 +71,39 @@ highlight lCursor guifg=NONE guibg=Cyan
 " Since I use linux, I want this
 " set clipboard=unnamedplus
 if has("unix")
-	" ----- on UNIX ask lemonade to translate line-endings
-	if empty($WSL_DISTRO_NAME)
-		if executable('gclpr')
-			let g:clipboard = {
-				\   'name': 'gclpr',
-				\   'copy': {
-				\      '+': 'gclpr copy',
-				\      '*': 'gclpr copy',
-				\    },
-				\   'paste': {
-				\      '+': 'gclpr paste --line-ending lf',
-				\      '*': 'gclpr paste --line-ending lf',
-				\   },
-				\   'cache_enabled': 0,
-				\ }
-		endif
-	else
-		" ---- we are inside WSL - reach out to the Windows side
-		if executable($HOME . '/winhome/.wsl/gclpr.exe')
-			let g:clipboard = {
-				\   'name': 'gclpr',
-				\   'copy': {
-				\      '+': $HOME . '/winhome/.wsl/gclpr.exe copy',
-				\      '*': $HOME . '/winhome/.wsl/gclpr.exe copy',
-				\    },
-				\   'paste': {
-				\      '+': $HOME . '/winhome/.wsl/gclpr.exe paste --line-ending lf',
-				\      '*': $HOME . '/winhome/.wsl/gclpr.exe paste --line-ending lf',
-				\   },
-				\   'cache_enabled': 0,
-				\ }
-		endif
-	endif
+  " ----- on UNIX ask lemonade to translate line-endings
+  if empty($WSL_DISTRO_NAME)
+    if executable('gclpr')
+      let g:clipboard = {
+        \   'name': 'gclpr',
+        \   'copy': {
+        \      '+': 'gclpr copy',
+        \      '*': 'gclpr copy',
+        \    },
+        \   'paste': {
+        \      '+': 'gclpr paste --line-ending lf',
+        \      '*': 'gclpr paste --line-ending lf',
+        \   },
+        \   'cache_enabled': 0,
+        \ }
+    endif
+  else
+    " ---- we are inside WSL - reach out to the Windows side
+    if executable($HOME . '/winhome/.wsl/gclpr.exe')
+      let g:clipboard = {
+        \   'name': 'gclpr',
+        \   'copy': {
+        \      '+': $HOME . '/winhome/.wsl/gclpr.exe copy',
+        \      '*': $HOME . '/winhome/.wsl/gclpr.exe copy',
+        \    },
+        \   'paste': {
+        \      '+': $HOME . '/winhome/.wsl/gclpr.exe paste --line-ending lf',
+        \      '*': $HOME . '/winhome/.wsl/gclpr.exe paste --line-ending lf',
+        \   },
+        \   'cache_enabled': 0,
+        \ }
+    endif
+  endif
 endif
 
 let s:clip = '/mnt/c/Windows/system32/win32yank.exe'  " change this path according to your mount point
