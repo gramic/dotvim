@@ -149,6 +149,7 @@ endif
 
 call plug#begin('~/.config/nvim/plugged')
 " My own vim settings.
+Plug 'danymat/neogen'
 Plug 'nvim-lualine/lualine.nvim'
 " If you want to have icons in your statusline choose one of these
 Plug 'kyazdani42/nvim-web-devicons'
@@ -485,10 +486,7 @@ require'nvim-treesitter.configs'.setup {
   },
 }
 
-" local whichKey = require("which-key")
-" if (whichKey) then 
-"     whichKey.setup{}
-" end
+require('neogen').setup {}
 
 local function window()
   return vim.api.nvim_win_get_number(0)
@@ -526,27 +524,6 @@ require'lualine'.setup {
 
 EOF
 " }}}
-
-" refasterjs errorformats {{{
-" New Content: "value.getContent().getContent()", Replacements for file: /app/app/client/shared/soyutils_usegoog.js
-" Start position: 38790
-" Length: 21
-set errorformat=%ANew\ Content:\ %m\ Replacements\ for\ file:\ %f
-set errorformat+=%CStart\ position:
-set errorformat+=%Z%.%#Length:\ $C
-"set errorformat=%ANew\ Content:\ %m\ Replacements\ for\ file:\ %f
-" }}}
-
-" this is to not open empty file. tip from here http://goo.gl/5pgIK
-set errorformat^=%-GIn\ file\ included\ %.%#
-
-" all errorformats
-set errorformat=%E%.%#:\ %f:%l:\ ERROR\ -\ %m,%C,%Z%p^,%W%.%#:\ %f:%l:\ WARNING\ -\ %m,%C,%Z%p^
-set errorformat+=%E%f:%l:\ ERROR\ -\ %m,%C,%Z%p^,%W%f:%l:\ WARNING\ -\ %m,%C,%Z%p^
-" *** No rule to make target `/app/app/client/page/schedulerenderer.soy', needed by `/app/app/client/soy_js_en/scheduleplace_soy_en.js'.  Stop.
-set errorformat+=%A%.%#***\ %m\ `%f'%.%#
-" }}}
-
 
 " Command Make will call make and then cwindow which
 " opens a 3 line error window if any errors are found.
