@@ -191,7 +191,7 @@ Plug 'guns/xterm-color-table.vim'
 "reStructuredText plugin
 "Plugin 'Rykka/riv.vim'
 "Plug 'indenthtml.vim'
-Plug 'gramic/dotvim'
+Plug 'gramic/dotvim', { 'do': 'git add remote upstream git@github.com:gramic/dotvim.git' }
 "Plug 'zoneprojects/dotvimprivate'
 Plug 'Valloric/MatchTagAlways'
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clangd-completer' } " --java-completer
