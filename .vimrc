@@ -162,6 +162,7 @@ Plug 'kabouzeid/nvim-lspinstall'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 Plug 'nvim-treesitter/playground'
+Plug 'p00f/nvim-ts-rainbow'
 Plug 'hrsh7th/vim-vsnip'
 Plug 'hrsh7th/vim-vsnip-integ'
 Plug 'grailbio/bazel-compilation-database'
@@ -484,6 +485,14 @@ require'nvim-treesitter.configs'.setup {
     -- Instead of true it can also be a list of languages
     additional_vim_regex_highlighting = false,
   },
+  rainbow = {
+    enable = true,
+    -- disable = { "jsx", "cpp" }
+    extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
+    max_file_lines = 3000,
+    -- colors = {}, -- table of hex strings
+    -- termcolors = {} -- table of colour name strings
+  },
   textobjects = {
     select = {
       enable = true,
@@ -522,7 +531,7 @@ require'nvim-treesitter.configs'.setup {
     enable = true,
     disable = {},
     updatetime = 25, -- Debounced time for highlighting nodes in the playground from source code
-    persist_queries = false, -- Whether the query persists across vim sessions
+    persist_queries = true, -- Whether the query persists across vim sessions
     keybindings = {
       toggle_query_editor = 'o',
       toggle_hl_groups = 'i',
