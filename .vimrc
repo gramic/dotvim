@@ -159,6 +159,10 @@ Plug 'AndrewRadev/linediff.vim'
 Plug 'mfussenegger/nvim-jdtls'
 Plug 'neovim/nvim-lspconfig'
 Plug 'williamboman/nvim-lsp-installer'
+Plug 'hrsh7th/nvim-cmp'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-vsnip'
+Plug 'hrsh7th/vim-vsnip'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 Plug 'nvim-treesitter/playground'
@@ -468,20 +472,6 @@ if has('persistent_undo') && has('autocmd')
 endif
 " }}}
 
-
-let g:lsp_settings = {
-    \  "sumneko-lua-language-server": {
-    \       "workspace_config": {
-    \           "Lua": {
-    \               "diagnostics": {
-    \                   "globals": ["hs", "vim", "it", "describe", "before_each", "after_each"],
-    \                   "disable": ["lowercase-global", "undefined-global", "unused-local", "unused-vararg", "trailing-space"]
-    \               }
-    \           }
-    \       }
-    \   }
-    \}
-
 " Lua config setup {{{
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
@@ -563,60 +553,9 @@ require'nvim-treesitter.configs'.setup {
   }
 }
 
-local lsp_installer = require("nvim-lsp-installer")
--- Register a handler that will be called for each installed server when it's ready (i.e. when installation is finished
--- or if the server is already installed).
-lsp_installer.on_server_ready(function(server)
-  local opts = {}
-  if server.name == "sumneko_lua" then
-    opts = {
-      settings = {
-        Lua = {
-          diagnostics = {
-            globals = { 'vim' },
-          },
-        },
-      },
-    }
-  end
-  server:setup(opts)
-end)
+require('third-party-config')
 
 require('neogen').setup {}
-
-local function window()
-  return vim.api.nvim_win_get_number(0)
-end
-
-require'lualine'.setup {
-  options = {
-    icons_enabled = true,
-    theme = 'auto',
-    component_separators = { left = ' ', right = ' '},
-    section_separators = { left = ' ', right = ' '},
-    disabled_filetypes = {},
-    always_divide_middle = true,
-  },
-  sections = {
-    lualine_a = { window },
-    lualine_b = {'diff',
-                  {'diagnostics', sources={'nvim_diagnostic'}}},
-    lualine_c = {'filename'},
-    lualine_x = {'fileformat', 'filetype'},
-    lualine_y = {'progress'},
-    lualine_z = {'location'}
-  },
-  inactive_sections = {
-    lualine_a = { window },
-    lualine_b = {},
-    lualine_c = {'filename'},
-    lualine_x = {'location'},
-    lualine_y = {},
-    lualine_z = {}
-  },
-  tabline = {},
-  extensions = {}
-}
 
 EOF
 " }}}
