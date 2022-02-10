@@ -158,7 +158,7 @@ Plug 'mfussenegger/nvim-dap'
 Plug 'AndrewRadev/linediff.vim'
 Plug 'mfussenegger/nvim-jdtls'
 Plug 'neovim/nvim-lspconfig'
-Plug 'kabouzeid/nvim-lspinstall'
+Plug 'williamboman/nvim-lsp-installer'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 Plug 'nvim-treesitter/playground'
@@ -468,6 +468,20 @@ if has('persistent_undo') && has('autocmd')
 endif
 " }}}
 
+
+let g:lsp_settings = {
+    \  "sumneko-lua-language-server": {
+    \       "workspace_config": {
+    \           "Lua": {
+    \               "diagnostics": {
+    \                   "globals": ["hs", "vim", "it", "describe", "before_each", "after_each"],
+    \                   "disable": ["lowercase-global", "undefined-global", "unused-local", "unused-vararg", "trailing-space"]
+    \               }
+    \           }
+    \       }
+    \   }
+    \}
+
 " Lua config setup {{{
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
@@ -548,6 +562,25 @@ require'nvim-treesitter.configs'.setup {
     },
   }
 }
+
+local lsp_installer = require("nvim-lsp-installer")
+-- Register a handler that will be called for each installed server when it's ready (i.e. when installation is finished
+-- or if the server is already installed).
+lsp_installer.on_server_ready(function(server)
+  local opts = {}
+  if server.name == "sumneko_lua" then
+    opts = {
+      settings = {
+        Lua = {
+          diagnostics = {
+            globals = { 'vim' },
+          },
+        },
+      },
+    }
+  end
+  server:setup(opts)
+end)
 
 require('neogen').setup {}
 
