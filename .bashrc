@@ -109,3 +109,5 @@ elif [ ${ISWSL} -eq 2 ]; then
 else
     echo "Do whatever -- this is real Linux"
 fi
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
