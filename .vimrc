@@ -354,7 +354,9 @@ nnoremap <M-5> 5gt
 " }}}
 
 " YouCompleteMe {{{
-" let g:ycm_key_invoke_completion = '<C-Space>'
+let g:ycm_key_invoke_completion = '<C-Space>'
+" Let clangd fully control code completion
+let g:ycm_clangd_uses_ycmd_caching = 0
 nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
 nnoremap <leader>jy :YcmCompleter GoTo<CR>
 " }}}
