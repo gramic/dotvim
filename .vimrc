@@ -106,21 +106,21 @@ if has("unix")
   endif
 endif
 
-let s:clip = '/mnt/c/Windows/system32/win32yank.exe'  " change this path according to your mount point
-if executable(s:clip)
-    let g:clipboard = {
-              \   'name': 'win32yank-wsl',
-              \   'copy': {
-              \      '+': 'win32yank.exe -i --crlf',
-              \      '*': 'win32yank.exe -i --crlf',
-              \    },
-              \   'paste': {
-              \      '+': 'win32yank.exe -o --lf',
-              \      '*': 'win32yank.exe -o --lf',
-              \   },
-              \   'cache_enabled': 0,
-              \ }
-endif
+" let s:clip = '/mnt/c/Windows/system32/win32yank.exe'  " change this path according to your mount point
+" if executable(s:clip)
+"     let g:clipboard = {
+"               \   'name': 'win32yank-wsl',
+"               \   'copy': {
+"               \      '+': 'win32yank.exe -i --crlf',
+"               \      '*': 'win32yank.exe -i --crlf',
+"               \    },
+"               \   'paste': {
+"               \      '+': 'win32yank.exe -o --lf',
+"               \      '*': 'win32yank.exe -o --lf',
+"               \   },
+"               \   'cache_enabled': 0,
+"               \ }
+" endif
 
 set numberwidth=2
 " let mapleader=" "
