@@ -153,6 +153,7 @@ Plug 'danymat/neogen'
 Plug 'nvim-lualine/lualine.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
 Plug 'mfussenegger/nvim-dap'
 Plug 'AndrewRadev/linediff.vim'
 Plug 'mfussenegger/nvim-jdtls'
@@ -160,8 +161,10 @@ Plug 'neovim/nvim-lspconfig'
 Plug 'williamboman/nvim-lsp-installer'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-nvim-lsp'
-Plug 'hrsh7th/cmp-vsnip'
-Plug 'hrsh7th/vim-vsnip'
+" Plug 'hrsh7th/cmp-vsnip'
+" Plug 'hrsh7th/cmp-buffer'
+" Plug 'hrsh7th/cmp-path'
+" Plug 'hrsh7th/vim-vsnip'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 Plug 'nvim-treesitter/playground'
@@ -355,6 +358,7 @@ nnoremap <M-5> 5gt
 
 " YouCompleteMe {{{
 let g:ycm_key_invoke_completion = '<C-Space>'
+let g:ycm_filetype_specific_completion_to_disable = {'lua':1}
 " Let clangd fully control code completion
 let g:ycm_clangd_uses_ycmd_caching = 0
 nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
