@@ -261,6 +261,9 @@ Plug 'chriskempson/base16-vim'
 Plug 'morhetz/gruvbox'
 Plug 'jacoborus/tender'
 Plug 'lifepillar/vim-solarized8'
+
+" Unmanaged plugin (manually installed and updated)
+Plug '~/gramic-neovim'
 call plug#end()
 " }}}
 
