@@ -12,4 +12,6 @@ R = function(name)
   return require(name)
 end
 
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 vim.keymap.set('n', '<leader><leader>x', '<cmd>w<cr><cmd>source %<cr>')
