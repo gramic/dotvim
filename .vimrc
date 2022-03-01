@@ -148,6 +148,7 @@ if empty(glob('~/.config/nvim/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.config/nvim/plugged')
+" Unmanaged plugin (manually installed and updated)
 " My own vim settings.
 Plug 'danymat/neogen'
 Plug 'nvim-lualine/lualine.nvim'
@@ -168,6 +169,7 @@ Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 Plug 'nvim-treesitter/playground'
+Plug '~/gramic-neovim'
 Plug 'p00f/nvim-ts-rainbow'
 Plug 'hrsh7th/vim-vsnip'
 Plug 'hrsh7th/vim-vsnip-integ'
@@ -262,8 +264,6 @@ Plug 'morhetz/gruvbox'
 Plug 'jacoborus/tender'
 Plug 'lifepillar/vim-solarized8'
 
-" Unmanaged plugin (manually installed and updated)
-Plug '~/gramic-neovim'
 call plug#end()
 " }}}
 
