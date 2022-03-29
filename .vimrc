@@ -152,6 +152,7 @@ call plug#begin('~/.config/nvim/plugged')
 " My own vim settings.
 Plug 'danymat/neogen'
 Plug 'L3MON4D3/LuaSnip'
+Plug 'saadparwaiz1/cmp_luasnip'
 Plug 'nvim-lualine/lualine.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'nvim-lua/plenary.nvim'
