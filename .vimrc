@@ -150,9 +150,24 @@ endif
 call plug#begin('~/.config/nvim/plugged')
 " Unmanaged plugin (manually installed and updated)
 " My own vim settings.
-Plug 'danymat/neogen'
-Plug 'L3MON4D3/LuaSnip'
+Plug 'neovim/nvim-lspconfig'
+" LSP Support
+Plug 'neovim/nvim-lspconfig'
+Plug 'williamboman/nvim-lsp-installer'
+" Autocompletion
+Plug 'hrsh7th/nvim-cmp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
 Plug 'saadparwaiz1/cmp_luasnip'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-nvim-lua'
+"  Snippets
+Plug 'L3MON4D3/LuaSnip'
+Plug 'rafamadriz/friendly-snippets'
+Plug 'VonHeikemen/lsp-zero.nvim'
+
+Plug 'williamboman/nvim-lsp-installer'
+Plug 'danymat/neogen'
 Plug 'nvim-lualine/lualine.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'nvim-lua/plenary.nvim'
@@ -161,22 +176,12 @@ Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 Plug 'mfussenegger/nvim-dap'
 Plug 'AndrewRadev/linediff.vim'
 Plug 'mfussenegger/nvim-jdtls'
-Plug 'neovim/nvim-lspconfig'
-Plug 'williamboman/nvim-lsp-installer'
-Plug 'hrsh7th/nvim-cmp'
-Plug 'hrsh7th/cmp-nvim-lsp'
-" Plug 'hrsh7th/cmp-vsnip'
-" Plug 'hrsh7th/cmp-buffer'
-" Plug 'hrsh7th/cmp-path'
-" Plug 'hrsh7th/vim-vsnip'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 Plug 'nvim-treesitter/playground'
 Plug '~/gramic-neovim'
 Plug 'p00f/nvim-ts-rainbow'
 Plug 'windwp/nvim-ts-autotag'
-Plug 'hrsh7th/vim-vsnip'
-Plug 'hrsh7th/vim-vsnip-integ'
 Plug 'grailbio/bazel-compilation-database'
 Plug 'ryvnf/readline.vim'
 Plug 'leafgarland/typescript-vim'
@@ -203,7 +208,7 @@ Plug 'guns/xterm-color-table.vim'
 Plug 'gramic/dotvim', { 'do': 'git add remote upstream git@github.com:gramic/dotvim.git' }
 "Plug 'zoneprojects/dotvimprivate'
 Plug 'Valloric/MatchTagAlways'
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clangd-completer' } " --java-completer
+" Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clangd-completer' } " --java-completer
 "Plug 'argtextobj.vim'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'pangloss/vim-javascript'
@@ -320,7 +325,8 @@ augroup END
 " Menu completions {{{
 set wildmode=full wildmenu                 " Command-line tab completion
 set infercase                              " AutoComplete in Vim
-set completeopt=longest,menu,menuone,preview
+" set completeopt=longest,menu,menuone,preview
+set completeopt=menu,menuone,noselect
 set wildignore+=*.o,*.obj,*.pyc,*.DS_STORE,*.db,*.swc
 " }}}
 
@@ -364,6 +370,7 @@ nnoremap <M-5> 5gt
 " }}}
 
 " YouCompleteMe {{{
+inoremap <C-x><C-o> <Cmd>lua require('cmp').complete()<CR>
 let g:ycm_key_invoke_completion = '<C-Space>'
 let g:ycm_filetype_specific_completion_to_disable = {'lua':1}
 " Let clangd fully control code completion
@@ -488,7 +495,7 @@ endif
 lua <<EOF
 require('third-party-config')
 
-require('neogen').setup {}
+-- require('neogen').setup {}
 
 EOF
 " }}}
@@ -590,12 +597,3 @@ print(string.format("Current line [%d] has %d bytes",
         linenr, #curline))
 EOF
 endfunction
-
-
-function! TypescriptLanguageServer()
-lua << EOF
-require'nvim_lsp'.tsserver.setup{}
-EOF
-endfunction
-
-
