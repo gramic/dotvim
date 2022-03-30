@@ -166,6 +166,7 @@ Plug 'L3MON4D3/LuaSnip'
 Plug 'rafamadriz/friendly-snippets'
 Plug 'VonHeikemen/lsp-zero.nvim'
 
+Plug 'jose-elias-alvarez/null-ls.nvim'
 Plug 'williamboman/nvim-lsp-installer'
 Plug 'danymat/neogen'
 Plug 'nvim-lualine/lualine.nvim'
