@@ -523,7 +523,8 @@ let g:ctrlp_custom_ignore = {
   \ }
 nnoremap <localleader>ff :FzfGFiles<CR>
 nnoremap <localleader>tff :Telescope git_files<CR>
-nnoremap <localleader>fm :Telescope oldfiles<CR>
+nnoremap <localleader>fm :FzfHistory<CR>
+nnoremap <localleader>tfm :Telescope oldfiles<CR>
 let g:ctrlp_by_filename = 1 " search by filename (not full path) as default.
 let g:ctrlp_dotfiles = 0 " do not search inside dot files and dirs.
 
