@@ -55,6 +55,9 @@ local mapping = {
 }
 lsp.setup_nvim_cmp({
     mapping = mapping,
+    completion = {
+      autocomplete = false,
+    },
     experimental = {
       ghost_text = true -- this feature conflict to the copilot.vim's preview.
     },
