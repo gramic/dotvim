@@ -25,6 +25,7 @@ lsp.configure('sumneko_lua', {
   --   client.resolved_capabilities.document_formatting = false
   -- end
 })
+lsp.configure('clangd', {})
 local mapping = {
   ['<C-d>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
   ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
