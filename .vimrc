@@ -209,7 +209,7 @@ Plug 'guns/xterm-color-table.vim'
 Plug 'gramic/dotvim', { 'do': 'git add remote upstream git@github.com:gramic/dotvim.git' }
 "Plug 'zoneprojects/dotvimprivate'
 Plug 'Valloric/MatchTagAlways'
-" Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clangd-completer' } " --java-completer
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clangd-completer' } " --java-completer
 "Plug 'argtextobj.vim'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'pangloss/vim-javascript'
