@@ -220,7 +220,7 @@ Plug 'ekalinin/Dockerfile.vim'
 Plug 'tpope/vim-dadbod'
 Plug 'tpope/vim-capslock'
 Plug 'bgodin/dbext.vim'
-Plug 'folke/which-key.nvim'
+"Plug 'folke/which-key.nvim'
 "Plug 'omnisharp/omnisharp-vim'
 "Plug 'cmake.vim'
 "Plug 'cmake.vim-syntax'
@@ -292,7 +292,7 @@ silent! colorscheme gruvbox
 set background=dark
 " }}}
 
-" Calender group. {{{
+" Calendar group. {{{
 augroup fugitivegroup
   let g:calendar_google_calendar = 1
   let g:calendar_google_task = 1
