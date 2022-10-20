@@ -253,6 +253,7 @@ Plug 'tommcdo/vim-fubitive'
 " Syntaxes
 Plug 'sainnhe/sonokai'
 Plug 'google/vim-jsonnet'
+Plug 'jamessan/vim-gnupg'
 
 " Add maktaba and codefmt to the runtimepath.
 " (The latter must be installed before it can be used.)
