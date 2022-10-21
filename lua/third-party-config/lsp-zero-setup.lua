@@ -5,26 +5,6 @@ lsp.preset('recommended')
 lsp.nvim_workspace({
   library = vim.api.nvim_get_runtime_file('', true)
 })
-lsp.configure('sumneko_lua', {
-  -- flags = {
-  --   debounce_text_changes = 150,
-  -- },
-  settings = {
-    Lua = {
-      diagnostics = {
-        -- Get the language server to recognize the `vim` global
-        globals = {'vim', 'R', 'P'},
-      },
-      workspace = {
-        -- Make the server aware of Neovim runtime files
-        library = vim.api.nvim_get_runtime_file("", true),
-      },
-    },
-  },
-  -- on_attach = function(client, bufnr)
-  --   client.resolved_capabilities.document_formatting = false
-  -- end
-})
 lsp.configure('clangd', {})
 local mapping = {
   ['<C-d>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),

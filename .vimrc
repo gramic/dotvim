@@ -152,7 +152,6 @@ call plug#begin('~/.config/nvim/plugged')
 " My own vim settings.
 Plug 'neovim/nvim-lspconfig'
 " LSP Support
-Plug 'neovim/nvim-lspconfig'
 Plug 'williamboman/nvim-lsp-installer'
 " Autocompletion
 Plug 'hrsh7th/nvim-cmp'
@@ -164,7 +163,7 @@ Plug 'hrsh7th/cmp-nvim-lua'
 "  Snippets
 Plug 'L3MON4D3/LuaSnip'
 Plug 'rafamadriz/friendly-snippets'
-Plug 'VonHeikemen/lsp-zero.nvim'
+" Plug 'VonHeikemen/lsp-zero.nvim'
 
 Plug 'jose-elias-alvarez/null-ls.nvim'
 Plug 'williamboman/nvim-lsp-installer'
@@ -173,8 +172,8 @@ Plug 'nvim-lualine/lualine.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'sindrets/diffview.nvim'
-" Plug 'nvim-telescope/telescope.nvim'
-" Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 Plug 'mfussenegger/nvim-dap'
 Plug 'AndrewRadev/linediff.vim'
 Plug 'mfussenegger/nvim-jdtls'
@@ -249,11 +248,13 @@ Plug 'qpkorr/vim-bufkill'
 Plug 'nelstrom/vim-visual-star-search'
 Plug 'ap/vim-css-color'
 Plug 'duganchen/vim-soy'
-Plug 'tommcdo/vim-fubitive'
 " Syntaxes
 Plug 'sainnhe/sonokai'
 Plug 'google/vim-jsonnet'
 Plug 'jamessan/vim-gnupg'
+Plug 'williamboman/mason.nvim'
+Plug 'williamboman/mason-lspconfig.nvim'
+Plug 'Hoffs/omnisharp-extended-lsp.nvim'
 
 " Add maktaba and codefmt to the runtimepath.
 " (The latter must be installed before it can be used.)
@@ -525,9 +526,9 @@ let g:ctrlp_custom_ignore = {
   \ 'dir':  '\.git$\|\.hg$\|\.svn$\|node_modules$\|bazel-app$\|bazel-bin$\|bazel-genfiles$\|bazel-out$\|build$\|build_release$\|build_debug$\|third_parties\|target$',
   \ }
 nnoremap <localleader>ff :FzfGFiles<CR>
-" nnoremap <localleader>tff :Telescope git_files<CR>
+nnoremap <localleader>tff :Telescope git_files<CR>
 nnoremap <localleader>fm :FzfHistory<CR>
-" nnoremap <localleader>tfm :Telescope oldfiles<CR>
+nnoremap <localleader>tfm :Telescope oldfiles<CR>
 let g:ctrlp_by_filename = 1 " search by filename (not full path) as default.
 let g:ctrlp_dotfiles = 0 " do not search inside dot files and dirs.
 

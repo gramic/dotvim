@@ -1,5 +1,7 @@
 require('gramic/globals')
-require('third-party-config/lsp-zero-setup')
+-- require('third-party-config/lsp-zero-setup')
+require('third-party-config/lsp_config')
+require('third-party-config/mason-setup')
 require('third-party-config/lualine-setup')
 require('third-party-config/treesitter-setup')
 -- require('third-party-config/telescope-setup')
