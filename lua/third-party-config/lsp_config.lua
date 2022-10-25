@@ -78,6 +78,11 @@ local servers = {
             }
         }
     },
+    jsonnet_ls = {
+        ext_vars = {
+          foo = 'bar',
+        },
+    },
     omnisharp = {
         cmd = { "/home/stanimir/.local/bin/OmniSharp" },
         handlers = {

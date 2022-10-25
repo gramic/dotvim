@@ -174,6 +174,7 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'sindrets/diffview.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
+Plug 'OmniSharp/omnisharp-vim'
 Plug 'mfussenegger/nvim-dap'
 Plug 'AndrewRadev/linediff.vim'
 Plug 'mfussenegger/nvim-jdtls'
@@ -220,8 +221,8 @@ Plug 'jpetrie/vim-counterpoint'
 Plug 'ekalinin/Dockerfile.vim'
 Plug 'tpope/vim-dadbod'
 Plug 'bgodin/dbext.vim'
+Plug 'prabirshrestha/asyncomplete.vim'
 "Plug 'folke/which-key.nvim'
-"Plug 'omnisharp/omnisharp-vim'
 "Plug 'cmake.vim'
 "Plug 'cmake.vim-syntax'
 Plug 'gcmt/taboo.vim'
@@ -264,6 +265,13 @@ Plug 'google/vim-codefmt'
 " `:help :Glaive` for usage.
 Plug 'google/vim-glaive'
 "Plugin 'sjl/vitality.vim'
+
+"asyncomplete setup mappings
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
+imap <c-space> <Plug>(asyncomplete_force_refresh)
+let g:asyncomplete_auto_popup = 0
 
 set exrc
 let g:localvimrc_name=".stanimir.vimrc"
@@ -531,6 +539,8 @@ nnoremap <localleader>fm :FzfHistory<CR>
 nnoremap <localleader>tfm :Telescope oldfiles<CR>
 let g:ctrlp_by_filename = 1 " search by filename (not full path) as default.
 let g:ctrlp_dotfiles = 0 " do not search inside dot files and dirs.
+
+" let g:OmniSharp_translate_cygwin_wsl = 1
 
 " Limit popup menu height
 set pumheight=15
