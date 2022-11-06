@@ -250,11 +250,12 @@ Plug 'nelstrom/vim-visual-star-search'
 Plug 'ap/vim-css-color'
 Plug 'duganchen/vim-soy'
 " Syntaxes
+Plug 'luisiacc/gruvbox-baby', {'branch': 'main'}
 Plug 'sainnhe/sonokai'
 Plug 'google/vim-jsonnet'
 Plug 'jamessan/vim-gnupg'
 Plug 'williamboman/mason.nvim'
-Plug 'williamboman/mason-lspconfig.nvim'
+" Plug 'williamboman/mason-lspconfig.nvim'
 Plug 'Hoffs/omnisharp-extended-lsp.nvim'
 
 " Add maktaba and codefmt to the runtimepath.
@@ -299,6 +300,7 @@ let base16colorspace=256  " Access colors present in 256 colorspace
 "silent! colorscheme base16-tomorrow
 "silent! colorscheme solarized
 silent! colorscheme gruvbox
+" silent! colorscheme gruvbox-baby
 "silent! colorscheme tender
 set background=dark
 " }}}
@@ -540,7 +542,7 @@ nnoremap <localleader>tfm :Telescope oldfiles<CR>
 let g:ctrlp_by_filename = 1 " search by filename (not full path) as default.
 let g:ctrlp_dotfiles = 0 " do not search inside dot files and dirs.
 
-" let g:OmniSharp_translate_cygwin_wsl = 1
+let g:OmniSharp_translate_cygwin_wsl = 1
 
 " Limit popup menu height
 set pumheight=15

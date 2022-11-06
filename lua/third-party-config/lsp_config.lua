@@ -56,28 +56,28 @@ local servers = {
             },
         }
     },
-    gopls = {
-        cmd = { 'gopls', 'serve' },
-        handlers = rounded_border_handlers,
-        settings = {
-            gopls = {
-                analyses = {
-                    unusedparams = true,
-                },
-                staticcheck = true,
-            },
-        }
-    },
-    rls = {
-        handlers = rounded_border_handlers,
-        settings = {
-            rust = {
-                unstable_features = true,
-                build_on_save = false,
-                all_features = true,
-            }
-        }
-    },
+    -- gopls = {
+    --     cmd = { 'gopls', 'serve' },
+    --     handlers = rounded_border_handlers,
+    --     settings = {
+    --         gopls = {
+    --             analyses = {
+    --                 unusedparams = true,
+    --             },
+    --             staticcheck = true,
+    --         },
+    --     }
+    -- },
+    -- rls = {
+    --     handlers = rounded_border_handlers,
+    --     settings = {
+    --         rust = {
+    --             unstable_features = true,
+    --             build_on_save = false,
+    --             all_features = true,
+    --         }
+    --     }
+    -- },
     jsonnet_ls = {
         ext_vars = {
           foo = 'bar',
