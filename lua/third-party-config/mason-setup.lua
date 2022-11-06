@@ -1,3 +1,8 @@
 require("mason").setup {
-    log_level = vim.log.levels.DEBUG
+    require("mason").setup {
+        providers = {
+            "mason.providers.client",
+            "mason.providers.registry-api"
+        }
+    }
 }
