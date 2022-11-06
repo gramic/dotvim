@@ -1,4 +1,3 @@
-require("mason").setup()
-require("mason-lspconfig").setup({
-    ensure_installed = { "sumneko_lua", "csharp_ls" }
-})
+require("mason").setup {
+    log_level = vim.log.levels.DEBUG
+}
