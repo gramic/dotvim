@@ -152,7 +152,6 @@ call plug#begin('~/.config/nvim/plugged')
 " My own vim settings.
 Plug 'neovim/nvim-lspconfig'
 " LSP Support
-Plug 'williamboman/nvim-lsp-installer'
 " Autocompletion
 Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-buffer'
