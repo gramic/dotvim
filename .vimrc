@@ -264,6 +264,7 @@ Plug 'google/vim-codefmt'
 " `:help :Glaive` for usage.
 Plug 'google/vim-glaive'
 "Plugin 'sjl/vitality.vim'
+Plug 'kazhala/close-buffers.nvim'
 
 "asyncomplete setup mappings
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
