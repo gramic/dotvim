@@ -1,4 +1,7 @@
-local lspconfig = require 'lspconfig'
+require("mason").setup()
+require("mason-lspconfig").setup({
+  ensure_installed = { "sumneko_lua" }
+})
 
 local on_attach = function(client, bufnr)
     local buf_set_keymap = vim.keymap.set
@@ -35,85 +38,54 @@ local lua_runtime_path = vim.split(package.path, ';')
 table.insert(lua_runtime_path, "lua/?.lua")
 table.insert(lua_runtime_path, "lua/?/init.lua")
 
-local servers = {
-    sumneko_lua = {
-        handlers = rounded_border_handlers,
-        settings = {
-            Lua = {
-                runtime = {
-                    version = 'LuaJIT',
-                    path = lua_runtime_path,
-                },
-                diagnostics = {
-                    globals = { 'vim' },
-                },
-                workspace = {
-                  library = {
-                    [vim.fn.expand "$VIMRUNTIME/lua"] = true,
-                    [vim.fn.stdpath "config" .. "/lua"] = true,
-                  },
-                },
-                telemetry = {
-                    enable = false,
-                },
-            },
-        }
-    },
-    -- gopls = {
-    --     cmd = { 'gopls', 'serve' },
-    --     handlers = rounded_border_handlers,
-    --     settings = {
-    --         gopls = {
-    --             analyses = {
-    --                 unusedparams = true,
-    --             },
-    --             staticcheck = true,
-    --         },
-    --     }
-    -- },
-    -- rls = {
-    --     handlers = rounded_border_handlers,
-    --     settings = {
-    --         rust = {
-    --             unstable_features = true,
-    --             build_on_save = false,
-    --             all_features = true,
-    --         }
-    --     }
-    -- },
-    jsonnet_ls = {
-        ext_vars = {
-          foo = 'bar',
-        },
-    },
-    omnisharp = {
-        cmd = { "/home/stanimir/.local/bin/OmniSharp" },
-        handlers = {
-            ['textDocument/definition'] = require('omnisharp_extended').handler,
-            ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" }),
-            ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" }),
-        },
-    },
-    jedi_language_server = {
-        handlers = rounded_border_handlers
-    },
-    -- tsserver = {
-    --     cmd = { "typescript-language-server", "--stdio" },
-    --     handlers = rounded_border_handlers,
-    --     filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" },
-    --     init_options = { hostInfo = "neovim" },
-    --     root_dir = require('lspconfig.util').root_pattern("package.json", "tsconfig.json", "jsconfig.json", ".git")
-    -- }
+-- Set up lspconfig.
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
+
+require('lspconfig').sumneko_lua.setup {
+  on_attach = on_attach,
+  handlers = rounded_border_handlers,
+  capabilities = capabilities,
+  settings = {
+      Lua = {
+          runtime = {
+              version = 'LuaJIT',
+              path = lua_runtime_path,
+          },
+          diagnostics = {
+              globals = { 'vim' },
+          },
+          workspace = {
+              library = vim.api.nvim_get_runtime_file("", true),
+              checkThirdParty = false,
+          },
+          telemetry = {
+              enable = false,
+          },
+      },
+  }
 }
 
-local lsp_defaults = lspconfig.util.default_config
-lsp_defaults.capabilities = vim.tbl_deep_extend(
-    'force',
-    lsp_defaults.capabilities,
-    require('cmp_nvim_lsp').default_capabilities()
-)
+require('lspconfig').jsonnet_ls.setup {
+  ext_vars = {
+    foo = 'bar',
+  },
+  on_attach = on_attach,
+  capabilities = capabilities,
+}
 
-for name, config in pairs(servers) do
-    config.on_attach = on_attach
-    lspconfig[name].setup(config)
-end
+require('lspconfig').omnisharp.setup {
+  cmd = { "/home/stanimir/.local/bin/OmniSharp" },
+  handlers = {
+      ['textDocument/definition'] = require('omnisharp_extended').handler,
+      ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" }),
+      ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" }),
+  },
+  on_attach = on_attach,
+  capabilities = capabilities,
+}
+
+require('lspconfig').jedi_language_server.setup {
+  on_attach = on_attach,
+  handlers = rounded_border_handlers,
+  capabilities = capabilities,
+}

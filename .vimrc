@@ -156,12 +156,12 @@ Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
-Plug 'saadparwaiz1/cmp_luasnip'
+" Plug 'saadparwaiz1/cmp_luasnip'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-nvim-lua'
 "  Snippets
 Plug 'L3MON4D3/LuaSnip'
-Plug 'rafamadriz/friendly-snippets'
+" Plug 'rafamadriz/friendly-snippets'
 " Plug 'VonHeikemen/lsp-zero.nvim'
 
 Plug 'jose-elias-alvarez/null-ls.nvim'
@@ -253,7 +253,7 @@ Plug 'sainnhe/sonokai'
 Plug 'google/vim-jsonnet'
 Plug 'jamessan/vim-gnupg'
 Plug 'williamboman/mason.nvim'
-" Plug 'williamboman/mason-lspconfig.nvim'
+Plug 'williamboman/mason-lspconfig.nvim'
 Plug 'Hoffs/omnisharp-extended-lsp.nvim'
 
 " Add maktaba and codefmt to the runtimepath.
