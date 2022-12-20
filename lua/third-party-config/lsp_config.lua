@@ -74,7 +74,7 @@ require('lspconfig').jsonnet_ls.setup {
 }
 
 require('lspconfig').omnisharp.setup {
-  cmd = { "/home/stanimir/.local/bin/OmniSharp" },
+  cmd = { "omnisharp" },
   handlers = {
       ['textDocument/definition'] = require('omnisharp_extended').handler,
       ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" }),
