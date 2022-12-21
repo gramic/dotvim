@@ -1,6 +1,6 @@
 local configs = require'nvim-treesitter.configs'
 configs.setup {
-  ensure_installed = "all", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+  ensure_installed = {"sql", "lua", "cpp"}, -- one of "all", "maintained" (parsers with maintainers), or a list of languages
   -- ignore_install = { "javascript" }, -- List of parsers to ignore installing
   autotag = {
     enable = true,
@@ -22,6 +22,16 @@ configs.setup {
   --   -- colors = {}, -- table of hex strings
   --   -- termcolors = {} -- table of colour name strings
   -- },
+  indent = { enable = true },
+  incremental_selection = {
+    enable = true,
+    keymaps = {
+      init_selection = '<c-space>',
+      node_incremental = '<c-space>',
+      scope_incremental = '<c-s>',
+      node_decremental = '<c-backspace>',
+    },
+  },
   textobjects = {
     select = {
       enable = true,

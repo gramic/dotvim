@@ -254,6 +254,10 @@ Plug 'google/vim-jsonnet'
 Plug 'jamessan/vim-gnupg'
 Plug 'williamboman/mason.nvim'
 Plug 'williamboman/mason-lspconfig.nvim'
+" Useful status updates for LSP
+Plug 'j-hui/fidget.nvim',
+" Add indentation guides even on blank lines
+Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'Hoffs/omnisharp-extended-lsp.nvim'
 
 " Add maktaba and codefmt to the runtimepath.
