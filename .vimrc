@@ -214,7 +214,7 @@ Plug 'folke/trouble.nvim'
 "Plug 'argtextobj.vim'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'pangloss/vim-javascript'
-Plug 'scrooloose/nerdcommenter'
+" Plug 'scrooloose/nerdcommenter'
 Plug 'jpetrie/vim-counterpoint'
 Plug 'ekalinin/Dockerfile.vim'
 Plug 'tpope/vim-dadbod'
@@ -231,7 +231,7 @@ Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-commentary'
+" Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-abolish'
@@ -258,6 +258,8 @@ Plug 'williamboman/mason-lspconfig.nvim'
 Plug 'j-hui/fidget.nvim',
 " Add indentation guides even on blank lines
 Plug 'lukas-reineke/indent-blankline.nvim'
+" "gc" to comment visual regions/lines
+Plug 'numToStr/Comment.nvim'
 Plug 'Hoffs/omnisharp-extended-lsp.nvim'
 
 " Add maktaba and codefmt to the runtimepath.
