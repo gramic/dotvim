@@ -2,8 +2,8 @@ require("mason").setup()
 require("mason-lspconfig").setup({
   ensure_installed = { "sumneko_lua" },
   providers = {
-      "mason.providers.client",
       "mason.providers.registry-api",
+      "mason.providers.client",
   }
 })
 
@@ -68,6 +68,8 @@ require('lspconfig').sumneko_lua.setup {
       },
   }
 }
+
+require("clangd_extensions").setup()
 
 require('lspconfig').jsonnet_ls.setup {
   ext_vars = {

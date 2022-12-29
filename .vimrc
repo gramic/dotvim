@@ -211,6 +211,7 @@ Plug 'gramic/dotvim', { 'do': 'git remote add upstream git@github.com:gramic/dot
 Plug 'Valloric/MatchTagAlways'
 Plug 'folke/trouble.nvim'
 " Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clangd-completer' } " --java-completer
+Plug 'p00f/clangd_extensions.nvim'
 "Plug 'argtextobj.vim'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'pangloss/vim-javascript'
