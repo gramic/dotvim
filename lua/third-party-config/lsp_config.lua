@@ -1,6 +1,10 @@
 require("mason").setup()
 require("mason-lspconfig").setup({
-  ensure_installed = { "sumneko_lua" }
+  ensure_installed = { "sumneko_lua" },
+  providers = {
+      "mason.providers.client",
+      "mason.providers.registry-api",
+  }
 })
 
 local on_attach = function(client, bufnr)
