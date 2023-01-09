@@ -5,7 +5,7 @@ require("mason").setup({
   }
 })
 require("mason-lspconfig").setup({
-  ensure_installed = { "sumneko_lua" },
+  ensure_installed = { "sumneko_lua", "clangd" },
 })
 
 local on_attach = function(client, bufnr)
@@ -33,6 +33,7 @@ local on_attach = function(client, bufnr)
     buf_set_keymap('n', '<leader>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
     buf_set_keymap("n", "<leader>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
 end
+
 
 local rounded_border_handlers = {
     ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" }),
@@ -70,7 +71,15 @@ require('lspconfig').sumneko_lua.setup {
   }
 }
 
-require("clangd_extensions").setup()
+-- See https://github.com/p00f/clangd_extensions.nvim
+require("clangd_extensions").setup{
+  server = {
+    on_attach = on_attach,
+    handlers = rounded_border_handlers,
+    capabilities = capabilities,
+  }
+}
+
 
 require('lspconfig').jsonnet_ls.setup {
   ext_vars = {
