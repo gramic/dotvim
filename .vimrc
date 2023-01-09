@@ -272,6 +272,7 @@ Plug 'google/vim-codefmt'
 Plug 'google/vim-glaive'
 "Plugin 'sjl/vitality.vim'
 Plug 'kazhala/close-buffers.nvim'
+" Plug 'stevearc/oil.nvim'
 
 "asyncomplete setup mappings
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
