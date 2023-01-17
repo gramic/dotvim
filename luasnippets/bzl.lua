@@ -17,18 +17,16 @@ return {
             hdrs = ["{}"],
         )
 
-
         cc_test(
             name = "{}",
             size = "small",
             srcs = ["{}"],
-            deps = ["
+            deps = [
                 ":{}",
                 "@boost_di",
                 "@org_boost_ut",
             ],
         )
-
         {}
       ]],
       {
