@@ -1,6 +1,7 @@
 require('gramic/globals')
 require('third-party-config/lsp_config')
 require('third-party-config/lualine-setup')
+require('third-party-config/luasnip-setup')
 require('third-party-config/treesitter-setup')
 require('third-party-config/telescope-setup')
 require('third-party-config/neogen-setup')
