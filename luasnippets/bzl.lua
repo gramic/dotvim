@@ -42,5 +42,24 @@ return {
       }
     ),
     {}
+  ),
+
+  s({trig="cc_library", dscr = "Create cc_library only."},
+    fmt(
+      [[
+        cc_library(
+            name = "{}",
+            srcs = ["{}"],
+            hdrs = ["{}"],
+        ){}
+      ]],
+      {
+        i(1),
+        l(l._1 .. ".cc", 1),
+        l(l._1 .. ".h", 1),
+        i(0),
+      }
+    ),
+    {}
   )
 }
