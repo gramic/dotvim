@@ -171,7 +171,7 @@ Plug 'kyazdani42/nvim-web-devicons'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'sindrets/diffview.nvim'
 Plug 'nvim-telescope/telescope.nvim'
-Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
+Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
 Plug 'OmniSharp/omnisharp-vim'
 Plug 'mfussenegger/nvim-dap'
 Plug 'AndrewRadev/linediff.vim'
@@ -542,9 +542,11 @@ let g:ctrlp_root_markers = ['CMakeLists\.txt']
 let g:ctrlp_custom_ignore = {
   \ 'dir':  '\.git$\|\.hg$\|\.svn$\|node_modules$\|bazel-app$\|bazel-bin$\|bazel-genfiles$\|bazel-out$\|build$\|build_release$\|build_debug$\|third_parties\|target$',
   \ }
-nnoremap <localleader>ff :FzfGFiles<CR>
+" nnoremap <localleader>ff :FzfGFiles<CR>
+nnoremap <localleader>ff :Telescope git_files<CR>
 nnoremap <localleader>tff :Telescope git_files<CR>
-nnoremap <localleader>fm :FzfHistory<CR>
+" nnoremap <localleader>fm :FzfHistory<CR>
+nnoremap <localleader>fm :Telescope oldfiles<CR>
 nnoremap <localleader>tfm :Telescope oldfiles<CR>
 let g:ctrlp_by_filename = 1 " search by filename (not full path) as default.
 let g:ctrlp_dotfiles = 0 " do not search inside dot files and dirs.
