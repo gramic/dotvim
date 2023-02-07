@@ -5,7 +5,7 @@ require("mason").setup({
   }
 })
 require("mason-lspconfig").setup({
-  ensure_installed = { "sumneko_lua", "clangd" },
+  ensure_installed = { "sumneko_lua", "clangd", "jsonnet_ls", "pyright" },
 })
 
 local on_attach = function(client, bufnr)
@@ -105,3 +105,5 @@ require('lspconfig').jedi_language_server.setup {
   handlers = rounded_border_handlers,
   capabilities = capabilities,
 }
+
+require'lspconfig'.pyright.setup{}
