@@ -172,6 +172,7 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'sindrets/diffview.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
+Plug 'ibhagwan/fzf-lua', {'branch': 'main'}
 Plug 'OmniSharp/omnisharp-vim'
 Plug 'mfussenegger/nvim-dap'
 Plug 'AndrewRadev/linediff.vim'
@@ -186,7 +187,7 @@ Plug 'windwp/nvim-ts-autotag'
 Plug 'ryvnf/readline.vim'
 Plug 'leafgarland/typescript-vim'
 Plug 'will133/vim-dirdiff'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/gv.vim'
 Plug 'jreybert/vimagit'
@@ -384,7 +385,7 @@ let g:Gitv_TruncateCommitSubjects = 1
 " Generic mappings {{{
 if has("nvim")
   au TermOpen * tnoremap <Esc> <c-\><c-n>
-  au FileType fzf tunmap <Esc>
+  " au FileType fzf tunmap <Esc>
 endif
 nnoremap <M-1> 1gt
 nnoremap <M-2> 2gt
@@ -545,11 +546,9 @@ let g:ctrlp_custom_ignore = {
   \ 'dir':  '\.git$\|\.hg$\|\.svn$\|node_modules$\|bazel-app$\|bazel-bin$\|bazel-genfiles$\|bazel-out$\|build$\|build_release$\|build_debug$\|third_parties\|target$',
   \ }
 " nnoremap <localleader>ff :FzfGFiles<CR>
-nnoremap <localleader>ff :Telescope git_files<CR>
-nnoremap <localleader>tff :Telescope git_files<CR>
+nnoremap <localleader>ff :FzfLua git_files<CR>
 " nnoremap <localleader>fm :FzfHistory<CR>
-nnoremap <localleader>fm :Telescope oldfiles<CR>
-nnoremap <localleader>tfm :Telescope oldfiles<CR>
+nnoremap <localleader>fm :FzfLua oldfiles<CR>
 let g:ctrlp_by_filename = 1 " search by filename (not full path) as default.
 let g:ctrlp_dotfiles = 0 " do not search inside dot files and dirs.
 
