@@ -106,22 +106,6 @@ if has("unix")
   endif
 endif
 
-" let s:clip = '/mnt/c/Windows/system32/win32yank.exe'  " change this path according to your mount point
-" if executable(s:clip)
-"     let g:clipboard = {
-"               \   'name': 'win32yank-wsl',
-"               \   'copy': {
-"               \      '+': 'win32yank.exe -i --crlf',
-"               \      '*': 'win32yank.exe -i --crlf',
-"               \    },
-"               \   'paste': {
-"               \      '+': 'win32yank.exe -o --lf',
-"               \      '*': 'win32yank.exe -o --lf',
-"               \   },
-"               \   'cache_enabled': 0,
-"               \ }
-" endif
-
 set numberwidth=2
 " let mapleader=" "
 " }}}
@@ -220,14 +204,6 @@ Plug 'pangloss/vim-javascript'
 Plug 'jpetrie/vim-counterpoint'
 Plug 'ekalinin/Dockerfile.vim'
 Plug 'tpope/vim-dadbod'
-Plug 'kristijanhusak/vim-dadbod-completion'
-Plug 'kristijanhusak/vim-dadbod-ui'
-Plug 'vim-scripts/dbext.vim'
-Plug 'prabirshrestha/asyncomplete.vim'
-"Plug 'folke/which-key.nvim'
-"Plug 'cmake.vim'
-"Plug 'cmake.vim-syntax'
-Plug 'gcmt/taboo.vim'
 Plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-rhubarb'
@@ -235,18 +211,22 @@ Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-repeat'
-" Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-characterize'
 Plug 'tpope/vim-dispatch'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround'
+Plug 'kristijanhusak/vim-dadbod-completion'
+Plug 'kristijanhusak/vim-dadbod-ui'
+Plug 'vim-scripts/dbext.vim'
+Plug 'prabirshrestha/asyncomplete.vim'
+Plug 'gcmt/taboo.vim'
 Plug 'shumphrey/fugitive-gitlab.vim'
 Plug 'mbbill/undotree'
 Plug 'gregsexton/gitv'
 Plug 'benjifisher/matchit.zip'
-Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-surround'
 Plug 'qpkorr/vim-bufkill'
 Plug 'nelstrom/vim-visual-star-search'
 Plug 'ap/vim-css-color'
