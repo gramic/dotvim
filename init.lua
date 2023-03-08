@@ -14,16 +14,10 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-  -- {"gramic/dotvim",
-  --   config = function() 
-  --     vim.fn.system({
-  --       "git",
-  --       "remote",
-  --       "add",
-  --       "upstream",
-  --       "git@github.com:gramic/dotvim.git" })
-  --   end
-  -- },
+  {
+    "gramic/dotvim",
+    build = "git remote add upstream git@github.com:gramic/dotvim.git"
+  },
   {import = "plugins"},
   { "folke/neoconf.nvim", cmd = "Neoconf" },
   "folke/neodev.nvim",
