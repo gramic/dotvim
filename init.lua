@@ -37,6 +37,7 @@ require("lazy").setup({
   "tpope/vim-repeat",
   "tpope/vim-surround",
   "nvim-lua/plenary.nvim",
+  "L3MON4D3/LuaSnip",
   { "junegunn/fzf", build = "./install --bin"},
   {"ibhagwan/fzf-lua",
     dependencies = { 'nvim-tree/nvim-web-devicons', 'junegunn/fzf' },
@@ -89,6 +90,9 @@ set.iminsert=0
 set.imsearch=0
 set.numberwidth=2
 set.mouse=""
+
+if vim.fn.executable('gclpr') == 1 then
+end
 
 vim.api.nvim_create_autocmd('TextYankPost', {
   group = vim.api.nvim_create_augroup('highlight_yank', {}),

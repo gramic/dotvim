@@ -1,4 +1,5 @@
 return {
+
   {
     "folke/which-key.nvim",
     config = function()
@@ -11,7 +12,7 @@ return {
       })
     end,
   },
-  -- add symbols-outline
+
   {
     "simrat39/symbols-outline.nvim",
     cmd = "SymbolsOutline",
@@ -21,6 +22,70 @@ return {
       position = "right",
     },
   },
+
+  {
+    "hrsh7th/nvim-cmp",
+    dependencies = { "hrsh7th/cmp-emoji" },
+    ---@param opts cmp.ConfigSchema
+    opts = function(_, opts)
+      local cmp = require("cmp")
+      -- opts.sources = cmp.config.sources(vim.list_extend(opts.sources, { { name = "emoji" } }))
+    end,
+  },
+
+  {
+    "hrsh7th/nvim-cmp",
+    dependencies = {
+      "hrsh7th/cmp-emoji",
+    },
+    ---@param opts cmp.ConfigSchema
+    opts = function(_, opts)
+      local luasnip = require("luasnip")
+      local cmp = require("cmp")
+    end,
+  },
+
+  {
+    'lukas-reineke/indent-blankline.nvim',
+    config = true,
+  },
+
+  {
+    "nvim-treesitter/nvim-treesitter",
+    opts = {
+      ensure_installed = {
+        "bash",
+        "help",
+        "html",
+        "javascript",
+        "json",
+        "lua",
+        "markdown",
+        "markdown_inline",
+        "python",
+        "query",
+        "regex",
+        "tsx",
+        "typescript",
+        "vim",
+        "yaml",
+      },
+    },
+  },
+
+  -- add any tools you want to have installed below
+  {
+    "williamboman/mason.nvim",
+    opts = {
+      ensure_installed = {
+        "stylua",
+        "shellcheck",
+        "shfmt",
+        "flake8",
+      },
+    },
+  },
+
  --  {
 	--   comparators = {
 	--       cmp.config.compare.offset,
