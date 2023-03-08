@@ -14,7 +14,8 @@ vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = " " -- Make sure to set `mapleader` before lazy so your mappings are correct
 
 require("lazy").setup({
-  "folke/which-key.nvim",
+  {import = "plugins"},
+  { "folke/which-key.nvim", lazy = true},
   { "folke/neoconf.nvim", cmd = "Neoconf" },
   "folke/neodev.nvim",
   "tpope/vim-dadbod",
@@ -32,10 +33,51 @@ require("lazy").setup({
   "tpope/vim-dispatch",
   "tpope/vim-repeat",
   "tpope/vim-surround",
+  "justinmk/vim-dirvish",
+  {
+    "ellisonleao/gruvbox.nvim",
+    lazy = false, -- make sure we load this during startup if it is your main colorscheme
+    priority = 1000, -- make sure to load this before all the other start plugins
+    config = function()
+      -- load the colorscheme here
+      vim.cmd([[colorscheme gruvbox]])
+    end,
+  },
+  {
+    "numToStr/Comment.nvim",
+    config = true,
+  },
+--  {
+--    "neovim/nvim-lspconfig",
+--    opts = {
+--      servers = {
+--        pyright = {},
+--      },
+--    },
+--  },
 })
 
+local set = vim.opt -- set options
+set.tabstop=2
+set.shiftwidth=2
+set.smarttab = true
+set.smartindent = true
+set.ignorecase = true
+set.smartcase = true
+set.incsearch = true
+set.hlsearch = false
+set.expandtab = true
+set.autoread = true
+set.fixendofline = false
+set.swapfile = false
+-- set.sessionoptions+=tabpages,globals
+set.keymap = "bulgarian-phonetic"
+set.iminsert=0
+set.imsearch=0
+set.numberwidth=2
+
 vim.api.nvim_create_autocmd('TextYankPost', {
-  group = vim.api.nvim_create_augroup('highlight_yank'),
+  group = vim.api.nvim_create_augroup('highlight_yank', {}),
   desc = 'Hightlight selection on yank',
   pattern = '*',
   callback = function()
@@ -43,4 +85,3 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
-vim.g.keymap = "bulgarian-phonetic"
