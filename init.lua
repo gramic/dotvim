@@ -1,3 +1,5 @@
+vim.g.mapleader = " " -- Make sure to set `mapleader` before lazy so your mappings are correct
+
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
@@ -11,11 +13,18 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-vim.g.mapleader = " " -- Make sure to set `mapleader` before lazy so your mappings are correct
-
 require("lazy").setup({
+  -- {"gramic/dotvim",
+  --   config = function() 
+  --     vim.fn.system({
+  --       "git",
+  --       "remote",
+  --       "add",
+  --       "upstream",
+  --       "git@github.com:gramic/dotvim.git" })
+  --   end
+  -- },
   {import = "plugins"},
-  { "folke/which-key.nvim", lazy = true},
   { "folke/neoconf.nvim", cmd = "Neoconf" },
   "folke/neodev.nvim",
   "tpope/vim-dadbod",
@@ -33,6 +42,16 @@ require("lazy").setup({
   "tpope/vim-dispatch",
   "tpope/vim-repeat",
   "tpope/vim-surround",
+  "nvim-lua/plenary.nvim",
+  { "junegunn/fzf", build = "./install --bin"},
+  {"ibhagwan/fzf-lua",
+    dependencies = { 'nvim-tree/nvim-web-devicons', 'junegunn/fzf' },
+    config = true,
+    keys = {
+      {"<leader>ff", "<cmd>FzfLua git_files<cr>", desc = "Find git files"},
+      {"<leader>fm", "<cmd>FzfLua oldfiles<cr>", desc = "Old files"},
+    },
+  },
   "justinmk/vim-dirvish",
   {
     "ellisonleao/gruvbox.nvim",
@@ -75,6 +94,7 @@ set.keymap = "bulgarian-phonetic"
 set.iminsert=0
 set.imsearch=0
 set.numberwidth=2
+set.mouse=""
 
 vim.api.nvim_create_autocmd('TextYankPost', {
   group = vim.api.nvim_create_augroup('highlight_yank', {}),
