@@ -64,26 +64,10 @@ require("lazy").setup({
     "numToStr/Comment.nvim",
     config = true,
   },
-  "neovim/nvim-lspconfig",
-  {
-    "williamboman/mason.nvim",
-    dependencies = { 'williamboman/mason-lspconfig.nvim', 'neovim/nvim-lspconfig'},
-    opts = {
-      providers = {
-        "mason.providers.client",
-        "mason.providers.registry-api",
-      },
-    },
-  },
-  {
-    "williamboman/mason-lspconfig.nvim",
-    opts = {
-      ensure_installed = { "lua_ls", "clangd", "jsonnet_ls", "pyright" },
-    },
-  },
 })
 
 local set = vim.opt -- set options
+set.undofile=true
 set.tabstop=2
 set.shiftwidth=2
 set.smarttab = true
