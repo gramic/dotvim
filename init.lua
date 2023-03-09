@@ -16,7 +16,10 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
   {
     "gramic/dotvim",
-    build = "git remote add upstream git@github.com:gramic/dotvim.git"
+    lazy = false, -- make sure we load this during startup if it is your main colorscheme
+    priority = 1000, -- make sure to load this before all the other start plugins
+    url = "git@github.com:gramic/dotvim.git"
+    -- build = "git remote add upstream git@github.com:gramic/dotvim.git"
   },
   {import = "plugins"},
   { "folke/neoconf.nvim", cmd = "Neoconf" },
@@ -61,14 +64,23 @@ require("lazy").setup({
     "numToStr/Comment.nvim",
     config = true,
   },
---  {
---    "neovim/nvim-lspconfig",
---    opts = {
---      servers = {
---        pyright = {},
---      },
---    },
---  },
+  "neovim/nvim-lspconfig",
+  {
+    "williamboman/mason.nvim",
+    dependencies = { 'williamboman/mason-lspconfig.nvim', 'neovim/nvim-lspconfig'},
+    opts = {
+      providers = {
+        "mason.providers.client",
+        "mason.providers.registry-api",
+      },
+    },
+  },
+  {
+    "williamboman/mason-lspconfig.nvim",
+    opts = {
+      ensure_installed = { "lua_ls", "clangd", "jsonnet_ls", "pyright" },
+    },
+  },
 })
 
 local set = vim.opt -- set options
