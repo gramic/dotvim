@@ -18,8 +18,8 @@ require("lazy").setup({
     "gramic/dotvim",
     lazy = false, -- make sure we load this during startup if it is your main colorscheme
     priority = 1000, -- make sure to load this before all the other start plugins
-    url = "git@github.com:gramic/dotvim.git"
-    -- build = "git remote add upstream git@github.com:gramic/dotvim.git"
+    url = "git@github.com:gramic/dotvim.git",
+    build = "git remote add upstream git@github.com:gramic/dotvim.git",
   },
   {import = "plugins"},
   { "folke/neoconf.nvim", cmd = "Neoconf" },
