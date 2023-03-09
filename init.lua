@@ -1,4 +1,4 @@
-vim.g.mapleader = " " -- Make sure to set `mapleader` before lazy so your mappings are correct
+vim.g.mapleader = " " -- Make sure to set `mapleader` before lazy
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -16,14 +16,45 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
   {
     "gramic/dotvim",
-    lazy = false, -- make sure we load this during startup if it is your main colorscheme
-    priority = 1000, -- make sure to load this before all the other start plugins
+    lazy = false,
+    priority = 1000,
     url = "git@github.com:gramic/dotvim.git",
     build = "git remote add upstream git@github.com:gramic/dotvim.git",
   },
   {import = "plugins"},
   { "folke/neoconf.nvim", cmd = "Neoconf" },
   "folke/neodev.nvim",
+  {
+    "m4xshen/smartcolumn.nvim",
+    config = true,
+  },
+  "gcmt/taboo.vim",
+  "kristijanhusak/vim-dadbod-completion",
+  "kristijanhusak/vim-dadbod-ui",
+  "vim-scripts/dbext.vim",
+  "sindrets/diffview.nvim",
+  "shumphrey/fugitive-gitlab.vim",
+  "mbbill/undotree",
+  "qpkorr/vim-bufkill",
+  "nelstrom/vim-visual-star-search",
+  "duganchen/vim-soy",
+  -- Add maktaba and codefmt to the runtimepath.
+  "google/vim-maktaba",
+  {"google/vim-codefmt", dependencies = {"google/vim-maktaba"}},
+  -- Also add Glaive, which is used to configure codefmt's maktaba flags. See
+  -- `:help :Glaive` for usage.
+  {"google/vim-glaive", dependencies = {"google/vim-maktaba"}},
+  {"nvim-lualine/lualine.nvim", dependencies = {"nvim-tree/nvim-web-devicons"}},
+  {"nvim-treesitter/playground"},
+  {"nvim-treesitter/nvim-treesitter-textobjects",
+    dependencies = {"nvim-tree/nvim-web-devicons"},
+  },
+  {"ConradIrwin/vim-bracketed-paste"},
+  -- {"gramic-neovim", dir = "~/gramic-neovim"},
+  {"ryvnf/readline.vim"},
+  {"folke/trouble.nvim", config = true},
+  {"p00f/clangd_extensions.nvim"},
+  {"jpetrie/vim-counterpoint"},
   "tpope/vim-dadbod",
   "tpope/vim-speeddating",
   "tpope/vim-eunuch",
@@ -53,8 +84,8 @@ require("lazy").setup({
   "justinmk/vim-dirvish",
   {
     "ellisonleao/gruvbox.nvim",
-    lazy = false, -- make sure we load this during startup if it is your main colorscheme
-    priority = 1000, -- make sure to load this before all the other start plugins
+    lazy = false,
+    priority = 1000,
     config = function()
       -- load the colorscheme here
       vim.cmd([[colorscheme gruvbox]])
@@ -80,7 +111,7 @@ set.expandtab = true
 set.autoread = true
 set.fixendofline = false
 set.swapfile = false
--- set.sessionoptions+=tabpages,globals
+set.sessionoptions:append{"globals"} -- to save TabooRename names
 set.keymap = "bulgarian-phonetic"
 set.iminsert=0
 set.imsearch=0
