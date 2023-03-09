@@ -87,7 +87,42 @@ set.imsearch=0
 set.numberwidth=2
 set.mouse=""
 
-if vim.fn.executable('gclpr') == 1 then
+if vim.fn.has('"unix"') then
+  if vim.env.WSL_DISTRO_NAME ~= nil then
+    if vim.fn.executable('gclpr') == 1 then
+      vim.g.clipboard = [[
+          {
+            'name': 'gclpr',
+            'copy': {
+               '+': 'gclpr copy',
+               '*': 'gclpr copy',
+             },
+            'paste': {
+               '+': 'gclpr paste --line-ending lf',
+               '*': 'gclpr paste --line-ending lf',
+            },
+            'cache_enabled': 0,
+          }
+      ]]
+    end
+  else
+    if vim.fn.executable(vim.env.HOME .. '/winhome/.wsl/gclpr.exe') == 1 then
+      vim.g.clipboard = [[
+          {
+            'name': 'gclpr',
+            'copy': {
+               '+': $HOME . '/winhome/.wsl/gclpr.exe copy',
+               '*': $HOME . '/winhome/.wsl/gclpr.exe copy',
+             },
+            'paste': {
+               '+': $HOME . '/winhome/.wsl/gclpr.exe paste --line-ending lf',
+               '*': $HOME . '/winhome/.wsl/gclpr.exe paste --line-ending lf',
+            },
+            'cache_enabled': 0,
+          }
+      ]]
+    end
+  end
 end
 
 vim.api.nvim_create_autocmd('TextYankPost', {
