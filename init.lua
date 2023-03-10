@@ -44,7 +44,24 @@ require("lazy").setup({
   -- Also add Glaive, which is used to configure codefmt's maktaba flags. See
   -- `:help :Glaive` for usage.
   {"google/vim-glaive", dependencies = {"google/vim-maktaba"}},
-  {"nvim-lualine/lualine.nvim", dependencies = {"nvim-tree/nvim-web-devicons"}},
+  {
+    "nvim-lualine/lualine.nvim",
+    dependencies = {"nvim-tree/nvim-web-devicons"},
+    opts = {
+      options = {
+        theme = 'gruvbox',
+        section_separators = '', component_separators = '',
+      },
+      inactive_sections = {
+        lualine_a = {'%{winnr()}'},
+        lualine_b = {},
+        lualine_c = {'filename'},
+        lualine_x = {},
+        lualine_y = {},
+        lualine_z = {},
+      },
+    },
+  },
   {"nvim-treesitter/playground"},
   {"nvim-treesitter/nvim-treesitter-textobjects",
     dependencies = {"nvim-tree/nvim-web-devicons"},
@@ -90,6 +107,15 @@ require("lazy").setup({
       -- load the colorscheme here
       vim.cmd([[colorscheme gruvbox]])
     end,
+  },
+  {
+    'uloco/bluloco.nvim',
+    lazy = false,
+    priority = 1000,
+    dependencies = { 'rktjmp/lush.nvim' },
+    -- config = function()
+    --   -- your optional config goes here, see below.
+    -- end,
   },
   {
     "numToStr/Comment.nvim",
