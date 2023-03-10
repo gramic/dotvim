@@ -89,7 +89,17 @@ require("lazy").setup({
   "tpope/vim-surround",
   "nvim-lua/plenary.nvim",
   "L3MON4D3/LuaSnip",
-  { "junegunn/fzf", build = "./install --bin"},
+  { 'echasnovski/mini.nvim', version = false },
+  {
+    "echasnovski/mini.bracketed",
+    dependencies = {'echasnovski/mini.nvim', "nvim-treesitter/nvim-treesitter"},
+    version = false,
+    config = function(_, opts)
+      -- require('echasnovski/mini.bracketed').setup(opts)
+      require('mini.bracketed').setup()
+    end
+  },
+  {"junegunn/fzf", build = "./install --bin"},
   {"ibhagwan/fzf-lua",
     dependencies = { 'nvim-tree/nvim-web-devicons', 'junegunn/fzf' },
     config = true,
@@ -107,15 +117,6 @@ require("lazy").setup({
       -- load the colorscheme here
       vim.cmd([[colorscheme gruvbox]])
     end,
-  },
-  {
-    'uloco/bluloco.nvim',
-    lazy = false,
-    priority = 1000,
-    dependencies = { 'rktjmp/lush.nvim' },
-    -- config = function()
-    --   -- your optional config goes here, see below.
-    -- end,
   },
   {
     "numToStr/Comment.nvim",
