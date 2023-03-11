@@ -13,6 +13,29 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+local set = vim.opt -- set options
+set.undofile=true
+set.tabstop=2
+set.shiftwidth=2
+set.smarttab = true
+set.smartindent = true
+set.ignorecase = true
+set.smartcase = true
+set.incsearch = true
+set.hlsearch = false
+set.expandtab = true
+set.autoread = true
+set.fixendofline = false
+set.swapfile = false
+set.sessionoptions:append{"globals"} -- to save TabooRename names
+set.keymap = "bulgarian-phonetic"
+set.iminsert=0
+set.imsearch=0
+set.numberwidth=2
+set.mouse=""
+
+vim.g.BufKillCreateMappings = 0
+
 require("lazy").setup({
   {
     "gramic/dotvim",
@@ -142,27 +165,6 @@ require("lazy").setup({
     config = true,
   },
 })
-
-local set = vim.opt -- set options
-set.undofile=true
-set.tabstop=2
-set.shiftwidth=2
-set.smarttab = true
-set.smartindent = true
-set.ignorecase = true
-set.smartcase = true
-set.incsearch = true
-set.hlsearch = false
-set.expandtab = true
-set.autoread = true
-set.fixendofline = false
-set.swapfile = false
-set.sessionoptions:append{"globals"} -- to save TabooRename names
-set.keymap = "bulgarian-phonetic"
-set.iminsert=0
-set.imsearch=0
-set.numberwidth=2
-set.mouse=""
 
 if vim.fn.has('"unix"') then
   if vim.env.WSL_DISTRO_NAME ~= nil then
