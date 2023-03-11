@@ -44,6 +44,7 @@ require("lazy").setup({
   -- Also add Glaive, which is used to configure codefmt's maktaba flags. See
   -- `:help :Glaive` for usage.
   {"google/vim-glaive", dependencies = {"google/vim-maktaba"}},
+  {"google/vim-jsonnet"},
   {
     "nvim-lualine/lualine.nvim",
     dependencies = {"nvim-tree/nvim-web-devicons"},
@@ -76,7 +77,6 @@ require("lazy").setup({
   "tpope/vim-speeddating",
   "tpope/vim-eunuch",
   "tpope/vim-rhubarb",
-  "tpope/vim-vinegar",
   "tpope/vim-fugitive",
   "tpope/vim-rhubarb",
   "tpope/vim-repeat",
@@ -90,15 +90,6 @@ require("lazy").setup({
   "nvim-lua/plenary.nvim",
   "L3MON4D3/LuaSnip",
   { 'echasnovski/mini.nvim', version = false },
-  {
-    "echasnovski/mini.bracketed",
-    dependencies = {'echasnovski/mini.nvim', "nvim-treesitter/nvim-treesitter"},
-    version = false,
-    config = function(_, opts)
-      -- require('echasnovski/mini.bracketed').setup(opts)
-      require('mini.bracketed').setup()
-    end
-  },
   {"junegunn/fzf", build = "./install --bin"},
   {"ibhagwan/fzf-lua",
     dependencies = { 'nvim-tree/nvim-web-devicons', 'junegunn/fzf' },
@@ -109,6 +100,16 @@ require("lazy").setup({
     },
   },
   "justinmk/vim-dirvish",
+  -- {
+  --   'stevearc/oil.nvim',
+  --   -- config = function() require('oil').setup() end
+  --   config = true,
+  --   opts = {
+  --     view_options = {
+  --       show_hidden = true,
+  --     },
+  --   },
+  -- },
   {
     "ellisonleao/gruvbox.nvim",
     lazy = false,

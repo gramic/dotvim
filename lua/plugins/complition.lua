@@ -72,7 +72,6 @@ return {
         formatting = {
           fields = { "kind", "abbr", "menu" },
           format = function(entry, item)
-            local max_width = 0
             local source_names = {
               nvim_lsp = "(LSP)",
               path = "(Path)",
@@ -86,9 +85,6 @@ return {
               luasnip = 1,
             }
             local duplicates_default = 0
-            if max_width ~= 0 and #item.abbr > max_width then
-              item.abbr = string.sub(item.abbr, 1, max_width - 1) .. icons.ui.Ellipsis
-            end
             -- item.kind = icons.kind[item.kind]
             item.menu = source_names[entry.source.name]
             item.dup = duplicates[entry.source.name] or duplicates_default
@@ -191,6 +187,8 @@ return {
     "nvim-treesitter/nvim-treesitter",
     opts = {
       ensure_installed = {
+        "cpp",
+        "sql",
         "bash",
         "help",
         "html",
@@ -206,6 +204,73 @@ return {
         "typescript",
         "vim",
         "yaml",
+      },
+      autotag = {
+        enable = true,
+      },
+      highlight = {
+        enable = true,              -- false will disable the whole extension
+        -- disable = { "c", "rust" },  -- list of language that will be disabled
+        -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+        -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
+        -- Using this option may slow down your editor, and you may see some duplicate highlights.
+        -- Instead of true it can also be a list of languages
+        additional_vim_regex_highlighting = false,
+      },
+      indent = { enable = true },
+      incremental_selection = {
+        enable = true,
+        keymaps = {
+          init_selection = '<c-space>',
+          node_incremental = '<c-space>',
+          scope_incremental = '<c-s>',
+          node_decremental = '<c-backspace>',
+        },
+      },
+      textobjects = {
+        select = {
+          enable = true,
+          -- Automatically jump forward to textobj
+          lookahead = true,
+          keymaps = {
+            -- You can use the capture groups defined in textobjects.scm
+            ["af"] = "@function.outer",
+            ["if"] = "@function.inner",
+            ["ac"] = "@class.outer",
+            ["ic"] = "@class.inner",
+            ["aa"] = "@parameter.outer",
+            ["ia"] = "@parameter.inner",
+          },
+        },
+        swap = {
+          enable = true,
+          swap_next = {
+            ["<leader>a"] = "@parameter.inner",
+          },
+          swap_previous = {
+            ["<leader>A"] = "@parameter.inner",
+          },
+        },
+        move = {
+          enable = true,
+          set_jumps = true, -- whether to set jumps in the jumplist
+          goto_next_start = {
+            ["]m"] = "@function.outer",
+            ["]]"] = "@class.outer",
+          },
+          goto_next_end = {
+            ["]M"] = "@function.outer",
+            ["]["] = "@class.outer",
+          },
+          goto_previous_start = {
+            ["[m"] = "@function.outer",
+            ["[["] = "@class.outer",
+          },
+          goto_previous_end = {
+            ["[M"] = "@function.outer",
+            ["[]"] = "@class.outer",
+          },
+        },
       },
     },
   },
