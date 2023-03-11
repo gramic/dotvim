@@ -15,7 +15,9 @@ return {
 
       local has_words_before = function()
         local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-        return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match "%s" == nil
+        return col ~= 0 and
+               vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:
+               sub(col, col):match "%s" == nil
       end
 
       cmp.setup {
@@ -111,12 +113,20 @@ return {
       {
         "<tab>",
         function()
-          return require("luasnip").jumpable(1) and "<Plug>luasnip-jump-next" or "<tab>"
+          return require("luasnip").jumpable(1) and
+                "<Plug>luasnip-jump-next" or
+                "<tab>"
         end,
         expr = true, remap = true, silent = true, mode = "i",
       },
-      { "<tab>", function() require("luasnip").jump(1) end, mode = "s" },
-      { "<s-tab>", function() require("luasnip").jump(-1) end, mode = { "i", "s" } },
+      {
+        "<tab>", function() require("luasnip").jump(1) end,
+        mode = "s"
+      },
+      {
+        "<s-tab>", function() require("luasnip").jump(-1) end,
+        mode = { "i", "s" }
+      },
     },
   },
   {
@@ -128,7 +138,9 @@ return {
       nls.setup {
         sources = {
           nls.builtins.formatting.stylua,
-          nls.builtins.diagnostics.ruff.with { extra_args = { "--max-line-length=80" } },
+          nls.builtins.diagnostics.ruff.with {
+            extra_args = { "--max-line-length=80" }
+          },
         },
       }
     end,
@@ -149,7 +161,13 @@ return {
   {
     "simrat39/symbols-outline.nvim",
     cmd = "SymbolsOutline",
-    keys = { { "<leader>cs", "<cmd>SymbolsOutline<cr>", desc = "Symbols Outline" } },
+    keys = {
+      {
+       "<leader>cs",
+       "<cmd>SymbolsOutline<cr>",
+       desc = "Symbols Outline"
+      }
+    },
     opts = {
       -- add your options that should be passed to the setup() function here
       position = "right",
@@ -162,7 +180,8 @@ return {
     ---@param opts cmp.ConfigSchema
     opts = function(_, opts)
       local cmp = require("cmp")
-      -- opts.sources = cmp.config.sources(vim.list_extend(opts.sources, { { name = "emoji" } }))
+      -- opts.sources = cmp.config.sources(
+          -- vim.list_extend(opts.sources, { { name = "emoji" } }))
     end,
   },
 
@@ -209,11 +228,14 @@ return {
         enable = true,
       },
       highlight = {
-        enable = true,              -- false will disable the whole extension
-        -- disable = { "c", "rust" },  -- list of language that will be disabled
-        -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
-        -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
-        -- Using this option may slow down your editor, and you may see some duplicate highlights.
+        enable = true, -- false will disable the whole extension
+        -- disable = { "c", "rust" },
+        -- Setting this to true will run `:h syntax` and tree-sitter at the
+           -- same time.
+        -- Set this to `true` if you depend on 'syntax' being enabled
+          -- (like for indentation).
+        -- Using this option may slow down your editor,
+          -- and you may see some duplicate highlights.
         -- Instead of true it can also be a list of languages
         additional_vim_regex_highlighting = false,
       },
@@ -304,7 +326,9 @@ return {
 	-- 	['<C-f>'] = cmp.mapping.scroll_docs(4),
 	-- 	['<C-Space>'] = cmp.mapping.complete(),
 	-- 	['<C-e>'] = cmp.mapping.abort(),
-	-- 	['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+	-- 	['<CR>'] = cmp.mapping.confirm({ select = true }),
+      -- --	Accept currently selected item.
+      -- --	Set `select` to `false` to only confirm explicitly selected items.
 	--       }),
 	--   snippet = {
 	--     expand = function(args)

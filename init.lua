@@ -120,6 +120,24 @@ require("lazy").setup({
     end,
   },
   {
+      "shaunsingh/nord.nvim",
+      lazy = false,
+      priority = 1000,
+      config = function()
+        -- load the colorscheme here
+        vim.cmd([[colorscheme nord]])
+      end,
+  },
+  {
+      "EdenEast/nightfox.nvim",
+      lazy = false,
+      priority = 1000,
+      config = function()
+        -- load the colorscheme here
+        vim.cmd([[colorscheme dayfox]])
+      end,
+  },
+  {
     "numToStr/Comment.nvim",
     config = true,
   },
