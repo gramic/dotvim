@@ -37,13 +37,14 @@ set.mouse=""
 vim.g.BufKillCreateMappings = 0
 
 require("lazy").setup({
-  {
-    "gramic/dotvim",
-    lazy = false,
-    priority = 1000,
-    url = "git@github.com:gramic/dotvim.git",
-    build = "git remote add upstream git@github.com:gramic/dotvim.git",
-  },
+  -- {
+  --   -- name = "gramic",
+  --   dir = "~/dotvim",    -- lazy = false,
+  --   -- priority = 1000,
+  --   -- url = "git@github.com:gramic/dotvim.git",
+  --   -- build = "git remote add upstream git@github.com:gramic/dotvim.git",
+  -- },
+  {import = "gramic-bazel"},
   {import = "plugins"},
   { "folke/neoconf.nvim", cmd = "Neoconf" },
   "folke/neodev.nvim",
@@ -91,7 +92,7 @@ require("lazy").setup({
     dependencies = {"nvim-tree/nvim-web-devicons"},
   },
   {"ConradIrwin/vim-bracketed-paste"},
-  -- {"gramic-neovim", dir = "~/gramic-neovim"},
+  {dir = "~/gramic-neovim/plugin/gramic-neovim.vim"},
   {"ryvnf/readline.vim"},
   {"folke/trouble.nvim", config = true},
   {"p00f/clangd_extensions.nvim"},
@@ -142,24 +143,24 @@ require("lazy").setup({
       vim.cmd([[colorscheme gruvbox]])
     end,
   },
-  {
-      "shaunsingh/nord.nvim",
-      lazy = false,
-      priority = 1000,
-      config = function()
-        -- load the colorscheme here
-        vim.cmd([[colorscheme nord]])
-      end,
-  },
-  {
-      "EdenEast/nightfox.nvim",
-      lazy = false,
-      priority = 1000,
-      config = function()
-        -- load the colorscheme here
-        vim.cmd([[colorscheme dayfox]])
-      end,
-  },
+  -- {
+  --     "shaunsingh/nord.nvim",
+  --     lazy = false,
+  --     priority = 1000,
+  --     config = function()
+  --       -- load the colorscheme here
+  --       vim.cmd([[colorscheme nord]])
+  --     end,
+  -- },
+  -- {
+  --     "EdenEast/nightfox.nvim",
+  --     lazy = false,
+  --     priority = 1000,
+  --     config = function()
+  --       -- load the colorscheme here
+  --       vim.cmd([[colorscheme dayfox]])
+  --     end,
+  -- },
   {
     "numToStr/Comment.nvim",
     config = true,
