@@ -37,14 +37,14 @@ set.mouse=""
 vim.g.BufKillCreateMappings = 0
 
 require("lazy").setup({
-  -- {
+  {
   --   -- name = "gramic",
-  --   dir = "~/dotvim",    -- lazy = false,
+    dir = "~/dotvim",    -- lazy = false,
   --   -- priority = 1000,
   --   -- url = "git@github.com:gramic/dotvim.git",
   --   -- build = "git remote add upstream git@github.com:gramic/dotvim.git",
-  -- },
-  {import = "gramic-bazel"},
+  },
+  -- {import = "gramic-bazel"},
   {import = "plugins"},
   { "folke/neoconf.nvim", cmd = "Neoconf" },
   "folke/neodev.nvim",

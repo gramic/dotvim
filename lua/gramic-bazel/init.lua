@@ -1,5 +1,8 @@
 local M = {}
 
+---@type LazySpecLoader
+M.spec = nil
+
 ---@class LazyConfig
 M.defaults = {}
 
@@ -8,8 +11,10 @@ M.options = {}
 
 function M.find_in_bazel_build()
   local fileName = vim.fn.expand("%:t")
+  local dirName = vim.fn.expand("%:h")
   print("my file is " .. fileName)
-  vim.cmd("split %:h/BUILD*")
+  vim.fn.find({"BUILD", "BUILD.bazel"}, {path=dirName})
+   vim.cmd("split %:h/BUILD*")
   vim.cmd("/" .. fileName)
 end
 
