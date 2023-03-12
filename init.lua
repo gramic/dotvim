@@ -36,10 +36,20 @@ set.mouse=""
 
 vim.g.BufKillCreateMappings = 0
 
+vim.keymap.set("n", "<leader>bb", "'Ci<up><enter>mamCG",
+              {desc = "Exec latest terminal \"C command"}
+              )
+
 require("lazy").setup({
   {
   --   -- name = "gramic",
     dir = "~/dotvim",    -- lazy = false,
+    keys = {
+      {
+        "gb", require("gramic-bazel").find_in_bazel_build,
+        desc = "Find current file in BUILD file rule",
+      },
+    },
   --   -- priority = 1000,
   --   -- url = "git@github.com:gramic/dotvim.git",
   --   -- build = "git remote add upstream git@github.com:gramic/dotvim.git",
@@ -92,7 +102,7 @@ require("lazy").setup({
     dependencies = {"nvim-tree/nvim-web-devicons"},
   },
   {"ConradIrwin/vim-bracketed-paste"},
-  {dir = "~/gramic-neovim/plugin/gramic-neovim.vim"},
+  -- {dir = "~/gramic-neovim/plugin/gramic-neovim.vim"},
   {"ryvnf/readline.vim"},
   {"folke/trouble.nvim", config = true},
   {"p00f/clangd_extensions.nvim"},
@@ -162,8 +172,8 @@ require("lazy").setup({
   --     end,
   -- },
   {
-    "numToStr/Comment.nvim",
-    config = true,
+    "tpope/vim-commentary",
+    config = false,
   },
 })
 
