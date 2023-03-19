@@ -80,6 +80,7 @@ require("lazy").setup({
   -- Add maktaba and codefmt to the runtimepath.
   "google/vim-maktaba",
   {"google/vim-codefmt", dependencies = {"google/vim-maktaba"}},
+  {"alexander-born/cmp-bazel", dependencies = {"hrsh7th/nvim-cmp"}},
   -- Also add Glaive, which is used to configure codefmt's maktaba flags. See
   -- `:help :Glaive` for usage.
   {"google/vim-glaive", dependencies = {"google/vim-maktaba"}},

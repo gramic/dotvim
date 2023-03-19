@@ -18,7 +18,13 @@ return {
     "williamboman/mason-lspconfig.nvim",
     dependencies = { 'hrsh7th/cmp-nvim-lsp' },
     opts = {
-      ensure_installed = { "lua_ls", "clangd", "jsonnet_ls", "pyright" },
+      ensure_installed = {
+        "lua_ls",
+        "clangd",
+        "jsonnet_ls",
+        "pyright",
+        "starlark_rust",
+      },
     },
     config = function()
          local on_attach = function(client, bufnr)
@@ -91,6 +97,8 @@ return {
         }
 
         require'lspconfig'.pyright.setup{}
+
+        require'lspconfig'.starlark_rust.setup{}
 
       end
   },

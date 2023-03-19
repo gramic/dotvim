@@ -70,6 +70,7 @@ return {
           { name = "luasnip" },
           { name = "buffer" },
           { name = "path" },
+          { name = "bazel" },
         },
         formatting = {
           fields = { "kind", "abbr", "menu" },
