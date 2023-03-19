@@ -9,23 +9,29 @@ M.defaults = {}
 ---@type LazyConfig
 M.options = {}
 
+function M.split_build_file(build_file_path, search_file_name)
+    vim.cmd("split " .. build_file_path)
+    vim.cmd("/" .. search_file_name)
+end
+
 function M.find_in_bazel_build()
-  local file_name = vim.fn.expand("%:t")
-  local dir_name = vim.fn.expand("%:h")
-  print("my file_name is " .. file_name)
-  print("my dir_name is " .. dir_name)
+  local base_name = vim.fs.basename(vim.api.nvim_buf_get_name(0))
+  local dir_name = vim.fs.dirname(vim.api.nvim_buf_get_name(0))
   local build_files = vim.fs.find(
     {"BUILD.bazel", "BUILD"},
     {
-      path = './' .. dir_name .. '/',
+      upward = true,
+      stop = vim.loop.os_homedir(),
+      limit = 1,
+      path = dir_name,
       type = "file",
     }
   )
-  if (build_files[0] == nil) then
+  local found = build_files[1]
+  if (found == nil) then
     print("BUILD file not found")
   else
-    vim.cmd("split " .. build_files[0])
-    vim.cmd("/" .. file_name)
+    M.split_build_file(found, base_name)
   end
 end
 

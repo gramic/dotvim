@@ -49,6 +49,11 @@ require("lazy").setup({
         "gb", require("gramic-bazel").find_in_bazel_build,
         desc = "Find current file in BUILD file rule",
       },
+      {"<M-1>", "1gt", desc = "Go to first tab"},
+      {"<M-2>", "2gt", desc = "Go to second tab"},
+      {"<M-3>", "3gt", desc = "Go to third tab"},
+      {"<M-4>", "4gt", desc = "Go to forth tab"},
+      {"<M-5>", "5gt", desc = "Go to fifth tab"},
     },
   --   -- priority = 1000,
   --   -- url = "git@github.com:gramic/dotvim.git",
@@ -153,24 +158,23 @@ require("lazy").setup({
       vim.cmd([[colorscheme gruvbox]])
     end,
   },
-  -- {
-  --     "shaunsingh/nord.nvim",
-  --     lazy = false,
-  --     priority = 1000,
-  --     config = function()
-  --       -- load the colorscheme here
-  --       vim.cmd([[colorscheme nord]])
-  --     end,
-  -- },
-  -- {
-  --     "EdenEast/nightfox.nvim",
-  --     lazy = false,
-  --     priority = 1000,
-  --     config = function()
-  --       -- load the colorscheme here
-  --       vim.cmd([[colorscheme dayfox]])
-  --     end,
-  -- },
+  {
+      "shaunsingh/nord.nvim",
+      lazy = true,
+      config = function()
+        -- load the colorscheme here
+        vim.cmd([[colorscheme nord]])
+      end,
+  },
+  {
+      "EdenEast/nightfox.nvim",
+      lazy = true,
+      priority = 1000,
+      config = function()
+        -- load the colorscheme here
+        vim.cmd([[colorscheme dayfox]])
+      end,
+  },
   {
     "tpope/vim-commentary",
     config = false,
