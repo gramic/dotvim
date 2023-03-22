@@ -1,5 +1,6 @@
 return {
   { "bazelbuild/vim-bazel", dependencies = { "google/vim-maktaba" } },
+
   {
     "hrsh7th/nvim-cmp",
     dependencies = { "alexander-born/cmp-bazel" },
@@ -9,6 +10,7 @@ return {
       opts.sources = cmp.config.sources(vim.list_extend(opts.sources, { { name = "bazel" } }))
     end,
   },
+
   {
     "alexander-born/bazel.nvim",
     config = function()
@@ -58,4 +60,5 @@ return {
         ]])
     end,
   },
+
 }

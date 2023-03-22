@@ -9,16 +9,14 @@ return {
       "hrsh7th/cmp-path",
       "hrsh7th/cmp-cmdline",
     },
-
     ---@param opts cmp.ConfigSchema
     opts = function(_, opts)
-      local cmp = require "cmp"
-      local luasnip = require "luasnip"
+      local cmp = require("cmp")
+      local luasnip = require("luasnip")
       local has_words_before = function()
         local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-        return col ~= 0 and
-               vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:
-               sub(col, col):match "%s" == nil
+        return col ~= 0
+            and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
       end
       return {
         completion = {
@@ -29,12 +27,12 @@ return {
             require("luasnip").lsp_expand(args.body)
           end,
         },
-        mapping = cmp.mapping.preset.insert {
+        mapping = cmp.mapping.preset.insert({
           ["<C-b>"] = cmp.mapping.scroll_docs(-4),
           ["<C-f>"] = cmp.mapping.scroll_docs(4),
           ["<C-Space>"] = cmp.mapping.complete(),
           ["<C-e>"] = cmp.mapping.abort(),
-          ["<CR>"] = cmp.mapping.confirm { select = true },
+          ["<CR>"] = cmp.mapping.confirm({ select = true }),
           ["<C-j>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
               cmp.select_next_item()
@@ -63,15 +61,14 @@ return {
             "s",
             "c",
           }),
-        },
+        }),
         sources = cmp.config.sources(vim.list_extend(opts.sources, {
-            { name = "nvim_lsp_signature_help" },
-            { name = "nvim_lsp" },
-            { name = "luasnip" },
-            { name = "buffer" },
-            { name = "path" },
-          })
-        ),
+          { name = "nvim_lsp_signature_help" },
+          { name = "nvim_lsp" },
+          { name = "luasnip" },
+          { name = "buffer" },
+          { name = "path" },
+        })),
         formatting = {
           fields = { "kind", "abbr", "menu" },
           format = function(entry, item)
@@ -115,17 +112,22 @@ return {
         "<tab>",
         function()
           return require("luasnip").jumpable(1) and
-                "<Plug>luasnip-jump-next" or
-                "<tab>"
+              "<Plug>luasnip-jump-next" or
+              "<tab>"
         end,
-        expr = true, remap = true, silent = true, mode = "i",
+        expr = true,
+        remap = true,
+        silent = true,
+        mode = "i",
       },
       {
-        "<tab>", function() require("luasnip").jump(1) end,
+        "<tab>",
+        function() require("luasnip").jump(1) end,
         mode = "s"
       },
       {
-        "<s-tab>", function() require("luasnip").jump(-1) end,
+        "<s-tab>",
+        function() require("luasnip").jump(-1) end,
         mode = { "i", "s" }
       },
     },
@@ -134,42 +136,21 @@ return {
     "jose-elias-alvarez/null-ls.nvim",
     event = "BufReadPre",
     dependencies = { "williamboman/mason.nvim", "nvim-lua/plenary.nvim" },
-    -- opts = function()
-    --   local nls = require("null-ls")
-    --   return {
-    --     sources = {
-    --       nls.builtins.formatting.stylua,
-    --       nls.builtins.diagnostics.ruff.with {
-    --         extra_args = { "--max-line-length=80" }
-    --       },
-    --     },
-    --     ensure_installed = {
-    --       "stylua",
-    --       "shellcheck",
-    --       "shfmt",
-    --       "flake8",
-    --       "ruff",
-    --     },
-    --   }
-    -- end,
-    config = function()
-      local nls = require "null-ls"
-      nls.setup {
-        sources = {
-          nls.builtins.formatting.stylua,
-          nls.builtins.diagnostics.ruff.with {
-            extra_args = { "--max-line-length=80" }
-          },
-        },
-        ensure_installed = {
-          "stylua",
-          "shellcheck",
-          "shfmt",
-          "flake8",
-          "ruff",
-        },
-      }
-    end
+    -- opts = {
+    --   -- sources = {
+    --   --   null_ls.builtins.formatting.stylua,
+    --   --   null_ls.builtins.diagnostics.ruff.with({
+    --   --     extra_args = { "--max-line-length=80" },
+    --   --   }),
+    --   -- },
+    --   ensure_installed = {
+    --     "stylua",
+    --     "shellcheck",
+    --     "shfmt",
+    --     "flake8",
+    --     "ruff",
+    --   },
+    -- }
   },
   {
     "folke/which-key.nvim",
@@ -189,10 +170,10 @@ return {
     cmd = "SymbolsOutline",
     keys = {
       {
-       "<leader>cs",
-       "<cmd>SymbolsOutline<cr>",
-       desc = "Symbols Outline"
-      }
+        "<leader>cs",
+        "<cmd>SymbolsOutline<cr>",
+        desc = "Symbols Outline",
+      },
     },
     opts = {
       -- add your options that should be passed to the setup() function here
@@ -207,13 +188,12 @@ return {
     opts = function(_, opts)
       local cmp = require("cmp")
       opts.sources = {}
-      opts.sources = cmp.config.sources(
-          vim.list_extend(opts.sources, { { name = "emoji" } }))
+      opts.sources = cmp.config.sources(vim.list_extend(opts.sources, { { name = "emoji" } }))
     end,
   },
 
   {
-    'lukas-reineke/indent-blankline.nvim',
+    "lukas-reineke/indent-blankline.nvim",
     config = true,
   },
 
@@ -246,11 +226,11 @@ return {
         enable = true, -- false will disable the whole extension
         -- disable = { "c", "rust" },
         -- Setting this to true will run `:h syntax` and tree-sitter at the
-           -- same time.
+        -- same time.
         -- Set this to `true` if you depend on 'syntax' being enabled
-          -- (like for indentation).
+        -- (like for indentation).
         -- Using this option may slow down your editor,
-          -- and you may see some duplicate highlights.
+        -- and you may see some duplicate highlights.
         -- Instead of true it can also be a list of languages
         additional_vim_regex_highlighting = false,
       },
@@ -258,10 +238,10 @@ return {
       incremental_selection = {
         enable = true,
         keymaps = {
-          init_selection = '<c-space>',
-          node_incremental = '<c-space>',
-          scope_incremental = '<c-s>',
-          node_decremental = '<c-backspace>',
+          init_selection = "<c-space>",
+          node_incremental = "<c-space>",
+          scope_incremental = "<c-s>",
+          node_decremental = "<c-backspace>",
         },
       },
       textobjects = {
@@ -312,39 +292,39 @@ return {
     },
   },
 
- --  {
-	--   comparators = {
-	--       cmp.config.compare.offset,
-	--       cmp.config.compare.exact,
-	--       cmp.config.compare.recently_used,
-	--       require("clangd_extensions.cmp_scores"),
-	--       cmp.config.compare.kind,
-	--       cmp.config.compare.sort_text,
-	--       cmp.config.compare.length,
-	--       cmp.config.compare.order,
-	--   },
-	--   mapping = cmp.mapping.preset.insert({
-	-- 	['<C-b>'] = cmp.mapping.scroll_docs(-4),
-	-- 	['<C-f>'] = cmp.mapping.scroll_docs(4),
-	-- 	['<C-Space>'] = cmp.mapping.complete(),
-	-- 	['<C-e>'] = cmp.mapping.abort(),
-	-- 	['<CR>'] = cmp.mapping.confirm({ select = true }),
-      -- --	Accept currently selected item.
-      -- --	Set `select` to `false` to only confirm explicitly selected items.
-	--       }),
-	--   snippet = {
-	--     expand = function(args)
-	--       require('luasnip').lsp_expand(args.body)
-	--     end,
-	--   },
-	--   sources = cmp.config.sources({
-	--     { name = 'nvim_lsp' },
-	--     { name = 'luasnip' }, -- For luasnip users.
-	--     -- { name = 'vsnip' }, -- For vsnip users.
-	--     -- { name = 'ultisnips' }, -- For ultisnips users.
-	--     -- { name = 'snippy' }, -- For snippy users.
-	--   }, {
-	--     { name = 'buffer' },
-	--   })
-	-- }
+  --  {
+  --   comparators = {
+  --       cmp.config.compare.offset,
+  --       cmp.config.compare.exact,
+  --       cmp.config.compare.recently_used,
+  --       require("clangd_extensions.cmp_scores"),
+  --       cmp.config.compare.kind,
+  --       cmp.config.compare.sort_text,
+  --       cmp.config.compare.length,
+  --       cmp.config.compare.order,
+  --   },
+  --   mapping = cmp.mapping.preset.insert({
+  -- 	['<C-b>'] = cmp.mapping.scroll_docs(-4),
+  -- 	['<C-f>'] = cmp.mapping.scroll_docs(4),
+  -- 	['<C-Space>'] = cmp.mapping.complete(),
+  -- 	['<C-e>'] = cmp.mapping.abort(),
+  -- 	['<CR>'] = cmp.mapping.confirm({ select = true }),
+  -- --	Accept currently selected item.
+  -- --	Set `select` to `false` to only confirm explicitly selected items.
+  --       }),
+  --   snippet = {
+  --     expand = function(args)
+  --       require('luasnip').lsp_expand(args.body)
+  --     end,
+  --   },
+  --   sources = cmp.config.sources({
+  --     { name = 'nvim_lsp' },
+  --     { name = 'luasnip' }, -- For luasnip users.
+  --     -- { name = 'vsnip' }, -- For vsnip users.
+  --     -- { name = 'ultisnips' }, -- For ultisnips users.
+  --     -- { name = 'snippy' }, -- For snippy users.
+  --   }, {
+  --     { name = 'buffer' },
+  --   })
+  -- }
 }

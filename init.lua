@@ -148,7 +148,9 @@ require("lazy").setup({
 "tpope/vim-dispatch",
 "tpope/vim-repeat",
 "tpope/vim-surround",
-"nvim-lua/plenary.nvim",
+{
+  "nvim-lua/plenary.nvim",
+},
 { 'echasnovski/mini.nvim', version = false },
 {"junegunn/fzf", build = "./install --bin"},
 {"ibhagwan/fzf-lua",
