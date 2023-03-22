@@ -9,18 +9,18 @@ return {
       "hrsh7th/cmp-path",
       "hrsh7th/cmp-cmdline",
     },
-    config = function()
+
+    ---@param opts cmp.ConfigSchema
+    opts = function(_, opts)
       local cmp = require "cmp"
       local luasnip = require "luasnip"
-
       local has_words_before = function()
         local line, col = unpack(vim.api.nvim_win_get_cursor(0))
         return col ~= 0 and
                vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:
                sub(col, col):match "%s" == nil
       end
-
-      cmp.setup {
+      return {
         completion = {
           completeopt = "menu,menuone,noinsert",
         },
@@ -64,14 +64,14 @@ return {
             "c",
           }),
         },
-        sources = cmp.config.sources {
-          { name = "nvim_lsp_signature_help" },
-          { name = "nvim_lsp" },
-          { name = "luasnip" },
-          { name = "buffer" },
-          { name = "path" },
-          { name = "bazel" },
-        },
+        sources = cmp.config.sources(vim.list_extend(opts.sources, {
+            { name = "nvim_lsp_signature_help" },
+            { name = "nvim_lsp" },
+            { name = "luasnip" },
+            { name = "buffer" },
+            { name = "path" },
+          })
+        ),
         formatting = {
           fields = { "kind", "abbr", "menu" },
           format = function(entry, item)
@@ -105,7 +105,7 @@ return {
         require("luasnip.loaders.from_vscode").lazy_load()
       end,
     },
-    config = {
+    opts = {
       history = true,
       delete_check_events = "TextChanged",
     },
@@ -133,7 +133,25 @@ return {
   {
     "jose-elias-alvarez/null-ls.nvim",
     event = "BufReadPre",
-    dependencies = { "mason.nvim" },
+    dependencies = { "williamboman/mason.nvim", "nvim-lua/plenary.nvim" },
+    -- opts = function()
+    --   local nls = require("null-ls")
+    --   return {
+    --     sources = {
+    --       nls.builtins.formatting.stylua,
+    --       nls.builtins.diagnostics.ruff.with {
+    --         extra_args = { "--max-line-length=80" }
+    --       },
+    --     },
+    --     ensure_installed = {
+    --       "stylua",
+    --       "shellcheck",
+    --       "shfmt",
+    --       "flake8",
+    --       "ruff",
+    --     },
+    --   }
+    -- end,
     config = function()
       local nls = require "null-ls"
       nls.setup {
@@ -143,8 +161,15 @@ return {
             extra_args = { "--max-line-length=80" }
           },
         },
+        ensure_installed = {
+          "stylua",
+          "shellcheck",
+          "shfmt",
+          "flake8",
+          "ruff",
+        },
       }
-    end,
+    end
   },
   {
     "folke/which-key.nvim",
@@ -181,20 +206,9 @@ return {
     ---@param opts cmp.ConfigSchema
     opts = function(_, opts)
       local cmp = require("cmp")
-      -- opts.sources = cmp.config.sources(
-          -- vim.list_extend(opts.sources, { { name = "emoji" } }))
-    end,
-  },
-
-  {
-    "hrsh7th/nvim-cmp",
-    dependencies = {
-      "hrsh7th/cmp-emoji",
-    },
-    ---@param opts cmp.ConfigSchema
-    opts = function(_, opts)
-      local luasnip = require("luasnip")
-      local cmp = require("cmp")
+      opts.sources = {}
+      opts.sources = cmp.config.sources(
+          vim.list_extend(opts.sources, { { name = "emoji" } }))
     end,
   },
 
@@ -294,19 +308,6 @@ return {
             ["[]"] = "@class.outer",
           },
         },
-      },
-    },
-  },
-
-  -- add any tools you want to have installed below
-  {
-    "williamboman/mason.nvim",
-    opts = {
-      ensure_installed = {
-        "stylua",
-        "shellcheck",
-        "shfmt",
-        "flake8",
       },
     },
   },

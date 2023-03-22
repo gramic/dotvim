@@ -42,7 +42,7 @@ vim.keymap.set("n", "<leader>bb", "'Ci<up><enter>mamCG",
 
 require("lazy").setup({
   {
-  --   -- name = "gramic",
+    --   -- name = "gramic",
     dir = "~/dotvim",    -- lazy = false,
     keys = {
       {
@@ -55,12 +55,28 @@ require("lazy").setup({
       {"<M-4>", "4gt", desc = "Go to forth tab"},
       {"<M-5>", "5gt", desc = "Go to fifth tab"},
     },
-  --   -- priority = 1000,
-  --   -- url = "git@github.com:gramic/dotvim.git",
-  --   -- build = "git remote add upstream git@github.com:gramic/dotvim.git",
+    --   -- priority = 1000,
+    --   -- url = "git@github.com:gramic/dotvim.git",
+    --   -- build = "git remote add upstream git@github.com:gramic/dotvim.git",
   },
   -- {import = "gramic-bazel"},
-  {import = "plugins"},
+  {
+    "hrsh7th/nvim-cmp",
+     opts = {
+       sources = {
+       },
+     },
+  },
+  -- {
+  --   "bazelbuild/vim-bazel",
+  --   dependencies = { "google/vim-maktaba" },
+  --   ft = "bzl",
+  -- },
+  {
+    "numine777/py-bazel.nvim",
+    dependencies = {"nvim-lua/plenary.nvim", "neovim/nvim-lspconfig"},
+    config = true,
+  },
   { "folke/neoconf.nvim", cmd = "Neoconf" },
   "folke/neodev.nvim",
   {
@@ -80,7 +96,12 @@ require("lazy").setup({
   -- Add maktaba and codefmt to the runtimepath.
   "google/vim-maktaba",
   {"google/vim-codefmt", dependencies = {"google/vim-maktaba"}},
-  {"alexander-born/cmp-bazel", dependencies = {"hrsh7th/nvim-cmp"}},
+  -- {
+  --   'alexander-born/bazel.nvim',
+  --   dependencies = {'nvim-treesitter/nvim-treesitter'},
+  --   -- ft = 'bzl',
+  -- },
+  -- {"alexander-born/cmp-bazel", dependencies = {"hrsh7th/nvim-cmp"}},
   -- Also add Glaive, which is used to configure codefmt's maktaba flags. See
   -- `:help :Glaive` for usage.
   {"google/vim-glaive", dependencies = {"google/vim-maktaba"}},
@@ -105,39 +126,38 @@ require("lazy").setup({
   },
   {"nvim-treesitter/playground"},
   {"nvim-treesitter/nvim-treesitter-textobjects",
-    dependencies = {"nvim-tree/nvim-web-devicons"},
-  },
-  {"ConradIrwin/vim-bracketed-paste"},
-  -- {dir = "~/gramic-neovim/plugin/gramic-neovim.vim"},
-  {"ryvnf/readline.vim"},
-  {"folke/trouble.nvim", config = true},
-  {"p00f/clangd_extensions.nvim"},
-  {"jpetrie/vim-counterpoint"},
-  "tpope/vim-dadbod",
-  "tpope/vim-speeddating",
-  "tpope/vim-eunuch",
-  "tpope/vim-rhubarb",
-  "tpope/vim-fugitive",
-  "tpope/vim-rhubarb",
-  "tpope/vim-repeat",
-  "tpope/vim-unimpaired",
-  "tpope/vim-obsession",
-  "tpope/vim-abolish",
-  "tpope/vim-characterize",
-  "tpope/vim-dispatch",
-  "tpope/vim-repeat",
-  "tpope/vim-surround",
-  "nvim-lua/plenary.nvim",
-  "L3MON4D3/LuaSnip",
-  { 'echasnovski/mini.nvim', version = false },
-  {"junegunn/fzf", build = "./install --bin"},
-  {"ibhagwan/fzf-lua",
-    dependencies = { 'nvim-tree/nvim-web-devicons', 'junegunn/fzf' },
-    config = true,
-    keys = {
-      {"<leader>ff", "<cmd>FzfLua git_files<cr>", desc = "Find git files"},
-      {"<leader>fm", "<cmd>FzfLua oldfiles<cr>", desc = "Old files"},
-    },
+  dependencies = {"nvim-tree/nvim-web-devicons"},
+},
+{"ConradIrwin/vim-bracketed-paste"},
+-- {dir = "~/gramic-neovim/plugin/gramic-neovim.vim"},
+{"ryvnf/readline.vim"},
+{"folke/trouble.nvim", config = true},
+{"p00f/clangd_extensions.nvim"},
+{"jpetrie/vim-counterpoint"},
+"tpope/vim-dadbod",
+"tpope/vim-speeddating",
+"tpope/vim-eunuch",
+"tpope/vim-rhubarb",
+"tpope/vim-fugitive",
+"tpope/vim-rhubarb",
+"tpope/vim-repeat",
+"tpope/vim-unimpaired",
+"tpope/vim-obsession",
+"tpope/vim-abolish",
+"tpope/vim-characterize",
+"tpope/vim-dispatch",
+"tpope/vim-repeat",
+"tpope/vim-surround",
+"nvim-lua/plenary.nvim",
+{ 'echasnovski/mini.nvim', version = false },
+{"junegunn/fzf", build = "./install --bin"},
+{"ibhagwan/fzf-lua",
+dependencies = { 'nvim-tree/nvim-web-devicons', 'junegunn/fzf' },
+config = true,
+keys = {
+  {"<leader>ff", "<cmd>FzfLua git_files<cr>", desc = "Find git files"},
+  {"<leader>fm", "<cmd>FzfLua oldfiles<cr>", desc = "Old files"},
+},
   },
   "justinmk/vim-dirvish",
   -- {
@@ -160,26 +180,27 @@ require("lazy").setup({
     end,
   },
   {
-      "shaunsingh/nord.nvim",
-      lazy = true,
-      config = function()
-        -- load the colorscheme here
-        vim.cmd([[colorscheme nord]])
-      end,
+    "shaunsingh/nord.nvim",
+    lazy = true,
+    config = function()
+      -- load the colorscheme here
+      vim.cmd([[colorscheme nord]])
+    end,
   },
   {
-      "EdenEast/nightfox.nvim",
-      lazy = true,
-      priority = 1000,
-      config = function()
-        -- load the colorscheme here
-        vim.cmd([[colorscheme dayfox]])
-      end,
+    "EdenEast/nightfox.nvim",
+    lazy = true,
+    priority = 1000,
+    config = function()
+      -- load the colorscheme here
+      vim.cmd([[colorscheme dayfox]])
+    end,
   },
   {
     "tpope/vim-commentary",
     config = false,
   },
+  {import = "plugins"},
 })
 
 if vim.fn.has('"unix"') then

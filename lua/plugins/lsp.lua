@@ -1,12 +1,12 @@
 return {
-  "neovim/nvim-lspconfig",
+  {
+    "neovim/nvim-lspconfig",
+  },
+
   {
     "williamboman/mason.nvim",
+    version = false,
     dependencies = { 'williamboman/mason-lspconfig.nvim', 'neovim/nvim-lspconfig'},
-    config = function()
-        require("mason").setup()
-        require("mason-lspconfig").setup({})
-    end,
     opts = {
       providers = {
         "mason.providers.client",
@@ -14,19 +14,21 @@ return {
       },
     },
   },
+
   {
     "williamboman/mason-lspconfig.nvim",
-    dependencies = { 'hrsh7th/cmp-nvim-lsp' },
+    dependencies = { 'hrsh7th/cmp-nvim-lsp', 'williamboman/mason.nvim' },
     opts = {
       ensure_installed = {
-        "lua_ls",
+        -- "lua_ls",
         "clangd",
         "jsonnet_ls",
         "pyright",
-        "starlark_rust",
+        -- "starlark_rust",
       },
     },
-    config = function()
+    config = function(_, opts)
+         require("mason-lspconfig").setup(opts)
          local on_attach = function(client, bufnr)
              local buf_set_keymap = vim.keymap.set
              local opts = { noremap = true, silent = true, buffer = bufnr }
@@ -63,7 +65,8 @@ return {
          table.insert(lua_runtime_path, "lua/?/init.lua")
 
          -- Set up lspconfig.
-         local capabilities = require('cmp_nvim_lsp').default_capabilities()
+           local capabilities = require('cmp_nvim_lsp').default_capabilities()
+
         require('lspconfig').lua_ls.setup {
           on_attach = on_attach,
           handlers = rounded_border_handlers,
@@ -98,7 +101,7 @@ return {
 
         require'lspconfig'.pyright.setup{}
 
-        require'lspconfig'.starlark_rust.setup{}
+        -- require'lspconfig'.starlark_rust.setup{}
 
       end
   },
