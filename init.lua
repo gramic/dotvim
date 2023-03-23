@@ -41,6 +41,7 @@ vim.keymap.set("n", "<leader>bb", "'Ci<up><enter>mamCG",
 )
 
 require("lazy").setup({
+  "LazyVim/LazyVim",
   {
     --   -- name = "gramic",
     dir = "~/dotvim", -- lazy = false,
