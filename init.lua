@@ -14,9 +14,9 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 local set = vim.opt -- set options
-set.undofile=true
-set.tabstop=2
-set.shiftwidth=2
+set.undofile = true
+set.tabstop = 2
+set.shiftwidth = 2
 set.smarttab = true
 set.smartindent = true
 set.ignorecase = true
@@ -27,33 +27,34 @@ set.expandtab = true
 set.autoread = true
 set.fixendofline = false
 set.swapfile = false
-set.sessionoptions:append{"globals"} -- to save TabooRename names
+set.sessionoptions:append { "globals" } -- to save TabooRename names
 set.keymap = "bulgarian-phonetic"
-set.iminsert=0
-set.imsearch=0
-set.numberwidth=2
-set.mouse=""
+set.iminsert = 0
+set.imsearch = 0
+set.numberwidth = 2
+set.mouse = ""
 
 vim.g.BufKillCreateMappings = 0
 
 vim.keymap.set("n", "<leader>bb", "'Ci<up><enter>mamCG",
-              {desc = "Exec latest terminal \"C command"}
-              )
+  { desc = "Exec latest terminal \"C command" }
+)
 
 require("lazy").setup({
   {
     --   -- name = "gramic",
-    dir = "~/dotvim",    -- lazy = false,
+    dir = "~/dotvim", -- lazy = false,
     keys = {
       {
-        "gb", require("gramic-bazel").find_in_bazel_build,
+        "gb",
+        require("gramic-bazel").find_in_bazel_build,
         desc = "Find current file in BUILD file rule",
       },
-      {"<M-1>", "1gt", desc = "Go to first tab"},
-      {"<M-2>", "2gt", desc = "Go to second tab"},
-      {"<M-3>", "3gt", desc = "Go to third tab"},
-      {"<M-4>", "4gt", desc = "Go to forth tab"},
-      {"<M-5>", "5gt", desc = "Go to fifth tab"},
+      { "<M-1>", "1gt", desc = "Go to first tab" },
+      { "<M-2>", "2gt", desc = "Go to second tab" },
+      { "<M-3>", "3gt", desc = "Go to third tab" },
+      { "<M-4>", "4gt", desc = "Go to forth tab" },
+      { "<M-5>", "5gt", desc = "Go to fifth tab" },
     },
     --   -- priority = 1000,
     --   -- url = "git@github.com:gramic/dotvim.git",
@@ -62,10 +63,10 @@ require("lazy").setup({
   -- {import = "gramic-bazel"},
   {
     "hrsh7th/nvim-cmp",
-     opts = {
-       sources = {
-       },
-     },
+    opts = {
+      sources = {
+      },
+    },
   },
   -- {
   --   "bazelbuild/vim-bazel",
@@ -74,7 +75,7 @@ require("lazy").setup({
   -- },
   {
     "numine777/py-bazel.nvim",
-    dependencies = {"nvim-lua/plenary.nvim", "neovim/nvim-lspconfig"},
+    dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
     config = true,
   },
   { "folke/neoconf.nvim", cmd = "Neoconf" },
@@ -95,7 +96,7 @@ require("lazy").setup({
   "duganchen/vim-soy",
   -- Add maktaba and codefmt to the runtimepath.
   "google/vim-maktaba",
-  {"google/vim-codefmt", dependencies = {"google/vim-maktaba"}},
+  { "google/vim-codefmt", dependencies = { "google/vim-maktaba" } },
   -- {
   --   'alexander-born/bazel.nvim',
   --   dependencies = {'nvim-treesitter/nvim-treesitter'},
@@ -104,62 +105,140 @@ require("lazy").setup({
   -- {"alexander-born/cmp-bazel", dependencies = {"hrsh7th/nvim-cmp"}},
   -- Also add Glaive, which is used to configure codefmt's maktaba flags. See
   -- `:help :Glaive` for usage.
-  {"google/vim-glaive", dependencies = {"google/vim-maktaba"}},
-  {"google/vim-jsonnet"},
+  { "google/vim-glaive",  dependencies = { "google/vim-maktaba" } },
+  { "google/vim-jsonnet" },
   {
     "nvim-lualine/lualine.nvim",
-    dependencies = {"nvim-tree/nvim-web-devicons"},
+    dependencies = { "nvim-tree/nvim-web-devicons" },
     opts = {
       options = {
         theme = 'gruvbox',
-        section_separators = '', component_separators = '',
+        section_separators = '',
+        component_separators = '',
       },
       inactive_sections = {
-        lualine_a = {'%{winnr()}'},
+        lualine_a = { '%{winnr()}' },
         lualine_b = {},
-        lualine_c = {'filename'},
+        lualine_c = { 'filename' },
         lualine_x = {},
         lualine_y = {},
         lualine_z = {},
       },
     },
   },
-  {"nvim-treesitter/playground"},
-  {"nvim-treesitter/nvim-treesitter-textobjects",
-  dependencies = {"nvim-tree/nvim-web-devicons"},
-},
-{"ConradIrwin/vim-bracketed-paste"},
--- {dir = "~/gramic-neovim/plugin/gramic-neovim.vim"},
-{"ryvnf/readline.vim"},
-{"folke/trouble.nvim", config = true},
-{"p00f/clangd_extensions.nvim"},
-{"jpetrie/vim-counterpoint"},
-"tpope/vim-dadbod",
-"tpope/vim-speeddating",
-"tpope/vim-eunuch",
-"tpope/vim-rhubarb",
-"tpope/vim-fugitive",
-"tpope/vim-rhubarb",
-"tpope/vim-repeat",
-"tpope/vim-unimpaired",
-"tpope/vim-obsession",
-"tpope/vim-abolish",
-"tpope/vim-characterize",
-"tpope/vim-dispatch",
-"tpope/vim-repeat",
-"tpope/vim-surround",
-{
-  "nvim-lua/plenary.nvim",
-},
-{ 'echasnovski/mini.nvim', version = false },
-{"junegunn/fzf", build = "./install --bin"},
-{"ibhagwan/fzf-lua",
-dependencies = { 'nvim-tree/nvim-web-devicons', 'junegunn/fzf' },
-config = true,
-keys = {
-  {"<leader>ff", "<cmd>FzfLua git_files<cr>", desc = "Find git files"},
-  {"<leader>fm", "<cmd>FzfLua oldfiles<cr>", desc = "Old files"},
-},
+  { "nvim-treesitter/playground" },
+  {
+    "nvim-treesitter/nvim-treesitter-textobjects",
+    dependencies = {
+      "nvim-tree/nvim-web-devicons",
+      "nvim-treesitter/nvim-treesitter",
+    },
+    -- event = "VeryLazy",
+    -- config = function(_, opts)
+    --   print(opts)
+    --   require("nvim-treesitter.configs").setup(opts)
+    -- end,
+  },
+  { "ConradIrwin/vim-bracketed-paste" },
+  -- {dir = "~/gramic-neovim/plugin/gramic-neovim.vim"},
+  { "ryvnf/readline.vim" },
+  { "folke/trouble.nvim",             config = true },
+  { "p00f/clangd_extensions.nvim" },
+  { "jpetrie/vim-counterpoint" },
+  "tpope/vim-dadbod",
+  "tpope/vim-speeddating",
+  "tpope/vim-eunuch",
+  "tpope/vim-rhubarb",
+  "tpope/vim-fugitive",
+  "tpope/vim-rhubarb",
+  "tpope/vim-repeat",
+  "tpope/vim-unimpaired",
+  "tpope/vim-obsession",
+  "tpope/vim-abolish",
+  "tpope/vim-characterize",
+  "tpope/vim-dispatch",
+  "tpope/vim-repeat",
+  "tpope/vim-surround",
+  {
+    "nvim-lua/plenary.nvim",
+  },
+  -- {
+  --   'echasnovski/mini.nvim',
+  --   version = false,
+  -- },
+  {
+    'echasnovski/mini.nvim',
+    version = false,
+    event = "VeryLazy",
+    dependencies = { "nvim-treesitter-textobjects", "folke/which-key.nvim" },
+    opts = function()
+      local ai = require("mini.ai")
+      return {
+        n_lines = 500,
+        custom_textobjects = {
+          o = ai.gen_spec.treesitter({
+            a = { "@block.outer", "@conditional.outer", "@loop.outer" },
+            i = { "@block.inner", "@conditional.inner", "@loop.inner" },
+          }, {}),
+          f = ai.gen_spec.treesitter({ a = "@function.outer", i = "@function.inner" }, {}),
+          c = ai.gen_spec.treesitter({ a = "@class.outer", i = "@class.inner" }, {}),
+        },
+      }
+    end,
+    config = function(_, opts)
+      require("mini.ai").setup(opts)
+      -- register all text objects with which-key
+      ---@type table<string, string|table>
+      local i = {
+        [" "] = "Whitespace",
+        ['"'] = 'Balanced "',
+        ["'"] = "Balanced '",
+        ["`"] = "Balanced `",
+        ["("] = "Balanced (",
+        [")"] = "Balanced ) including white-space",
+        [">"] = "Balanced > including white-space",
+        ["<lt>"] = "Balanced <",
+        ["]"] = "Balanced ] including white-space",
+        ["["] = "Balanced [",
+        ["}"] = "Balanced } including white-space",
+        ["{"] = "Balanced {",
+        ["?"] = "User Prompt",
+        _ = "Underscore",
+        a = "Argument",
+        b = "Balanced ), ], }",
+        c = "Class",
+        f = "Function",
+        o = "Block, conditional, loop",
+        q = "Quote `, \", '",
+        t = "Tag",
+      }
+      ---@type table<string, string|table>
+      local a = vim.deepcopy(i)
+      for k, v in pairs(a) do
+        a[k] = tostring(v:gsub(" including.*", ""))
+      end
+      local ic = vim.deepcopy(i)
+      local ac = vim.deepcopy(a)
+      for key, name in pairs({ n = "Next", l = "Last" }) do
+        i[key] = vim.tbl_extend("force", { name = "Inside " .. name .. " textobject" }, ic)
+        a[key] = vim.tbl_extend("force", { name = "Around " .. name .. " textobject" }, ac)
+      end
+      require("which-key").register({
+        mode = { "o", "x" },
+        i = i,
+        a = a,
+      })
+    end,
+  },
+  { "junegunn/fzf",    build = "./install --bin" },
+  {
+    "ibhagwan/fzf-lua",
+    dependencies = { 'nvim-tree/nvim-web-devicons', 'junegunn/fzf' },
+    config = true,
+    keys = {
+      { "<leader>ff", "<cmd>FzfLua git_files<cr>", desc = "Find git files" },
+      { "<leader>fm", "<cmd>FzfLua oldfiles<cr>",  desc = "Old files" },
+    },
   },
   "justinmk/vim-dirvish",
   -- {
@@ -202,7 +281,7 @@ keys = {
     "tpope/vim-commentary",
     config = false,
   },
-  {import = "plugins"},
+  { import = "plugins" },
 })
 
 if vim.fn.has('"unix"') then
@@ -251,4 +330,3 @@ vim.api.nvim_create_autocmd('TextYankPost', {
     vim.highlight.on_yank { higroup = 'IncSearch', timeout = 500 }
   end,
 })
-
