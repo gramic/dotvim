@@ -39,12 +39,27 @@ vim.g.BufKillCreateMappings = 0
 vim.keymap.set("n", "<leader>bb", "'Ci<up><enter>mamCG",
   { desc = "Exec latest terminal \"C command" }
 )
+vim.o.termguicolors = true
+vim.g.background = "light"
+-- vim.g.everforest_background = 'hard'
+-- vim.g.everforest_disable_italic_comment = 1
+-- vim.g.everforest_diagnostic_virtual_text = 'colored'
+-- vim.api.nvim_set_hl(0, "Normal", { fg = colors.text, bg = colors.crust })
 
 require("lazy").setup({
-  "LazyVim/LazyVim",
+  {
+    "LazyVim/LazyVim",
+    -- opts = {
+    --   colorscheme = "everforest",
+    -- },
+  },
   {
     --   -- name = "gramic",
     dir = "~/dotvim", -- lazy = false,
+    config = false,
+    init = function()
+
+    end,
     keys = {
       {
         "gb",
@@ -77,7 +92,12 @@ require("lazy").setup({
   {
     "numine777/py-bazel.nvim",
     dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
-    config = true,
+    opts = {
+      pip_deps_marker = "typesense",
+    },
+    config = function(_, opts)
+      require("py-bazel").setup(opts or {})
+    end
   },
   { "folke/neoconf.nvim", cmd = "Neoconf" },
   "folke/neodev.nvim",
@@ -113,7 +133,7 @@ require("lazy").setup({
     dependencies = { "nvim-tree/nvim-web-devicons" },
     opts = {
       options = {
-        theme = 'gruvbox',
+        theme = 'everforest',
         section_separators = '',
         component_separators = '',
       },
@@ -253,9 +273,17 @@ require("lazy").setup({
   --   },
   -- },
   {
-    "ellisonleao/gruvbox.nvim",
+    "sainnhe/everforest",
     lazy = false,
     priority = 1000,
+    config = function()
+      vim.cmd([[colorscheme everforest]])
+    end,
+  },
+  {
+    "ellisonleao/gruvbox.nvim",
+    lazy = true,
+    -- priority = 1000,
     config = function()
       -- load the colorscheme here
       vim.cmd([[colorscheme gruvbox]])
@@ -272,7 +300,7 @@ require("lazy").setup({
   {
     "EdenEast/nightfox.nvim",
     lazy = true,
-    priority = 1000,
+    -- priority = 1000,
     config = function()
       -- load the colorscheme here
       vim.cmd([[colorscheme dayfox]])
