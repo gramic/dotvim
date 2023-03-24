@@ -41,18 +41,14 @@ vim.keymap.set("n", "<leader>bb", "'Ci<up><enter>mamCG",
 )
 vim.o.termguicolors = true
 vim.g.background = "light"
--- vim.g.everforest_background = 'hard'
--- vim.g.everforest_disable_italic_comment = 1
--- vim.g.everforest_diagnostic_virtual_text = 'colored'
--- vim.api.nvim_set_hl(0, "Normal", { fg = colors.text, bg = colors.crust })
 
 require("lazy").setup({
-  {
-    "LazyVim/LazyVim",
-    -- opts = {
-    --   colorscheme = "everforest",
-    -- },
-  },
+  -- {
+  --   "LazyVim/LazyVim",
+  --   -- opts = {
+  --   --   colorscheme = "everforest",
+  --   -- },
+  -- },
   {
     --   -- name = "gramic",
     dir = "~/dotvim", -- lazy = false,
@@ -201,8 +197,10 @@ require("lazy").setup({
             a = { "@block.outer", "@conditional.outer", "@loop.outer" },
             i = { "@block.inner", "@conditional.inner", "@loop.inner" },
           }, {}),
-          f = ai.gen_spec.treesitter({ a = "@function.outer", i = "@function.inner" }, {}),
-          c = ai.gen_spec.treesitter({ a = "@class.outer", i = "@class.inner" }, {}),
+          f = ai.gen_spec.treesitter(
+            { a = "@function.outer", i = "@function.inner" }, {}),
+          c = ai.gen_spec.treesitter(
+            { a = "@class.outer", i = "@class.inner" }, {}),
         },
       }
     end,
@@ -236,13 +234,16 @@ require("lazy").setup({
       ---@type table<string, string|table>
       local a = vim.deepcopy(i)
       for k, v in pairs(a) do
+        ---@diagnostic disable-next-line: param-type-mismatch
         a[k] = tostring(v:gsub(" including.*", ""))
       end
       local ic = vim.deepcopy(i)
       local ac = vim.deepcopy(a)
       for key, name in pairs({ n = "Next", l = "Last" }) do
-        i[key] = vim.tbl_extend("force", { name = "Inside " .. name .. " textobject" }, ic)
-        a[key] = vim.tbl_extend("force", { name = "Around " .. name .. " textobject" }, ac)
+        i[key] = vim.tbl_extend(
+          "force", { name = "Inside " .. name .. " textobject" }, ic)
+        a[key] = vim.tbl_extend(
+          "force", { name = "Around " .. name .. " textobject" }, ac)
       end
       require("which-key").register({
         mode = { "o", "x" },
@@ -272,40 +273,6 @@ require("lazy").setup({
   --     },
   --   },
   -- },
-  {
-    "sainnhe/everforest",
-    lazy = false,
-    priority = 1000,
-    config = function()
-      vim.cmd([[colorscheme everforest]])
-    end,
-  },
-  {
-    "ellisonleao/gruvbox.nvim",
-    lazy = true,
-    -- priority = 1000,
-    config = function()
-      -- load the colorscheme here
-      vim.cmd([[colorscheme gruvbox]])
-    end,
-  },
-  {
-    "shaunsingh/nord.nvim",
-    lazy = true,
-    config = function()
-      -- load the colorscheme here
-      vim.cmd([[colorscheme nord]])
-    end,
-  },
-  {
-    "EdenEast/nightfox.nvim",
-    lazy = true,
-    -- priority = 1000,
-    config = function()
-      -- load the colorscheme here
-      vim.cmd([[colorscheme dayfox]])
-    end,
-  },
   {
     "tpope/vim-commentary",
     config = false,
