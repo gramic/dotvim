@@ -27,7 +27,7 @@ set.expandtab = true
 set.autoread = true
 set.fixendofline = false
 set.swapfile = false
-set.sessionoptions:append { "globals" } -- to save TabooRename names
+set.sessionoptions:append { "tabpages,globals" } -- to save TabooRename names
 set.keymap = "bulgarian-phonetic"
 set.iminsert = 0
 set.imsearch = 0
@@ -36,9 +36,6 @@ set.mouse = ""
 
 vim.g.BufKillCreateMappings = 0
 
-vim.keymap.set("n", "<leader>bb", "'Ci<up><enter>mamCG",
-  { desc = "Exec latest terminal \"C command" }
-)
 vim.o.termguicolors = true
 vim.g.background = "light"
 
@@ -58,9 +55,17 @@ require("lazy").setup({
     end,
     keys = {
       {
+        "<C-l>"
+      },
+      {
         "gb",
         require("gramic-bazel").find_in_bazel_build,
         desc = "Find current file in BUILD file rule",
+      },
+      {
+        "<leader>bb",
+        "'Ci<up><enter>mamCG",
+        { desc = "Exec latest terminal \"C command" }
       },
       { "<M-1>", "1gt", desc = "Go to first tab" },
       { "<M-2>", "2gt", desc = "Go to second tab" },
@@ -102,6 +107,10 @@ require("lazy").setup({
     config = true,
   },
   "gcmt/taboo.vim",
+  -- {
+  --   "nanozuki/tabby.nvim",
+  --   config = true,
+  -- },
   "kristijanhusak/vim-dadbod-completion",
   "kristijanhusak/vim-dadbod-ui",
   "vim-scripts/dbext.vim",
@@ -133,14 +142,30 @@ require("lazy").setup({
         section_separators = '',
         component_separators = '',
       },
+      sections = {
+        lualine_c = { 'filename', { 'filename', path = 1 } },
+      },
       inactive_sections = {
         lualine_a = { '%{winnr()}' },
         lualine_b = {},
-        lualine_c = { 'filename' },
-        lualine_x = {},
+        lualine_c = {
+          'filename',
+          { 'filename', path = 1, show_filename_only = false },
+        },
+        lualine_x = { 'location', 'progress' },
         lualine_y = {},
         lualine_z = {},
       },
+      -- tabline = {
+      --   lualine_a = { { 'tabs', mode = 2 } },
+      --   lualine_b = {},
+      --   lualine_c = {
+      --     { 'filename', path = 1 }
+      --   },
+      --   lualine_x = {},
+      --   lualine_y = {},
+      --   lualine_z = {}
+      -- }
     },
   },
   { "nvim-treesitter/playground" },
