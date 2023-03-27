@@ -34,6 +34,8 @@ set.imsearch = 0
 set.numberwidth = 2
 set.mouse = ""
 
+vim.cmd("nnoremap ' `")
+
 vim.g.BufKillCreateMappings = 0
 
 vim.o.termguicolors = true
@@ -54,9 +56,9 @@ require("lazy").setup({
 
     end,
     keys = {
-      {
-        "<C-l>"
-      },
+      { "<C-l>" },
+      { "<S-l>" },
+      { "<S-h>" },
       {
         "gb",
         require("gramic-bazel").find_in_bazel_build,

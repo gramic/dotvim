@@ -133,24 +133,27 @@ return {
     },
   },
   {
-    "jose-elias-alvarez/null-ls.nvim",
-    event = "BufReadPre",
-    dependencies = { "williamboman/mason.nvim", "nvim-lua/plenary.nvim" },
-    -- opts = {
-    --   -- sources = {
-    --   --   null_ls.builtins.formatting.stylua,
-    --   --   null_ls.builtins.diagnostics.ruff.with({
-    --   --     extra_args = { "--max-line-length=80" },
-    --   --   }),
-    --   -- },
-    --   ensure_installed = {
-    --     "stylua",
-    --     "shellcheck",
-    --     "shfmt",
-    --     "flake8",
-    --     "ruff",
-    --   },
-    -- }
+    "jay-babu/mason-null-ls.nvim",
+    -- event = "BufReadPre",
+    dependencies = {
+      "williamboman/mason.nvim",
+      "jose-elias-alvarez/null-ls.nvim",
+    },
+    opts = {
+      --   -- sources = {
+      --   --   null_ls.builtins.formatting.stylua,
+      --   --   null_ls.builtins.diagnostics.ruff.with({
+      --   --     extra_args = { "--max-line-length=80" },
+      --   --   }),
+      --   -- },
+      ensure_installed = {
+        "stylua",
+        "shellcheck",
+        "shfmt",
+        "flake8",
+        "ruff",
+      },
+    }
   },
   {
     "folke/which-key.nvim",
