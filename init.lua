@@ -143,7 +143,12 @@ require("lazy").setup({
         component_separators = '',
       },
       sections = {
-        lualine_c = { 'filename', { 'filename', path = 1 } },
+        lualine_a = { '%{winnr()}' },
+        lualine_b = {},
+        lualine_c = {
+          { 'filename', color = 'DiffAdd' },
+          { 'filename', path = 1 },
+        },
       },
       inactive_sections = {
         lualine_a = { '%{winnr()}' },
