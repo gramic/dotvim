@@ -202,6 +202,11 @@ require("lazy").setup({
     keys = {
       { "<leader>ff", "<cmd>FzfLua git_files<cr>", desc = "Find git files" },
       { "<leader>fm", "<cmd>FzfLua oldfiles<cr>", desc = "Old files" },
+      {
+        "<leader>fg",
+        "<cmd>FzfLua live_grep_native<cr>",
+        desc = "Live grep native",
+      },
     },
   },
   "justinmk/vim-dirvish",
