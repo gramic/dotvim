@@ -27,7 +27,7 @@ set.expandtab = true
 set.autoread = true
 set.fixendofline = false
 set.swapfile = false
-set.sessionoptions:append { "tabpages,globals" } -- to save TabooRename names
+set.sessionoptions:append({ "tabpages,globals" }) -- to save TabooRename names
 set.keymap = "bulgarian-phonetic"
 set.iminsert = 0
 set.imsearch = 0
@@ -42,19 +42,38 @@ vim.o.termguicolors = true
 vim.g.background = "light"
 
 require("lazy").setup({
-  -- {
-  --   "LazyVim/LazyVim",
-  --   -- opts = {
-  --   --   colorscheme = "everforest",
-  --   -- },
+  -- spec = {
+  -- { "folke/LazyVim", import = "lazyvim.plugins" },
+  -- { import = "lazyvim.plugins.extras.formatting.prettier" },
   -- },
+  {
+    "LazyVim/LazyVim",
+    import = "lazyvim.plugins",
+    opts = {
+      colorscheme = "everforest",
+      performance = {
+        rtp = {
+          -- disable some rtp plugins
+          disabled_plugins = {
+            -- "gzip",
+            -- "matchit",
+            -- "matchparen",
+            -- "netrwPlugin",
+            -- "tarPlugin",
+            "tohtml",
+            "tutor",
+            "Telescope",
+            "bufferline",
+          },
+        },
+      },
+    },
+  },
   {
     --   -- name = "gramic",
     dir = "~/dotvim", -- lazy = false,
     config = false,
-    init = function()
-
-    end,
+    init = function() end,
     keys = {
       { "<C-l>" },
       { "<S-l>" },
@@ -67,7 +86,7 @@ require("lazy").setup({
       {
         "<leader>bb",
         "'Ci<up><enter>mamCG",
-        { desc = "Exec latest terminal \"C command" }
+        { desc = 'Exec latest terminal "C command' },
       },
       { "<M-1>", "1gt", desc = "Go to first tab" },
       { "<M-2>", "2gt", desc = "Go to second tab" },
@@ -83,8 +102,7 @@ require("lazy").setup({
   {
     "hrsh7th/nvim-cmp",
     opts = {
-      sources = {
-      },
+      sources = {},
     },
   },
   -- {
@@ -100,10 +118,9 @@ require("lazy").setup({
     },
     config = function(_, opts)
       require("py-bazel").setup(opts or {})
-    end
+    end,
   },
-  { "folke/neoconf.nvim", cmd = "Neoconf" },
-  "folke/neodev.nvim",
+  -- { "folke/neoconf.nvim", cmd = "Neoconf" },
   {
     "m4xshen/smartcolumn.nvim",
     config = true,
@@ -133,33 +150,34 @@ require("lazy").setup({
   -- {"alexander-born/cmp-bazel", dependencies = {"hrsh7th/nvim-cmp"}},
   -- Also add Glaive, which is used to configure codefmt's maktaba flags. See
   -- `:help :Glaive` for usage.
-  { "google/vim-glaive",  dependencies = { "google/vim-maktaba" } },
+  { "google/vim-glaive", dependencies = { "google/vim-maktaba" } },
   { "google/vim-jsonnet" },
   {
     "nvim-lualine/lualine.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     opts = {
       options = {
-        theme = 'everforest',
-        section_separators = '',
-        component_separators = '',
+        theme = "everforest",
+        section_separators = "",
+        component_separators = "",
+        globalstatus = false,
       },
       sections = {
-        lualine_a = { '%{winnr()}' },
+        lualine_a = { "%{winnr()}" },
         lualine_b = {},
         lualine_c = {
-          { 'filename', color = 'DiffAdd' },
-          { 'filename', path = 1 },
+          { "filename", color = "DiffAdd" },
+          { "filename", path = 1 },
         },
       },
       inactive_sections = {
-        lualine_a = { '%{winnr()}' },
+        lualine_a = { "%{winnr()}" },
         lualine_b = {},
         lualine_c = {
-          'filename',
-          { 'filename', path = 1, show_filename_only = false },
+          "filename",
+          { "filename", path = 1, show_filename_only = false },
         },
-        lualine_x = { 'location', 'progress' },
+        lualine_x = { "location", "progress" },
         lualine_y = {},
         lualine_z = {},
       },
@@ -191,7 +209,7 @@ require("lazy").setup({
   { "ConradIrwin/vim-bracketed-paste" },
   -- {dir = "~/gramic-neovim/plugin/gramic-neovim.vim"},
   { "ryvnf/readline.vim" },
-  { "folke/trouble.nvim",             config = true },
+  { "folke/trouble.nvim", config = true },
   { "p00f/clangd_extensions.nvim" },
   { "jpetrie/vim-counterpoint" },
   "tpope/vim-dadbod",
@@ -211,14 +229,14 @@ require("lazy").setup({
   {
     "nvim-lua/plenary.nvim",
   },
-  { "junegunn/fzf",    build = "./install --bin" },
+  { "junegunn/fzf", build = "./install --bin" },
   {
     "ibhagwan/fzf-lua",
-    dependencies = { 'nvim-tree/nvim-web-devicons', 'junegunn/fzf' },
+    dependencies = { "nvim-tree/nvim-web-devicons", "junegunn/fzf" },
     config = true,
     keys = {
       { "<leader>ff", "<cmd>FzfLua git_files<cr>", desc = "Find git files" },
-      { "<leader>fm", "<cmd>FzfLua oldfiles<cr>",  desc = "Old files" },
+      { "<leader>fm", "<cmd>FzfLua oldfiles<cr>", desc = "Old files" },
     },
   },
   "justinmk/vim-dirvish",
@@ -242,8 +260,8 @@ require("lazy").setup({
     opts = {
       open_browser_app = "open", -- specify your browser app; default for macos is "open" and for linux "xdg-open"
       handlers = {
-        plugin = true,           -- open plugin links in lua (e.g. packer, lazy, ..)
-        github = true,           -- open github issues
+        plugin = true, -- open plugin links in lua (e.g. packer, lazy, ..)
+        github = true, -- open github issues
       },
     },
   },
@@ -252,7 +270,7 @@ require("lazy").setup({
 
 if vim.fn.has('"unix"') then
   if vim.env.WSL_DISTRO_NAME ~= nil then
-    if vim.fn.executable('gclpr') == 1 then
+    if vim.fn.executable("gclpr") == 1 then
       vim.g.clipboard = [[
           {
             'name': 'gclpr',
@@ -269,7 +287,7 @@ if vim.fn.has('"unix"') then
       ]]
     end
   else
-    if vim.fn.executable(vim.env.HOME .. '/winhome/.wsl/gclpr.exe') == 1 then
+    if vim.fn.executable(vim.env.HOME .. "/winhome/.wsl/gclpr.exe") == 1 then
       vim.g.clipboard = [[
           {
             'name': 'gclpr',
@@ -288,11 +306,11 @@ if vim.fn.has('"unix"') then
   end
 end
 
-vim.api.nvim_create_autocmd('TextYankPost', {
-  group = vim.api.nvim_create_augroup('highlight_yank', {}),
-  desc = 'Hightlight selection on yank',
-  pattern = '*',
+vim.api.nvim_create_autocmd("TextYankPost", {
+  group = vim.api.nvim_create_augroup("highlight_yank", {}),
+  desc = "Hightlight selection on yank",
+  pattern = "*",
   callback = function()
-    vim.highlight.on_yank { higroup = 'IncSearch', timeout = 500 }
+    vim.highlight.on_yank({ higroup = "IncSearch", timeout = 500 })
   end,
 })

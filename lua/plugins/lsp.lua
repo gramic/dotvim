@@ -47,29 +47,50 @@ return {
         desc = "Type definition",
       }
       keys[#keys + 1] =
-        { "<leader>lrn", "<cmd>lua vim.lsp.buf.rename()<CR>", desc = "" }
+      { "<leader>lrn", "<cmd>lua vim.lsp.buf.rename()<CR>", desc = "" }
       keys[#keys + 1] =
-        { "<leader>lca", "<cmd>lua vim.lsp.buf.code_action()<CR>", desc = "" }
+      { "<leader>lca", "<cmd>lua vim.lsp.buf.code_action()<CR>", desc = "" }
       keys[#keys + 1] =
-        { "<leader>lgr", "<cmd>lua vim.lsp.buf.references()<CR>", desc = "" }
+      { "<leader>lgr", "<cmd>lua vim.lsp.buf.references()<CR>", desc = "" }
       keys[#keys + 1] =
-        { "<leader>le", vim.diagnostic.open_float, desc = "Line Diagnostics" }
+      { "<leader>le", vim.diagnostic.open_float, desc = "Line Diagnostics" }
       keys[#keys + 1] =
-        { "<leader>l[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", desc = "" }
+      { "<leader>l[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", desc = "" }
       keys[#keys + 1] =
-        { "<leader>l]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", desc = "" }
+      { "<leader>l]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", desc = "" }
       keys[#keys + 1] = {
         "<leader>lq",
         "<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>",
         desc = "",
       }
       keys[#keys + 1] =
-        { "<leader>lf", "<cmd>lua vim.lsp.buf.format()<CR>", desc = "" }
+      { "<leader>lf", "<cmd>lua vim.lsp.buf.format()<CR>", desc = "" }
     end,
   },
 
   {
     "neovim/nvim-lspconfig",
+    version = false,
+    event = { "BufReadPre", "BufNewFile" },
+    dependencies = {
+      -- {
+      --   "folke/neoconf.nvim",
+      --   cmd = "Neoconf",
+      --   config = true
+      -- },
+      -- {
+      --   "folke/neodev.nvim",
+      --   opts = { experimental = { pathStrict = true } }
+      -- },
+      "mason.nvim",
+      "williamboman/mason-lspconfig.nvim",
+      {
+        "hrsh7th/cmp-nvim-lsp",
+        cond = function()
+          return require("lazyvim.util").has("nvim-cmp")
+        end,
+      },
+    },
     ---@class PluginLspOpts
     opts = {
       -- options for vim.diagnostic.config()
@@ -100,6 +121,7 @@ return {
             Lua = {
               diagnostics = {
                 globals = { "vim" },
+                disable = { "lowercase-global" },
               },
               workspace = {
                 checkThirdParty = false,
@@ -115,6 +137,10 @@ return {
       -- return true if you don't want this server to be setup with lspconfig
       ---@type table<string, fun(server:string, opts:_.lspconfig.options):boolean?>
       setup = {
+        -- lua_ls = function(_, opts)
+        --   require("lua_ls").setup({ settings = opts.settings })
+        --   return true
+        -- end,
         -- example to setup with typescript.nvim
         -- tsserver = function(_, opts)
         --   require("typescript").setup({ server = opts })
@@ -122,27 +148,6 @@ return {
         -- end,
         -- Specify * to use this function as a fallback for any server
         -- ["*"] = function(server, opts) end,
-      },
-    },
-  },
-
-  {
-    "neovim/nvim-lspconfig",
-    event = { "BufReadPre", "BufNewFile" },
-    dependencies = {
-      {
-        "folke/neoconf.nvim",
-        cmd = "Neoconf",
-        config = true,
-      },
-      { "folke/neodev.nvim", opts = { experimental = { pathStrict = true } } },
-      "mason.nvim",
-      "williamboman/mason-lspconfig.nvim",
-      {
-        "hrsh7th/cmp-nvim-lsp",
-        cond = function()
-          return require("lazyvim.util").has("nvim-cmp")
-        end,
       },
     },
     ---@param opts PluginLspOpts
@@ -154,22 +159,25 @@ return {
         require("lazyvim.plugins.lsp.format").on_attach(client, buffer)
         require("lazyvim.plugins.lsp.keymaps").on_attach(client, buffer)
       end)
+
       -- diagnostics
       for name, icon in pairs(require("lazyvim.config").icons.diagnostics) do
         name = "DiagnosticSign" .. name
         vim.fn.sign_define(name, { text = icon, texthl = name, numhl = "" })
       end
       vim.diagnostic.config(opts.diagnostics)
+
       local servers = opts.servers
       local capabilities = require("cmp_nvim_lsp").default_capabilities(
         vim.lsp.protocol.make_client_capabilities()
       )
 
       local function setup(server)
-        local server_opts = vim.tbl_deep_extend("force", {
-          capabilities = vim.deepcopy(capabilities),
-        }, servers[server] or {})
-
+        local server_opts = vim.tbl_deep_extend(
+          "force",
+          { capabilities = vim.deepcopy(capabilities), },
+          servers[server] or {}
+        )
         if opts.setup[server] then
           if opts.setup[server](server, server_opts) then
             return
@@ -190,10 +198,7 @@ return {
         if server_opts then
           server_opts = server_opts == true and {} or server_opts
           -- run manual setup if mason=false or if this is a server that cannot be installed with mason-lspconfig
-          if
-            server_opts.mason == false
-            or not vim.tbl_contains(available, server)
-          then
+          if server_opts.mason == false or not vim.tbl_contains(available, server) then
             setup(server)
           else
             ensure_installed[#ensure_installed + 1] = server

@@ -9,5 +9,5 @@ return {
     opts = {
       colorscheme = "everforest",
     },
-  }
+  },
 }

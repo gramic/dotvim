@@ -5,7 +5,13 @@ require("mason").setup({
   }
 })
 require("mason-lspconfig").setup({
-  ensure_installed = { "lua_ls", "clangd", "jsonnet_ls", "pyright", "yapf" },
+  ensure_installed = {
+    -- "lua_ls",
+    "clangd",
+    "jsonnet_ls",
+    "pyright",
+    "yapf"
+  },
 })
 
 local on_attach = function(client, bufnr)
@@ -47,29 +53,29 @@ table.insert(lua_runtime_path, "lua/?/init.lua")
 -- Set up lspconfig.
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
-require('lspconfig').lua_ls.setup {
-  on_attach = on_attach,
-  handlers = rounded_border_handlers,
-  capabilities = capabilities,
-  settings = {
-    Lua = {
-      runtime = {
-        version = 'LuaJIT',
-        path = lua_runtime_path,
-      },
-      diagnostics = {
-        globals = { 'vim' },
-      },
-      workspace = {
-        library = vim.api.nvim_get_runtime_file("", true),
-        checkThirdParty = false,
-      },
-      telemetry = {
-        enable = false,
-      },
-    },
-  }
-}
+-- require('lspconfig').lua_ls.setup {
+--   on_attach = on_attach,
+--   handlers = rounded_border_handlers,
+--   capabilities = capabilities,
+--   settings = {
+--     Lua = {
+--       runtime = {
+--         version = 'LuaJIT',
+--         path = lua_runtime_path,
+--       },
+--       diagnostics = {
+--         globals = { 'vim' },
+--       },
+--       workspace = {
+--         library = vim.api.nvim_get_runtime_file("", true),
+--         checkThirdParty = false,
+--       },
+--       telemetry = {
+--         enable = false,
+--       },
+--     },
+--   }
+-- }
 
 -- See https://github.com/p00f/clangd_extensions.nvim
 require("clangd_extensions").setup {
