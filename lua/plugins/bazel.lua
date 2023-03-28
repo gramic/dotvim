@@ -8,14 +8,14 @@ return {
     opts = function(_, opts)
       local cmp = require("cmp")
       opts.sources = cmp.config.sources(
-        vim.list_extend(
-          opts.sources,
-          { { name = "bazel" } }
-        )
+        vim.list_extend(opts.sources, { { name = "bazel" } })
       )
     end,
   },
-
+  {
+    "alexander-born/bazel.nvim",
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
+  },
   {
     "alexander-born/bazel.nvim",
     config = function()
@@ -65,5 +65,4 @@ return {
         ]])
     end,
   },
-
 }

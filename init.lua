@@ -17,9 +17,6 @@ vim.cmd("nnoremap ' `")
 
 vim.g.BufKillCreateMappings = 0
 
-vim.o.termguicolors = true
-vim.g.background = "light"
-
 require("lazy").setup({
   -- spec = {
   -- { "folke/LazyVim", import = "lazyvim.plugins" },
