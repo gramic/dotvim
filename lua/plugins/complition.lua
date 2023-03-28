@@ -14,7 +14,7 @@ return {
       local cmp = require("cmp")
       local luasnip = require("luasnip")
       local has_words_before = function()
-        local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+        local line, col = table.unpack(vim.api.nvim_win_get_cursor(0))
         return col ~= 0
             and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
       end
@@ -131,29 +131,6 @@ return {
         mode = { "i", "s" }
       },
     },
-  },
-  {
-    "jay-babu/mason-null-ls.nvim",
-    -- event = "BufReadPre",
-    dependencies = {
-      "williamboman/mason.nvim",
-      "jose-elias-alvarez/null-ls.nvim",
-    },
-    opts = {
-      --   -- sources = {
-      --   --   null_ls.builtins.formatting.stylua,
-      --   --   null_ls.builtins.diagnostics.ruff.with({
-      --   --     extra_args = { "--max-line-length=80" },
-      --   --   }),
-      --   -- },
-      ensure_installed = {
-        "stylua",
-        "shellcheck",
-        "shfmt",
-        "flake8",
-        "ruff",
-      },
-    }
   },
   {
     "folke/which-key.nvim",

@@ -8,23 +8,63 @@ return {
       -- keys[#keys + 1] = { "K", "<cmd>echo 'hello'<cr>" }
       -- disable a keymap
       keys[#keys + 1] = { "gt", false }
-      keys[#keys + 1] = { 'gd', vim.lsp.buf.definition, desc = ''}
-      keys[#keys + 1] = { '<leader>lgd', '<Cmd>lua vim.lsp.buf.declaration()<CR>', desc = ''}
-      keys[#keys + 1] = { 'K', vim.lsp.buf.hover, desc = 'Hover'}
-      keys[#keys + 1] = { '<leader>lgi', '<cmd>lua vim.lsp.buf.implementation()<CR>', desc = ''}
-      keys[#keys + 1] = { '<C-k>', vim.lsp.buf.signature_help, desc = "Signature Help", has = "signatureHelp"}
-      keys[#keys + 1] = { '<leader>lwa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', desc = ''}
-      keys[#keys + 1] = { '<leader>lwr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', desc = ''}
-      keys[#keys + 1] = { '<leader>lwl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', desc = ''}
-      keys[#keys + 1] = { '<leader>ld', '<cmd>lua vim.lsp.buf.type_definition()<CR>', desc = 'Type definition'}
-      keys[#keys + 1] = { '<leader>lrn', '<cmd>lua vim.lsp.buf.rename()<CR>', desc = ''}
-      keys[#keys + 1] = { '<leader>lca', '<cmd>lua vim.lsp.buf.code_action()<CR>', desc = ''}
-      keys[#keys + 1] = { '<leader>lgr', '<cmd>lua vim.lsp.buf.references()<CR>', desc = ''}
-      keys[#keys + 1] = { '<leader>le', vim.diagnostic.open_float, desc = "Line Diagnostics"}
-      keys[#keys + 1] = { '<leader>l[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', desc = ''}
-      keys[#keys + 1] = { '<leader>l]d', '<cmd>lua vim.diagnostic.goto_next()<CR>', desc = ''}
-      keys[#keys + 1] = { '<leader>lq', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', desc = ''}
-      keys[#keys + 1] = { "<leader>lf", "<cmd>lua vim.lsp.buf.format()<CR>", desc = ''}
+      keys[#keys + 1] = { "gd", vim.lsp.buf.definition, desc = "" }
+      keys[#keys + 1] = {
+        "<leader>lgd",
+        "<Cmd>lua vim.lsp.buf.declaration()<CR>",
+        desc = "",
+      }
+      keys[#keys + 1] = { "K", vim.lsp.buf.hover, desc = "Hover" }
+      keys[#keys + 1] = {
+        "<leader>lgi",
+        "<cmd>lua vim.lsp.buf.implementation()<CR>",
+        desc = "",
+      }
+      keys[#keys + 1] = {
+        "<C-k>",
+        vim.lsp.buf.signature_help,
+        desc = "Signature Help",
+        has = "signatureHelp",
+      }
+      keys[#keys + 1] = {
+        "<leader>lwa",
+        "<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>",
+        desc = "",
+      }
+      keys[#keys + 1] = {
+        "<leader>lwr",
+        "<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>",
+        desc = "",
+      }
+      keys[#keys + 1] = {
+        "<leader>lwl",
+        "<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>",
+        desc = "",
+      }
+      keys[#keys + 1] = {
+        "<leader>ld",
+        "<cmd>lua vim.lsp.buf.type_definition()<CR>",
+        desc = "Type definition",
+      }
+      keys[#keys + 1] =
+        { "<leader>lrn", "<cmd>lua vim.lsp.buf.rename()<CR>", desc = "" }
+      keys[#keys + 1] =
+        { "<leader>lca", "<cmd>lua vim.lsp.buf.code_action()<CR>", desc = "" }
+      keys[#keys + 1] =
+        { "<leader>lgr", "<cmd>lua vim.lsp.buf.references()<CR>", desc = "" }
+      keys[#keys + 1] =
+        { "<leader>le", vim.diagnostic.open_float, desc = "Line Diagnostics" }
+      keys[#keys + 1] =
+        { "<leader>l[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", desc = "" }
+      keys[#keys + 1] =
+        { "<leader>l]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", desc = "" }
+      keys[#keys + 1] = {
+        "<leader>lq",
+        "<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>",
+        desc = "",
+      }
+      keys[#keys + 1] =
+        { "<leader>lf", "<cmd>lua vim.lsp.buf.format()<CR>", desc = "" }
     end,
   },
 
@@ -59,7 +99,7 @@ return {
           settings = {
             Lua = {
               diagnostics = {
-                globals = { 'vim' },
+                globals = { "vim" },
               },
               workspace = {
                 checkThirdParty = false,
@@ -90,8 +130,12 @@ return {
     "neovim/nvim-lspconfig",
     event = { "BufReadPre", "BufNewFile" },
     dependencies = {
-      { "folke/neoconf.nvim", cmd = "Neoconf",                                config = true },
-      { "folke/neodev.nvim",  opts = { experimental = { pathStrict = true } } },
+      {
+        "folke/neoconf.nvim",
+        cmd = "Neoconf",
+        config = true,
+      },
+      { "folke/neodev.nvim", opts = { experimental = { pathStrict = true } } },
       "mason.nvim",
       "williamboman/mason-lspconfig.nvim",
       {
@@ -117,7 +161,9 @@ return {
       end
       vim.diagnostic.config(opts.diagnostics)
       local servers = opts.servers
-      local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
+      local capabilities = require("cmp_nvim_lsp").default_capabilities(
+        vim.lsp.protocol.make_client_capabilities()
+      )
 
       local function setup(server)
         local server_opts = vim.tbl_deep_extend("force", {
@@ -144,7 +190,10 @@ return {
         if server_opts then
           server_opts = server_opts == true and {} or server_opts
           -- run manual setup if mason=false or if this is a server that cannot be installed with mason-lspconfig
-          if server_opts.mason == false or not vim.tbl_contains(available, server) then
+          if
+            server_opts.mason == false
+            or not vim.tbl_contains(available, server)
+          then
             setup(server)
           else
             ensure_installed[#ensure_installed + 1] = server
@@ -161,7 +210,8 @@ return {
 
   {
     "williamboman/mason.nvim",
-    -- keys = { { "<leader>cm", "<cmd>Mason<cr>", desc = "Mason" } },
+    keys = { { "<leader>cm", "<cmd>Mason<cr>", desc = "Mason" } },
+    cmd = "Mason",
     opts = {
       ensure_installed = {
         "stylua",
@@ -174,11 +224,6 @@ return {
         "mason.providers.registry-api",
       },
     },
-  },
-
-  {
-    "williamboman/mason.nvim",
-    cmd = "Mason",
     ---@param opts MasonSettings | {ensure_installed: string[]}
     config = function(_, opts)
       require("mason").setup(opts)
