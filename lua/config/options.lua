@@ -2,6 +2,10 @@
 -- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
 -- Add any additional options here
 local opt = vim.opt -- set options
+opt.clipboard = ""
+opt.cursorline = false -- Enable highlighting of the current line
+opt.wrap = true -- Disable line wrap
+opt.splitbelow = false -- Put new windows above current
 opt.undofile = true
 opt.tabstop = 2
 opt.shiftwidth = 2
