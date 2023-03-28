@@ -16,7 +16,11 @@ return {
       local has_words_before = function()
         local line, col = table.unpack(vim.api.nvim_win_get_cursor(0))
         return col ~= 0
-            and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+          and vim.api
+              .nvim_buf_get_lines(0, line - 1, line, true)[1]
+              :sub(col, col)
+              :match("%s")
+            == nil
       end
       return {
         completion = {
@@ -168,7 +172,9 @@ return {
     opts = function(_, opts)
       local cmp = require("cmp")
       opts.sources = {}
-      opts.sources = cmp.config.sources(vim.list_extend(opts.sources, { { name = "emoji" } }))
+      opts.sources = cmp.config.sources(
+        vim.list_extend(opts.sources, { { name = "emoji" } })
+      )
     end,
   },
 
@@ -187,7 +193,8 @@ return {
         "nvim-treesitter/nvim-treesitter-textobjects",
         init = function()
           -- PERF: no need to load the plugin, if we only need its queries for mini.ai
-          local plugin = require("lazy.core.config").spec.plugins["nvim-treesitter"]
+          local plugin =
+            require("lazy.core.config").spec.plugins["nvim-treesitter"]
           local opts = require("lazy.core.plugin").values(plugin, "opts", false)
           local enabled = false
           if opts.textobjects then
@@ -199,14 +206,16 @@ return {
             end
           end
           if not enabled then
-            require("lazy.core.loader").disable_rtp_plugin("nvim-treesitter-textobjects")
+            require("lazy.core.loader").disable_rtp_plugin(
+              "nvim-treesitter-textobjects"
+            )
           end
         end,
       },
     },
     keys = {
       { "<c-space>", desc = "Increment selection" },
-      { "<bs>",      desc = "Decrement selection", mode = "x" },
+      { "<bs>", desc = "Decrement selection", mode = "x" },
     },
     ---@type TSConfig
     opts = {
