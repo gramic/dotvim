@@ -1,4 +1,5 @@
 vim.g.mapleader = " " -- Make sure to set `mapleader` before lazy
+vim.g.python_recommended_style = 0
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -18,13 +19,10 @@ vim.cmd("nnoremap ' `")
 vim.g.BufKillCreateMappings = 0
 
 require("lazy").setup({
-  -- spec = {
-  -- { "folke/LazyVim", import = "lazyvim.plugins" },
-  -- { import = "lazyvim.plugins.extras.formatting.prettier" },
-  -- },
   {
     "LazyVim/LazyVim",
     import = "lazyvim.plugins",
+    -- { import = "lazyvim.plugins.extras.formatting.prettier" },
     opts = {
       colorscheme = "everforest",
       mouse = "",
@@ -35,9 +33,35 @@ require("lazy").setup({
     enabled = false,
   },
   {
+    "nvim-neo-tree/neo-tree.nvim",
+    enabled = false,
+  },
+  {
+    -- easily jump to any location and enhanced f/t motions for Leap
+    "ggandor/flit.nvim",
+    enabled = false,
+  },
+  {
+    "ggandor/leap.nvim",
+    enabled = false,
+  },
+  -- auto pairs
+  {
+    "echasnovski/mini.pairs",
+    enabled = false,
+  },
+  {
     --   -- name = "gramic",
     dir = "~/dotvim", -- lazy = false,
-    config = false,
+    -- import = "config.autocmds",
+    config = function(_, _)
+      vim.api.nvim_create_autocmd("User", {
+        pattern = "VeryLazy",
+        callback = function()
+          require("config.autocmds")
+        end,
+      })
+    end,
     init = function() end,
     keys = {
       { "<C-l>" },
@@ -64,12 +88,12 @@ require("lazy").setup({
     --   -- build = "git remote add upstream git@github.com:gramic/dotvim.git",
   },
   -- {import = "gramic-bazel"},
-  {
-    "hrsh7th/nvim-cmp",
-    opts = {
-      sources = {},
-    },
-  },
+  -- {
+  --   "hrsh7th/nvim-cmp",
+  --   opts = {
+  --     sources = {},
+  --   },
+  -- },
   -- {
   --   "bazelbuild/vim-bazel",
   --   dependencies = { "google/vim-maktaba" },
