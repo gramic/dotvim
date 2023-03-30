@@ -135,6 +135,7 @@ return {
   {
     "williamboman/mason.nvim",
     keys = { { "<leader>cm", "<cmd>Mason<cr>", desc = "Mason" } },
+    version = false,
     cmd = "Mason",
     opts = {
       ensure_installed = {
@@ -142,6 +143,7 @@ return {
         "shfmt",
         "pyright",
         "flake8",
+        "lua-language-server",
       },
       providers = {
         "mason.providers.client",

@@ -51,6 +51,14 @@ require("lazy").setup({
     enabled = false,
   },
   {
+    "echasnovski/mini.ai",
+    enabled = false,
+  },
+  {
+    "echasnovski/mini.comment",
+    enabled = false,
+  },
+  {
     --   -- name = "gramic",
     dir = "~/dotvim", -- lazy = false,
     -- import = "config.autocmds",
@@ -208,7 +216,7 @@ require("lazy").setup({
   "tpope/vim-fugitive",
   "tpope/vim-rhubarb",
   "tpope/vim-repeat",
-  "tpope/vim-unimpaired",
+  -- "tpope/vim-unimpaired",
   "tpope/vim-obsession",
   "tpope/vim-abolish",
   "tpope/vim-characterize",

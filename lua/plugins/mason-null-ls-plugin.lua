@@ -33,7 +33,9 @@ return {
         null_ls.builtins.formatting.prettier.with({
           filetypes = { "html", "css", "yaml", "markdown", "json" },
         }),
-        null_ls.builtins.formatting.yapf.with({}),
+        null_ls.builtins.formatting.yapf,
+        -- null_ls.builtins.formatting.fish,
+        -- null_ls.builtins.formatting.fish_indent,
       })
       null_ls.setup(opts)
     end,
