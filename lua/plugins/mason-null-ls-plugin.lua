@@ -1,43 +1,35 @@
 return {
   {
-    "jay-babu/mason-null-ls.nvim",
-    -- event = "BufReadPre",
-    dependencies = {
-      "williamboman/mason.nvim",
-      "jose-elias-alvarez/null-ls.nvim",
-    },
-    opts = {
-      ensure_installed = {
-        "stylua",
-        "shellcheck",
-        "shfmt",
-        "flake8",
-        "ruff",
-      },
-    },
-    config = function(_, opts)
-      local null_ls = require("null-ls")
-      opts.sources = vim.list_extend(opts.sources or {}, {
-        null_ls.builtins.diagnostics.buildifier,
-        null_ls.builtins.formatting.buildifier,
-        null_ls.builtins.diagnostics.hadolint,
-        null_ls.builtins.diagnostics.protoc_gen_lint,
-        null_ls.builtins.diagnostics.sqlfluff,
-        null_ls.builtins.diagnostics.tidy,
-        null_ls.builtins.diagnostics.yamllint,
-        null_ls.builtins.formatting.shfmt,
-        null_ls.builtins.formatting.shellharden,
-        null_ls.builtins.diagnostics.selene,
-        -- null_ls.builtins.formatting.stylua,
-        null_ls.builtins.diagnostics.codespell,
-        null_ls.builtins.formatting.prettier.with({
-          filetypes = { "html", "css", "yaml", "markdown", "json" },
-        }),
-        null_ls.builtins.formatting.yapf,
-        -- null_ls.builtins.formatting.fish,
-        -- null_ls.builtins.formatting.fish_indent,
-      })
-      null_ls.setup(opts)
+    "jose-elias-alvarez/null-ls.nvim",
+    -- event = { "BufReadPre", "BufNewFile" },
+    -- dependencies = { "mason.nvim" },
+    opts = function()
+      local nls = require("null-ls")
+      return {
+        root_dir = require("null-ls.utils").root_pattern(
+          ".null-ls-root",
+          ".neoconf.json",
+          "Makefile",
+          ".git"
+        ),
+        sources = {
+          nls.builtins.formatting.fish_indent,
+          nls.builtins.diagnostics.fish,
+          nls.builtins.formatting.stylua,
+          nls.builtins.formatting.shfmt,
+          nls.builtins.diagnostics.flake8,
+          nls.builtins.formatting.yapf,
+          nls.builtins.diagnostics.buildifier,
+          nls.builtins.formatting.buildifier,
+          nls.builtins.diagnostics.protoc_gen_lint.with({
+            disabled_filetypes = { "proto" },
+          }),
+          nls.builtins.diagnostics.codespell.with({
+            disabled_filetypes = { "proto" },
+          }),
+          nls.builtins.diagnostics.tidy,
+        },
+      }
     end,
   },
 }

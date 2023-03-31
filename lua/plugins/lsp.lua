@@ -144,6 +144,7 @@ return {
         "pyright",
         "flake8",
         "lua-language-server",
+        "yapf",
       },
       providers = {
         "mason.providers.client",

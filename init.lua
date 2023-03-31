@@ -95,6 +95,10 @@ require("lazy").setup({
     --   -- url = "git@github.com:gramic/dotvim.git",
     --   -- build = "git remote add upstream git@github.com:gramic/dotvim.git",
   },
+  {
+    "hudclark/grpc-nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+  },
   -- {import = "gramic-bazel"},
   -- {
   --   "hrsh7th/nvim-cmp",
