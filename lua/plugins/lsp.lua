@@ -142,7 +142,6 @@ return {
         "stylua",
         "shfmt",
         "pyright",
-        "flake8",
         "lua-language-server",
         "yapf",
       },
