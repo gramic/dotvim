@@ -28,3 +28,4 @@ opt.mouse = ""
 opt.scrolloff = 0
 opt.number = false
 opt.relativenumber = false
+opt.wildmode = "full" -- Command-line completion mode
