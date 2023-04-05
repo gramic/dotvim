@@ -6,6 +6,7 @@ opt.clipboard = ""
 opt.cursorline = false -- Enable highlighting of the current line
 opt.wrap = true -- Disable line wrap
 opt.splitbelow = false -- Put new windows above current
+opt.splitright = false
 opt.undofile = true
 opt.tabstop = 2
 opt.shiftwidth = 2

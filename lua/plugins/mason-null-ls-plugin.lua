@@ -24,9 +24,9 @@ return {
           nls.builtins.diagnostics.protoc_gen_lint.with({
             disabled_filetypes = { "proto" },
           }),
-          nls.builtins.diagnostics.codespell.with({
-            disabled_filetypes = { "proto" },
-          }),
+          -- nls.builtins.diagnostics.codespell.with({
+          --   disabled_filetypes = { "proto" },
+          -- }),
           nls.builtins.diagnostics.tidy,
         },
       }

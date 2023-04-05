@@ -29,6 +29,17 @@ require("lazy").setup({
     },
   },
   {
+    "folke/noice.nvim",
+    opts = {
+      presets = {
+        bottom_search = false, -- use a classic bottom cmdline for search
+        command_palette = false, -- position the cmdline and popupmenu together
+        long_message_to_split = false, -- long messages will be sent to a split
+        inc_rename = false, -- enables an input dialog for inc-rename.nvim
+      },
+    },
+  },
+  {
     "akinsho/bufferline.nvim",
     enabled = false,
   },
@@ -75,6 +86,11 @@ require("lazy").setup({
       { "<C-l>" },
       { "<S-l>" },
       { "<S-h>" },
+      {
+        "<leader>uh",
+        "<cmd>set hlsearch<cr>",
+        { desc = "Switch hlsearch on" },
+      },
       {
         "gb",
         require("gramic-bazel").find_in_bazel_build,
@@ -123,8 +139,11 @@ require("lazy").setup({
   },
   -- { "folke/neoconf.nvim", cmd = "Neoconf" },
   {
+    -- vertical column line
     "m4xshen/smartcolumn.nvim",
-    config = true,
+    opts = {
+      -- custom_colorcolumn = { python = "80" },
+    },
   },
   "gcmt/taboo.vim",
   -- {
@@ -264,7 +283,8 @@ require("lazy").setup({
     "chrishrb/gx.nvim",
     event = { "BufEnter" },
     opts = {
-      open_browser_app = "open", -- specify your browser app; default for macos is "open" and for linux "xdg-open"
+      -- specify your browser app; default for linux "xdg-open"
+      open_browser_app = "open",
       handlers = {
         plugin = true, -- open plugin links in lua (e.g. packer, lazy, ..)
         github = true, -- open github issues
