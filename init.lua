@@ -31,6 +31,20 @@ require("lazy").setup({
   {
     "folke/noice.nvim",
     opts = {
+      enabled = false,
+      cmdline = {
+        enabled = false, -- enables the Noice cmdline UI
+      },
+      messages = {
+        -- NOTE: If you enable messages, then the cmdline is enabled automatically.
+        -- This is a current Neovim limitation.
+        enabled = false, -- enables the Noice messages UI
+        view = "notify", -- default view for messages
+        view_error = "notify", -- view for errors
+        view_warn = "notify", -- view for warnings
+        view_history = "messages", -- view for :messages
+        view_search = "virtualtext", -- view for search count messages. Set to `false` to disable
+      },
       presets = {
         bottom_search = true, -- use a classic bottom cmdline for search
         command_palette = false, -- position the cmdline and popupmenu together
@@ -71,10 +85,11 @@ require("lazy").setup({
   },
   {
     --   -- name = "gramic",
+    -- lazy = false,
     dir = "~/dotvim", -- lazy = false,
-    -- import = "config.autocmds",
     dependencies = { "nvim-lua/plenary.nvim" },
     config = function(_, _)
+      require("gramic.globals")
       vim.api.nvim_create_autocmd("User", {
         pattern = "VeryLazy",
         callback = function()
@@ -82,11 +97,15 @@ require("lazy").setup({
         end,
       })
     end,
-    init = function() end,
     keys = {
       { "<C-l>" },
       { "<S-l>" },
       { "<S-h>" },
+      {
+        "<leader><leader>x",
+        "<cmd>w<cr><cmd>source %<cr>",
+        desc = "Write and source current file",
+      },
       {
         "<leader>uh",
         "<cmd>set hlsearch<cr>",
@@ -100,6 +119,15 @@ require("lazy").setup({
       {
         "<leader>bb",
         require("gramic-bazel").kill_bazel_and_restart_terminal,
+        desc = 'Exec latest terminal "C command',
+      },
+      {
+        "<leader>rr",
+        function()
+          -- vim.cmd("<cmd>w<cr><cmd>source %<cr>")
+          require("gramic.globals")
+          R("gramic-bazel")
+        end,
         desc = 'Exec latest terminal "C command',
       },
       { "<M-1>", "1gt", desc = "Go to first tab" },
