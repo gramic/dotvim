@@ -1,9 +1,13 @@
 return {
   {
-    "echasnovski/mini.nvim",
+    "echasnovski/mini.ai",
     version = false,
     event = "VeryLazy",
-    dependencies = { "nvim-treesitter-textobjects", "folke/which-key.nvim" },
+    dependencies = {
+      "echasnovski/mini.nvim",
+      "nvim-treesitter-textobjects",
+      "folke/which-key.nvim",
+    },
     opts = function()
       local ai = require("mini.ai")
       return {

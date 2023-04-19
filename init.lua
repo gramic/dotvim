@@ -32,9 +32,9 @@ require("lazy").setup({
     "folke/noice.nvim",
     opts = {
       presets = {
-        bottom_search = false, -- use a classic bottom cmdline for search
+        bottom_search = true, -- use a classic bottom cmdline for search
         command_palette = false, -- position the cmdline and popupmenu together
-        long_message_to_split = false, -- long messages will be sent to a split
+        long_message_to_split = true, -- long messages will be sent to a split
         inc_rename = false, -- enables an input dialog for inc-rename.nvim
       },
     },
@@ -73,6 +73,7 @@ require("lazy").setup({
     --   -- name = "gramic",
     dir = "~/dotvim", -- lazy = false,
     -- import = "config.autocmds",
+    dependencies = { "nvim-lua/plenary.nvim" },
     config = function(_, _)
       vim.api.nvim_create_autocmd("User", {
         pattern = "VeryLazy",
@@ -89,7 +90,7 @@ require("lazy").setup({
       {
         "<leader>uh",
         "<cmd>set hlsearch<cr>",
-        { desc = "Switch hlsearch on" },
+        desc = "Switch hlsearch on",
       },
       {
         "gb",
@@ -98,8 +99,8 @@ require("lazy").setup({
       },
       {
         "<leader>bb",
-        "'Ci<up><enter>mamCG",
-        { desc = 'Exec latest terminal "C command' },
+        require("gramic-bazel").kill_bazel_and_restart_terminal,
+        desc = 'Exec latest terminal "C command',
       },
       { "<M-1>", "1gt", desc = "Go to first tab" },
       { "<M-2>", "2gt", desc = "Go to second tab" },
@@ -215,6 +216,15 @@ require("lazy").setup({
   },
   { "nvim-treesitter/playground" },
   {
+    "nvim-treesitter/nvim-treesitter",
+    version = false, -- last release is way too old and doesn't work on Windows
+    opts = {
+      ensure_installed = {
+        "vimdoc",
+      },
+    },
+  },
+  {
     "nvim-treesitter/nvim-treesitter-textobjects",
     dependencies = {
       "nvim-tree/nvim-web-devicons",
@@ -239,7 +249,7 @@ require("lazy").setup({
   "tpope/vim-fugitive",
   "tpope/vim-rhubarb",
   "tpope/vim-repeat",
-  -- "tpope/vim-unimpaired",
+  "tpope/vim-unimpaired",
   "tpope/vim-obsession",
   "tpope/vim-abolish",
   "tpope/vim-characterize",
