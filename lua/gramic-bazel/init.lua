@@ -4,18 +4,31 @@ local M = {}
 M.spec = nil
 
 ---@class LazyConfig
-M.defaults = {}
+M.defaults = {
+  log_level = "info",
+}
 
 ---@type LazyConfig
 M.options = {}
 
 -- Switch to terminal with C mark
-function M._switch_to_terminal()
+function M._get_C_marked_terminal_buffer()
   local _, _, buffer, _ = unpack(vim.api.nvim_get_mark("C", {}))
-  if not buffer then
+  return buffer
+end
+
+-- Switch to terminal with C mark
+function M._has_C_marked_terminal_buffer()
+  return M._get_C_marked_terminal_buffer() ~= 0
+end
+
+-- Switch to terminal with C mark
+function M._switch_to_terminal()
+  local c_marked_buffer = M._get_C_marked_terminal_buffer()
+  if not c_marked_buffer then
     return false
   end
-  local winid = vim.fn.bufwinid(buffer)
+  local winid = vim.fn.bufwinid(c_marked_buffer)
   vim.api.nvim_set_current_win(winid)
   return true
 end
@@ -23,19 +36,24 @@ end
 -- Find bazel running process, kill it first
 -- and then rerun latest history command in terminal
 function M.kill_bazel_and_restart_terminal()
-  if not M._switch_to_terminal() then
-    print("Start a new terminal and mark it with capital C")
+  M.log.info("Kill bazel and restart terminal")
+  if not M._has_C_marked_terminal_buffer() then
+    M.log.info("No C marked terminal.")
     return false
   end
   local pid_of_bazel = vim.fn.system({ "pidof", "bazel" })
   if pid_of_bazel ~= "" then
-    print("pid_of_bazel is " .. pid_of_bazel)
+    M.log.info("killing PID " .. pid_of_bazel .. " of bazel.")
     vim.fn.system("kill -9 " .. pid_of_bazel)
   else
-    print("pid_of_bazel is NOT found")
+    M.log.warn("PID of bazel is NOT found")
   end
+  if not M._switch_to_terminal() then
+    M.log.warn("Can't swtch to C marked terminal.")
+    return false
+  end
+  vim.cmd("<cmd>i<up><enter>mamCG")
   -- vim.cmd("'Ci<up><enter>mamCG")
-  vim.cmd("i<up><enter>mamCG")
 end
 
 function M.split_build_file(build_file_path, search_file_name)
@@ -64,6 +82,10 @@ end
 --@param opts? LazyConfig
 function M.setup(opts)
   M.options = vim.tbl_deep_extend("force", M.defaults, opts or {})
+  M.log = require("plenary.log").new({
+    plugin = "gramic-bazel",
+    level = M.options.log_level,
+  })
 end
 
 return M

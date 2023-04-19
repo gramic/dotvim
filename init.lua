@@ -88,8 +88,12 @@ require("lazy").setup({
     -- lazy = false,
     dir = "~/dotvim", -- lazy = false,
     dependencies = { "nvim-lua/plenary.nvim" },
-    config = function(_, _)
+    opts = {
+      log_level = "debug",
+    },
+    config = function(_, opts)
       require("gramic.globals")
+      require("gramic-bazel").setup(opts)
       vim.api.nvim_create_autocmd("User", {
         pattern = "VeryLazy",
         callback = function()
