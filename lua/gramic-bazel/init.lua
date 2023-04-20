@@ -48,12 +48,11 @@ function M.kill_bazel_and_restart_terminal()
   else
     M.log.warn("PID of bazel is NOT found")
   end
-  if not M._switch_to_terminal() then
-    M.log.warn("Can't swtch to C marked terminal.")
-    return false
-  end
-  vim.cmd("<cmd>i<up><enter>mamCG")
-  -- vim.cmd("'Ci<up><enter>mamCG")
+  -- if not M._switch_to_terminal() then
+  --   M.log.warn("Can't swtch to C marked terminal.")
+  --   return false
+  -- end
+  vim.cmd("TermExec cmd='!!'")
 end
 
 function M.split_build_file(build_file_path, search_file_name)

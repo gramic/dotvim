@@ -83,11 +83,12 @@ require("lazy").setup({
     "echasnovski/mini.comment",
     enabled = false,
   },
+  { "akinsho/toggleterm.nvim", version = "*", config = true },
   {
     --   -- name = "gramic",
     -- lazy = false,
     dir = "~/dotvim", -- lazy = false,
-    dependencies = { "nvim-lua/plenary.nvim" },
+    dependencies = { "nvim-lua/plenary.nvim", "akinsho/toggleterm.nvim" },
     opts = {
       log_level = "debug",
     },

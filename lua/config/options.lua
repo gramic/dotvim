@@ -20,7 +20,7 @@ opt.expandtab = true
 opt.autoread = true
 opt.fixendofline = false
 opt.swapfile = false
-opt.sessionoptions:append({ "tabpages,globals" }) -- to save TabooRename names
+opt.sessionoptions:append({ "tabpages,globals,terminal" }) -- to save TabooRename names
 opt.keymap = "bulgarian-phonetic"
 opt.iminsert = 0
 opt.imsearch = 0
