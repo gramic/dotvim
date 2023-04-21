@@ -52,7 +52,12 @@ function M.kill_bazel_and_restart_terminal()
   --   M.log.warn("Can't swtch to C marked terminal.")
   --   return false
   -- end
-  vim.cmd("TermExec cmd='!!'")
+  M.log.info("vim.v.count = " .. vim.v.count .. ".")
+  if vim.v.count == 0 then
+    vim.cmd("TermExec cmd='!!'")
+  else
+    vim.cmd("TermExec cmd='!-" .. vim.v.count .. "'")
+  end
 end
 
 function M.split_build_file(build_file_path, search_file_name)
