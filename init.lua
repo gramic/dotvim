@@ -85,6 +85,12 @@ require("lazy").setup({
   },
   { "akinsho/toggleterm.nvim", version = "*", config = true },
   {
+    "hudclark/grpc-nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    cmd = "Grpc",
+    ft = ".grpc",
+  },
+  {
     --   -- name = "gramic",
     -- lazy = false,
     dir = "~/dotvim", -- lazy = false,
