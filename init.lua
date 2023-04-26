@@ -260,6 +260,7 @@ require("lazy").setup({
     opts = {
       ensure_installed = {
         "vimdoc",
+        "proto",
       },
     },
   },
