@@ -19,10 +19,11 @@ vim.cmd("nnoremap ' `")
 vim.g.BufKillCreateMappings = 0
 
 require("lazy").setup({
+  -- { import = "lazyvim.plugins.extras.formatting.prettier" },
   {
     "LazyVim/LazyVim",
     import = "lazyvim.plugins",
-    -- { import = "lazyvim.plugins.extras.formatting.prettier" },
+    spec = { import = "lazyvim.plugins.extras.formatting.prettier" },
     opts = {
       colorscheme = "everforest",
       mouse = "",
@@ -88,19 +89,27 @@ require("lazy").setup({
     "hudclark/grpc-nvim",
     dependencies = { "nvim-lua/plenary.nvim" },
     cmd = "Grpc",
-    ft = ".grpc",
+    ft = ".grpcurl",
   },
   {
-    --   -- name = "gramic",
-    -- lazy = false,
+    dir = "~/work/grpcurl",
+  },
+  {
     dir = "~/dotvim", -- lazy = false,
-    dependencies = { "nvim-lua/plenary.nvim", "akinsho/toggleterm.nvim" },
+    version = false,
+    lazy = false,
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "akinsho/toggleterm.nvim",
+      "nvim-treesitter/nvim-treesitter",
+    },
     opts = {
       log_level = "debug",
     },
     config = function(_, opts)
       require("gramic.globals")
       require("gramic-bazel").setup(opts)
+      require("grpcurl").setup(opts)
       vim.api.nvim_create_autocmd("User", {
         pattern = "VeryLazy",
         callback = function()
@@ -253,7 +262,12 @@ require("lazy").setup({
       -- }
     },
   },
-  { "nvim-treesitter/playground" },
+  {
+    "nvim-treesitter/playground",
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+    },
+  },
   {
     "nvim-treesitter/nvim-treesitter",
     version = false, -- last release is way too old and doesn't work on Windows
@@ -261,6 +275,8 @@ require("lazy").setup({
       ensure_installed = {
         "vimdoc",
         "proto",
+        "json",
+        "grpcurl",
       },
     },
   },

@@ -146,6 +146,7 @@ return {
         "pyright",
         "lua-language-server",
         "yapf",
+        "prettierd",
       },
       providers = {
         "mason.providers.client",
