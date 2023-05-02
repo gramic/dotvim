@@ -15,6 +15,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 vim.cmd("nnoremap ' `")
+vim.filetype.add({ extension = { grpcurl = "grpcurl" } })
 
 vim.g.BufKillCreateMappings = 0
 
@@ -62,6 +63,11 @@ require("lazy").setup({
     "nvim-neo-tree/neo-tree.nvim",
     enabled = false,
   },
+  -- buffer remove
+  {
+    "echasnovski/mini.bufremove",
+    enabled = false,
+  },
   {
     -- easily jump to any location and enhanced f/t motions for Leap
     "ggandor/flit.nvim",
@@ -84,7 +90,12 @@ require("lazy").setup({
     "echasnovski/mini.comment",
     enabled = false,
   },
-  { "akinsho/toggleterm.nvim", version = "*", config = true },
+  {
+    "akinsho/toggleterm.nvim",
+    version = "*",
+    lazy = false,
+    config = true,
+  },
   {
     "hudclark/grpc-nvim",
     dependencies = { "nvim-lua/plenary.nvim" },
@@ -95,16 +106,17 @@ require("lazy").setup({
     dir = "~/work/grpcurl",
   },
   {
+    name = "dotvim",
     dir = "~/dotvim", -- lazy = false,
     version = false,
-    lazy = false,
+    ft = { "grpcurl" },
+    opts = {
+      log_level = "debug",
+    },
     dependencies = {
       "nvim-lua/plenary.nvim",
       "akinsho/toggleterm.nvim",
       "nvim-treesitter/nvim-treesitter",
-    },
-    opts = {
-      log_level = "debug",
     },
     config = function(_, opts)
       require("gramic.globals")

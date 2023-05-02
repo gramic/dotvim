@@ -5,7 +5,10 @@ return {
   },
   {
     "hrsh7th/nvim-cmp",
-    dependencies = { "alexander-born/cmp-bazel" },
+    lazy = false,
+    dependencies = {
+      "alexander-born/cmp-bazel",
+    },
     ---@param opts cmp.ConfigSchema
     opts = function(_, opts)
       opts.sources = require("cmp").config.sources(
@@ -23,9 +26,7 @@ return {
     "alexander-born/bazel.nvim",
     config = function()
       -- Info: to make tab completion work copy '/etc/bash_completion.d/bazel-complete.bash' to '/etc/bash_completion.d/bazel'
-
       vim.g.bazel_config = vim.g.bazel_config or ""
-
       vim.cmd([[
         set errorformat=ERROR:\ %f:%l:%c:%m
         set errorformat+=%f:%l:%c:%m
