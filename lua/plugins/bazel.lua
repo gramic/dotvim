@@ -1,19 +1,22 @@
 return {
-  { "bazelbuild/vim-bazel", dependencies = { "google/vim-maktaba" } },
-
+  {
+    "bazelbuild/vim-bazel",
+    dependencies = { "google/vim-maktaba" },
+  },
   {
     "hrsh7th/nvim-cmp",
     dependencies = { "alexander-born/cmp-bazel" },
     ---@param opts cmp.ConfigSchema
     opts = function(_, opts)
-      local cmp = require("cmp")
-      opts.sources = cmp.config.sources(
+      opts.sources = require("cmp").config.sources(
         vim.list_extend(opts.sources, { { name = "bazel" } })
       )
     end,
   },
   {
     "alexander-born/bazel.nvim",
+    lazy = false,
+    version = false,
     dependencies = { "nvim-treesitter/nvim-treesitter" },
   },
   {
