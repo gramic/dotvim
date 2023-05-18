@@ -113,12 +113,17 @@ require("lazy").setup({
     opts = {
       log_level = "debug",
     },
+    -- event = "BufEnter *.js",
     dependencies = {
       "nvim-lua/plenary.nvim",
       "akinsho/toggleterm.nvim",
       "nvim-treesitter/nvim-treesitter",
+      "google/vim-glaive",
+      "L3MON4D3/LuaSnip",
     },
     config = function(_, opts)
+      vim.cmd([[Glaive codefmt clang_format_style=Google]])
+      require("gramic.soy-snippets")
       require("gramic.globals")
       require("gramic-bazel").setup(opts)
       require("grpcurl").setup(opts)
@@ -231,7 +236,11 @@ require("lazy").setup({
   -- {"alexander-born/cmp-bazel", dependencies = {"hrsh7th/nvim-cmp"}},
   -- Also add Glaive, which is used to configure codefmt's maktaba flags. See
   -- `:help :Glaive` for usage.
-  { "google/vim-glaive", dependencies = { "google/vim-maktaba" } },
+  {
+    "google/vim-glaive",
+    dependencies = { "google/vim-maktaba" },
+    command = "Glaive",
+  },
   { "google/vim-jsonnet" },
   {
     "nvim-lualine/lualine.nvim",

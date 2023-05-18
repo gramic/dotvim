@@ -44,7 +44,7 @@ function M.kill_bazel_and_restart_terminal()
   local pid_of_bazel = vim.fn.system({ "pidof", "bazel" })
   if pid_of_bazel ~= "" then
     M.log.info("killing PID " .. pid_of_bazel .. " of bazel.")
-    vim.fn.system("kill -9 " .. pid_of_bazel)
+    vim.fn.system("kill -15 " .. pid_of_bazel)
   else
     M.log.warn("PID of bazel is NOT found")
   end
@@ -52,7 +52,7 @@ function M.kill_bazel_and_restart_terminal()
   --   M.log.warn("Can't swtch to C marked terminal.")
   --   return false
   -- end
-  M.log.info("vim.v.count = " .. vim.v.count .. ".")
+  -- M.log.debug("vim.v.count = " .. vim.v.count .. ".")
   if vim.v.count == 0 then
     vim.cmd("TermExec cmd='!!'")
   else
