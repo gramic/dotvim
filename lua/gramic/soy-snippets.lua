@@ -31,4 +31,19 @@ ls.add_snippets("soy", {
     i(1, "name"),
     t("')}"),
   }),
+  s("class", {
+    t("class=\"{css('"),
+    i(1, "name"),
+    t("')}\" "),
+  }),
+  -- {msg desc="Request page title."}
+  --   Request
+  -- {/msg}
+  s("{msg", {
+    t("{msg desc='"),
+    i(2, ""),
+    t("'}"),
+    i(1, "text"),
+    t("{/msg}"),
+  }),
 })
