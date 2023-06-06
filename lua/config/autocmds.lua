@@ -6,15 +6,13 @@ local function augroup(name)
   return vim.api.nvim_create_augroup("gramic_" .. name, { clear = true })
 end
 
--- Check if we need to reload the file when it changed
 vim.api.nvim_create_autocmd({ "FileType" }, {
   group = augroup("autoformat_settings"),
   pattern = {
-    "*.js",
+    "javascript",
   },
   callback = function()
     vim.b.autoformat = false
     vim.cmd([[AutoFormatBuffer clang-format]])
-    vim.print("Callback for autocmds of gramic were called.")
   end,
 })

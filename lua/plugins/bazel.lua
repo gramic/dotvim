@@ -4,11 +4,8 @@ return {
     dependencies = { "google/vim-maktaba" },
   },
   {
-    "hrsh7th/nvim-cmp",
-    lazy = false,
-    dependencies = {
-      "alexander-born/cmp-bazel",
-    },
+    "nvim-cmp",
+    dependencies = { "alexander-born/cmp-bazel" },
     ---@param opts cmp.ConfigSchema
     opts = function(_, opts)
       opts.sources = require("cmp").config.sources(

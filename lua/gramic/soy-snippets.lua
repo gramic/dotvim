@@ -36,9 +36,6 @@ ls.add_snippets("soy", {
     i(1, "name"),
     t("')}\" "),
   }),
-  -- {msg desc="Request page title."}
-  --   Request
-  -- {/msg}
   s("{msg", {
     t("{msg desc='"),
     i(2, ""),

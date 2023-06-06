@@ -122,17 +122,12 @@ require("lazy").setup({
       "L3MON4D3/LuaSnip",
     },
     config = function(_, opts)
+      vim.print("from config function of dotvim")
       vim.cmd([[Glaive codefmt clang_format_style=Google]])
       require("gramic.soy-snippets")
       require("gramic.globals")
       require("gramic-bazel").setup(opts)
       require("grpcurl").setup(opts)
-      vim.api.nvim_create_autocmd("User", {
-        pattern = "VeryLazy",
-        callback = function()
-          require("config.autocmds")
-        end,
-      })
     end,
     keys = {
       { "<C-l>" },
@@ -226,8 +221,13 @@ require("lazy").setup({
   "nelstrom/vim-visual-star-search",
   "duganchen/vim-soy",
   -- Add maktaba and codefmt to the runtimepath.
-  "google/vim-maktaba",
-  { "google/vim-codefmt", dependencies = { "google/vim-maktaba" } },
+  {
+    "google/vim-maktaba",
+  },
+  {
+    "google/vim-codefmt",
+    dependencies = { "google/vim-maktaba", "google/vim-glaive" },
+  },
   -- {
   --   'alexander-born/bazel.nvim',
   --   dependencies = {'nvim-treesitter/nvim-treesitter'},
@@ -238,8 +238,12 @@ require("lazy").setup({
   -- `:help :Glaive` for usage.
   {
     "google/vim-glaive",
-    dependencies = { "google/vim-maktaba" },
-    command = "Glaive",
+    dependencies = { "google/vim-maktaba", "google/vim-codefmt" },
+    lazy = false,
+    -- command = "Glaive",
+    config = function()
+      vim.cmd([[Glaive codefmt clang_format_style=Google]])
+    end,
   },
   { "google/vim-jsonnet" },
   {
