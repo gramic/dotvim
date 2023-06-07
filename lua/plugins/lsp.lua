@@ -8,6 +8,7 @@ return {
       -- keys[#keys + 1] = { "K", "<cmd>echo 'hello'<cr>" }
       -- disable a keymap
       keys[#keys + 1] = { "gt", false }
+      keys[#keys + 1] = { "gI", false }
       keys[#keys + 1] = { "gd", vim.lsp.buf.definition, desc = "" }
       keys[#keys + 1] = {
         "<leader>lgd",

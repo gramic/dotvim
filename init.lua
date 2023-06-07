@@ -84,7 +84,8 @@ require("lazy").setup({
   },
   {
     "echasnovski/mini.ai",
-    enabled = false,
+    -- enabled = false,
+    config = true,
   },
   {
     "echasnovski/mini.comment",
@@ -109,7 +110,7 @@ require("lazy").setup({
     name = "dotvim",
     dir = "~/dotvim", -- lazy = false,
     version = false,
-    ft = { "grpcurl" },
+    ft = { "javascript", "bzl", "grpcurl" },
     opts = {
       log_level = "debug",
     },
@@ -122,7 +123,6 @@ require("lazy").setup({
       "L3MON4D3/LuaSnip",
     },
     config = function(_, opts)
-      vim.print("from config function of dotvim")
       vim.cmd([[Glaive codefmt clang_format_style=Google]])
       require("gramic.soy-snippets")
       require("gramic.globals")
@@ -176,18 +176,6 @@ require("lazy").setup({
     "hudclark/grpc-nvim",
     dependencies = { "nvim-lua/plenary.nvim" },
   },
-  -- {import = "gramic-bazel"},
-  -- {
-  --   "hrsh7th/nvim-cmp",
-  --   opts = {
-  --     sources = {},
-  --   },
-  -- },
-  -- {
-  --   "bazelbuild/vim-bazel",
-  --   dependencies = { "google/vim-maktaba" },
-  --   ft = "bzl",
-  -- },
   {
     "numine777/py-bazel.nvim",
     dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
@@ -228,14 +216,6 @@ require("lazy").setup({
     "google/vim-codefmt",
     dependencies = { "google/vim-maktaba", "google/vim-glaive" },
   },
-  -- {
-  --   'alexander-born/bazel.nvim',
-  --   dependencies = {'nvim-treesitter/nvim-treesitter'},
-  --   -- ft = 'bzl',
-  -- },
-  -- {"alexander-born/cmp-bazel", dependencies = {"hrsh7th/nvim-cmp"}},
-  -- Also add Glaive, which is used to configure codefmt's maktaba flags. See
-  -- `:help :Glaive` for usage.
   {
     "google/vim-glaive",
     dependencies = { "google/vim-maktaba", "google/vim-codefmt" },
@@ -345,6 +325,7 @@ require("lazy").setup({
     "ibhagwan/fzf-lua",
     dependencies = { "nvim-tree/nvim-web-devicons", "junegunn/fzf" },
     config = true,
+    command = "FzfLua",
     keys = {
       { "<leader>ff", "<cmd>FzfLua git_files<cr>", desc = "Find git files" },
       { "<leader>fm", "<cmd>FzfLua oldfiles<cr>", desc = "Old files" },

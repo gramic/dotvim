@@ -13,6 +13,7 @@ return {
       )
     end,
   },
+  { "alexander-born/cmp-bazel", version = false },
   {
     "alexander-born/bazel.nvim",
     lazy = false,
