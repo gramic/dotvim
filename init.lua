@@ -28,6 +28,12 @@ require("lazy").setup({
     opts = {
       colorscheme = "everforest",
       mouse = "",
+      defaults = {
+        autocmds = true, -- lazyvim.config.autocmds
+        keymaps = false, -- lazyvim.config.keymaps
+        -- lazyvim.config.options can't be configured here since that's loaded before lazyvim setup
+        -- if you want to disable loading options, add `package.loaded["lazyvim.config.options"] = true` to the top of your init.lua
+      },
     },
   },
   {
@@ -109,7 +115,7 @@ require("lazy").setup({
     name = "dotvim",
     dir = "~/dotvim", -- lazy = false,
     version = false,
-    ft = { "javascript", "bzl", "grpcurl" },
+    ft = { "jsonnet", "cpp", "javascript", "bzl", "grpcurl" },
     opts = {
       log_level = "debug",
     },
@@ -131,7 +137,6 @@ require("lazy").setup({
     keys = {
       { "<C-l>" },
       { "<S-l>" },
-      { "<S-h>" },
       {
         "<leader><leader>x",
         "<cmd>w<cr><cmd>source %<cr>",
