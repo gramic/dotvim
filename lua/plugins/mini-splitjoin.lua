@@ -1,7 +1,6 @@
 return {
   {
     "echasnovski/mini.splitjoin",
-    -- name = "mini.splitjoin",
     version = false,
     keys = {
       {
@@ -16,8 +15,5 @@ return {
         toggle = "",
       },
     },
-    config = function(_, opts)
-      require("mini.splitjoin").setup(opts or {})
-    end,
   },
 }

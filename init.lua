@@ -84,7 +84,6 @@ require("lazy").setup({
   },
   {
     "echasnovski/mini.ai",
-    -- enabled = false,
     config = true,
   },
   {
