@@ -305,7 +305,7 @@ require("lazy").setup({
   -- {dir = "~/gramic-neovim/plugin/gramic-neovim.vim"},
   { "ryvnf/readline.vim" },
   { "folke/trouble.nvim", config = true },
-  { "p00f/clangd_extensions.nvim" },
+  { "p00f/clangd_extensions.nvim", config = true },
   { "jpetrie/vim-counterpoint" },
   "tpope/vim-dadbod",
   "tpope/vim-speeddating",

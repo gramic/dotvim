@@ -5,12 +5,28 @@ return {
   },
   {
     "nvim-cmp",
-    dependencies = { "alexander-born/cmp-bazel" },
+    dependencies = {
+      "alexander-born/cmp-bazel",
+      "p00f/clangd_extensions.nvim",
+    },
     ---@param opts cmp.ConfigSchema
     opts = function(_, opts)
-      opts.sources = require("cmp").config.sources(
+      local cmp = require("cmp")
+      opts.sources = cmp.config.sources(
         vim.list_extend(opts.sources, { { name = "bazel" } })
       )
+      opts.sorting = {
+        comparators = {
+          cmp.config.compare.offset,
+          cmp.config.compare.exact,
+          cmp.config.compare.recently_used,
+          require("clangd_extensions.cmp_scores"),
+          cmp.config.compare.kind,
+          cmp.config.compare.sort_text,
+          cmp.config.compare.length,
+          cmp.config.compare.order,
+        },
+      }
     end,
   },
   { "alexander-born/cmp-bazel", version = false },
