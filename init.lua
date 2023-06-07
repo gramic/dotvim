@@ -121,6 +121,7 @@ require("lazy").setup({
     },
     -- event = "BufEnter *.js",
     dependencies = {
+      "LazyVim/LazyVim",
       "nvim-lua/plenary.nvim",
       "akinsho/toggleterm.nvim",
       "nvim-treesitter/nvim-treesitter",
@@ -137,10 +138,59 @@ require("lazy").setup({
     keys = {
       { "<C-l>" },
       { "<S-l>" },
+      { "<S-h>" },
       {
         "<leader><leader>x",
         "<cmd>w<cr><cmd>source %<cr>",
         desc = "Write and source current file",
+      },
+      -- toggle options
+      {
+        "<leader>uf",
+        function()
+          require("lazyvim.plugins.lsp.format").toggle()
+        end,
+        desc = "Toggle format on Save",
+      },
+      {
+        "<leader>us",
+        function()
+          require("lazyvim.util").toggle("spell")
+        end,
+        desc = "Toggle Spelling",
+      },
+      {
+        "<leader>uw",
+        function()
+          require("lazyvim.util").toggle("wrap")
+        end,
+        desc = "Toggle Word Wrap",
+      },
+      {
+        "<leader>ul",
+        function()
+          require("lazyvim.util").toggle("relativenumber", true)
+          require("lazyvim.util").toggle("number")
+        end,
+        desc = "Toggle Line Numbers",
+      },
+      {
+        "<leader>ud",
+        function()
+          require("lazyvim.util").toggle_diagnostics()
+        end,
+        desc = "Toggle Diagnostics",
+      },
+      {
+        "<leader>uc",
+        function()
+          require("lazyvim.util").toggle(
+            "conceallevel",
+            false,
+            { 0, vim.o.conceallevel }
+          )
+        end,
+        desc = "Toggle Conceal",
       },
       {
         "<leader>uh",

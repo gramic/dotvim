@@ -10,8 +10,10 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
   group = augroup("autoformat_settings"),
   pattern = {
     "javascript",
+    "cpp",
   },
   callback = function()
+    vim.print("from callback of ft cpp")
     vim.b.autoformat = false
     vim.cmd([[AutoFormatBuffer clang-format]])
   end,
