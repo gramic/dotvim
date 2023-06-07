@@ -95,6 +95,7 @@ return {
       servers = {
         jsonls = {},
         clangd = {},
+        starlark_rust = {},
         jsonnet_ls = {},
         stylelint_lsp = {},
         lua_ls = {
