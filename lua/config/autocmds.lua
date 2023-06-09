@@ -13,7 +13,6 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     "cpp",
   },
   callback = function()
-    vim.print("from callback of ft cpp")
     vim.b.autoformat = false
     vim.cmd([[AutoFormatBuffer clang-format]])
   end,

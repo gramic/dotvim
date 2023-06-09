@@ -48,16 +48,23 @@ function M.kill_bazel_and_restart_terminal()
   else
     M.log.warn("PID of bazel is NOT found")
   end
-  -- if not M._switch_to_terminal() then
-  --   M.log.warn("Can't swtch to C marked terminal.")
-  --   return false
-  -- end
-  -- M.log.debug("vim.v.count = " .. vim.v.count .. ".")
-  if vim.v.count == 0 then
-    vim.cmd("TermExec cmd='!!'")
-  else
-    vim.cmd("TermExec cmd='!-" .. vim.v.count .. "'")
+  if not M._switch_to_terminal() then
+    M.log.warn("Can't swtch to C marked terminal.")
+    return false
   end
+  local keys = ""
+  if vim.v.count == 0 then
+    keys =
+      vim.api.nvim_replace_termcodes("mai!!<CR><C-\\><C-n>", true, false, true)
+  else
+    keys = vim.api.nvim_replace_termcodes(
+      "mai!-" .. vim.v.count .. "<C-\\><C-n>",
+      true,
+      false,
+      true
+    )
+  end
+  vim.api.nvim_feedkeys(keys, "m", true)
 end
 
 function M.split_build_file(build_file_path, search_file_name)
