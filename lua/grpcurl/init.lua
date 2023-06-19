@@ -28,6 +28,7 @@ end
 
 --@param opts? LazyConfig
 function M.setup(opts)
+  vim.print("grpcurl setup was called")
   M.options = vim.tbl_deep_extend("force", M.defaults, opts or {})
   M.log = require("plenary.log").new({
     plugin = "grpcurl",

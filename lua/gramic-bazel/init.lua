@@ -49,16 +49,16 @@ function M.kill_bazel_and_restart_terminal()
     M.log.warn("PID of bazel is NOT found")
   end
   if not M._switch_to_terminal() then
-    M.log.warn("Can't swtch to C marked terminal.")
+    M.log.warn("Can't switch to C marked terminal.")
     return false
   end
   local keys = ""
   if vim.v.count == 0 then
     keys =
-      vim.api.nvim_replace_termcodes("mai!!<CR><C-\\><C-n>", true, false, true)
+      vim.api.nvim_replace_termcodes("mai!!<CR><C-\\><C-n>G", true, false, true)
   else
     keys = vim.api.nvim_replace_termcodes(
-      "mai!-" .. vim.v.count .. "<C-\\><C-n>",
+      "mai!-" .. vim.v.count .. "<CR><C-\\><C-n>Gp",
       true,
       false,
       true

@@ -24,7 +24,12 @@ require("lazy").setup({
   {
     "LazyVim/LazyVim",
     import = "lazyvim.plugins",
-    spec = { import = "lazyvim.plugins.extras.formatting.prettier" },
+    spec = {
+      import = "lazyvim.plugins.extras.formatting.prettier",
+      dev = {
+        path = "~/work",
+      },
+    },
     opts = {
       colorscheme = "everforest",
       mouse = "",
@@ -96,12 +101,12 @@ require("lazy").setup({
     "echasnovski/mini.comment",
     -- enabled = false,
   },
-  {
-    "akinsho/toggleterm.nvim",
-    version = "*",
-    lazy = false,
-    config = true,
-  },
+  -- {
+  --   "akinsho/toggleterm.nvim",
+  --   version = "*",
+  --   lazy = false,
+  --   config = true,
+  -- },
   {
     "hudclark/grpc-nvim",
     dependencies = { "nvim-lua/plenary.nvim" },
@@ -109,7 +114,9 @@ require("lazy").setup({
     ft = ".grpcurl",
   },
   {
-    dir = "~/work/grpcurl",
+    "gramic/tree-sitter-grpcurl",
+    dev = true,
+    dir = "~/work/tree-sitter-grpcurl", -- lazy = false,
   },
   {
     name = "dotvim",
@@ -129,6 +136,7 @@ require("lazy").setup({
       "L3MON4D3/LuaSnip",
     },
     config = function(_, opts)
+      vim.print("dotvim config called")
       vim.cmd([[Glaive codefmt clang_format_style=Google]])
       require("gramic.soy-snippets")
       require("gramic.globals")
@@ -449,6 +457,7 @@ require("lazy").setup({
       },
     },
   },
+  { import = "lazyvim.plugins.extras.dap.core" },
   { import = "plugins" },
 })
 
