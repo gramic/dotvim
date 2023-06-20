@@ -29,7 +29,13 @@ function M._switch_to_terminal()
     return false
   end
   local winid = vim.fn.bufwinid(c_marked_buffer)
-  vim.api.nvim_set_current_win(winid)
+  if winid == -1 then
+    vim.api.nvim_set_current_buf(c_marked_buffer)
+    return true
+  end
+  if vim.fn.bufexists(c_marked_buffer) then
+    vim.api.nvim_set_current_win(winid)
+  end
   return true
 end
 
