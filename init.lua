@@ -74,6 +74,11 @@ require("lazy").setup({
     "nvim-neo-tree/neo-tree.nvim",
     enabled = false,
   },
+  -- search quick with s keymap
+  {
+    "folke/flash.nvim",
+    enabled = false,
+  },
   -- buffer remove
   {
     "echasnovski/mini.bufremove",
@@ -99,7 +104,7 @@ require("lazy").setup({
   },
   {
     "echasnovski/mini.comment",
-    -- enabled = false,
+    enabled = false,
   },
   -- {
   --   "akinsho/toggleterm.nvim",
@@ -139,6 +144,7 @@ require("lazy").setup({
       vim.print("dotvim config called")
       vim.cmd([[Glaive codefmt clang_format_style=Google]])
       require("gramic.soy-snippets")
+      require("gramic.javascript-snippets")
       require("gramic.globals")
       require("gramic-bazel").setup(opts)
       require("grpcurl").setup(opts)
@@ -393,6 +399,20 @@ require("lazy").setup({
         function() require("telescope.builtin").find_files({ cwd = require("lazy.core.config").options.root }) end,
         desc = "Find Plugin File",
       },
+      {
+        "<leader>ff",
+        function()
+          require("telescope.builtin").git_files()
+        end,
+        desc = "Find Git File",
+      },
+      {
+        "<leader>fl",
+        function()
+          require("telescope.builtin").live_grep()
+        end,
+        desc = "Find Live Grep",
+      },
     },
     -- change some options
     opts = {
@@ -421,12 +441,10 @@ require("lazy").setup({
     config = true,
     command = "FzfLua",
     keys = {
-      { "<leader>ff", "<cmd>FzfLua git_files<cr>", desc = "Find git files" },
-      { "<leader>fm", "<cmd>FzfLua oldfiles<cr>", desc = "Old files" },
       {
         "<leader>fg",
-        "<cmd>FzfLua live_grep_native<cr>",
-        desc = "Live grep native",
+        "<cmd>FzfLua live_grep_glob<cr>",
+        desc = "Live grep glob",
       },
     },
   },
@@ -441,10 +459,10 @@ require("lazy").setup({
   --     },
   --   },
   -- },
-  -- {
-  --   "tpope/vim-commentary",
-  --   config = false,
-  -- },
+  {
+    "tpope/vim-commentary",
+    config = false,
+  },
   {
     "chrishrb/gx.nvim",
     event = { "BufEnter" },
@@ -458,6 +476,7 @@ require("lazy").setup({
     },
   },
   { import = "lazyvim.plugins.extras.dap.core" },
+  -- { import = "lazyvim.plugins.extras.coding" },
   { import = "plugins" },
 })
 

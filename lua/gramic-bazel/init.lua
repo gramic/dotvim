@@ -60,11 +60,15 @@ function M.kill_bazel_and_restart_terminal()
   end
   local keys = ""
   if vim.v.count == 0 then
-    keys =
-      vim.api.nvim_replace_termcodes("mai!!<CR><C-\\><C-n>G", true, false, true)
+    keys = vim.api.nvim_replace_termcodes(
+      "Gmai!!<CR><C-\\><C-n>G",
+      true,
+      false,
+      true
+    )
   else
     keys = vim.api.nvim_replace_termcodes(
-      "mai!-" .. vim.v.count .. "<CR><C-\\><C-n>Gp",
+      "Gmai!-" .. vim.v.count .. "<CR><C-\\><C-n>Gp",
       true,
       false,
       true
