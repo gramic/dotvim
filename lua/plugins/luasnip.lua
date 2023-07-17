@@ -5,11 +5,7 @@ return {
         and "echo 'NOTE: jsregexp is optional, so not a big deal if it fails to build'; make install_jsregexp"
       or nil,
     dependencies = {
-      "rafamadriz/friendly-snippets",
-      "LazyVim/LazyVim",
-      config = function()
-        require("luasnip.loaders.from_vscode").lazy_load()
-      end,
+      -- "LazyVim/LazyVim",
     },
     opts = {
       history = true,
