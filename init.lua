@@ -145,7 +145,8 @@ require("lazy").setup({
       vim.cmd([[Glaive codefmt clang_format_style=Google]])
       require("gramic.soy-snippets")
       require("gramic.javascript-snippets")
-      require("gramic.globals")
+      require("gramic.bzl-snippets")
+      -- require("gramic.globals")
       require("gramic-bazel").setup(opts)
       require("grpcurl").setup(opts)
     end,
@@ -350,6 +351,8 @@ require("lazy").setup({
         "proto",
         "json",
         "grpcurl",
+        "starlark",
+        "javascript",
       },
     },
   },
