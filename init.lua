@@ -67,6 +67,10 @@ require("lazy").setup({
     },
   },
   {
+    "rafamadriz/friendly-snippets",
+    enabled = false,
+  },
+  {
     "akinsho/bufferline.nvim",
     enabled = false,
   },

@@ -50,4 +50,12 @@ ls.add_snippets("javascript", {
     i(0),
     t({ "", "}", "" }),
   }),
+  s("@param", {
+    t("@param {"),
+    i(1, "type"),
+    t("} "),
+    i(2, "name"),
+    t(" "),
+    i(0),
+  }),
 })
