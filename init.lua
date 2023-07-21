@@ -124,6 +124,26 @@ require("lazy").setup({
     dir = "~/work/tree-sitter-grpcurl", -- lazy = false,
   },
   {
+    "L3MON4D3/LuaSnip",
+    opts = {
+      history = true,
+      delete_check_events = "TextChanged",
+    },
+    keys = {
+      {
+        "<c-e>",
+        function()
+          return require("luasnip").choice_active()
+              and "<Plug>luasnip-next-choice"
+            or "<Plug>luasnip-jump-next"
+        end,
+        expr = true,
+        silent = true,
+        mode = "i",
+      },
+    },
+  },
+  {
     name = "dotvim",
     dir = "~/dotvim", -- lazy = false,
     version = false,
@@ -353,6 +373,7 @@ require("lazy").setup({
         "grpcurl",
         "starlark",
         "javascript",
+        "query",
       },
     },
   },
