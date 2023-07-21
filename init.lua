@@ -378,6 +378,7 @@ require("lazy").setup({
         "starlark",
         "javascript",
         "query",
+        "jsdoc",
       },
     },
   },
