@@ -284,7 +284,7 @@ require("lazy").setup({
     -- vertical column line
     "m4xshen/smartcolumn.nvim",
     opts = {
-      -- custom_colorcolumn = { python = "80" },
+      colorcolumn = "81",
     },
   },
   "gcmt/taboo.vim",

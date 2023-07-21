@@ -27,8 +27,14 @@ local fmt = require("luasnip.extras.fmt").fmt
 -- local parse = require("luasnip.util.parser").parse_snippet
 -- local ms = ls.multi_snippet
 
+---@param function_declaration_node TSNode
+local get_function_declaration_parameter_names = function(
+  function_declaration_node
+)
+  return "param111"
+end
+
 local get_existing_argument = function(position)
-  -- TODO:
   return d(position, function()
     local parser = vim.treesitter.get_parser()
     ---@type LanguageTree
@@ -36,9 +42,20 @@ local get_existing_argument = function(position)
     ---@type TSTree
     local root = tree[1]:root()
     local nodes = {}
-    table.insert(nodes, t("example"))
-    table.insert(nodes, t("example2222"))
-    table.insert(nodes, t("example3333"))
+    ---@type TSNode|nil
+    local current_node = vim.treesitter.get_node()
+    if current_node == nil then
+      table.insert(nodes, t("example"))
+    elseif current_node:type() == "comment" then
+      local function_declaration_node = current_node:next_named_sibling()
+      if function_declaration_node:type() == "function_declaration" then
+        table.insert(
+          nodes,
+          t(get_function_declaration_parameter_names(function_declaration_node))
+        )
+        table.insert(nodes, t("example3333"))
+      end
+    end
     return sn(nil, c(1, nodes))
   end, {})
 end
