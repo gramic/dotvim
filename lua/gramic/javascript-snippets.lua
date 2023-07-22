@@ -110,7 +110,14 @@ local choice_existing_params = function(position)
       if function_declaration_node:type() == "function_declaration" then
         local params =
           get_function_declaration_parameter_names(function_declaration_node)
-        if jsdoc_param_index > 0 and #params >= jsdoc_param_index then
+        if #params == 0 then
+          return sn(nil, t(""))
+        end
+        if
+          jsdoc_param_index > 0
+          and #params >= 0
+          and #params >= jsdoc_param_index
+        then
           table.insert(nodes, t(params[jsdoc_param_index]))
         else
           for _, param_name in pairs(params) do
