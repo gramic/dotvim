@@ -28,13 +28,39 @@ local fmt = require("luasnip.extras.fmt").fmt
 -- local ms = ls.multi_snippet
 
 ---@param function_declaration_node TSNode
+---@return string[]
 local get_function_declaration_parameter_names = function(
   function_declaration_node
 )
-  return "param111"
+  local params = {}
+  local query = vim.treesitter.query.parse(
+    "javascript",
+    [[
+(
+ function_declaration
+   parameters: (
+     formal_parameters (identifier) @param
+     )
+ )
+   ]]
+  )
+  for id, node, metadata in
+    query:iter_captures(function_declaration_node, 0, 0, 1000)
+  do
+    vim.print("node_type: ", node:type())
+    vim.print("metadata: ", metadata[id])
+    local name = query.captures[id]
+    if name == "param" then
+      local node_text = vim.treesitter.get_node_text(node, 0, nil)
+      vim.print("node text: ", node_text)
+      table.insert(params, node_text)
+    end
+    vim.print("param name: ", name)
+  end
+  return params
 end
 
-local get_existing_argument = function(position)
+local choice_existing_params = function(position)
   return d(position, function()
     local parser = vim.treesitter.get_parser()
     ---@type LanguageTree
@@ -49,11 +75,12 @@ local get_existing_argument = function(position)
     elseif current_node:type() == "comment" then
       local function_declaration_node = current_node:next_named_sibling()
       if function_declaration_node:type() == "function_declaration" then
-        table.insert(
-          nodes,
-          t(get_function_declaration_parameter_names(function_declaration_node))
-        )
-        table.insert(nodes, t("example3333"))
+        local params =
+          get_function_declaration_parameter_names(function_declaration_node)
+        for _, param_name in pairs(params) do
+          table.insert(nodes, t(param_name))
+        end
+        -- table.insert(nodes, t("example3333"))
       end
     end
     return sn(nil, c(1, nodes))
@@ -87,9 +114,9 @@ ls.add_snippets("javascript", {
   }),
   s("@param", {
     t("@param {"),
-    i(1, "type"),
+    i(1),
     t("} "),
-    get_existing_argument(2),
+    choice_existing_params(2),
     t(" "),
     i(0),
   }),
