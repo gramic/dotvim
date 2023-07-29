@@ -26,17 +26,17 @@ end
 function M._switch_to_terminal()
   local c_marked_buffer = M._get_C_marked_terminal_buffer()
   if not c_marked_buffer then
-    return false
+    return -1
   end
   local winid = vim.fn.bufwinid(c_marked_buffer)
   if winid == -1 then
     vim.api.nvim_set_current_buf(c_marked_buffer)
-    return true
+    return 0
   end
   if vim.fn.bufexists(c_marked_buffer) then
     vim.api.nvim_set_current_win(winid)
   end
-  return true
+  return winid
 end
 
 -- Find bazel running process, kill it first
@@ -54,10 +54,16 @@ function M.kill_bazel_and_restart_terminal()
   else
     M.log.warn("PID of bazel is NOT found")
   end
-  if not M._switch_to_terminal() then
+  local terminal_winid = M._switch_to_terminal()
+  if terminal_winid == -1 then
     M.log.warn("Can't switch to C marked terminal.")
     return false
+  else
+    if vim.api.nvim_win_get_height(terminal_winid) < 3 then
+      vim.api.nvim_win_set_height(terminal_winid, 10)
+    end
   end
+  -- vim.api.nvim_win_get_height(window)
   local keys = ""
   if vim.v.count == 0 then
     keys = vim.api.nvim_replace_termcodes(
