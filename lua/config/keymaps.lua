@@ -50,3 +50,10 @@ map(
   my_bazel.set_debug_args_from_input,
   { desc = "Set Bazel Debug Arguments" }
 )
+-- Clear search with <esc>
+map(
+  { "i", "n" },
+  "<esc>",
+  "<cmd>noh<cr><esc>",
+  { desc = "Escape and clear hlsearch" }
+)

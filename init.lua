@@ -130,23 +130,36 @@ require("lazy").setup({
   {
     "L3MON4D3/LuaSnip",
     opts = {
-      history = true,
+      history = false,
       update_events = "TextChanged,TextChangedI",
       -- delete_check_events = "TextChanged",
     },
-    keys = {
-      {
-        "<c-e>",
-        function()
-          return require("luasnip").choice_active()
-              and "<Plug>luasnip-next-choice"
-            or "<Plug>luasnip-jump-next"
-        end,
-        expr = true,
-        silent = true,
-        mode = "i",
-      },
-    },
+    keys = function()
+      return {
+        { "<tab>", false },
+        {
+          "<c-j>",
+          function()
+            return require("luasnip").jumpable(1) and "<Plug>luasnip-jump-next"
+              or "<c-j>"
+          end,
+          expr = true,
+          silent = true,
+          mode = "i",
+        },
+        {
+          "<c-e>",
+          function()
+            return require("luasnip").choice_active()
+                and "<Plug>luasnip-next-choice"
+              or "<Plug>luasnip-jump-next"
+          end,
+          expr = true,
+          silent = true,
+          mode = "i",
+        },
+      }
+    end,
   },
   {
     name = "dotvim",
