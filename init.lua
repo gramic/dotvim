@@ -502,9 +502,12 @@ require("lazy").setup({
   --     },
   --   },
   -- },
+  -- {
+  --   "tpope/vim-commentary",
+  --   config = false,
+  -- },
   {
-    "tpope/vim-commentary",
-    config = false,
+    "tomtom/tcomment_vim",
   },
   {
     "chrishrb/gx.nvim",
