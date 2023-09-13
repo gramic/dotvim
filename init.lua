@@ -165,7 +165,7 @@ require("lazy").setup({
   },
   {
     name = "dotvim",
-    dir = "~/dotvim", -- lazy = false,
+    dir = "~/work/dotvim", -- lazy = false,
     version = false,
     ft = { "jsonnet", "cpp", "javascript", "bzl", "grpcurl" },
     opts = {
