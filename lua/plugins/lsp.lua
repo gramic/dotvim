@@ -144,9 +144,11 @@ return {
       ensure_installed = {
         "stylua",
         "stylelint-lsp",
+        "jq-lsp",
         "shfmt",
         "pyright",
         "lua-language-server",
+        "jsonnet-language-server",
         "yapf",
         "prettierd",
       },

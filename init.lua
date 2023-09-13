@@ -26,6 +26,8 @@ require("lazy").setup({
     import = "lazyvim.plugins",
     spec = {
       import = "lazyvim.plugins.extras.formatting.prettier",
+      { import = "lazyvim.plugins.extras.lang.typescript" },
+      { import = "lazyvim.plugins.extras.lang.json" },
       dev = {
         path = "~/work",
       },
@@ -491,17 +493,26 @@ require("lazy").setup({
       },
     },
   },
-  "justinmk/vim-dirvish",
-  -- {
-  --   'stevearc/oil.nvim',
-  --   -- config = function() require('oil').setup() end
-  --   config = true,
-  --   opts = {
-  --     view_options = {
-  --       show_hidden = true,
-  --     },
-  --   },
-  -- },
+  -- "justinmk/vim-dirvish",
+  {
+    "stevearc/oil.nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    keys = {
+      {
+        "-",
+        "<CMD>Oil<CR>",
+        desc = "Open parent directory",
+      },
+    },
+    opts = {
+      view_options = {
+        show_hidden = true,
+        sort = {
+          { "name", "asc" },
+        },
+      },
+    },
+  },
   -- {
   --   "tpope/vim-commentary",
   --   config = false,
@@ -526,40 +537,51 @@ require("lazy").setup({
   { import = "plugins" },
 })
 
-if vim.fn.has('"unix"') then
+if vim.fn.has("unix") == 1 then
   if vim.env.WSL_DISTRO_NAME ~= nil then
     if vim.fn.executable("gclpr") == 1 then
-      vim.g.clipboard = [[
-          {
-            'name': 'gclpr',
-            'copy': {
-               '+': 'gclpr copy',
-               '*': 'gclpr copy',
-             },
-            'paste': {
-               '+': 'gclpr paste --line-ending lf',
-               '*': 'gclpr paste --line-ending lf',
-            },
-            'cache_enabled': 0,
-          }
-      ]]
+      vim.g.clipboard = {
+        name = "gclpr",
+        copy = {
+          ["+"] = { "gclpr", "copy" },
+          ["*"] = { "gclpr", "copy" },
+        },
+        paste = {
+          ["+"] = { "gclpr", "paste --line-ending lf" },
+          ["*"] = { "gclpr", "paste --line-ending lf" },
+        },
+        cache_enabled = 0,
+      }
     end
   else
     if vim.fn.executable(vim.env.HOME .. "/winhome/.wsl/gclpr.exe") == 1 then
-      vim.g.clipboard = [[
-          {
-            'name': 'gclpr',
-            'copy': {
-               '+': $HOME . '/winhome/.wsl/gclpr.exe copy',
-               '*': $HOME . '/winhome/.wsl/gclpr.exe copy',
-             },
-            'paste': {
-               '+': $HOME . '/winhome/.wsl/gclpr.exe paste --line-ending lf',
-               '*': $HOME . '/winhome/.wsl/gclpr.exe paste --line-ending lf',
-            },
-            'cache_enabled': 0,
-          }
-      ]]
+      vim.g.clipboard = {
+        name = "gclpr",
+        copy = {
+          ["+"] = vim.env.HOME .. "/winhome/.wsl/gclpr.exe copy",
+          ["*"] = vim.env.HOME .. "/winhome/.wsl/gclpr.exe copy",
+        },
+        paste = {
+          ["+"] = vim.env.HOME
+            .. "/winhome/.wsl/gclpr.exe paste --line-ending lf",
+          ["*"] = vim.env.HOME
+            .. "/winhome/.wsl/gclpr.exe paste --line-ending lf",
+        },
+        cache_enabled = 0,
+      }
+    elseif vim.fn.executable("gclpr") == 1 then
+      vim.g.clipboard = {
+        name = "gclpr",
+        copy = {
+          ["+"] = { "gclpr", "copy" },
+          ["*"] = { "gclpr", "copy" },
+        },
+        paste = {
+          ["+"] = { "gclpr", "paste" },
+          ["*"] = { "gclpr", "paste" },
+        },
+        cache_enabled = 0,
+      }
     end
   end
 end
