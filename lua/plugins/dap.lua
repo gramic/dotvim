@@ -6,7 +6,7 @@ return {
       ensure_installed = {
         "pyright",
         "yapf",
-        -- "cppdbg",
+        "cppdbg",
         "codelldb",
       },
     },

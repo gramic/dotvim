@@ -204,7 +204,8 @@ function M.DebugRun()
     local args = vim.g.debug_args or {}
     M.DebugBazel(
       "cppdbg",
-      vim.g.bazel_config .. " --compilation_mode dbg --copt=-O0",
+      vim.g.bazel_config .. "--config=asan",
+      -- vim.g.bazel_config .. " --compilation_mode dbg --copt=-O0",
       default_program,
       args,
       default_env
