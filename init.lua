@@ -119,6 +119,30 @@ require("lazy").setup({
   --   config = true,
   -- },
   {
+    "linux-cultist/venv-selector.nvim",
+    dependencies = {
+      "neovim/nvim-lspconfig",
+      "nvim-telescope/telescope.nvim",
+      "mfussenegger/nvim-dap-python",
+    },
+    opts = {
+      -- Your options go here
+      name = { ".*.venv", "venv" },
+      auto_refresh = true,
+    },
+    event = "VeryLazy", -- Optional: needed only if you want to type `:VenvSelect` without a keymapping
+    keys = {
+      {
+        -- Keymap to open VenvSelector to pick a venv.
+        "<leader>vs",
+        "<cmd>:VenvSelect<cr>",
+        -- Keymap to retrieve the venv from a cache (the one previously used for the same project directory).
+        "<leader>vc",
+        "<cmd>:VenvSelectCached<cr>",
+      },
+    },
+  },
+  {
     "AntonVanAssche/date-time-inserter.nvim",
     ft = "markdown",
     opts = {
@@ -133,6 +157,12 @@ require("lazy").setup({
       {
         "<leader>tt",
         "<cmd>InsertDateTime<cr>",
+        desc = "Insert date and time.",
+      },
+      {
+        "<M-;>",
+        "<cmd>InsertDateTime<cr>",
+        mode = { "i" },
         desc = "Insert date and time.",
       },
     },
@@ -308,11 +338,12 @@ require("lazy").setup({
     "numine777/py-bazel.nvim",
     dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
     opts = {
-      pip_deps_marker = "typesense",
+      -- pip_deps_marker = "typesense",
+      -- global_pyright_config =
     },
-    config = function(_, opts)
-      require("py-bazel").setup(opts or {})
-    end,
+    -- config = function(_, opts)
+    --   require("py-bazel").setup(opts or {})
+    -- end,
   },
   -- { "folke/neoconf.nvim", cmd = "Neoconf" },
   {
@@ -322,6 +353,7 @@ require("lazy").setup({
       colorcolumn = "81",
     },
   },
+  "jamessan/vim-gnupg",
   "gcmt/taboo.vim",
   -- {
   --   "nanozuki/tabby.nvim",
