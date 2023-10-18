@@ -175,4 +175,62 @@ ls.add_snippets("bzl", {
       }
     )
   ),
+
+  s(
+    {
+      trig = "py_all",
+      dscr = "Create py_library with py_test with tests and empty files.",
+    },
+    fmt(
+      [[
+        py_library(
+            name = "{}",
+            srcs = ["{}"],
+            deps = [],
+        )
+
+        py_test(
+            name = "{}",
+            size = "small",
+            srcs = ["{}"],
+            deps = [
+                ":{}",
+                "@abseil-py//absl/logging",
+                "@abseil-py//absl/testing:absltest",
+            ],
+        )
+        {}
+      ]],
+      {
+        i(1),
+        l(l._1 .. ".py", 1),
+        l(l._1 .. "_test", 1),
+        l(l._1 .. "_test.py", 1),
+        l(l._1, 1),
+        i(0),
+      }
+    ),
+    {}
+  ),
+
+  s(
+    { trig = "py_library", dscr = "Create py_library only." },
+    fmt(
+      [[
+        py_library(
+            name = "{}",
+            srcs = ["{}"],
+            deps = [
+              "@abseil-py//absl/logging",
+            ],
+        ){}
+      ]],
+      {
+        i(1),
+        l(l._1 .. ".py", 1),
+        i(0),
+      }
+    ),
+    {}
+  ),
 })

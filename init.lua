@@ -28,6 +28,8 @@ require("lazy").setup({
       import = "lazyvim.plugins.extras.formatting.prettier",
       { import = "lazyvim.plugins.extras.lang.typescript" },
       { import = "lazyvim.plugins.extras.lang.json" },
+      { import = "lazyvim.plugins.extras.lang.clangd" },
+      { import = "lazyvim.plugins.extras.lang.python" },
       dev = {
         path = "~/work",
       },
@@ -386,6 +388,7 @@ require("lazy").setup({
     end,
   },
   { "google/vim-jsonnet" },
+  { "navarasu/onedark.nvim" }, -- colorscheme
   {
     "nvim-lualine/lualine.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },

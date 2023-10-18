@@ -151,6 +151,7 @@ return {
         "jsonnet-language-server",
         "yapf",
         "prettierd",
+        "yq",
       },
       providers = {
         "mason.providers.client",
