@@ -5,6 +5,13 @@
 
 local map = vim.keymap.set
 
+vim.keymap.del("n", "<A-j>")
+vim.keymap.del("n", "<A-k>")
+vim.keymap.del("i", "<A-j>")
+vim.keymap.del("i", "<A-k>")
+vim.keymap.del("v", "<A-j>")
+vim.keymap.del("v", "<A-k>")
+
 -- bazel
 local bazel = require("bazel")
 local my_bazel = require("config.bazel")
