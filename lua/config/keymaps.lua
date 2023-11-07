@@ -12,6 +12,9 @@ vim.keymap.del("i", "<A-k>")
 vim.keymap.del("v", "<A-j>")
 vim.keymap.del("v", "<A-k>")
 
+vim.keymap.del("n", "<S-h>")
+vim.keymap.del("n", "<S-l>")
+
 -- bazel
 local bazel = require("bazel")
 local my_bazel = require("config.bazel")

@@ -47,28 +47,29 @@ require("lazy").setup({
   },
   {
     "folke/noice.nvim",
-    opts = {
-      -- enabled = false,
-      -- cmdline = {
-      --   enabled = false, -- enables the Noice cmdline UI
-      -- },
-      messages = {
-        -- NOTE: If you enable messages, then the cmdline is enabled automatically.
-        -- This is a current Neovim limitation.
-        -- enabled = false, -- enables the Noice messages UI
-        view = "notify", -- default view for messages
-        view_error = "notify", -- view for errors
-        view_warn = "notify", -- view for warnings
-        view_history = "messages", -- view for :messages
-        view_search = "virtualtext", -- view for search count messages. Set to `false` to disable
-      },
-      presets = {
-        bottom_search = true, -- use a classic bottom cmdline for search
-        command_palette = false, -- position the cmdline and popupmenu together
-        long_message_to_split = true, -- long messages will be sent to a split
-        inc_rename = false, -- enables an input dialog for inc-rename.nvim
-      },
-    },
+    enabled = false,
+    -- opts = {
+    --   -- enabled = false,
+    --   -- cmdline = {
+    --   --   enabled = false, -- enables the Noice cmdline UI
+    --   -- },
+    --   messages = {
+    --     -- NOTE: If you enable messages, then the cmdline is enabled automatically.
+    --     -- This is a current Neovim limitation.
+    --     -- enabled = false, -- enables the Noice messages UI
+    --     view = "notify", -- default view for messages
+    --     view_error = "notify", -- view for errors
+    --     view_warn = "notify", -- view for warnings
+    --     view_history = "messages", -- view for :messages
+    --     view_search = "virtualtext", -- view for search count messages. Set to `false` to disable
+    --   },
+    --   presets = {
+    --     bottom_search = true, -- use a classic bottom cmdline for search
+    --     command_palette = false, -- position the cmdline and popupmenu together
+    --     long_message_to_split = true, -- long messages will be sent to a split
+    --     inc_rename = false, -- enables an input dialog for inc-rename.nvim
+    --   },
+    -- },
   },
   {
     "rafamadriz/friendly-snippets",
