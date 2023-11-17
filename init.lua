@@ -122,6 +122,17 @@ require("lazy").setup({
   --   config = true,
   -- },
   {
+    "ThePrimeagen/git-worktree.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope.nvim",
+    },
+    opts = {},
+    config = function()
+      require("telescope").load_extension("git_worktree")
+    end,
+  },
+  {
     "linux-cultist/venv-selector.nvim",
     dependencies = {
       "neovim/nvim-lspconfig",
