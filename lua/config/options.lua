@@ -1,6 +1,9 @@
 -- Options are automatically loaded before lazy.nvim startup
 -- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
 -- Add any additional options here
+vim.g.autoformat = true
+vim.g.tcomment_mapleader2 = false
+
 local opt = vim.opt -- set options
 opt.spelllang = "en,bg"
 opt.clipboard = ""
@@ -31,3 +34,4 @@ opt.scrolloff = 0
 opt.number = false
 opt.relativenumber = false
 opt.wildmode = "full" -- Command-line completion mode
+opt.cmdheight = 1

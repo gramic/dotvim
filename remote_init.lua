@@ -141,30 +141,20 @@ return {
       },
     },
   },
-  {
-    "telescope.nvim",
-    dependencies = {
-      "nvim-telescope/telescope-fzf-native.nvim",
-      build = "make",
-      config = function()
-        require("telescope").load_extension("fzf")
-      end,
-    },
-  },
   { "junegunn/fzf", build = "./install --bin" },
-  {
-    "ibhagwan/fzf-lua",
-    dependencies = { "nvim-tree/nvim-web-devicons", "junegunn/fzf" },
-    config = true,
-    command = "FzfLua",
-    keys = {
-      {
-        "<leader>fg",
-        "<cmd>FzfLua live_grep_glob<cr>",
-        desc = "Live grep glob",
-      },
-    },
-  },
+  -- {
+  --   "ibhagwan/fzf-lua",
+  --   dependencies = { "nvim-tree/nvim-web-devicons", "junegunn/fzf" },
+  --   config = true,
+  --   -- command = "FzfLua",
+  --   keys = {
+  --     {
+  --       "<leader>fg",
+  --       "<cmd>FzfLua live_grep_glob<cr>",
+  --       desc = "Live grep glob",
+  --     },
+  --   },
+  -- },
   {
     "stevearc/oil.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },

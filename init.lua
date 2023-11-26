@@ -47,29 +47,29 @@ require("lazy").setup({
   },
   {
     "folke/noice.nvim",
-    enabled = false,
-    -- opts = {
-    --   -- enabled = false,
-    --   -- cmdline = {
-    --   --   enabled = false, -- enables the Noice cmdline UI
-    --   -- },
-    --   messages = {
-    --     -- NOTE: If you enable messages, then the cmdline is enabled automatically.
-    --     -- This is a current Neovim limitation.
-    --     -- enabled = false, -- enables the Noice messages UI
-    --     view = "notify", -- default view for messages
-    --     view_error = "notify", -- view for errors
-    --     view_warn = "notify", -- view for warnings
-    --     view_history = "messages", -- view for :messages
-    --     view_search = "virtualtext", -- view for search count messages. Set to `false` to disable
-    --   },
-    --   presets = {
-    --     bottom_search = true, -- use a classic bottom cmdline for search
-    --     command_palette = false, -- position the cmdline and popupmenu together
-    --     long_message_to_split = true, -- long messages will be sent to a split
-    --     inc_rename = false, -- enables an input dialog for inc-rename.nvim
-    --   },
-    -- },
+    -- enabled = false,
+    opts = {
+      -- enabled = false,
+      -- cmdline = {
+      --   enabled = false, -- enables the Noice cmdline UI
+      -- },
+      messages = {
+        -- NOTE: If you enable messages, then the cmdline is enabled automatically.
+        -- This is a current Neovim limitation.
+        -- enabled = false, -- enables the Noice messages UI
+        view = "notify", -- default view for messages
+        view_error = "notify", -- view for errors
+        view_warn = "notify", -- view for warnings
+        view_history = "messages", -- view for :messages
+        view_search = "virtualtext", -- view for search count messages. Set to `false` to disable
+      },
+      presets = {
+        bottom_search = true, -- use a classic bottom cmdline for search
+        command_palette = false, -- position the cmdline and popupmenu together
+        long_message_to_split = true, -- long messages will be sent to a split
+        inc_rename = false, -- enables an input dialog for inc-rename.nvim
+      },
+    },
   },
   {
     "rafamadriz/friendly-snippets",
@@ -106,10 +106,6 @@ require("lazy").setup({
   {
     "echasnovski/mini.pairs",
     enabled = false,
-  },
-  {
-    "echasnovski/mini.ai",
-    config = true,
   },
   {
     "echasnovski/mini.comment",
@@ -375,7 +371,10 @@ require("lazy").setup({
   -- },
   "kristijanhusak/vim-dadbod-completion",
   "kristijanhusak/vim-dadbod-ui",
-  "vim-scripts/dbext.vim",
+  {
+    "vim-scripts/dbext.vim",
+    command = "DBExecVisualSQL",
+  },
   "sindrets/diffview.nvim",
   "shumphrey/fugitive-gitlab.vim",
   "mbbill/undotree",
@@ -451,8 +450,8 @@ require("lazy").setup({
   {
     "nvim-treesitter/nvim-treesitter",
     version = false, -- last release is way too old and doesn't work on Windows
-    opts = {
-      ensure_installed = {
+    opts = function(_, opts)
+      vim.list_extend(opts.ensure_installed, {
         "vimdoc",
         "proto",
         "json",
@@ -461,8 +460,8 @@ require("lazy").setup({
         "javascript",
         "query",
         "jsdoc",
-      },
-    },
+      })
+    end,
   },
   {
     "nvim-treesitter/nvim-treesitter-textobjects",
@@ -489,7 +488,7 @@ require("lazy").setup({
   "tpope/vim-fugitive",
   "tpope/vim-rhubarb",
   "tpope/vim-repeat",
-  "tpope/vim-unimpaired",
+  -- "tpope/vim-unimpaired",
   "tpope/vim-obsession",
   "tpope/vim-abolish",
   "tpope/vim-characterize",
@@ -535,22 +534,12 @@ require("lazy").setup({
       },
     },
   },
-  {
-    "telescope.nvim",
-    dependencies = {
-      "nvim-telescope/telescope-fzf-native.nvim",
-      build = "make",
-      config = function()
-        require("telescope").load_extension("fzf")
-      end,
-    },
-  },
   { "junegunn/fzf", build = "./install --bin" },
   {
     "ibhagwan/fzf-lua",
     dependencies = { "nvim-tree/nvim-web-devicons", "junegunn/fzf" },
     config = true,
-    command = "FzfLua",
+    -- command = "FzfLua",
     keys = {
       {
         "<leader>fg",
@@ -559,7 +548,6 @@ require("lazy").setup({
       },
     },
   },
-  -- "justinmk/vim-dirvish",
   {
     "stevearc/oil.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
@@ -585,6 +573,7 @@ require("lazy").setup({
   -- },
   {
     "tomtom/tcomment_vim",
+    -- opts = {},
   },
   {
     "chrishrb/gx.nvim",
@@ -599,6 +588,8 @@ require("lazy").setup({
     },
   },
   { import = "lazyvim.plugins.extras.dap.core" },
+  { import = "lazyvim.plugins.extras.editor.symbols-outline" },
+  { import = "lazyvim.plugins.extras.lsp.none-ls" },
   -- { import = "lazyvim.plugins.extras.coding" },
   { import = "plugins" },
 })
