@@ -141,6 +141,7 @@ return {
     version = false,
     cmd = "Mason",
     opts = {
+      log_level = vim.log.levels.DEBUG,
       ensure_installed = {
         "stylua",
         "stylelint-lsp",

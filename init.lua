@@ -46,6 +46,25 @@ require("lazy").setup({
     },
   },
   {
+    "lewis6991/gitsigns.nvim",
+    -- opts = {
+    --   _extmark_signs = false,
+    -- },
+  },
+  {
+    "stevearc/conform.nvim",
+    opts = {
+      formatters_by_ft = {
+        py = { "python" },
+      },
+      formatters = {
+        yapf = {
+          prepend_args = { "--style", "google" },
+        },
+      },
+    },
+  },
+  {
     "folke/noice.nvim",
     -- enabled = false,
     opts = {

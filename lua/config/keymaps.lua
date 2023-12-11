@@ -1,19 +1,44 @@
 -- Keymaps are automatically loaded on the VeryLazy event
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
--- Add any additional keymaps here
--- map("n", "<leader>bb")
 
 local map = vim.keymap.set
 
--- vim.keymap.del("n", "<A-j>")
--- vim.keymap.del("n", "<A-k>")
--- vim.keymap.del("i", "<A-j>")
--- vim.keymap.del("i", "<A-k>")
--- vim.keymap.del("v", "<A-j>")
--- vim.keymap.del("v", "<A-k>")
-
+vim.keymap.del("n", "<A-j>")
+vim.keymap.del("n", "<A-k>")
+vim.keymap.del("i", "<A-j>")
+vim.keymap.del("i", "<A-k>")
+vim.keymap.del("v", "<A-j>")
+vim.keymap.del("v", "<A-k>")
 vim.keymap.del("n", "<S-h>")
 vim.keymap.del("n", "<S-l>")
+
+-- disable better up/down
+vim.keymap.del({ "n", "x" }, "j")
+vim.keymap.del({ "n", "x" }, "<Down>")
+vim.keymap.del({ "n", "x" }, "k")
+vim.keymap.del({ "n", "x" }, "<Up>")
+
+-- Disable move to window using the <ctrl> hjkl keys
+vim.keymap.del("n", "<C-h>")
+vim.keymap.del("n", "<C-j>")
+vim.keymap.del("n", "<C-k>")
+vim.keymap.del("n", "<C-l>")
+
+-- Disable move Lines
+vim.keymap.del("n", "<A-j>")
+vim.keymap.del("n", "<A-k>")
+vim.keymap.del("i", "<A-j>")
+vim.keymap.del("i", "<A-k>")
+vim.keymap.del("v", "<A-j>")
+vim.keymap.del("v", "<A-k>")
+
+-- disable buffers
+vim.keymap.del("n", "<S-h>")
+vim.keymap.del("n", "<S-l>")
+vim.keymap.del("n", "[b")
+vim.keymap.del("n", "]b")
+vim.keymap.del("n", "<leader>bb")
+vim.keymap.del("n", "<leader>`")
 
 -- bazel
 local bazel = require("bazel")
