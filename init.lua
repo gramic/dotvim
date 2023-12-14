@@ -142,6 +142,7 @@ require("lazy").setup({
       "nvim-lua/plenary.nvim",
       "nvim-telescope/telescope.nvim",
     },
+    cmd = "Worktree",
     opts = {},
     config = function()
       require("telescope").load_extension("git_worktree")
@@ -585,6 +586,10 @@ require("lazy").setup({
         },
       },
     },
+  },
+  {
+    cmd = "DirDiff",
+    "will133/vim-dirdiff",
   },
   -- {
   --   "tpope/vim-commentary",
