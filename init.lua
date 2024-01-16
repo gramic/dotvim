@@ -510,7 +510,18 @@ require("lazy").setup({
   "tpope/vim-repeat",
   -- "tpope/vim-unimpaired",
   "tpope/vim-obsession",
-  "tpope/vim-abolish",
+  {
+    "gregorias/coerce.nvim",
+    tag = "v0.1.1",
+    config = true,
+  },
+  {
+    "tpope/vim-abolish",
+    init = function()
+      -- Disable coercion mappings. I use coerce.nvim for that.
+      vim.g.abolish_no_mappings = true
+    end,
+  },
   "tpope/vim-characterize",
   "tpope/vim-dispatch",
   "tpope/vim-repeat",

@@ -35,3 +35,4 @@ opt.number = false
 opt.relativenumber = false
 opt.wildmode = "full" -- Command-line completion mode
 opt.cmdheight = 1
+opt.conceallevel = 0
