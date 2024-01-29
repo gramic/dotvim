@@ -19,6 +19,15 @@ vim.filetype.add({ extension = { grpcurl = "grpcurl" } })
 
 vim.g.BufKillCreateMappings = 0
 
+local function ext_encoding()
+  local bufnr = vim.api.nvim_get_current_buf()
+  if vim.bo[bufnr].bomb then
+    return string.format("%s (bom)", vim.bo[bufnr].fileencoding)
+  else
+    return vim.bo[bufnr].fileencoding
+  end
+end
+
 require("lazy").setup({
   -- { import = "lazyvim.plugins.extras.formatting.prettier" },
   {
@@ -437,6 +446,7 @@ require("lazy").setup({
           { "filename", color = "DiffAdd" },
           { "filename", path = 1 },
         },
+        lualine_x = { ext_encoding },
       },
       inactive_sections = {
         lualine_a = { "%{winnr()}" },
@@ -445,7 +455,7 @@ require("lazy").setup({
           "filename",
           { "filename", path = 1, show_filename_only = false },
         },
-        lualine_x = { "location", "progress" },
+        lualine_x = { "location", "progress", ext_encoding },
         lualine_y = {},
         lualine_z = {},
       },
