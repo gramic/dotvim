@@ -575,6 +575,18 @@ require("lazy").setup({
       },
     },
   },
+  {
+    "nvim-telescope/telescope.nvim",
+    dependencies = {
+      {
+        "nvim-telescope/telescope-live-grep-args.nvim",
+        version = false,
+      },
+    },
+    config = function()
+      require("telescope").load_extension("live_grep_args")
+    end,
+  },
   { "junegunn/fzf", build = "./install --bin" },
   {
     "ibhagwan/fzf-lua",
