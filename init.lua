@@ -55,6 +55,13 @@ require("lazy").setup({
     },
   },
   {
+    "nvim-treesitter/nvim-treesitter-context",
+    enabled = false,
+    opts = {
+      -- enable = false,
+    },
+  },
+  {
     "lewis6991/gitsigns.nvim",
     -- opts = {
     --   _extmark_signs = false,
