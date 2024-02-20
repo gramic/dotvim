@@ -29,7 +29,6 @@ local function ext_encoding()
 end
 
 require("lazy").setup({
-  -- { import = "lazyvim.plugins.extras.formatting.prettier" },
   {
     "LazyVim/LazyVim",
     import = "lazyvim.plugins",
@@ -82,9 +81,7 @@ require("lazy").setup({
   },
   {
     "folke/noice.nvim",
-    -- enabled = false,
     opts = {
-      -- enabled = false,
       -- cmdline = {
       --   enabled = false, -- enables the Noice cmdline UI
       -- },
@@ -362,7 +359,7 @@ require("lazy").setup({
         function()
           -- vim.cmd("<cmd>w<cr><cmd>source %<cr>")
           require("gramic.globals")
-          R("gramic-bazel")
+          -- R("gramic-bazel")
         end,
         desc = 'Exec latest terminal "C command',
       },
@@ -377,10 +374,6 @@ require("lazy").setup({
     --   -- build = "git remote add upstream git@github.com:gramic/dotvim.git",
   },
   {
-    "hudclark/grpc-nvim",
-    dependencies = { "nvim-lua/plenary.nvim" },
-  },
-  {
     "numine777/py-bazel.nvim",
     dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
     opts = {
@@ -391,32 +384,23 @@ require("lazy").setup({
     --   require("py-bazel").setup(opts or {})
     -- end,
   },
-  -- { "folke/neoconf.nvim", cmd = "Neoconf" },
   {
-    -- vertical column line
-    "m4xshen/smartcolumn.nvim",
-    opts = {
-      colorcolumn = "81",
-    },
+    "hudclark/grpc-nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
   },
+  {
+    "nvim-treesitter/nvim-treesitter",
+    version = false, -- last release is way too old and doesn't work on Windows
+    opts = function(_, opts)
+      vim.list_extend(opts.ensure_installed, {
+        "vimdoc",
+      })
+    end,
+  },
+  "duganchen/vim-soy",
   "jamessan/vim-gnupg",
-  "gcmt/taboo.vim",
-  -- {
-  --   "nanozuki/tabby.nvim",
-  --   config = true,
-  -- },
   "kristijanhusak/vim-dadbod-completion",
   "kristijanhusak/vim-dadbod-ui",
-  {
-    "vim-scripts/dbext.vim",
-    command = "DBExecVisualSQL",
-  },
-  "sindrets/diffview.nvim",
-  "shumphrey/fugitive-gitlab.vim",
-  "mbbill/undotree",
-  "qpkorr/vim-bufkill",
-  "nelstrom/vim-visual-star-search",
-  "duganchen/vim-soy",
   -- Add maktaba and codefmt to the runtimepath.
   {
     "google/vim-maktaba",
@@ -435,6 +419,39 @@ require("lazy").setup({
     end,
   },
   { "google/vim-jsonnet" },
+  {
+    "vim-scripts/dbext.vim",
+    command = "DBExecVisualSQL",
+  },
+  {
+    "nvim-treesitter/nvim-treesitter",
+    version = false, -- last release is way too old and doesn't work on Windows
+    opts = function(_, opts)
+      vim.list_extend(opts.ensure_installed, {
+        "proto",
+        "json",
+        "grpcurl",
+        "starlark",
+        "javascript",
+        "query",
+        "jsdoc",
+      })
+    end,
+  },
+  -- { "folke/neoconf.nvim", cmd = "Neoconf" },
+  {
+    -- vertical column line
+    "m4xshen/smartcolumn.nvim",
+    opts = {
+      colorcolumn = "81",
+    },
+  },
+  "gcmt/taboo.vim",
+  "sindrets/diffview.nvim",
+  "shumphrey/fugitive-gitlab.vim",
+  "mbbill/undotree",
+  "qpkorr/vim-bufkill",
+  "nelstrom/vim-visual-star-search",
   { "navarasu/onedark.nvim" }, -- colorscheme
   {
     "nvim-lualine/lualine.nvim",
@@ -466,33 +483,7 @@ require("lazy").setup({
         lualine_y = {},
         lualine_z = {},
       },
-      -- tabline = {
-      --   lualine_a = { { 'tabs', mode = 2 } },
-      --   lualine_b = {},
-      --   lualine_c = {
-      --     { 'filename', path = 1 }
-      --   },
-      --   lualine_x = {},
-      --   lualine_y = {},
-      --   lualine_z = {}
-      -- }
     },
-  },
-  {
-    "nvim-treesitter/nvim-treesitter",
-    version = false, -- last release is way too old and doesn't work on Windows
-    opts = function(_, opts)
-      vim.list_extend(opts.ensure_installed, {
-        "vimdoc",
-        "proto",
-        "json",
-        "grpcurl",
-        "starlark",
-        "javascript",
-        "query",
-        "jsdoc",
-      })
-    end,
   },
   {
     "nvim-treesitter/nvim-treesitter-textobjects",
@@ -500,11 +491,6 @@ require("lazy").setup({
       "nvim-tree/nvim-web-devicons",
       "nvim-treesitter/nvim-treesitter",
     },
-    -- event = "VeryLazy",
-    -- config = function(_, opts)
-    --   print(opts)
-    --   require("nvim-treesitter.configs").setup(opts)
-    -- end,
   },
   { "ConradIrwin/vim-bracketed-paste" },
   -- {dir = "~/gramic-neovim/plugin/gramic-neovim.vim"},
@@ -575,9 +561,6 @@ require("lazy").setup({
         winblend = 0,
       },
     },
-  },
-  {
-    "nvim-telescope/telescope.nvim",
     dependencies = {
       {
         "nvim-telescope/telescope-live-grep-args.nvim",
@@ -587,6 +570,73 @@ require("lazy").setup({
     config = function()
       require("telescope").load_extension("live_grep_args")
     end,
+  },
+  {
+    "ThePrimeagen/harpoon",
+    branch = "harpoon2",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    config = true,
+    keys = {
+      {
+        "<leader>a",
+        function()
+          local harpoon = require("harpoon")
+          harpoon:list():append()
+        end,
+        desc = "Harpoon append",
+      },
+      {
+        "<C-e>",
+        function()
+          local harpoon = require("harpoon")
+          harpoon.ui:toggle_quick_menu(harpoon:list())
+        end,
+        desc = "Harpoon list",
+      },
+      {
+        "<C-h>",
+        function()
+          require("harpoon"):list():select(1)
+        end,
+        desc = "Harpoon select 1",
+      },
+      {
+        "<C-t>",
+        function()
+          require("harpoon"):list():select(2)
+        end,
+        desc = "Harpoon select 2",
+      },
+      {
+        "<C-n>",
+        function()
+          require("harpoon"):list():select(3)
+        end,
+        desc = "Harpoon select 3",
+      },
+      {
+        "<C-s>",
+        function()
+          require("harpoon"):list():select(4)
+        end,
+        desc = "Harpoon select 4",
+      },
+      {
+        "<C-S-P>",
+        function()
+          require("harpoon"):list():prev()
+        end,
+        desc = "Harpoon prev",
+      },
+      {
+        "<C-S-N>",
+        function()
+          require("harpoon"):list():next()
+        end,
+        desc = "Harpoon next",
+      },
+    },
+    opts = {},
   },
   { "junegunn/fzf", build = "./install --bin" },
   {
@@ -641,7 +691,6 @@ require("lazy").setup({
       vim.g.netrw_nogx = 1 -- disable netrw gx
     end,
     dependencies = { "nvim-lua/plenary.nvim" },
-    config = true, -- default settings
     submodules = false, -- not needed, submodules are required only for tests
     -- you can specify also another config if you want
     config = function()
@@ -657,7 +706,6 @@ require("lazy").setup({
         },
         handler_options = {
           search_engine = "google", -- you can select between google, bing, duckduckgo, and ecosia
-          search_engine = "https://search.brave.com/search?q=", -- or you can pass in a custom search engine
         },
       })
     end,
