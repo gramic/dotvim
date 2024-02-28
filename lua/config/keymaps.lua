@@ -4,9 +4,9 @@
 local map = vim.keymap.set
 
 -- disable buffers
-vim.keymap.del("n", "<S-h>")
-vim.keymap.del("n", "<S-l>")
-vim.keymap.del("n", "<leader>bb")
+-- vim.keymap.del("n", "<S-h>")
+-- vim.keymap.del("n", "<S-l>")
+-- vim.keymap.del("n", "<leader>bb")
 
 -- bazel
 local bazel = require("bazel")

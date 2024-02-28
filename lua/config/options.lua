@@ -3,6 +3,8 @@
 -- Add any additional options here
 vim.g.autoformat = true
 vim.g.tcomment_mapleader2 = false
+vim.g.mapleader = " " -- Make sure to set `mapleader` before lazy
+vim.g.python_recommended_style = 0
 
 local opt = vim.opt -- set options
 opt.spelllang = "en,bg"

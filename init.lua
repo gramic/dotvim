@@ -1,6 +1,3 @@
-vim.g.mapleader = " " -- Make sure to set `mapleader` before lazy
-vim.g.python_recommended_style = 0
-
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
@@ -54,17 +51,22 @@ require("lazy").setup({
     },
   },
   {
-    "nvim-treesitter/nvim-treesitter-context",
-    enabled = false,
+    "allaman/emoji.nvim",
+    version = "1.0.0", -- optionally pin to a tag
+    ft = "markdown", -- adjust to your needs
+    dependencies = {
+      -- optional for nvim-cmp integration
+      "hrsh7th/nvim-cmp",
+      "nvim-telescope/telescope.nvim",
+    },
     opts = {
-      -- enable = false,
+      enable_cmp_integration = true,
     },
   },
   {
-    "lewis6991/gitsigns.nvim",
-    -- opts = {
-    --   _extmark_signs = false,
-    -- },
+    "nvim-treesitter/nvim-treesitter-context",
+    enabled = false,
+    opts = {},
   },
   {
     "stevearc/conform.nvim",
@@ -388,15 +390,6 @@ require("lazy").setup({
     "hudclark/grpc-nvim",
     dependencies = { "nvim-lua/plenary.nvim" },
   },
-  {
-    "nvim-treesitter/nvim-treesitter",
-    version = false, -- last release is way too old and doesn't work on Windows
-    opts = function(_, opts)
-      vim.list_extend(opts.ensure_installed, {
-        "vimdoc",
-      })
-    end,
-  },
   "duganchen/vim-soy",
   "jamessan/vim-gnupg",
   "kristijanhusak/vim-dadbod-completion",
@@ -428,6 +421,7 @@ require("lazy").setup({
     version = false, -- last release is way too old and doesn't work on Windows
     opts = function(_, opts)
       vim.list_extend(opts.ensure_installed, {
+        "vimdoc",
         "proto",
         "json",
         "grpcurl",
@@ -448,7 +442,10 @@ require("lazy").setup({
   },
   "gcmt/taboo.vim",
   "sindrets/diffview.nvim",
-  "shumphrey/fugitive-gitlab.vim",
+  {
+    "shumphrey/fugitive-gitlab.vim",
+    dependencies = { "tpope/vim-fugitive" },
+  },
   "mbbill/undotree",
   "qpkorr/vim-bufkill",
   "nelstrom/vim-visual-star-search",
@@ -663,6 +660,19 @@ require("lazy").setup({
       },
     },
     opts = {
+      keymaps = {
+        ["<leader>fd"] = {
+          callback = function()
+            path = require("oil").get_current_dir()
+            require("telescope.builtin").live_grep({
+              search_dirs = { path },
+              prompt_title = string.format("Grep in [%s]", path),
+            })
+          end,
+          desc = "Life grep in current directory",
+          mode = "n",
+        },
+      },
       view_options = {
         show_hidden = true,
         sort = {
@@ -695,7 +705,7 @@ require("lazy").setup({
     -- you can specify also another config if you want
     config = function()
       require("gx").setup({
-        open_browser_app = "open", -- specify your browser app; default for macOS is "open", Linux "xdg-open" and Windows "powershell.exe"
+        -- open_browser_app = "open", -- specify your browser app; default for macOS is "open", Linux "xdg-open" and Windows "powershell.exe"
         -- open_browser_args = { "--background" }, -- specify any arguments, such as --background for macOS' "open".
         handlers = {
           plugin = true, -- open plugin links in lua (e.g. packer, lazy, ..)
