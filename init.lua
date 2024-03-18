@@ -73,6 +73,7 @@ require("lazy").setup({
     opts = {
       formatters_by_ft = {
         py = { "python" },
+        bzl = { "buildifier" },
       },
       formatters = {
         yapf = {
@@ -466,6 +467,11 @@ require("lazy").setup({
         lualine_c = {
           { "filename", color = "DiffAdd" },
           { "filename", path = 1 },
+          {
+            "harpoon2",
+            indicators = { "h", "t", "n", "s" },
+            active_indicators = { "H", "T", "N", "S" },
+          },
         },
         lualine_x = { ext_encoding },
       },
@@ -569,6 +575,16 @@ require("lazy").setup({
     end,
   },
   {
+    "letieu/harpoon-lualine",
+    dependencies = {
+      "nvim-lualine/lualine.nvim",
+      {
+        "ThePrimeagen/harpoon",
+        branch = "harpoon2",
+      },
+    },
+  },
+  {
     "ThePrimeagen/harpoon",
     branch = "harpoon2",
     dependencies = { "nvim-lua/plenary.nvim" },
@@ -633,7 +649,11 @@ require("lazy").setup({
         desc = "Harpoon next",
       },
     },
-    opts = {},
+    opts = {
+      settings = {
+        sync_on_ui_close = true,
+      },
+    },
   },
   { "junegunn/fzf", build = "./install --bin" },
   {
@@ -669,7 +689,7 @@ require("lazy").setup({
               prompt_title = string.format("Grep in [%s]", path),
             })
           end,
-          desc = "Life grep in current directory",
+          desc = "Live grep in current directory",
           mode = "n",
         },
       },
@@ -692,6 +712,10 @@ require("lazy").setup({
   {
     "tomtom/tcomment_vim",
     -- opts = {},
+  },
+  {
+    "mvllow/stand.nvim",
+    opts = {},
   },
   {
     "chrishrb/gx.nvim",
