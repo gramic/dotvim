@@ -683,7 +683,7 @@ require("lazy").setup({
       keymaps = {
         ["<leader>fd"] = {
           callback = function()
-            path = require("oil").get_current_dir()
+            local path = require("oil").get_current_dir()
             require("telescope.builtin").live_grep({
               search_dirs = { path },
               prompt_title = string.format("Grep in [%s]", path),
