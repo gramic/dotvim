@@ -569,9 +569,14 @@ require("lazy").setup({
         "nvim-telescope/telescope-live-grep-args.nvim",
         version = false,
       },
+      {
+        "isak102/telescope-git-file-history.nvim",
+        dependencies = { "tpope/vim-fugitive" },
+      },
     },
     config = function()
       require("telescope").load_extension("live_grep_args")
+      require("telescope").load_extension("git_file_history")
     end,
   },
   {
