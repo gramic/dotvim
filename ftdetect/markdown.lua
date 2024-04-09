@@ -18,6 +18,5 @@ local insert_date = function()
 end
 
 vim.keymap.set({ "n", "i" }, "<M-;>", function()
-  vim.print("this is some date" .. os.date("%d.%m.%Y %A"))
   insert_date()
 end)
