@@ -297,31 +297,6 @@ require("lazy").setup({
     },
   },
   {
-    "AntonVanAssche/date-time-inserter.nvim",
-    ft = "markdown",
-    opts = {
-      date_format = "DDMMYYYY",
-      date_separator = ".",
-      time_format = 24,
-      insert_date_map = "",
-      insert_time_map = "",
-      insert_date_time_map = "",
-    },
-    keys = {
-      {
-        "<leader>tt",
-        "<cmd>InsertDateTime<cr>",
-        desc = "Insert date and time.",
-      },
-      {
-        "<M-;>",
-        "<cmd>InsertDateTime<cr>",
-        mode = { "i" },
-        desc = "Insert date and time.",
-      },
-    },
-  },
-  {
     "hudclark/grpc-nvim",
     dependencies = { "nvim-lua/plenary.nvim" },
     cmd = "Grpc",
