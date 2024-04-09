@@ -12,7 +12,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 vim.cmd("nnoremap ' `")
-vim.filetype.add({ extension = { grpcurl = "grpcurl" } })
+-- vim.filetype.add({ extension = { grpcurl = "grpcurl" } })
 
 vim.g.BufKillCreateMappings = 0
 
@@ -302,11 +302,11 @@ require("lazy").setup({
     cmd = "Grpc",
     ft = ".grpcurl",
   },
-  {
-    "gramic/tree-sitter-grpcurl",
-    dev = true,
-    dir = "~/work/tree-sitter-grpcurl", -- lazy = false,
-  },
+  -- {
+  --   "gramic/tree-sitter-grpcurl",
+  --   dev = true,
+  --   dir = "~/work/tree-sitter-grpcurl", -- lazy = false,
+  -- },
   {
     "L3MON4D3/LuaSnip",
     opts = {
@@ -345,7 +345,13 @@ require("lazy").setup({
     name = "dotvim",
     dir = "~/work/dotvim", -- lazy = false,
     version = false,
-    ft = { "jsonnet", "cpp", "javascript", "bzl", "grpcurl" },
+    ft = {
+      "jsonnet",
+      "cpp",
+      "javascript",
+      "bzl",
+      -- "grpcurl",
+    },
     opts = {
       log_level = "debug",
     },
@@ -366,7 +372,7 @@ require("lazy").setup({
       require("gramic.bzl-snippets")
       -- require("gramic.globals")
       require("gramic-bazel").setup(opts)
-      require("grpcurl").setup(opts)
+      -- require("grpcurl").setup(opts)
     end,
     keys = {
       { "<C-l>" },
@@ -508,7 +514,7 @@ require("lazy").setup({
         "vimdoc",
         "proto",
         "json",
-        "grpcurl",
+        -- "grpcurl",
         "starlark",
         "javascript",
         "query",
@@ -833,7 +839,7 @@ require("lazy").setup({
     end,
   },
   { import = "lazyvim.plugins.extras.dap.core" },
-  { import = "lazyvim.plugins.extras.editor.symbols-outline" },
+  { import = "lazyvim.plugins.extras.editor.outline" },
   { import = "lazyvim.plugins.extras.lsp.none-ls" },
   -- { import = "lazyvim.plugins.extras.coding" },
   { import = "plugins" },

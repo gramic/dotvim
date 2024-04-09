@@ -22,7 +22,7 @@ return {
           nls.builtins.formatting.yapf,
           nls.builtins.diagnostics.buildifier,
           nls.builtins.formatting.buildifier,
-          nls.builtins.diagnostics.protoc_gen_lint.with({
+          nls.builtins.diagnostics.buf.with({
             disabled_filetypes = { "proto" },
           }),
           -- nls.builtins.diagnostics.codespell.with({
