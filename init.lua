@@ -481,9 +481,34 @@ require("lazy").setup({
     dependencies = { "nvim-lua/plenary.nvim" },
   },
   "duganchen/vim-soy",
+  {
+    "moyiz/git-dev.nvim",
+    event = "VeryLazy",
+    opts = {},
+  },
+  "MisanthropicBit/decipher.nvim", -- provides base64-url-safe encoding/decoding
   "jamessan/vim-gnupg",
-  "kristijanhusak/vim-dadbod-completion",
-  "kristijanhusak/vim-dadbod-ui",
+  {
+    "kristijanhusak/vim-dadbod-ui",
+    dependencies = {
+      { "tpope/vim-dadbod", lazy = true },
+      {
+        "kristijanhusak/vim-dadbod-completion",
+        ft = { "sql", "mysql", "plsql" },
+        lazy = true,
+      },
+    },
+    cmd = {
+      "DBUI",
+      "DBUIToggle",
+      "DBUIAddConnection",
+      "DBUIFindBuffer",
+    },
+    init = function()
+      -- Your DBUI configuration
+      vim.g.db_ui_use_nerd_fonts = 1
+    end,
+  },
   -- Add maktaba and codefmt to the runtimepath.
   {
     "google/vim-maktaba",
@@ -514,6 +539,7 @@ require("lazy").setup({
         "vimdoc",
         "proto",
         "json",
+        "sql",
         -- "grpcurl",
         "starlark",
         "javascript",
@@ -803,10 +829,10 @@ require("lazy").setup({
   --   "tpope/vim-commentary",
   --   config = false,
   -- },
-  {
-    "tomtom/tcomment_vim",
-    -- opts = {},
-  },
+  -- {
+  --   "tomtom/tcomment_vim",
+  --   -- opts = {},
+  -- },
   {
     "mvllow/stand.nvim",
     opts = {},
