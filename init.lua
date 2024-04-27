@@ -50,6 +50,11 @@ require("lazy").setup({
       },
     },
   },
+  -- colorschemes
+  "sainnhe/everforest",
+  "ellisonleao/gruvbox.nvim",
+  "shaunsingh/nord.nvim",
+  "EdenEast/nightfox.nvim",
   {
     -- run :colorscheme synthweave or synthweave-transparent when feeling like it
     "samharju/synthweave.nvim",
@@ -67,39 +72,132 @@ require("lazy").setup({
       enable_cmp_integration = true,
     },
   },
+  {
+    "lewis6991/gitsigns.nvim",
+    -- opts = {
+    --   _extmark_signs = false,
+    -- },
+  },
+  -- LSP keymaps
+  {
+    "neovim/nvim-lspconfig",
+    init = function()
+      local keys = require("lazyvim.plugins.lsp.keymaps").get()
+      -- change a keymap
+      -- keys[#keys + 1] = { "K", "<cmd>echo 'hello'<cr>" }
+      -- disable a keymap
+      keys[#keys + 1] = { "gt", false }
+      keys[#keys + 1] = { "gI", false }
+      keys[#keys + 1] = { "gd", vim.lsp.buf.definition, desc = "" }
+      keys[#keys + 1] = {
+        "<leader>lgd",
+        "<Cmd>lua vim.lsp.buf.declaration()<CR>",
+        desc = "",
+      }
+      keys[#keys + 1] = { "K", vim.lsp.buf.hover, desc = "Hover" }
+      keys[#keys + 1] = {
+        "<leader>lgi",
+        "<cmd>lua vim.lsp.buf.implementation()<CR>",
+        desc = "",
+      }
+      keys[#keys + 1] = {
+        "<C-k>",
+        vim.lsp.buf.signature_help,
+        desc = "Signature Help",
+        has = "signatureHelp",
+      }
+      keys[#keys + 1] = {
+        "<leader>lwa",
+        "<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>",
+        desc = "",
+      }
+      keys[#keys + 1] = {
+        "<leader>lwr",
+        "<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>",
+        desc = "",
+      }
+      keys[#keys + 1] = {
+        "<leader>lwl",
+        "<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>",
+        desc = "",
+      }
+      keys[#keys + 1] = {
+        "<leader>ld",
+        "<cmd>lua vim.lsp.buf.type_definition()<CR>",
+        desc = "Type definition",
+      }
+      keys[#keys + 1] =
+        { "<leader>lrn", "<cmd>lua vim.lsp.buf.rename()<CR>", desc = "" }
+      keys[#keys + 1] =
+        { "<leader>lca", "<cmd>lua vim.lsp.buf.code_action()<CR>", desc = "" }
+      keys[#keys + 1] =
+        { "<leader>lgr", "<cmd>lua vim.lsp.buf.references()<CR>", desc = "" }
+      keys[#keys + 1] =
+        { "<leader>le", vim.diagnostic.open_float, desc = "Line Diagnostics" }
+      keys[#keys + 1] =
+        { "<leader>l[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", desc = "" }
+      keys[#keys + 1] =
+        { "<leader>l]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", desc = "" }
+      keys[#keys + 1] = {
+        "<leader>lq",
+        "<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>",
+        desc = "",
+      }
+      keys[#keys + 1] =
+        { "<leader>lf", "<cmd>lua vim.lsp.buf.format()<CR>", desc = "" }
+    end,
+  },
+  {
+    "jay-babu/mason-nvim-dap.nvim",
+    dependencies = { "williamboman/mason.nvim" },
+    opts = {
+      ensure_installed = {
+        "pyright",
+        "yapf",
+        "cppdbg",
+        "codelldb",
+      },
+    },
+  },
+  {
+    "mfussenegger/nvim-dap",
+    dependencies = { "williamboman/mason.nvim" },
+    opts = function()
+      local dap = require("dap")
+      vim.print("in dap opts")
+      local launchWithArgs = {
+        args = function()
+          local argument_string = vim.fn.input("Program arguments: ")
+          return vim.fn.split(argument_string, " ", true)
+        end,
+        cwd = "${workspaceFolder}",
+        name = "Launch file with arguments",
+        program = function()
+          return vim.fn.input(
+            "Path to executable: ",
+            vim.fn.getcwd() .. "/",
+            "file"
+          )
+        end,
+        request = "launch",
+        stopOnEntry = true,
+        type = "codelldb",
+      }
+      if not dap.configurations.cpp then
+        dap.configurations.cpp = {
+          launchWithArgs,
+        }
+      else
+        vim.list_extend(dap.configurations.cpp, { launchWithArgs })
+      end
+    end,
+  },
   { -- Autocompletion
     "hrsh7th/nvim-cmp",
     event = "InsertEnter",
     dependencies = {
-      -- Snippet Engine & its associated nvim-cmp source
-      {
-        "L3MON4D3/LuaSnip",
-        build = (function()
-          -- Build Step is needed for regex support in snippets.
-          -- This step is not supported in many windows environments.
-          -- Remove the below condition to re-enable on windows.
-          if vim.fn.has("win32") == 1 or vim.fn.executable("make") == 0 then
-            return
-          end
-          return "make install_jsregexp"
-        end)(),
-        dependencies = {
-          -- `friendly-snippets` contains a variety of premade snippets.
-          --    See the README about individual language/framework/plugin snippets:
-          --    https://github.com/rafamadriz/friendly-snippets
-          -- {
-          --   'rafamadriz/friendly-snippets',
-          --   config = function()
-          --     require('luasnip.loaders.from_vscode').lazy_load()
-          --   end,
-          -- },
-        },
-      },
+      "L3MON4D3/LuaSnip",
       "saadparwaiz1/cmp_luasnip",
-
-      -- Adds other completion capabilities.
-      --  nvim-cmp does not ship with all sources by default. They are split
-      --  into multiple repos for maintenance purposes.
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-path",
     },
@@ -108,7 +206,6 @@ require("lazy").setup({
       local cmp = require("cmp")
       local luasnip = require("luasnip")
       luasnip.config.setup({})
-
       cmp.setup({
         snippet = {
           expand = function(args)
@@ -308,12 +405,39 @@ require("lazy").setup({
   --   dir = "~/work/tree-sitter-grpcurl", -- lazy = false,
   -- },
   {
+    "echasnovski/mini.bracketed",
+    enabled = false,
+  },
+  {
+    "echasnovski/mini.splitjoin",
+    version = false,
+    keys = {
+      {
+        "gS",
+        "<cmd>lua MiniSplitjoin.toggle()<cr>",
+        desc = "Mini SplitJoin toggle",
+      },
+    },
+    dependencies = { "folke/which-key.nvim" },
+    opts = {
+      mappings = {
+        toggle = "",
+      },
+    },
+  },
+  {
     "L3MON4D3/LuaSnip",
     opts = {
       history = false,
       update_events = "TextChanged,TextChangedI",
       -- delete_check_events = "TextChanged",
     },
+    build = (function()
+      if vim.fn.has("win32") == 1 or vim.fn.executable("make") == 0 then
+        return
+      end
+      return "make install_jsregexp"
+    end)(),
     keys = function()
       return {
         { "<tab>", false },
@@ -475,6 +599,65 @@ require("lazy").setup({
     -- config = function(_, opts)
     --   require("py-bazel").setup(opts or {})
     -- end,
+  },
+  {
+    "williamboman/mason.nvim",
+    keys = { { "<leader>cm", "<cmd>Mason<cr>", desc = "Mason" } },
+    version = false,
+    cmd = "Mason",
+    opts = {
+      log_level = vim.log.levels.DEBUG,
+      ensure_installed = {
+        "stylua",
+        "stylelint-lsp",
+        "jq-lsp",
+        "shfmt",
+        "pyright",
+        "lua-language-server",
+        "jsonnet-language-server",
+        "yapf",
+        "prettierd",
+        "yq",
+      },
+      providers = {
+        "mason.providers.client",
+        "mason.providers.registry-api",
+      },
+    },
+  },
+  {
+    "nvimtools/none-ls.nvim",
+    -- event = { "BufReadPre", "BufNewFile" },
+    -- dependencies = { "mason.nvim" },
+    opts = function()
+      local nls = require("null-ls")
+      return {
+        root_dir = require("null-ls.utils").root_pattern(
+          ".null-ls-root",
+          ".neoconf.json",
+          "Makefile",
+          ".git"
+        ),
+        sources = {
+          nls.builtins.formatting.fish_indent,
+          nls.builtins.diagnostics.fish,
+          nls.builtins.formatting.stylua,
+          nls.builtins.formatting.shfmt,
+          nls.builtins.formatting.prettierd,
+          -- nls.builtins.diagnostics.flake8,
+          nls.builtins.formatting.yapf,
+          nls.builtins.diagnostics.buildifier,
+          nls.builtins.formatting.buildifier,
+          nls.builtins.diagnostics.buf.with({
+            disabled_filetypes = { "proto" },
+          }),
+          -- nls.builtins.diagnostics.codespell.with({
+          --   disabled_filetypes = { "proto" },
+          -- }),
+          nls.builtins.diagnostics.tidy,
+        },
+      }
+    end,
   },
   {
     "hudclark/grpc-nvim",
