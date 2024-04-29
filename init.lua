@@ -40,7 +40,7 @@ require("lazy").setup({
       },
     },
     opts = {
-      colorscheme = "everforest",
+      colorscheme = "catppuccin-mocha",
       mouse = "",
       defaults = {
         autocmds = true, -- lazyvim.config.autocmds
@@ -132,12 +132,20 @@ require("lazy").setup({
         { "<leader>lca", "<cmd>lua vim.lsp.buf.code_action()<CR>", desc = "" }
       keys[#keys + 1] =
         { "<leader>lgr", "<cmd>lua vim.lsp.buf.references()<CR>", desc = "" }
+      keys[#keys + 1] = {
+        "<C-W>d",
+        vim.diagnostic.open_float,
+        desc = "Line Diagnostics",
+      }
+      keys[#keys + 1] = {
+        "<C-W><C-D>",
+        vim.diagnostic.open_float,
+        desc = "Line Diagnostics",
+      }
       keys[#keys + 1] =
-        { "<leader>le", vim.diagnostic.open_float, desc = "Line Diagnostics" }
+        { "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", desc = "" }
       keys[#keys + 1] =
-        { "<leader>l[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", desc = "" }
-      keys[#keys + 1] =
-        { "<leader>l]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", desc = "" }
+        { "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", desc = "" }
       keys[#keys + 1] = {
         "<leader>lq",
         "<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>",
@@ -161,7 +169,7 @@ require("lazy").setup({
   },
   {
     "mfussenegger/nvim-dap",
-    dependencies = { "williamboman/mason.nvim" },
+    dependencies = { "williamboman/mason.nvim", "rcarriga/nvim-dap-ui" },
     opts = function()
       local dap = require("dap")
       vim.print("in dap opts")
