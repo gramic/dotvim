@@ -60,3 +60,10 @@ map(
   "<cmd>noh<cr><esc>",
   { desc = "Escape and clear hlsearch" }
 )
+-- Easily hit escape in terminal mode.
+map(
+  "t",
+  "<esc><esc>",
+  "<c-\\><c-n>",
+  { desc = "Easily hit escape in terminal mode" }
+)
