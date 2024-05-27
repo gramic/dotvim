@@ -737,22 +737,22 @@ require("lazy").setup({
     end,
   },
   -- Add maktaba and codefmt to the runtimepath.
-  {
-    "google/vim-maktaba",
-  },
-  {
-    "google/vim-codefmt",
-    dependencies = { "google/vim-maktaba", "google/vim-glaive" },
-  },
-  {
-    "google/vim-glaive",
-    dependencies = { "google/vim-maktaba", "google/vim-codefmt" },
-    lazy = false,
-    -- command = "Glaive",
-    config = function()
-      vim.cmd([[Glaive codefmt clang_format_style=Google]])
-    end,
-  },
+  -- {
+  --   "google/vim-maktaba",
+  -- },
+  -- {
+  --   "google/vim-codefmt",
+  --   dependencies = { "google/vim-maktaba", "google/vim-glaive" },
+  -- },
+  -- {
+  --   "google/vim-glaive",
+  --   dependencies = { "google/vim-maktaba", "google/vim-codefmt" },
+  --   lazy = false,
+  --   -- command = "Glaive",
+  --   config = function()
+  --     vim.cmd([[Glaive codefmt clang_format_style=Google]])
+  --   end,
+  -- },
   { "google/vim-jsonnet" },
   {
     "vim-scripts/dbext.vim",
@@ -760,9 +760,10 @@ require("lazy").setup({
   },
   {
     "nvim-treesitter/nvim-treesitter",
-    version = false, -- last release is way too old and doesn't work on Windows
-    opts = function(_, opts)
-      vim.list_extend(opts.ensure_installed, {
+    version = false,
+    opts = {
+      highlight = { enable = true, disable = { "c_sharp" } },
+      ensure_installed = {
         "vimdoc",
         "proto",
         "json",
@@ -770,10 +771,8 @@ require("lazy").setup({
         -- "grpcurl",
         "starlark",
         "javascript",
-        "query",
-        "jsdoc",
-      })
-    end,
+      },
+    },
   },
   -- { "folke/neoconf.nvim", cmd = "Neoconf" },
   {
@@ -918,7 +917,9 @@ require("lazy").setup({
     },
     config = function()
       require("telescope").load_extension("live_grep_args")
-      require("telescope").load_extension("git_file_history")
+      if vim.fn.has("unix") == 1 then
+        require("telescope").load_extension("git_file_history")
+      end
     end,
   },
   {
