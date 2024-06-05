@@ -317,6 +317,20 @@ require("lazy").setup({
     opts = {},
   },
   {
+    "ramilito/kubectl.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    keys = {
+      {
+        "<leader>k",
+        function()
+          require("kubectl").open()
+        end,
+        desc = "Kubectl",
+      },
+    },
+    opts = {},
+  },
+  {
     "folke/lazydev.nvim",
     ft = "lua", -- only load on lua files
     opts = {
