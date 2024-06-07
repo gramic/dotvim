@@ -458,7 +458,27 @@ require("lazy").setup({
     end,
   },
   {
+    "emmanueltouzery/decisive.nvim",
+    version = false,
+    opts = {},
+    keys = {
+      {
+        "<leader>cca",
+        "<cmd>:lua require('decisive').align_csv({})<cr>",
+        desc = "[a]lign CSV",
+        ft = "csv",
+      },
+      {
+        "<leader>ccA",
+        "<cmd>:lua require('decisive').align_csv_clear({})<cr>",
+        desc = "[a]lign CSV clear",
+        ft = "csv",
+      },
+    },
+  },
+  {
     "linux-cultist/venv-selector.nvim",
+    version = false,
     dependencies = {
       "neovim/nvim-lspconfig",
       "nvim-telescope/telescope.nvim",
@@ -886,6 +906,7 @@ require("lazy").setup({
   { "folke/trouble.nvim", config = true },
   { "p00f/clangd_extensions.nvim", config = true },
   { "jpetrie/vim-counterpoint" },
+  "tpope/vim-dotenv",
   "tpope/vim-dadbod",
   "tpope/vim-speeddating",
   "tpope/vim-eunuch",
