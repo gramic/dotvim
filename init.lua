@@ -364,12 +364,16 @@ require("lazy").setup({
       formatters_by_ft = {
         py = { "yapf" },
         bzl = { "buildifier" },
+        cpp = { "clang-format" },
       },
       formatters = {
         javascript = {
           prepend_args = { "-style", "google" },
         },
         yapf = {
+          prepend_args = { "--style", "google" },
+        },
+        cpp = {
           prepend_args = { "--style", "google" },
         },
       },
@@ -1073,12 +1077,17 @@ require("lazy").setup({
     "ibhagwan/fzf-lua",
     dependencies = { "nvim-tree/nvim-web-devicons", "junegunn/fzf" },
     config = true,
-    -- command = "FzfLua",
+    cmd = "FzfLua",
     keys = {
       {
         "<leader>fg",
         "<cmd>FzfLua live_grep_glob<cr>",
         desc = "Live grep glob",
+      },
+      {
+        "<leader>fu",
+        "<cmd>FzfLua resume<cr>",
+        desc = "Resume FzfLua",
       },
     },
   },

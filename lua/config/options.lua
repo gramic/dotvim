@@ -7,6 +7,7 @@ vim.g.mapleader = " " -- Make sure to set `mapleader` before lazy
 vim.g.python_recommended_style = 0
 
 local opt = vim.opt -- set options
+opt.breakindent = true
 opt.spelllang = "en,bg"
 opt.clipboard = ""
 opt.cursorline = false -- Enable highlighting of the current line
