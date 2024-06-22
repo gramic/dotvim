@@ -245,6 +245,7 @@ require("lazy").setup({
       "saadparwaiz1/cmp_luasnip",
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-path",
+      "crispgm/cmp-beancount",
     },
     config = function()
       -- See `:help cmp`
@@ -302,8 +303,19 @@ require("lazy").setup({
           { name = "buffer" },
         },
       })
+      cmp.setup.filetype("bean", {
+        sources = {
+          {
+            name = "beancount",
+            -- option = { account = "/path/to/account.bean" },
+          },
+          { name = "buffer" },
+        },
+      })
     end,
   },
+  { "nathangrigg/vim-beancount" },
+  { "crispgm/cmp-beancount" },
   {
     "jakobkhansen/journal.nvim",
     command = "Journal",
