@@ -377,6 +377,7 @@ require("lazy").setup({
         py = { "yapf" },
         bzl = { "buildifier" },
         cpp = { "clang-format" },
+        lua = { "stylua" },
       },
       formatters = {
         javascript = {
@@ -393,6 +394,7 @@ require("lazy").setup({
   },
   {
     "folke/noice.nvim",
+    -- enabled = false,
     opts = {
       -- cmdline = {
       --   enabled = false, -- enables the Noice cmdline UI
@@ -635,7 +637,7 @@ require("lazy").setup({
       {
         "<leader>uf",
         function()
-          require("lazyvim.plugins.lsp.format").toggle()
+          LazyVim.format.toggle()
         end,
         desc = "Toggle format on Save",
       },
@@ -664,7 +666,7 @@ require("lazy").setup({
       {
         "<leader>ud",
         function()
-          require("lazyvim.util").toggle_diagnostics()
+          LazyVim.toggle.diagnostics()
         end,
         desc = "Toggle Diagnostics",
       },
