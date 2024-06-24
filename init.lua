@@ -893,7 +893,10 @@ require("lazy").setup({
     "nvim-treesitter/nvim-treesitter",
     version = false,
     opts = {
-      highlight = { enable = true, disable = { "c_sharp" } },
+      highlight = {
+        enable = true,
+        -- disable = { "c_sharp" }
+      },
       ensure_installed = {
         "vimdoc",
         "proto",
@@ -902,6 +905,7 @@ require("lazy").setup({
         -- "grpcurl",
         "starlark",
         "javascript",
+        "beancount",
       },
     },
   },
