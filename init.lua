@@ -163,12 +163,6 @@ require("lazy").setup({
         "<cmd>lua vim.lsp.buf.type_definition()<CR>",
         desc = "Type definition",
       }
-      keys[#keys + 1] =
-        { "<leader>lrn", "<cmd>lua vim.lsp.buf.rename()<CR>", desc = "" }
-      keys[#keys + 1] =
-        { "<leader>lca", "<cmd>lua vim.lsp.buf.code_action()<CR>", desc = "" }
-      keys[#keys + 1] =
-        { "<leader>lgr", "<cmd>lua vim.lsp.buf.references()<CR>", desc = "" }
       keys[#keys + 1] = {
         "<C-W>d",
         vim.diagnostic.open_float,
@@ -179,10 +173,6 @@ require("lazy").setup({
         vim.diagnostic.open_float,
         desc = "Line Diagnostics",
       }
-      keys[#keys + 1] =
-        { "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", desc = "" }
-      keys[#keys + 1] =
-        { "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", desc = "" }
       keys[#keys + 1] = {
         "<leader>lq",
         "<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>",
@@ -237,85 +227,121 @@ require("lazy").setup({
       end
     end,
   },
-  { -- Autocompletion
-    "hrsh7th/nvim-cmp",
-    event = "InsertEnter",
-    dependencies = {
-      "L3MON4D3/LuaSnip",
-      "saadparwaiz1/cmp_luasnip",
-      "hrsh7th/cmp-nvim-lsp",
-      "hrsh7th/cmp-path",
-      "crispgm/cmp-beancount",
+  -- { -- Autocompletion
+  --   "hrsh7th/nvim-cmp",
+  --   event = "InsertEnter",
+  --   dependencies = {
+  --     "L3MON4D3/LuaSnip",
+  --     "saadparwaiz1/cmp_luasnip",
+  --     "hrsh7th/cmp-nvim-lsp",
+  --     "hrsh7th/cmp-path",
+  --   },
+  --   config = function()
+  --     -- See `:help cmp`
+  --     local cmp = require("cmp")
+  --     local luasnip = require("luasnip")
+  --     luasnip.config.set_config({
+  --       history = false,
+  --       updateevents = "TextChanged,TextChangedI",
+  --     })
+  --     luasnip.config.setup({})
+  --     for _, ft_path in
+  --       ipairs(vim.api.nvim_get_runtime_file("lua/custom/snippets/*.lua", true))
+  --     do
+  --       loadfile(ft_path)()
+  --     end
+  --     cmp.setup({
+  --       snippet = {
+  --         expand = function(args)
+  --           luasnip.lsp_expand(args.body)
+  --         end,
+  --       },
+  --       completion = { completeopt = "menu,menuone,noinsert" },
+  --       mapping = cmp.mapping.preset.insert({
+  --         ["<C-n>"] = cmp.mapping.select_next_item({
+  --           behavior = cmp.SelectBehavior.Insert,
+  --         }),
+  --         ["<C-p>"] = cmp.mapping.select_prev_item({
+  --           behavior = cmp.SelectBehavior.Insert,
+  --         }),
+  --         ["<C-y>"] = cmp.mapping.confirm({
+  --           behavior = cmp.SelectBehavior.Insert,
+  --           select = true,
+  --         }),
+  --         ["<C-j>"] = cmp.mapping(function()
+  --           if luasnip.expand_or_locally_jumpable() then
+  --             luasnip.expand_or_jump()
+  --           end
+  --         end, { "i", "s" }),
+  --         ["<C-k>"] = cmp.mapping(function()
+  --           if luasnip.locally_jumpable(-1) then
+  --             luasnip.jump(-1)
+  --           end
+  --         end, { "i", "s" }),
+  --       }),
+  --       sources = {
+  --         { name = "nvim_lsp" },
+  --         { name = "luasnip" },
+  --         { name = "path" },
+  --         { name = "vim-dadbod-completion" },
+  --       },
+  --     })
+  --     cmp.setup.filetype("sql", {
+  --       sources = {
+  --         { name = "vim-dadbod-completion" },
+  --         { name = "buffer" },
+  --       },
+  --     })
+  --   end,
+  -- },
+  {
+    "nvim-cmp",
+    -- stylua: ignore
+    keys = {
+      { "<tab>", false },
+      { "<tab>", false },
+      { "<s-tab>", false },
+      { "<C-y>",
+        function() return "<Plug>luasnip-expand-snippet" end,
+        mode = "s"
+      },
+      { "<C-j>",
+        function()
+          return require("luasnip").jumpable(1) and "<Plug>luasnip-jump-next"
+        end,
+        expr = true, silent = true, mode = "i",
+      },
+      { "<C-k>",
+        function() require("luasnip").jump(-1) end,
+        mode = { "i", "s" }
+      },
     },
-    config = function()
-      -- See `:help cmp`
-      local cmp = require("cmp")
-      local luasnip = require("luasnip")
-      luasnip.config.set_config({
-        history = false,
-        updateevents = "TextChanged,TextChangedI",
-      })
-      luasnip.config.setup({})
-      for _, ft_path in
-        ipairs(vim.api.nvim_get_runtime_file("lua/custom/snippets/*.lua", true))
-      do
-        loadfile(ft_path)()
-      end
-      cmp.setup({
-        snippet = {
-          expand = function(args)
-            luasnip.lsp_expand(args.body)
-          end,
-        },
-        completion = { completeopt = "menu,menuone,noinsert" },
-        mapping = cmp.mapping.preset.insert({
-          ["<C-n>"] = cmp.mapping.select_next_item({
-            behavior = cmp.SelectBehavior.Insert,
-          }),
-          ["<C-p>"] = cmp.mapping.select_prev_item({
-            behavior = cmp.SelectBehavior.Insert,
-          }),
-          ["<C-y>"] = cmp.mapping.confirm({
-            behavior = cmp.SelectBehavior.Insert,
-            select = true,
-          }),
-          ["<C-j>"] = cmp.mapping(function()
-            if luasnip.expand_or_locally_jumpable() then
-              luasnip.expand_or_jump()
-            end
-          end, { "i", "s" }),
-          ["<C-k>"] = cmp.mapping(function()
-            if luasnip.locally_jumpable(-1) then
-              luasnip.jump(-1)
-            end
-          end, { "i", "s" }),
-        }),
-        sources = {
-          { name = "nvim_lsp" },
-          { name = "luasnip" },
-          { name = "path" },
-          { name = "vim-dadbod-completion" },
-        },
-      })
-      cmp.setup.filetype("sql", {
-        sources = {
-          { name = "vim-dadbod-completion" },
-          { name = "buffer" },
-        },
-      })
-      cmp.setup.filetype("bean", {
-        sources = {
-          {
-            name = "beancount",
-            -- option = { account = "/path/to/account.bean" },
-          },
-          { name = "buffer" },
-        },
+  },
+  {
+    "nvim-cmp",
+    dependencies = {
+      {
+        "crispgm/cmp-beancount",
+        dependencies = "hrsh7th/nvim-cmp",
+        event = "InsertEnter",
+        ft = "bean",
+        config = function()
+          vim.print("-- from cmp-beancount config")
+          local source = require("cmp_beancount").new()
+          require("cmp").register_source("beancount", source)
+        end,
+      },
+    },
+    ---@module 'cmp'
+    ---@param opts cmp.ConfigSchema
+    opts = function(_, opts)
+      table.insert(opts.sources, {
+        name = "beancount",
+        -- option = { account = "/users/stanimir/file.bean" },
       })
     end,
   },
-  { "nathangrigg/vim-beancount" },
-  { "crispgm/cmp-beancount" },
+  "nathangrigg/vim-beancount",
   {
     "jakobkhansen/journal.nvim",
     command = "Journal",
@@ -354,16 +380,6 @@ require("lazy").setup({
     },
   },
   { "Bilal2453/luvit-meta", lazy = true }, -- optional `vim.uv` typings
-  { -- optional completion source for require statements and module annotations
-    "hrsh7th/nvim-cmp",
-    opts = function(_, opts)
-      opts.sources = opts.sources or {}
-      table.insert(opts.sources, {
-        name = "lazydev",
-        group_index = 0, -- set group index to 0 to skip loading LuaLS completions
-      })
-    end,
-  },
   { "folke/neodev.nvim", enabled = false }, -- make sure to uninstall or disable neodev.nvim
   {
     "nvim-treesitter/nvim-treesitter-context",
@@ -743,6 +759,8 @@ require("lazy").setup({
         "jsonnet-language-server",
         "yapf",
         "prettierd",
+        "buildifier",
+        "clang-format",
         "yq",
       },
       providers = {
