@@ -318,15 +318,45 @@ require("lazy").setup({
     },
   },
   {
+    "nathangrigg/vim-beancount",
+    dependencies = {
+      {
+        "stevearc/conform.nvim",
+        opts = {
+          formatters_by_ft = {
+            beancount = { "bean-format" },
+          },
+          formatters = {
+            ["bean-format"] = {
+              args = { "-c", "40", "-" },
+            },
+          },
+        },
+      },
+      {
+        "neovim/nvim-lspconfig",
+        opts = {
+          servers = {
+            beancount = {
+              init_options = {
+                journalFile = "~/file.bean",
+                -- pythonPath = "~/.cache/pypoetry/virtualenvs/beancount-repo-iwRmyqK8-py3.9/bin/python3",
+              },
+            },
+          },
+        },
+      },
+    },
+  },
+  {
     "nvim-cmp",
     dependencies = {
       {
         "crispgm/cmp-beancount",
         dependencies = "hrsh7th/nvim-cmp",
         event = "InsertEnter",
-        ft = "bean",
+        ft = "beancount",
         config = function()
-          vim.print("-- from cmp-beancount config")
           local source = require("cmp_beancount").new()
           require("cmp").register_source("beancount", source)
         end,
@@ -341,7 +371,6 @@ require("lazy").setup({
       })
     end,
   },
-  "nathangrigg/vim-beancount",
   {
     "jakobkhansen/journal.nvim",
     command = "Journal",
@@ -395,6 +424,7 @@ require("lazy").setup({
         cpp = { "clang-format" },
         lua = { "stylua" },
       },
+      -- log_level = vim.log.levels.DEBUG,
       formatters = {
         javascript = {
           prepend_args = { "-style", "google" },
@@ -402,7 +432,7 @@ require("lazy").setup({
         yapf = {
           prepend_args = { "--style", "google" },
         },
-        cpp = {
+        ["clang-format"] = {
           prepend_args = { "--style", "google" },
         },
       },
@@ -762,6 +792,7 @@ require("lazy").setup({
         "buildifier",
         "clang-format",
         "yq",
+        "beancount-language-server",
       },
       providers = {
         "mason.providers.client",
@@ -974,6 +1005,7 @@ require("lazy").setup({
   -- change some telescope options and a keymap to browse plugin files
   {
     "nvim-telescope/telescope.nvim",
+    ---@type LazyKeysSpec[]
     keys = {
       -- add a keymap to browse plugin files
       -- stylua: ignore
