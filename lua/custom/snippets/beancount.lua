@@ -66,6 +66,18 @@ local choice_existing_params = function(position)
   end, {})
 end
 
+local rec_ls
+rec_ls = function()
+  return sn(nil, {
+    c(1, {
+      -- important!! Having the sn(...) as the first choice will cause infinite recursion.
+      t({ "" }),
+      -- The same dynamicNode as in the snippet (also note: self reference).
+      sn(nil, { t({ "", "{} {} BGN" }), i(1), d(2, rec_ls, {}) }),
+    }),
+  })
+end
+
 ls.add_snippets("beancount", {
   s(
     {
@@ -75,15 +87,16 @@ ls.add_snippets("beancount", {
     fmt(
       [[
         {} * "{}"
-          {} BGN{}
-          Активи:KBC:Основна
+          {} {} BGN
+          {}
         {}
       ]],
       {
         i(1, os.date("%Y-%m-%d")),
         i(2),
         i(3),
-        i(4),
+        d(4, rec_ls, {}),
+        i(5, "Активи:KBC:Основна"),
         i(0),
       }
     ),
@@ -93,21 +106,22 @@ ls.add_snippets("beancount", {
   s(
     {
       trig = "[npсп]", -- [n]ext, [p]revious, [с]ледващ, [п]редишен
-      regTrig = true,
+      trigEngine = "vim",
       dscr = "Create expense with previous post date.",
     },
     fmt(
       [[
         {} * "{}"
-          {} BGN{}
-          Активи:KBC:Основна
+          {} {} BGN
+          {}
         {}
       ]],
       {
         choice_existing_params(1),
         i(2),
         i(3),
-        i(4),
+        d(4, rec_ls, {}),
+        i(5, "Активи:KBC:Основна"),
         i(0),
       }
     ),
