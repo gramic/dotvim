@@ -227,6 +227,10 @@ require("lazy").setup({
       end
     end,
   },
+  {
+    "https://git.sr.ht/~soywod/himalaya-vim",
+    config = function() end,
+  },
   { -- Autocompletion
     "hrsh7th/nvim-cmp",
     event = "InsertEnter",
@@ -397,19 +401,20 @@ require("lazy").setup({
     },
     opts = {},
   },
-  {
-    "folke/lazydev.nvim",
-    ft = "lua", -- only load on lua files
-    opts = {
-      library = {
-        -- See the configuration section for more details
-        -- Load luvit types when the `vim.uv` word is found
-        { path = "luvit-meta/library", words = { "vim%.uv" } },
-      },
-    },
-  },
+  -- {
+  --   "folke/lazydev.nvim",
+  --   ft = "lua", -- only load on lua files
+  --   opts = {
+  --     library = {
+  --       -- See the configuration section for more details
+  --       -- Load luvit types when the `vim.uv` word is found
+  --       { path = "luvit-meta/library", words = { "vim%.uv" } },
+  --     },
+  --   },
+  -- },
   { "Bilal2453/luvit-meta", lazy = true }, -- optional `vim.uv` typings
   { "folke/neodev.nvim", enabled = false }, -- make sure to uninstall or disable neodev.nvim
+  { "echasnovski/mini.ai", enabled = false }, -- make sure to uninstall or disable neodev.nvim
   {
     "nvim-treesitter/nvim-treesitter-context",
     enabled = false,
@@ -1080,7 +1085,7 @@ require("lazy").setup({
         "<leader>a",
         function()
           local harpoon = require("harpoon")
-          harpoon:list():append()
+          harpoon:list():add()
         end,
         desc = "Harpoon append",
       },

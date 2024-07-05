@@ -5,10 +5,11 @@ vim.g.autoformat = true
 vim.g.tcomment_mapleader2 = false
 vim.g.mapleader = " " -- Make sure to set `mapleader` before lazy
 vim.g.python_recommended_style = 0
+vim.g.himalaya_config_path = "~/work/himalaya/config.toml"
 
 local opt = vim.opt -- set options
 opt.langmap =
-  "Ч~,ЯQ,ВW,ЕE,РR,ТT,ЪY,УU,ИI,ОO,ПP,Ш{,Щ},АA,СS,ДD,ФF,ГG,ХH,ЙJ,КK,ЛL,ЗZ,ЬZ,ЦC,ЖV,БB,НN,МM,ч`,яq,вw,еe,рr,тt,ъy,уu,иi,оo,пp,ш[,щ],аa,сs,дd,фf,гg,хh,йj,кk,лl,зz,ьz,цc,жv,бb,нn,мm"
+  "Ч~,ЯQ,ВW,ЕE,РR,ТT,ЪY,ѝX,УU,ИI,ОO,ПP,Ш{,Щ},АA,СS,ДD,ФF,ГG,ХH,ЙJ,КK,ЛL,ЗZ,ЦC,ЖV,БB,НN,МM,ч`,яq,вw,еe,рr,тt,ъy,ьx,уu,иi,оo,пp,ш[,щ],аa,сs,дd,фf,гg,хh,йj,кk,лl,зz,цc,жv,бb,нn,мm"
 opt.breakindent = true
 opt.spelllang = "en,bg"
 opt.clipboard = ""
