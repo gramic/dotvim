@@ -229,6 +229,7 @@ require("lazy").setup({
   },
   {
     "https://git.sr.ht/~soywod/himalaya-vim",
+    cmd = { "Himalaya" },
     config = function() end,
   },
   { -- Autocompletion
@@ -1171,6 +1172,7 @@ require("lazy").setup({
   {
     "stevearc/oil.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
+    cmd = "Oil",
     keys = {
       {
         "-",
@@ -1179,6 +1181,10 @@ require("lazy").setup({
       },
     },
     opts = {
+      -- This will allow to use Dirvish also
+      watch_for_changes = true,
+      default_file_explorer = false,
+      delete_to_trash = true,
       keymaps = {
         ["<leader>fd"] = {
           callback = function()
